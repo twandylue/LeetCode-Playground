@@ -1,5 +1,5 @@
 [package]
-name = "two_sum"
+name = "blind75_rust"
 version = "0.1.0"
 edition = "2021"
 
