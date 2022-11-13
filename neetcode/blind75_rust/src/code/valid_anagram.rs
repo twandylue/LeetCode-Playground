@@ -36,10 +36,26 @@ impl Solution {
         return map.values().find(|&&x| x != 0).is_none();
     }
 
+    // O(NlogN)
+    pub fn is_anagram2(s: String, t: String) -> bool {
+        if s.len() != t.len() {
+            return false;
+        }
+
+        let mut v_s: Vec<u32> = s.chars().map(|x| x as u32).collect();
+        let mut v_t: Vec<u32> = t.chars().map(|x| x as u32).collect();
+        v_s.sort_by(|a, b| a.cmp(b));
+        v_t.sort_by(|a, b| a.cmp(b));
+
+        return v_s.eq(&v_t);
+    }
+
     pub fn tests() {
         let s = String::from("anagram");
         let t = String::from("nagaram");
-        let res = Solution::is_anagram(s, t);
+        let res = Solution::is_anagram(s.to_string(), t.to_string());
+        let res2 = Solution::is_anagram2(s.clone(), t.clone());
         assert_eq!(res, true);
+        assert_eq!(res2, true);
     }
 }
