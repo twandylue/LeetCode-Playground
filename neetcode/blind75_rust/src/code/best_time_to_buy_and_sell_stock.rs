@@ -16,6 +16,23 @@ impl Solution {
         return ret;
     }
 
+    pub fn max_profit2(prices: Vec<i32>) -> i32 {
+        let mut ret = 0;
+        let mut i = 0;
+        let mut j = 0;
+
+        while j < prices.len() {
+            if prices[j] > prices[i] {
+                ret = cmp::max(ret, prices[j] - prices[i]);
+            } else {
+                i = j;
+            }
+            j += 1
+        }
+
+        return ret;
+    }
+
     pub fn tests() {
         let prices = vec![7, 1, 5, 3, 6, 4];
         let expected = 5;
@@ -26,6 +43,18 @@ impl Solution {
         let prices2 = vec![7, 6, 4, 3, 1];
         let expected2 = 0;
         let actual2 = Solution::max_profit(prices2);
+
+        assert_eq!(actual2, expected2);
+
+        let prices = vec![7, 1, 5, 3, 6, 4];
+        let expected = 5;
+        let actual = Solution::max_profit2(prices);
+
+        assert_eq!(actual, expected);
+
+        let prices2 = vec![7, 6, 4, 3, 1];
+        let expected2 = 0;
+        let actual2 = Solution::max_profit2(prices2);
 
         assert_eq!(actual2, expected2);
     }
