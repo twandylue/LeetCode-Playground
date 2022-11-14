@@ -3,6 +3,7 @@ pub mod container_with_most_water;
 pub mod contains_duplicate;
 pub mod group_anagrams;
 pub mod longest_consecutive_sequence;
+pub mod longest_substring_without_repeating_characters;
 pub mod product_of_array_except_self;
 pub mod three_sum;
 pub mod top_k_frequent_elements;

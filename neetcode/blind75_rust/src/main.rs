@@ -3,6 +3,7 @@ use crate::code::container_with_most_water::Solution as S11;
 use crate::code::contains_duplicate::Solution as S227;
 use crate::code::group_anagrams::Solution as S49;
 use crate::code::longest_consecutive_sequence::Solution as S128;
+use crate::code::longest_substring_without_repeating_characters::Solution as S3;
 use crate::code::product_of_array_except_self::Solution as S238;
 use crate::code::three_sum::Solution as S15;
 use crate::code::top_k_frequent_elements::Solution as S347;
@@ -26,4 +27,5 @@ fn main() {
     S125::tests();
     S11::tests();
     S121::tests();
+    S3::tests();
 }
