@@ -1,5 +1,6 @@
 use crate::code::contains_duplicate::Solution as S227;
 use crate::code::group_anagrams::Solution as S49;
+use crate::code::longest_consecutive_sequence::Solution as S128;
 use crate::code::product_of_array_except_self::Solution as S238;
 use crate::code::top_k_frequent_elements::Solution as S347;
 use crate::code::two_sum::Solution as S1;
@@ -14,4 +15,5 @@ fn main() {
     S242::tests();
     S347::tests();
     S238::tests();
+    S128::tests();
 }
