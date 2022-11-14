@@ -1,3 +1,4 @@
+use crate::code::best_time_to_buy_and_sell_stock::Solution as S121;
 use crate::code::container_with_most_water::Solution as S11;
 use crate::code::contains_duplicate::Solution as S227;
 use crate::code::group_anagrams::Solution as S49;
@@ -24,4 +25,5 @@ fn main() {
     S128::tests();
     S125::tests();
     S11::tests();
+    S121::tests();
 }
