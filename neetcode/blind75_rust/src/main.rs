@@ -1,3 +1,4 @@
+use crate::code::container_with_most_water::Solution as S11;
 use crate::code::contains_duplicate::Solution as S227;
 use crate::code::group_anagrams::Solution as S49;
 use crate::code::longest_consecutive_sequence::Solution as S128;
@@ -22,4 +23,5 @@ fn main() {
     S238::tests();
     S128::tests();
     S125::tests();
+    S11::tests();
 }
