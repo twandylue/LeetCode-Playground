@@ -11,6 +11,7 @@ use crate::code::top_k_frequent_elements::Solution as S347;
 use crate::code::two_sum::Solution as S1;
 use crate::code::valid_anagram::Solution as S242;
 use crate::code::valid_palindrome::Solution as S125;
+use crate::code::valid_parentheses::Solution as S20;
 // use crate::code::valid_sudoku::Solution as S36;
 
 mod code;
@@ -30,4 +31,5 @@ fn main() {
     S121::tests();
     S3::tests();
     S424::tests();
+    S20::tests();
 }
