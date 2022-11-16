@@ -1,6 +1,7 @@
 use crate::code::best_time_to_buy_and_sell_stock::Solution as S121;
 use crate::code::container_with_most_water::Solution as S11;
 use crate::code::contains_duplicate::Solution as S227;
+use crate::code::find_minimum_in_rotated_sorted_array::Solution as S153;
 use crate::code::group_anagrams::Solution as S49;
 use crate::code::longest_consecutive_sequence::Solution as S128;
 use crate::code::longest_repeating_character_replacement::Solution as S424;
@@ -36,4 +37,5 @@ fn main() {
     S20::tests();
     S76::tests();
     S33::tests();
+    S153::tests();
 }
