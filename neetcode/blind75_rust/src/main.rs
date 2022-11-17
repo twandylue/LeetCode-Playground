@@ -8,6 +8,7 @@ use crate::code::longest_repeating_character_replacement::Solution as S424;
 use crate::code::longest_substring_without_repeating_characters::Solution as S3;
 use crate::code::minimum_window_substring::Solution as S76;
 use crate::code::product_of_array_except_self::Solution as S238;
+use crate::code::reverse_linked_list::Solution as S206;
 use crate::code::search_in_rotated_sorted_array::Solution as S33;
 use crate::code::three_sum::Solution as S15;
 use crate::code::top_k_frequent_elements::Solution as S347;
@@ -38,4 +39,5 @@ fn main() {
     S76::tests();
     S33::tests();
     S153::tests();
+    S206::tests();
 }
