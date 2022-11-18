@@ -59,8 +59,11 @@ impl Solution {
                 l2
             };
 
+            // swap step 1
             mem::swap(ptr, &mut temp);
+            // swap step 2
             mem::swap(temp, &mut ptr.as_mut().unwrap().next);
+            // step 3
             ptr = &mut ptr.as_mut().unwrap().next;
         }
 
@@ -103,3 +106,70 @@ impl Solution {
         }
     }
 }
+
+// -- output:
+// before:
+// ptr: None
+// temp: Some(ListNode { val: 1, next: Some(ListNode { val: 3, next: Some(ListNode { val: 4, next: None }) }) })
+// swap step 1:
+// ptr: Some(ListNode { val: 1, next: Some(ListNode { val: 3, next: Some(ListNode { val: 4, next: None }) }) })
+// temp: None
+// swap step 2:
+// ptr: Some(ListNode { val: 1, next: None })
+// temp: Some(ListNode { val: 3, next: Some(ListNode { val: 4, next: None }) })
+// step 3:
+// ptr: None
+// temp: Some(ListNode { val: 3, next: Some(ListNode { val: 4, next: None }) })
+// -----------------------------
+// before:
+// ptr: None
+// temp: Some(ListNode { val: 1, next: Some(ListNode { val: 2, next: Some(ListNode { val: 4, next: None }) }) })
+// swap step 1:
+// ptr: Some(ListNode { val: 1, next: Some(ListNode { val: 2, next: Some(ListNode { val: 4, next: None }) }) })
+// temp: None
+// swap step 2:
+// ptr: Some(ListNode { val: 1, next: None })
+// temp: Some(ListNode { val: 2, next: Some(ListNode { val: 4, next: None }) })
+// step 3:
+// ptr: None
+// temp: Some(ListNode { val: 2, next: Some(ListNode { val: 4, next: None }) })
+// -----------------------------
+// before:
+// ptr: None
+// temp: Some(ListNode { val: 2, next: Some(ListNode { val: 4, next: None }) })
+// swap step 1:
+// ptr: Some(ListNode { val: 2, next: Some(ListNode { val: 4, next: None }) })
+// temp: None
+// swap step 2:
+// ptr: Some(ListNode { val: 2, next: None })
+// temp: Some(ListNode { val: 4, next: None })
+// step 3:
+// ptr: None
+// temp: Some(ListNode { val: 4, next: None })
+// -----------------------------
+// before:
+// ptr: None
+// temp: Some(ListNode { val: 3, next: Some(ListNode { val: 4, next: None }) })
+// swap step 1:
+// ptr: Some(ListNode { val: 3, next: Some(ListNode { val: 4, next: None }) })
+// temp: None
+// swap step 2:
+// ptr: Some(ListNode { val: 3, next: None })
+// temp: Some(ListNode { val: 4, next: None })
+// step 3:
+// ptr: None
+// temp: Some(ListNode { val: 4, next: None })
+// -----------------------------
+// before:
+// ptr: None
+// temp: Some(ListNode { val: 4, next: None })
+// swap step 1:
+// ptr: Some(ListNode { val: 4, next: None })
+// temp: None
+// swap step 2:
+// ptr: Some(ListNode { val: 4, next: None })
+// temp: None
+// step 3:
+// ptr: None
+// temp: None
+// -----------------------------
