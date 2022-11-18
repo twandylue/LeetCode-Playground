@@ -44,45 +44,50 @@ impl Solution {
         list1: Option<Box<ListNode>>,
         list2: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
-        let mut dummy = None;
-        let mut p_next = &mut dummy;
-        while list1.is_some() && list2.is_some() {
-            let mut l1 = &mut list1;
-            let mut l2 = &mut list2;
-            let l = if l1.as_ref().unwrap().val < l2.as_ref().unwrap().val {
+        let mut head = None;
+        let mut ptr = &mut head;
+        let mut a = list1;
+        let mut b = list2;
+
+        while a.is_some() && b.is_some() {
+            let l1 = &mut a;
+            let l2 = &mut b;
+
+            let mut temp = if l1.as_ref().unwrap().val < l2.as_ref().unwrap().val {
                 l1
             } else {
                 l2
             };
 
-            mem::swap(p_next, l);
-            mem::swap(l, &mut p_next.as_ref().unwrap().next);
-            p_next = &mut p_next.as_ref().unwrap().next;
+            mem::swap(ptr, &mut temp);
+            mem::swap(temp, &mut ptr.as_mut().unwrap().next);
+            ptr = &mut ptr.as_mut().unwrap().next;
         }
 
-        mem::swap();
-        // TODO:
+        mem::swap(ptr, if a.is_none() { &mut b } else { &mut a });
+
+        head
     }
 
     pub fn tests() {
         let list1 = Self::convert_vec_to_linked_list(vec![1, 2, 4]);
         let list2 = Self::convert_vec_to_linked_list(vec![1, 3, 4]);
         let expected = Self::convert_vec_to_linked_list(vec![1, 1, 2, 3, 4, 4]);
-        let actual = Self::merge_two_lists(list1, list2);
+        let actual = Self::merge_two_lists2(list1, list2);
 
         assert_eq!(actual, expected);
 
         let list1 = Self::convert_vec_to_linked_list(vec![]);
         let list2 = Self::convert_vec_to_linked_list(vec![]);
         let expected2 = Self::convert_vec_to_linked_list(vec![]);
-        let actual2 = Self::merge_two_lists(list1, list2);
+        let actual2 = Self::merge_two_lists2(list1, list2);
 
         assert_eq!(actual2, expected2);
 
         let list1 = Self::convert_vec_to_linked_list(vec![]);
         let list2 = Self::convert_vec_to_linked_list(vec![0]);
         let expected3 = Self::convert_vec_to_linked_list(vec![0]);
-        let actual3 = Self::merge_two_lists(list1, list2);
+        let actual3 = Self::merge_two_lists2(list1, list2);
 
         assert_eq!(actual3, expected3);
     }
