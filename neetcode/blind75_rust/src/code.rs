@@ -6,6 +6,7 @@ pub mod group_anagrams;
 pub mod longest_consecutive_sequence;
 pub mod longest_repeating_character_replacement;
 pub mod longest_substring_without_repeating_characters;
+pub mod merge_two_sorted_lists;
 pub mod minimum_window_substring;
 pub mod product_of_array_except_self;
 pub mod reverse_linked_list;

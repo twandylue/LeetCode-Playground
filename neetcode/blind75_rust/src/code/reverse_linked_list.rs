@@ -90,7 +90,7 @@ impl Solution {
         assert_eq!(actual3, expected3);
     }
 
-    pub fn convert_vec_to_linked_list(vector: Vec<i32>) -> Option<Box<ListNode>> {
+    fn convert_vec_to_linked_list(vector: Vec<i32>) -> Option<Box<ListNode>> {
         if vector.len() == 0 {
             return None;
         } else {
