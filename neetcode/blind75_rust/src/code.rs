@@ -10,6 +10,7 @@ pub mod longest_substring_without_repeating_characters;
 pub mod merge_two_sorted_lists;
 pub mod minimum_window_substring;
 pub mod product_of_array_except_self;
+pub mod remove_nth_node_from_end_of_list;
 pub mod reorder_list;
 pub mod reverse_linked_list;
 pub mod search_in_rotated_sorted_array;
