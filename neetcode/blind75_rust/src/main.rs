@@ -10,6 +10,7 @@ use crate::code::longest_substring_without_repeating_characters::Solution as S3;
 use crate::code::merge_two_sorted_lists::Solution as S21;
 use crate::code::minimum_window_substring::Solution as S76;
 use crate::code::product_of_array_except_self::Solution as S238;
+use crate::code::reorder_list::Solution as S143;
 use crate::code::reverse_linked_list::Solution as S206;
 use crate::code::search_in_rotated_sorted_array::Solution as S33;
 use crate::code::three_sum::Solution as S15;
@@ -44,4 +45,5 @@ fn main() {
     S206::tests();
     S21::tests();
     S659::tests();
+    S143::tests();
 }
