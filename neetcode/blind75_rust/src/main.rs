@@ -51,4 +51,5 @@ fn main() {
     S659::tests();
     S143::tests();
     S19::tests();
+    // S23::tests();
 }
