@@ -35,30 +35,22 @@ mod tests {
     #[test]
     fn case_1() {
         let input = &vec![4, 2, 7, 1, 3, 6, 9];
-        // let input = &vec![2, 1, 3];
-        let input_tree = convert_to_tree(input, 0, 0);
-        println!("{:?}", input_tree);
+        let input_tree = convert_to_tree_BFS(input, 0);
         let expected = &vec![4, 7, 2, 9, 6, 3, 1];
-        // let expected_tree = convert_to_tree(expected, 0, (expected.len() - 1) as i32);
+        let expected_tree = convert_to_tree_BFS(input, 0);
     }
 
-    fn convert_to_tree(input: &Vec<i32>, start: i32, depth: i32) -> Option<Rc<RefCell<TreeNode>>> {
-        // TODO:
-        println!("index: {:?}", start);
-        // println!("{:?}", input.len() as i32 - 1); // 6
-        if start > input.len() as i32 - 1 {
+    fn convert_to_tree_BFS(input: &Vec<i32>, index: i32) -> Option<Rc<RefCell<TreeNode>>> {
+        if index > input.len() as i32 - 1 {
             return None;
         }
-        println!("val: {:?}", input[start as usize]);
-        let base: i32 = 2;
-        let gap = base.pow(depth as u32);
-        let mut node = TreeNode::new(input[start as usize]);
-        node.left = self::convert_to_tree(input, start + gap, depth + 1);
-        node.right = self::convert_to_tree(input, start + gap + 1, depth + 1);
+        let mut node = TreeNode::new(input[index as usize]);
+        node.left = self::convert_to_tree_BFS(input, 2 * index + 1);
+        node.right = self::convert_to_tree_BFS(input, 2 * index + 2);
         return Some(Rc::new(RefCell::new(node)));
     }
 
-    // in sorted array
+    // in sorted array(LC 108)
     // fn convert_to_tree(input: &Vec<i32>, start: i32, end: i32) -> Option<Rc<RefCell<TreeNode>>> {
     //     if start > end {
     //         return None;
