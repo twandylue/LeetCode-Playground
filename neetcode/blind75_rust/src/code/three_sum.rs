@@ -42,20 +42,32 @@ impl Solution {
 
         return res;
     }
+}
 
-    pub fn tests() {
+#[cfg(test)]
+mod tests {
+    use super::Solution;
+
+    #[test]
+    fn case_1() {
         let nums = vec![-1, 0, 1, 2, -1, -4];
         let expected = vec![vec![-1, -1, 2], vec![-1, 0, 1]];
         let actual = Solution::three_sum(nums);
 
         assert_eq!(actual, expected);
+    }
 
+    #[test]
+    fn case_2() {
         let nums2 = vec![0, 1, 1];
         let expected2: Vec<Vec<i32>> = Vec::new();
         let actual2 = Solution::three_sum(nums2);
 
         assert_eq!(actual2, expected2);
+    }
 
+    #[test]
+    fn case_3() {
         let nums3 = vec![0, 0, 0];
         let expected3 = vec![vec![0, 0, 0]];
         let actual3 = Solution::three_sum(nums3);

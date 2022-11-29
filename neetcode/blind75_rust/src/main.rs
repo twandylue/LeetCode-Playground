@@ -8,7 +8,6 @@ use crate::code::group_anagrams::Solution as S49;
 use crate::code::longest_consecutive_sequence::Solution as S128;
 use crate::code::longest_repeating_character_replacement::Solution as S424;
 use crate::code::longest_substring_without_repeating_characters::Solution as S3;
-use crate::code::revert_binary_tree::Solution as S226;
 // use crate::code::merge_k_sorted_lists::Solution as S23;
 use crate::code::merge_two_sorted_lists::Solution as S21;
 use crate::code::minimum_window_substring::Solution as S76;
@@ -17,7 +16,6 @@ use crate::code::remove_nth_node_from_end_of_list::Solution as S19;
 use crate::code::reorder_list::Solution as S143;
 use crate::code::reverse_linked_list::Solution as S206;
 use crate::code::search_in_rotated_sorted_array::Solution as S33;
-use crate::code::three_sum::Solution as S15;
 use crate::code::top_k_frequent_elements::Solution as S347;
 use crate::code::two_sum::Solution as S1;
 use crate::code::valid_anagram::Solution as S242;
@@ -29,7 +27,6 @@ mod code;
 
 fn main() {
     S1::tests();
-    S15::tests();
     // S36::tests();
     S49::tests();
     S227::tests();
