@@ -18,6 +18,7 @@ impl TreeNode {
 }
 
 use std::cell::RefCell;
+use std::collections::VecDeque;
 use std::mem;
 use std::rc::Rc;
 
@@ -37,45 +38,131 @@ impl Solution {
             mem::swap(&mut tree.left, &mut tree.right)
         }
     }
+
+    pub fn invert_tree_2(root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
+        if let Some(n) = root {
+            let left = n.borrow().left.clone();
+            let right = n.borrow().right.clone();
+            n.borrow_mut().left = Solution::invert_tree_2(right);
+            n.borrow_mut().right = Solution::invert_tree_2(left);
+            Some(n)
+        } else {
+            None
+        }
+    }
+
+    pub fn invert_tree_3(root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
+        let mut stack: Vec<Option<Rc<RefCell<TreeNode>>>> = vec![root.clone()];
+        while let Some(ele) = stack.pop() {
+            if let Some(n) = ele {
+                {
+                    let tree = &mut *n.borrow_mut();
+                    mem::swap(&mut tree.left, &mut tree.right);
+                }
+                stack.push(n.borrow().right.clone());
+                stack.push(n.borrow().left.clone());
+            }
+        }
+
+        root
+    }
+
+    pub fn invert_tree_4(root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
+        let mut queue: VecDeque<Option<Rc<RefCell<TreeNode>>>> = VecDeque::from(vec![root.clone()]);
+        while let Some(ele) = queue.pop_front() {
+            if let Some(n) = ele {
+                {
+                    let tree = &mut *n.borrow_mut();
+                    mem::swap(&mut tree.left, &mut tree.right);
+                }
+                queue.push_back(n.borrow().left.clone());
+                queue.push_back(n.borrow().right.clone());
+            }
+        }
+
+        root
+    }
 }
 
 #[cfg(test)]
 mod tests {
+    use super::{Solution, TreeNode};
     use std::{cell::RefCell, rc::Rc};
 
-    use super::{Solution, TreeNode};
-
     #[test]
-    fn case_1() {
-        let input = &vec![4, 2, 7, 1, 3, 6, 9];
-        let input_tree = self::convert_to_tree_bfs(input, 0);
-        let expected = &vec![4, 7, 2, 9, 6, 3, 1];
-        let expected_tree = self::convert_to_tree_bfs(expected, 0);
+    fn invert_tree_cases() {
+        let input_tree = self::convert_to_tree_bfs(&vec![4, 2, 7, 1, 3, 6, 9], 0);
+        let expected_tree = self::convert_to_tree_bfs(&vec![4, 7, 2, 9, 6, 3, 1], 0);
         let actual = Solution::invert_tree(input_tree);
 
+        let input_tree2 = self::convert_to_tree_bfs(&vec![2, 1, 3], 0);
+        let expected_tree2 = self::convert_to_tree_bfs(&vec![2, 3, 1], 0);
+        let actual2 = Solution::invert_tree(input_tree2);
+
+        let input_tree3 = self::convert_to_tree_bfs(&vec![], 0);
+        let expected_tree3 = self::convert_to_tree_bfs(&vec![], 0);
+        let actual3 = Solution::invert_tree(input_tree3);
+
         assert_eq!(expected_tree, actual);
+        assert_eq!(expected_tree2, actual2);
+        assert_eq!(expected_tree3, actual3);
     }
 
     #[test]
-    fn case_2() {
-        let root = vec![2, 1, 3];
-        let root_tree = self::convert_to_tree_bfs(&root, 0);
-        let expected = vec![2, 3, 1];
-        let expected_tree = self::convert_to_tree_bfs(&expected, 0);
-        let actual = Solution::invert_tree(root_tree);
+    fn invert_tree_2_cases() {
+        let input_tree = self::convert_to_tree_bfs(&vec![4, 2, 7, 1, 3, 6, 9], 0);
+        let expected_tree = self::convert_to_tree_bfs(&vec![4, 7, 2, 9, 6, 3, 1], 0);
+        let actual = Solution::invert_tree_2(input_tree);
+
+        let input_tree2 = self::convert_to_tree_bfs(&vec![2, 1, 3], 0);
+        let expected_tree2 = self::convert_to_tree_bfs(&vec![2, 3, 1], 0);
+        let actual2 = Solution::invert_tree_2(input_tree2);
+
+        let input_tree3 = self::convert_to_tree_bfs(&vec![], 0);
+        let expected_tree3 = self::convert_to_tree_bfs(&vec![], 0);
+        let actual3 = Solution::invert_tree_2(input_tree3);
 
         assert_eq!(expected_tree, actual);
+        assert_eq!(expected_tree2, actual2);
+        assert_eq!(expected_tree3, actual3);
     }
 
     #[test]
-    fn case_3() {
-        let root = vec![];
-        let root_tree = self::convert_to_tree_bfs(&root, 0);
-        let expected = vec![];
-        let expected_tree = self::convert_to_tree_bfs(&expected, 0);
-        let actual = Solution::invert_tree(root_tree);
+    fn invert_tree_3_cases() {
+        let input_tree = self::convert_to_tree_bfs(&vec![4, 2, 7, 1, 3, 6, 9], 0);
+        let expected_tree = self::convert_to_tree_bfs(&vec![4, 7, 2, 9, 6, 3, 1], 0);
+        let actual = Solution::invert_tree_3(input_tree);
+
+        let input_tree2 = self::convert_to_tree_bfs(&vec![2, 1, 3], 0);
+        let expected_tree2 = self::convert_to_tree_bfs(&vec![2, 3, 1], 0);
+        let actual2 = Solution::invert_tree_3(input_tree2);
+
+        let input_tree3 = self::convert_to_tree_bfs(&vec![], 0);
+        let expected_tree3 = self::convert_to_tree_bfs(&vec![], 0);
+        let actual3 = Solution::invert_tree_3(input_tree3);
 
         assert_eq!(expected_tree, actual);
+        assert_eq!(expected_tree2, actual2);
+        assert_eq!(expected_tree3, actual3);
+    }
+
+    #[test]
+    fn invert_tree_4_cases() {
+        let input_tree = self::convert_to_tree_bfs(&vec![4, 2, 7, 1, 3, 6, 9], 0);
+        let expected_tree = self::convert_to_tree_bfs(&vec![4, 7, 2, 9, 6, 3, 1], 0);
+        let actual = Solution::invert_tree_4(input_tree);
+
+        let input_tree2 = self::convert_to_tree_bfs(&vec![2, 1, 3], 0);
+        let expected_tree2 = self::convert_to_tree_bfs(&vec![2, 3, 1], 0);
+        let actual2 = Solution::invert_tree_4(input_tree2);
+
+        let input_tree3 = self::convert_to_tree_bfs(&vec![], 0);
+        let expected_tree3 = self::convert_to_tree_bfs(&vec![], 0);
+        let actual3 = Solution::invert_tree_4(input_tree3);
+
+        assert_eq!(expected_tree, actual);
+        assert_eq!(expected_tree2, actual2);
+        assert_eq!(expected_tree3, actual3);
     }
 
     fn convert_to_tree_bfs(input: &Vec<i32>, index: i32) -> Option<Rc<RefCell<TreeNode>>> {
