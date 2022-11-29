@@ -18,35 +18,73 @@ impl TreeNode {
 }
 
 use std::cell::RefCell;
+use std::mem;
 use std::rc::Rc;
 
 pub struct Solution {}
 
 impl Solution {
-    // pub fn invert_tree(root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {}
+    pub fn invert_tree(root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
+        Solution::bfs(&root);
+        root
+    }
+
+    fn bfs(root: &Option<Rc<RefCell<TreeNode>>>) {
+        if let Some(n) = root {
+            Solution::bfs(&n.borrow().left);
+            Solution::bfs(&n.borrow().right);
+            let tree = &mut *n.borrow_mut();
+            mem::swap(&mut tree.left, &mut tree.right)
+        }
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use std::{cell::RefCell, rc::Rc};
 
-    use super::TreeNode;
+    use super::{Solution, TreeNode};
 
     #[test]
     fn case_1() {
         let input = &vec![4, 2, 7, 1, 3, 6, 9];
-        let input_tree = convert_to_tree_BFS(input, 0);
+        let input_tree = self::convert_to_tree_bfs(input, 0);
         let expected = &vec![4, 7, 2, 9, 6, 3, 1];
-        let expected_tree = convert_to_tree_BFS(input, 0);
+        let expected_tree = self::convert_to_tree_bfs(expected, 0);
+        let actual = Solution::invert_tree(input_tree);
+
+        assert_eq!(expected_tree, actual);
     }
 
-    fn convert_to_tree_BFS(input: &Vec<i32>, index: i32) -> Option<Rc<RefCell<TreeNode>>> {
+    #[test]
+    fn case_2() {
+        let root = vec![2, 1, 3];
+        let root_tree = self::convert_to_tree_bfs(&root, 0);
+        let expected = vec![2, 3, 1];
+        let expected_tree = self::convert_to_tree_bfs(&expected, 0);
+        let actual = Solution::invert_tree(root_tree);
+
+        assert_eq!(expected_tree, actual);
+    }
+
+    #[test]
+    fn case_3() {
+        let root = vec![];
+        let root_tree = self::convert_to_tree_bfs(&root, 0);
+        let expected = vec![];
+        let expected_tree = self::convert_to_tree_bfs(&expected, 0);
+        let actual = Solution::invert_tree(root_tree);
+
+        assert_eq!(expected_tree, actual);
+    }
+
+    fn convert_to_tree_bfs(input: &Vec<i32>, index: i32) -> Option<Rc<RefCell<TreeNode>>> {
         if index > input.len() as i32 - 1 {
             return None;
         }
         let mut node = TreeNode::new(input[index as usize]);
-        node.left = self::convert_to_tree_BFS(input, 2 * index + 1);
-        node.right = self::convert_to_tree_BFS(input, 2 * index + 2);
+        node.left = self::convert_to_tree_bfs(input, 2 * index + 1);
+        node.right = self::convert_to_tree_bfs(input, 2 * index + 2);
         return Some(Rc::new(RefCell::new(node)));
     }
 
