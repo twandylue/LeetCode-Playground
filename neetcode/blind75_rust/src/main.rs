@@ -7,7 +7,6 @@ use crate::code::group_anagrams::Solution as S49;
 // use crate::code::linked_list_cycle::Solution as S141;
 use crate::code::longest_consecutive_sequence::Solution as S128;
 use crate::code::longest_repeating_character_replacement::Solution as S424;
-use crate::code::longest_substring_without_repeating_characters::Solution as S3;
 // use crate::code::merge_k_sorted_lists::Solution as S23;
 use crate::code::merge_two_sorted_lists::Solution as S21;
 use crate::code::minimum_window_substring::Solution as S76;
@@ -37,7 +36,6 @@ fn main() {
     S125::tests();
     S11::tests();
     S121::tests();
-    S3::tests();
     S424::tests();
     S20::tests();
     S76::tests();
