@@ -27,7 +27,7 @@ impl Solution {
         root: Option<Rc<RefCell<TreeNode>>>,
         sub_root: Option<Rc<RefCell<TreeNode>>>,
     ) -> bool {
-        if Solution::same_tree(root.clone(), sub_root.clone()) {
+        if Solution::same_tree(&root, &sub_root) {
             return true;
         }
         match (root, sub_root) {
@@ -40,16 +40,13 @@ impl Solution {
         }
     }
 
-    fn same_tree(s: Option<Rc<RefCell<TreeNode>>>, t: Option<Rc<RefCell<TreeNode>>>) -> bool {
-        if s == None && t == None {
-            return true;
-        }
-
+    fn same_tree(s: &Option<Rc<RefCell<TreeNode>>>, t: &Option<Rc<RefCell<TreeNode>>>) -> bool {
         match (s, t) {
+            (None, None) => true,
             (Some(a), Some(b)) => {
                 if a.borrow().val == b.borrow().val {
-                    return Solution::same_tree(a.borrow().right.clone(), b.borrow().right.clone())
-                        && Solution::same_tree(a.borrow().left.clone(), b.borrow().left.clone());
+                    return Solution::same_tree(&a.borrow().right, &b.borrow().right)
+                        && Solution::same_tree(&a.borrow().left, &b.borrow().left);
                 }
                 return false;
             }
