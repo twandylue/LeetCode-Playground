@@ -19,6 +19,7 @@ pub mod reverse_linked_list;
 pub mod revert_binary_tree;
 pub mod same_tree;
 pub mod search_in_rotated_sorted_array;
+pub mod subtree_of_another_tree;
 pub mod three_sum;
 pub mod top_k_frequent_elements;
 pub mod two_sum;
