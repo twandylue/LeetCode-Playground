@@ -23,6 +23,30 @@ use std::rc::Rc;
 pub struct Solution {}
 
 impl Solution {
+    pub fn is_same_tree_2(
+        p: Option<Rc<RefCell<TreeNode>>>,
+        q: Option<Rc<RefCell<TreeNode>>>,
+    ) -> bool {
+        if p == None && q == None {
+            return true;
+        }
+        match (p, q) {
+            (Some(a), Some(b)) => {
+                if a.borrow().val == b.borrow().val {
+                    return Solution::is_same_tree_2(
+                        a.borrow().left.clone(),
+                        b.borrow().left.clone(),
+                    ) && Solution::is_same_tree_2(
+                        a.borrow().right.clone(),
+                        b.borrow().right.clone(),
+                    );
+                }
+                return false;
+            }
+            (_, _) => false,
+        }
+    }
+
     pub fn is_same_tree(
         p: Option<Rc<RefCell<TreeNode>>>,
         q: Option<Rc<RefCell<TreeNode>>>,
@@ -86,6 +110,41 @@ mod tests {
         assert_eq!(expected, actual);
     }
 
+    #[test]
+    fn case_4() {
+        let p = vec![Some(1), Some(2), Some(3)];
+        let p_tree = self::convert_to_tree_bfs(&p, 0);
+        let q = vec![Some(1), Some(2), Some(3)];
+        let q_tree = self::convert_to_tree_bfs(&q, 0);
+        let expected = true;
+        let actual = Solution::is_same_tree_2(p_tree, q_tree);
+
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn case_5() {
+        let p = vec![Some(1), Some(2)];
+        let p_tree = self::convert_to_tree_bfs(&p, 0);
+        let q = vec![Some(1), None, Some(3)];
+        let q_tree = self::convert_to_tree_bfs(&q, 0);
+        let expected = false;
+        let actual = Solution::is_same_tree_2(p_tree, q_tree);
+
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn case_6() {
+        let p = vec![Some(1), Some(2), Some(1)];
+        let p_tree = self::convert_to_tree_bfs(&p, 0);
+        let q = vec![Some(1), Some(1), Some(2)];
+        let q_tree = self::convert_to_tree_bfs(&q, 0);
+        let expected = false;
+        let actual = Solution::is_same_tree_2(p_tree, q_tree);
+
+        assert_eq!(expected, actual);
+    }
     fn convert_to_tree_bfs(input: &Vec<Option<i32>>, index: i32) -> Option<Rc<RefCell<TreeNode>>> {
         if index > input.len() as i32 - 1 {
             return None;
