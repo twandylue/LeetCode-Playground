@@ -43,9 +43,7 @@ impl Solution {
                                 }
                                 None => (),
                             },
-                            None => {
-                                // ret.push(level.clone());
-                            }
+                            None => (),
                         }
                     }
 
