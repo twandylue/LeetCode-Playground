@@ -29,6 +29,7 @@ pub mod valid_anagram;
 pub mod valid_palindrome;
 pub mod valid_parentheses;
 // pub mod valid_sudoku;
+pub mod binary_tree_max_path_sum;
 pub mod construct_binary_tree_from_preorder_and_inorder_traversal;
 pub mod kth_smallest_element_in_a_bst;
 pub mod validate_binary_tree;
