@@ -1,24 +1,26 @@
 // Definition for a binary tree node.
-#[derive(Debug, PartialEq, Eq)]
-pub struct TreeNode {
-    pub val: i32,
-    pub left: Option<Rc<RefCell<TreeNode>>>,
-    pub right: Option<Rc<RefCell<TreeNode>>>,
-}
-
-impl TreeNode {
-    #[inline]
-    pub fn new(val: i32) -> Self {
-        TreeNode {
-            val,
-            left: None,
-            right: None,
-        }
-    }
-}
+// #[derive(Debug, PartialEq, Eq)]
+// pub struct TreeNode {
+//     pub val: i32,
+//     pub left: Option<Rc<RefCell<TreeNode>>>,
+//     pub right: Option<Rc<RefCell<TreeNode>>>,
+// }
+//
+// impl TreeNode {
+//     #[inline]
+//     pub fn new(val: i32) -> Self {
+//         TreeNode {
+//             val,
+//             left: None,
+//             right: None,
+//         }
+//     }
+// }
 
 use std::cell::RefCell;
 use std::rc::Rc;
+
+use super::tree::binary_tree_node::TreeNode;
 
 pub struct Solution {}
 
@@ -91,6 +93,8 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
+    use crate::code::utils::deserialize_to_binary_tree::deserialize_to_BT;
+
     use super::{Solution, TreeNode};
     use std::{cell::RefCell, rc::Rc};
 
@@ -202,6 +206,16 @@ mod tests {
     #[test]
     fn case_nonrecur_6() {
         let root = self::convert_to_tree_bfs(&vec![Some(0)], 0);
+        let expected = true;
+        let actual = Solution::is_valid_bst_nonrecur(root);
+
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn case_nonrecur_7() {
+        // let root = self::convert_to_tree_bfs(&vec![Some(0)], 0);
+        let root = deserialize_to_BT(vec![Some(0)]);
         let expected = true;
         let actual = Solution::is_valid_bst_nonrecur(root);
 

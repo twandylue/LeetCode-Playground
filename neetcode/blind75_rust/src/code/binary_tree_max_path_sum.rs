@@ -1,25 +1,27 @@
 // Definition for a binary tree node.
-#[derive(Debug, PartialEq, Eq)]
-pub struct TreeNode {
-    pub val: i32,
-    pub left: Option<Rc<RefCell<TreeNode>>>,
-    pub right: Option<Rc<RefCell<TreeNode>>>,
-}
-
-impl TreeNode {
-    #[inline]
-    pub fn new(val: i32) -> Self {
-        TreeNode {
-            val,
-            left: None,
-            right: None,
-        }
-    }
-}
+// #[derive(Debug, PartialEq, Eq)]
+// pub struct TreeNode {
+//     pub val: i32,
+//     pub left: Option<Rc<RefCell<TreeNode>>>,
+//     pub right: Option<Rc<RefCell<TreeNode>>>,
+// }
+//
+// impl TreeNode {
+//     #[inline]
+//     pub fn new(val: i32) -> Self {
+//         TreeNode {
+//             val,
+//             left: None,
+//             right: None,
+//         }
+//     }
+// }
 
 use std::cell::RefCell;
 use std::cmp;
 use std::rc::Rc;
+
+use super::tree::binary_tree_node::TreeNode;
 
 pub struct Solution {}
 
@@ -78,6 +80,8 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
+    use crate::code::utils::deserialize_to_binary_tree::deserialize_to_BT;
+
     use super::{Solution, TreeNode};
     use std::{cell::RefCell, rc::Rc};
 
@@ -134,22 +138,18 @@ mod tests {
 
     #[test]
     fn case_6() {
-        let root = self::convert_to_tree_bfs(
-            &vec![
-                Some(1),
-                Some(2),
-                None,
-                Some(3),
-                None,
-                Some(4),
-                None,
-                Some(5),
-                None,
-                Some(7),
-            ],
-            0,
-        );
-        println!("{:?}", root);
+        let root = deserialize_to_BT(vec![
+            Some(1),
+            Some(2),
+            None,
+            Some(3),
+            None,
+            Some(4),
+            None,
+            Some(5),
+            None,
+            Some(7),
+        ]);
         let expected = 15;
         let actual = Solution::max_path_sum_nonrecurs(root);
 
