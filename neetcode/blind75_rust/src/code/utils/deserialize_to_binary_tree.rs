@@ -27,6 +27,7 @@ pub fn deserialize_to_BT(vector: Vec<Option<i32>>) -> Option<Rc<RefCell<TreeNode
                 n.borrow_mut().left = v.clone();
                 index += 1;
             } else {
+                n.borrow_mut().left = None;
                 break;
             }
 
@@ -34,6 +35,7 @@ pub fn deserialize_to_BT(vector: Vec<Option<i32>>) -> Option<Rc<RefCell<TreeNode
                 n.borrow_mut().right = v.clone();
                 index += 1;
             } else {
+                n.borrow_mut().right = None;
                 break;
             }
 

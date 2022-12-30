@@ -1,26 +1,9 @@
-// Definition for a binary tree node.
-#[derive(Debug, PartialEq, Eq)]
-pub struct TreeNode {
-    pub val: i32,
-    pub left: Option<Rc<RefCell<TreeNode>>>,
-    pub right: Option<Rc<RefCell<TreeNode>>>,
-}
-
-impl TreeNode {
-    #[inline]
-    pub fn new(val: i32) -> Self {
-        TreeNode {
-            val,
-            left: None,
-            right: None,
-        }
-    }
-}
-
 use std::cell::RefCell;
 use std::collections::VecDeque;
 use std::mem;
 use std::rc::Rc;
+
+use super::model::binary_tree_node::TreeNode;
 
 pub struct Solution {}
 
@@ -86,21 +69,38 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
-    use super::{Solution, TreeNode};
-    use std::{cell::RefCell, rc::Rc};
+    use crate::code::utils::deserialize_to_binary_tree::deserialize_to_BT;
+
+    use super::Solution;
 
     #[test]
     fn invert_tree_cases() {
-        let input_tree = self::convert_to_tree_bfs(&vec![4, 2, 7, 1, 3, 6, 9], 0);
-        let expected_tree = self::convert_to_tree_bfs(&vec![4, 7, 2, 9, 6, 3, 1], 0);
+        let input_tree = deserialize_to_BT(vec![
+            Some(4),
+            Some(2),
+            Some(7),
+            Some(1),
+            Some(3),
+            Some(6),
+            Some(9),
+        ]);
+        let expected_tree = deserialize_to_BT(vec![
+            Some(4),
+            Some(7),
+            Some(2),
+            Some(9),
+            Some(6),
+            Some(3),
+            Some(1),
+        ]);
         let actual = Solution::invert_tree(input_tree);
 
-        let input_tree2 = self::convert_to_tree_bfs(&vec![2, 1, 3], 0);
-        let expected_tree2 = self::convert_to_tree_bfs(&vec![2, 3, 1], 0);
+        let input_tree2 = deserialize_to_BT(vec![Some(2), Some(1), Some(3)]);
+        let expected_tree2 = deserialize_to_BT(vec![Some(2), Some(3), Some(1)]);
         let actual2 = Solution::invert_tree(input_tree2);
 
-        let input_tree3 = self::convert_to_tree_bfs(&vec![], 0);
-        let expected_tree3 = self::convert_to_tree_bfs(&vec![], 0);
+        let input_tree3 = deserialize_to_BT(vec![]);
+        let expected_tree3 = deserialize_to_BT(vec![]);
         let actual3 = Solution::invert_tree(input_tree3);
 
         assert_eq!(expected_tree, actual);
@@ -110,16 +110,32 @@ mod tests {
 
     #[test]
     fn invert_tree_2_cases() {
-        let input_tree = self::convert_to_tree_bfs(&vec![4, 2, 7, 1, 3, 6, 9], 0);
-        let expected_tree = self::convert_to_tree_bfs(&vec![4, 7, 2, 9, 6, 3, 1], 0);
+        let input_tree = deserialize_to_BT(vec![
+            Some(4),
+            Some(2),
+            Some(7),
+            Some(1),
+            Some(3),
+            Some(6),
+            Some(9),
+        ]);
+        let expected_tree = deserialize_to_BT(vec![
+            Some(4),
+            Some(7),
+            Some(2),
+            Some(9),
+            Some(6),
+            Some(3),
+            Some(1),
+        ]);
         let actual = Solution::invert_tree_2(input_tree);
 
-        let input_tree2 = self::convert_to_tree_bfs(&vec![2, 1, 3], 0);
-        let expected_tree2 = self::convert_to_tree_bfs(&vec![2, 3, 1], 0);
+        let input_tree2 = deserialize_to_BT(vec![Some(2), Some(1), Some(3)]);
+        let expected_tree2 = deserialize_to_BT(vec![Some(2), Some(3), Some(1)]);
         let actual2 = Solution::invert_tree_2(input_tree2);
 
-        let input_tree3 = self::convert_to_tree_bfs(&vec![], 0);
-        let expected_tree3 = self::convert_to_tree_bfs(&vec![], 0);
+        let input_tree3 = deserialize_to_BT(vec![]);
+        let expected_tree3 = deserialize_to_BT(vec![]);
         let actual3 = Solution::invert_tree_2(input_tree3);
 
         assert_eq!(expected_tree, actual);
@@ -129,16 +145,32 @@ mod tests {
 
     #[test]
     fn invert_tree_3_cases() {
-        let input_tree = self::convert_to_tree_bfs(&vec![4, 2, 7, 1, 3, 6, 9], 0);
-        let expected_tree = self::convert_to_tree_bfs(&vec![4, 7, 2, 9, 6, 3, 1], 0);
+        let input_tree = deserialize_to_BT(vec![
+            Some(4),
+            Some(2),
+            Some(7),
+            Some(1),
+            Some(3),
+            Some(6),
+            Some(9),
+        ]);
+        let expected_tree = deserialize_to_BT(vec![
+            Some(4),
+            Some(7),
+            Some(2),
+            Some(9),
+            Some(6),
+            Some(3),
+            Some(1),
+        ]);
         let actual = Solution::invert_tree_3(input_tree);
 
-        let input_tree2 = self::convert_to_tree_bfs(&vec![2, 1, 3], 0);
-        let expected_tree2 = self::convert_to_tree_bfs(&vec![2, 3, 1], 0);
+        let input_tree2 = deserialize_to_BT(vec![Some(2), Some(1), Some(3)]);
+        let expected_tree2 = deserialize_to_BT(vec![Some(2), Some(3), Some(1)]);
         let actual2 = Solution::invert_tree_3(input_tree2);
 
-        let input_tree3 = self::convert_to_tree_bfs(&vec![], 0);
-        let expected_tree3 = self::convert_to_tree_bfs(&vec![], 0);
+        let input_tree3 = deserialize_to_BT(vec![]);
+        let expected_tree3 = deserialize_to_BT(vec![]);
         let actual3 = Solution::invert_tree_3(input_tree3);
 
         assert_eq!(expected_tree, actual);
@@ -148,31 +180,37 @@ mod tests {
 
     #[test]
     fn invert_tree_4_cases() {
-        let input_tree = self::convert_to_tree_bfs(&vec![4, 2, 7, 1, 3, 6, 9], 0);
-        let expected_tree = self::convert_to_tree_bfs(&vec![4, 7, 2, 9, 6, 3, 1], 0);
+        let input_tree = deserialize_to_BT(vec![
+            Some(4),
+            Some(2),
+            Some(7),
+            Some(1),
+            Some(3),
+            Some(6),
+            Some(9),
+        ]);
+        let expected_tree = deserialize_to_BT(vec![
+            Some(4),
+            Some(7),
+            Some(2),
+            Some(9),
+            Some(6),
+            Some(3),
+            Some(1),
+        ]);
         let actual = Solution::invert_tree_4(input_tree);
 
-        let input_tree2 = self::convert_to_tree_bfs(&vec![2, 1, 3], 0);
-        let expected_tree2 = self::convert_to_tree_bfs(&vec![2, 3, 1], 0);
+        let input_tree2 = deserialize_to_BT(vec![Some(2), Some(1), Some(3)]);
+        let expected_tree2 = deserialize_to_BT(vec![Some(2), Some(3), Some(1)]);
         let actual2 = Solution::invert_tree_4(input_tree2);
 
-        let input_tree3 = self::convert_to_tree_bfs(&vec![], 0);
-        let expected_tree3 = self::convert_to_tree_bfs(&vec![], 0);
+        let input_tree3 = deserialize_to_BT(vec![]);
+        let expected_tree3 = deserialize_to_BT(vec![]);
         let actual3 = Solution::invert_tree_4(input_tree3);
 
         assert_eq!(expected_tree, actual);
         assert_eq!(expected_tree2, actual2);
         assert_eq!(expected_tree3, actual3);
-    }
-
-    fn convert_to_tree_bfs(input: &Vec<i32>, index: i32) -> Option<Rc<RefCell<TreeNode>>> {
-        if index > input.len() as i32 - 1 {
-            return None;
-        }
-        let mut node = TreeNode::new(input[index as usize]);
-        node.left = self::convert_to_tree_bfs(input, 2 * index + 1);
-        node.right = self::convert_to_tree_bfs(input, 2 * index + 2);
-        return Some(Rc::new(RefCell::new(node)));
     }
 
     // in sorted array(LC 108)

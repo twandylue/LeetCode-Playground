@@ -1,24 +1,7 @@
-// Definition for a binary tree node.
-#[derive(Debug, PartialEq, Eq)]
-pub struct TreeNode {
-    pub val: i32,
-    pub left: Option<Rc<RefCell<TreeNode>>>,
-    pub right: Option<Rc<RefCell<TreeNode>>>,
-}
-
-impl TreeNode {
-    #[inline]
-    pub fn new(val: i32) -> Self {
-        TreeNode {
-            val,
-            left: None,
-            right: None,
-        }
-    }
-}
-
 use std::cell::RefCell;
 use std::rc::Rc;
+
+use super::model::binary_tree_node::TreeNode;
 
 pub struct Solution {}
 
@@ -70,12 +53,13 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
-    use super::{Solution, TreeNode};
-    use std::{cell::RefCell, rc::Rc};
+    use crate::code::utils::deserialize_to_binary_tree::deserialize_to_BT;
+
+    use super::Solution;
 
     #[test]
     fn case_1() {
-        let root = self::convert_to_tree_bfs(&vec![Some(3), Some(1), Some(4), None, Some(2)], 0);
+        let root = deserialize_to_BT(vec![Some(3), Some(1), Some(4), None, Some(2)]);
         let k = 1;
         let expected = 1;
         let actual = Solution::kth_smallest(root, k);
@@ -85,19 +69,16 @@ mod tests {
 
     #[test]
     fn case_2() {
-        let root = self::convert_to_tree_bfs(
-            &vec![
-                Some(5),
-                Some(3),
-                Some(6),
-                Some(2),
-                Some(4),
-                None,
-                None,
-                Some(1),
-            ],
-            0,
-        );
+        let root = deserialize_to_BT(vec![
+            Some(5),
+            Some(3),
+            Some(6),
+            Some(2),
+            Some(4),
+            None,
+            None,
+            Some(1),
+        ]);
         let k = 3;
         let expected = 3;
         let actual = Solution::kth_smallest(root, k);
@@ -107,7 +88,7 @@ mod tests {
 
     #[test]
     fn case_3() {
-        let root = self::convert_to_tree_bfs(&vec![Some(3), Some(1), Some(4), None, Some(2)], 0);
+        let root = deserialize_to_BT(vec![Some(3), Some(1), Some(4), None, Some(2)]);
         let k = 1;
         let expected = 1;
         let actual = Solution::kth_smallest_nonrecur(root, k);
@@ -117,37 +98,20 @@ mod tests {
 
     #[test]
     fn case_4() {
-        let root = self::convert_to_tree_bfs(
-            &vec![
-                Some(5),
-                Some(3),
-                Some(6),
-                Some(2),
-                Some(4),
-                None,
-                None,
-                Some(1),
-            ],
-            0,
-        );
+        let root = deserialize_to_BT(vec![
+            Some(5),
+            Some(3),
+            Some(6),
+            Some(2),
+            Some(4),
+            None,
+            None,
+            Some(1),
+        ]);
         let k = 3;
         let expected = 3;
         let actual = Solution::kth_smallest_nonrecur(root, k);
 
         assert_eq!(expected, actual);
-    }
-
-    fn convert_to_tree_bfs(input: &Vec<Option<i32>>, index: i32) -> Option<Rc<RefCell<TreeNode>>> {
-        if index > input.len() as i32 - 1 {
-            return None;
-        }
-        if let Some(n) = input[index as usize] {
-            let mut node = TreeNode::new(n);
-            node.left = self::convert_to_tree_bfs(input, 2 * index + 1);
-            node.right = self::convert_to_tree_bfs(input, 2 * index + 2);
-            Some(Rc::new(RefCell::new(node)))
-        } else {
-            None
-        }
     }
 }
