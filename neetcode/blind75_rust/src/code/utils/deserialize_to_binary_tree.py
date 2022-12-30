@@ -12,14 +12,8 @@ def deserialize(string):
     nodes = [None if val == 'null' else TreeNode(int(val))
              for val in string.strip('[]{}').split(',')]
     kids = nodes[::-1]
-    print("nodes")
-    print(nodes)
-    print("kids")
-    print(kids)
     root = kids.pop()
-    # print(root)
     for node in nodes:
-        # print(node)
         if node:
             if kids: node.left  = kids.pop()
             if kids: node.right = kids.pop()
