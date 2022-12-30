@@ -1,24 +1,7 @@
-// Definition for a binary tree node.
-#[derive(Debug, PartialEq, Eq)]
-pub struct TreeNode {
-    pub val: i32,
-    pub left: Option<Rc<RefCell<TreeNode>>>,
-    pub right: Option<Rc<RefCell<TreeNode>>>,
-}
-
-impl TreeNode {
-    #[inline]
-    pub fn new(val: i32) -> Self {
-        TreeNode {
-            val,
-            left: None,
-            right: None,
-        }
-    }
-}
-
 use std::cell::RefCell;
 use std::rc::Rc;
+
+use super::model::binary_tree_node::TreeNode;
 
 pub struct Solution {}
 
@@ -91,12 +74,13 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
-    use super::{Solution, TreeNode};
-    use std::{cell::RefCell, rc::Rc};
+    use crate::code::utils::deserialize_to_binary_tree::deserialize_to_BT;
+
+    use super::Solution;
 
     #[test]
     fn case_recur_1() {
-        let root = self::convert_to_tree_bfs(&vec![Some(2), Some(1), Some(3)], 0);
+        let root = deserialize_to_BT(vec![Some(2), Some(1), Some(3)]);
         let expected = true;
         let actual = Solution::is_valid_bst(root);
 
@@ -105,10 +89,15 @@ mod tests {
 
     #[test]
     fn case_recur_2() {
-        let root = self::convert_to_tree_bfs(
-            &vec![Some(5), Some(1), Some(4), None, None, Some(3), Some(6)],
-            0,
-        );
+        let root = deserialize_to_BT(vec![
+            Some(5),
+            Some(1),
+            Some(4),
+            None,
+            None,
+            Some(3),
+            Some(6),
+        ]);
         let expected = false;
         let actual = Solution::is_valid_bst(root);
 
@@ -117,7 +106,7 @@ mod tests {
 
     #[test]
     fn case_recur_3() {
-        let root = self::convert_to_tree_bfs(&vec![Some(i32::MAX)], 0);
+        let root = deserialize_to_BT(vec![Some(i32::MAX)]);
         let expected = true;
         let actual = Solution::is_valid_bst(root);
 
@@ -126,7 +115,7 @@ mod tests {
 
     #[test]
     fn case_recur_4() {
-        let root = self::convert_to_tree_bfs(&vec![Some(i32::MIN)], 0);
+        let root = deserialize_to_BT(vec![Some(i32::MIN)]);
         let expected = true;
         let actual = Solution::is_valid_bst(root);
 
@@ -135,7 +124,7 @@ mod tests {
 
     #[test]
     fn case_recur_5() {
-        let root = self::convert_to_tree_bfs(&vec![Some(i32::MAX), Some(i32::MAX)], 0);
+        let root = deserialize_to_BT(vec![Some(i32::MAX), Some(i32::MAX)]);
         let expected = false;
         let actual = Solution::is_valid_bst(root);
 
@@ -144,7 +133,7 @@ mod tests {
 
     #[test]
     fn case_recur_6() {
-        let root = self::convert_to_tree_bfs(&vec![Some(0)], 0);
+        let root = deserialize_to_BT(vec![Some(0)]);
         let expected = true;
         let actual = Solution::is_valid_bst(root);
 
@@ -153,7 +142,7 @@ mod tests {
 
     #[test]
     fn case_nonrecur_1() {
-        let root = self::convert_to_tree_bfs(&vec![Some(2), Some(1), Some(3)], 0);
+        let root = deserialize_to_BT(vec![Some(2), Some(1), Some(3)]);
         let expected = true;
         let actual = Solution::is_valid_bst_nonrecur(root);
 
@@ -162,10 +151,15 @@ mod tests {
 
     #[test]
     fn case_nonrecur_2() {
-        let root = self::convert_to_tree_bfs(
-            &vec![Some(5), Some(1), Some(4), None, None, Some(3), Some(6)],
-            0,
-        );
+        let root = deserialize_to_BT(vec![
+            Some(5),
+            Some(1),
+            Some(4),
+            None,
+            None,
+            Some(3),
+            Some(6),
+        ]);
         let expected = false;
         let actual = Solution::is_valid_bst_nonrecur(root);
 
@@ -174,7 +168,7 @@ mod tests {
 
     #[test]
     fn case_nonrecur_3() {
-        let root = self::convert_to_tree_bfs(&vec![Some(i32::MAX)], 0);
+        let root = deserialize_to_BT(vec![Some(i32::MAX)]);
         let expected = true;
         let actual = Solution::is_valid_bst_nonrecur(root);
 
@@ -183,7 +177,7 @@ mod tests {
 
     #[test]
     fn case_nonrecur_4() {
-        let root = self::convert_to_tree_bfs(&vec![Some(i32::MIN)], 0);
+        let root = deserialize_to_BT(vec![Some(i32::MIN)]);
         let expected = true;
         let actual = Solution::is_valid_bst_nonrecur(root);
 
@@ -192,7 +186,7 @@ mod tests {
 
     #[test]
     fn case_nonrecur_5() {
-        let root = self::convert_to_tree_bfs(&vec![Some(i32::MAX), Some(i32::MAX)], 0);
+        let root = deserialize_to_BT(vec![Some(i32::MAX), Some(i32::MAX)]);
         let expected = false;
         let actual = Solution::is_valid_bst_nonrecur(root);
 
@@ -201,24 +195,19 @@ mod tests {
 
     #[test]
     fn case_nonrecur_6() {
-        let root = self::convert_to_tree_bfs(&vec![Some(0)], 0);
+        let root = deserialize_to_BT(vec![Some(0)]);
         let expected = true;
         let actual = Solution::is_valid_bst_nonrecur(root);
 
         assert_eq!(expected, actual);
     }
 
-    fn convert_to_tree_bfs(input: &Vec<Option<i32>>, index: i32) -> Option<Rc<RefCell<TreeNode>>> {
-        if index > input.len() as i32 - 1 {
-            return None;
-        }
-        if let Some(n) = input[index as usize] {
-            let mut node = TreeNode::new(n);
-            node.left = self::convert_to_tree_bfs(input, 2 * index + 1);
-            node.right = self::convert_to_tree_bfs(input, 2 * index + 2);
-            Some(Rc::new(RefCell::new(node)))
-        } else {
-            None
-        }
+    #[test]
+    fn case_nonrecur_7() {
+        let root = deserialize_to_BT(vec![Some(0)]);
+        let expected = true;
+        let actual = Solution::is_valid_bst_nonrecur(root);
+
+        assert_eq!(expected, actual);
     }
 }

@@ -1,24 +1,8 @@
-// Definition for a binary tree node.
-#[derive(Debug, PartialEq, Eq)]
-pub struct TreeNode {
-    pub val: i32,
-    pub left: Option<Rc<RefCell<TreeNode>>>,
-    pub right: Option<Rc<RefCell<TreeNode>>>,
-}
-impl TreeNode {
-    #[inline]
-    pub fn new(val: i32) -> Self {
-        TreeNode {
-            val,
-            left: None,
-            right: None,
-        }
-    }
-}
-
 use std::cell::RefCell;
 use std::cmp;
 use std::rc::Rc;
+
+use super::model::binary_tree_node::TreeNode;
 
 pub struct Solution {}
 
@@ -53,6 +37,8 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
+    use crate::code::utils::deserialize_to_binary_tree::deserialize_to_BT;
+
     use super::{Solution, TreeNode};
     use std::{cell::RefCell, rc::Rc};
 
@@ -72,7 +58,7 @@ mod tests {
             Some(5),
         ];
 
-        let input = convert_to_tree_bfs(&root, 0);
+        let input = deserialize_to_BT(root);
         let p = Some(Rc::new(RefCell::new(TreeNode {
             val: 2,
             left: None,
@@ -106,7 +92,7 @@ mod tests {
             Some(5),
         ];
 
-        let input = convert_to_tree_bfs(&root, 0);
+        let input = deserialize_to_BT(root);
         let p = Some(Rc::new(RefCell::new(TreeNode {
             val: 2,
             left: None,
@@ -128,7 +114,7 @@ mod tests {
     fn case_3() {
         let root = vec![Some(2), Some(1)];
 
-        let input = convert_to_tree_bfs(&root, 0);
+        let input = deserialize_to_BT(root);
         let p = Some(Rc::new(RefCell::new(TreeNode {
             val: 2,
             left: None,
@@ -146,17 +132,17 @@ mod tests {
         assert_eq!(expected, actual.unwrap().borrow().val);
     }
 
-    fn convert_to_tree_bfs(input: &Vec<Option<i32>>, index: i32) -> Option<Rc<RefCell<TreeNode>>> {
-        if index > input.len() as i32 - 1 {
-            return None;
-        }
-        if let Some(n) = input[index as usize] {
-            let mut node = TreeNode::new(n);
-            node.left = self::convert_to_tree_bfs(input, 2 * index + 1);
-            node.right = self::convert_to_tree_bfs(input, 2 * index + 2);
-            Some(Rc::new(RefCell::new(node)))
-        } else {
-            None
-        }
-    }
+    // fn convert_to_tree_bfs(input: &Vec<Option<i32>>, index: i32) -> Option<Rc<RefCell<TreeNode>>> {
+    //     if index > input.len() as i32 - 1 {
+    //         return None;
+    //     }
+    //     if let Some(n) = input[index as usize] {
+    //         let mut node = TreeNode::new(n);
+    //         node.left = self::convert_to_tree_bfs(input, 2 * index + 1);
+    //         node.right = self::convert_to_tree_bfs(input, 2 * index + 2);
+    //         Some(Rc::new(RefCell::new(node)))
+    //     } else {
+    //         None
+    //     }
+    // }
 }

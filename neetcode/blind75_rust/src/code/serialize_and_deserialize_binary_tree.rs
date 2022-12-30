@@ -1,23 +1,7 @@
-// Definition for a binary tree node.
-#[derive(Debug, PartialEq, Eq)]
-pub struct TreeNode {
-    pub val: i32,
-    pub left: Option<Rc<RefCell<TreeNode>>>,
-    pub right: Option<Rc<RefCell<TreeNode>>>,
-}
-
-impl TreeNode {
-    #[inline]
-    pub fn new(val: i32) -> Self {
-        TreeNode {
-            val,
-            left: None,
-            right: None,
-        }
-    }
-}
 use std::cell::RefCell;
 use std::rc::Rc;
+
+use super::model::binary_tree_node::TreeNode;
 struct Codec {}
 
 /**
@@ -78,19 +62,31 @@ impl Codec {
 
 #[cfg(test)]
 mod tests {
+    use crate::code::utils::deserialize_to_binary_tree::deserialize_to_BT;
+
     use super::{Codec, TreeNode};
     use std::{cell::RefCell, rc::Rc};
 
     #[test]
     fn case_1() {
-        let strs = self::convert_to_tree_bfs(
-            &vec![Some(1), Some(2), Some(3), None, None, Some(4), Some(5)],
-            0,
-        );
-        let expected = self::convert_to_tree_bfs(
-            &vec![Some(1), Some(2), Some(3), None, None, Some(4), Some(5)],
-            0,
-        );
+        let strs = deserialize_to_BT(vec![
+            Some(1),
+            Some(2),
+            Some(3),
+            None,
+            None,
+            Some(4),
+            Some(5),
+        ]);
+        let expected = deserialize_to_BT(vec![
+            Some(1),
+            Some(2),
+            Some(3),
+            None,
+            None,
+            Some(4),
+            Some(5),
+        ]);
         let obj = Codec::new();
         let data: String = obj.serialize(strs);
         let ans: Option<Rc<RefCell<TreeNode>>> = obj.deserialize(data);
@@ -100,26 +96,12 @@ mod tests {
 
     #[test]
     fn case_2() {
-        let strs = self::convert_to_tree_bfs(&vec![], 0);
-        let expected = self::convert_to_tree_bfs(&vec![], 0);
+        let strs = deserialize_to_BT(vec![]);
+        let expected = deserialize_to_BT(vec![]);
         let obj = Codec::new();
         let data: String = obj.serialize(strs);
         let ans: Option<Rc<RefCell<TreeNode>>> = obj.deserialize(data);
 
         assert_eq!(expected, ans);
-    }
-
-    fn convert_to_tree_bfs(input: &Vec<Option<i32>>, index: i32) -> Option<Rc<RefCell<TreeNode>>> {
-        if index > input.len() as i32 - 1 {
-            return None;
-        }
-        if let Some(n) = input[index as usize] {
-            let mut node = TreeNode::new(n);
-            node.left = self::convert_to_tree_bfs(input, 2 * index + 1);
-            node.right = self::convert_to_tree_bfs(input, 2 * index + 2);
-            Some(Rc::new(RefCell::new(node)))
-        } else {
-            None
-        }
     }
 }
