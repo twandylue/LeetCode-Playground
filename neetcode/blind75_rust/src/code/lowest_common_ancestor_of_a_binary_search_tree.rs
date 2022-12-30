@@ -2,7 +2,7 @@ use std::cell::RefCell;
 use std::cmp;
 use std::rc::Rc;
 
-use super::model::binary_tree_node::TreeNode;
+use super::models::binary_tree_node::TreeNode;
 
 pub struct Solution {}
 

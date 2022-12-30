@@ -3,7 +3,7 @@ use std::collections::VecDeque;
 use std::mem;
 use std::rc::Rc;
 
-use super::model::binary_tree_node::TreeNode;
+use super::models::binary_tree_node::TreeNode;
 
 pub struct Solution {}
 

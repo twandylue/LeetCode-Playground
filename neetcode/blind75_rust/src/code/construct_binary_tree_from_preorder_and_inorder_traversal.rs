@@ -1,7 +1,7 @@
 use std::cell::RefCell;
 use std::rc::Rc;
 
-use super::model::binary_tree_node::TreeNode;
+use super::models::binary_tree_node::TreeNode;
 
 enum Action<T, U> {
     Caller(T),
