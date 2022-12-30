@@ -1,7 +1,7 @@
 use std::cell::RefCell;
 use std::rc::Rc;
 
-use super::Model::binary_tree_node::TreeNode;
+use super::model::binary_tree_node::TreeNode;
 
 pub struct Solution {}
 
@@ -74,7 +74,7 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
-    use crate::code::Utils::deserialize_to_binary_tree::deserialize_to_BT;
+    use crate::code::utils::deserialize_to_binary_tree::deserialize_to_BT;
 
     use super::{Solution, TreeNode};
     use std::{cell::RefCell, rc::Rc};

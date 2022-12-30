@@ -1,6 +1,6 @@
 use std::{cell::RefCell, collections::VecDeque, rc::Rc};
 
-use crate::code::Model::binary_tree_node::TreeNode;
+use crate::code::model::binary_tree_node::TreeNode;
 
 pub fn deserialize_to_BT(vector: Vec<Option<i32>>) -> Option<Rc<RefCell<TreeNode>>> {
     if vector.len() == 0 {
