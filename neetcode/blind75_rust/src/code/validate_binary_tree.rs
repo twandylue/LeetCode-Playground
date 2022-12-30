@@ -1,26 +1,7 @@
-// Definition for a binary tree node.
-// #[derive(Debug, PartialEq, Eq)]
-// pub struct TreeNode {
-//     pub val: i32,
-//     pub left: Option<Rc<RefCell<TreeNode>>>,
-//     pub right: Option<Rc<RefCell<TreeNode>>>,
-// }
-//
-// impl TreeNode {
-//     #[inline]
-//     pub fn new(val: i32) -> Self {
-//         TreeNode {
-//             val,
-//             left: None,
-//             right: None,
-//         }
-//     }
-// }
-
 use std::cell::RefCell;
 use std::rc::Rc;
 
-use super::tree::binary_tree_node::TreeNode;
+use super::Model::binary_tree_node::TreeNode;
 
 pub struct Solution {}
 
@@ -93,7 +74,7 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
-    use crate::code::utils::deserialize_to_binary_tree::deserialize_to_BT;
+    use crate::code::Utils::deserialize_to_binary_tree::deserialize_to_BT;
 
     use super::{Solution, TreeNode};
     use std::{cell::RefCell, rc::Rc};
