@@ -16,6 +16,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Go to Rust project
+      run: cd ./neetcode/blind75_rust
     - name: Build
       run: cargo build --verbose
     - name: Run tests
