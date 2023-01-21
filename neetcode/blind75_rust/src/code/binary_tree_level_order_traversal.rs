@@ -48,6 +48,7 @@ impl Solution {
         return ret;
     }
 
+    #[allow(non_snake_case)]
     fn BFS(r: Option<Rc<RefCell<TreeNode>>>, d: i32, v: &mut Vec<Vec<i32>>) {
         match r {
             Some(n) => {
