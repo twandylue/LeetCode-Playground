@@ -3,6 +3,7 @@ use std::{cell::RefCell, collections::VecDeque, rc::Rc};
 
 use crate::code::models::binary_tree_node::TreeNode;
 
+#[allow(non_snake_case)]
 pub fn deserialize_to_BT(vector: Vec<Option<i32>>) -> Option<Rc<RefCell<TreeNode>>> {
     if vector.len() == 0 {
         return None;
