@@ -42,7 +42,6 @@ impl Trie {
     fn search(&self, word: String) -> bool {
         match Trie::find(self, word) {
             Some(node) => {
-                println!("{:?}", node);
                 if node.map.contains_key(&'&') {
                     true
                 } else {
