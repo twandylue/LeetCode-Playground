@@ -2,6 +2,7 @@ pub mod best_time_to_buy_and_sell_stock;
 pub mod binary_tree_level_order_traversal;
 pub mod container_with_most_water;
 pub mod contains_duplicate;
+pub mod design_add_and_search_words_data_structure;
 pub mod encode_and_decode_strings;
 pub mod find_minimum_in_rotated_sorted_array;
 pub mod group_anagrams;
