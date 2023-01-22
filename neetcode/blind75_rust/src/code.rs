@@ -10,6 +10,7 @@ pub mod find_minimum_in_rotated_sorted_array;
 pub mod group_anagrams;
 pub mod lowest_common_ancestor_of_a_binary_search_tree;
 pub mod maximum_depth_of_binary_tree;
+pub mod word_search;
 // pub mod linked_list_cycle;
 pub mod longest_consecutive_sequence;
 pub mod longest_repeating_character_replacement;
