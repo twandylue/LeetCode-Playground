@@ -3,6 +3,7 @@ pub mod binary_tree_level_order_traversal;
 pub mod combination_sum;
 pub mod container_with_most_water;
 pub mod contains_duplicate;
+pub mod counting_bits;
 pub mod design_add_and_search_words_data_structure;
 pub mod encode_and_decode_strings;
 pub mod find_median_from_data_stream;

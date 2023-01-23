@@ -72,29 +72,6 @@ impl Solution {
         head
     }
 
-    pub fn tests() {
-        let list1 = Self::convert_vec_to_linked_list(vec![1, 2, 4]);
-        let list2 = Self::convert_vec_to_linked_list(vec![1, 3, 4]);
-        let expected = Self::convert_vec_to_linked_list(vec![1, 1, 2, 3, 4, 4]);
-        let actual = Self::merge_two_lists2(list1, list2);
-
-        assert_eq!(actual, expected);
-
-        let list1 = Self::convert_vec_to_linked_list(vec![]);
-        let list2 = Self::convert_vec_to_linked_list(vec![]);
-        let expected2 = Self::convert_vec_to_linked_list(vec![]);
-        let actual2 = Self::merge_two_lists2(list1, list2);
-
-        assert_eq!(actual2, expected2);
-
-        let list1 = Self::convert_vec_to_linked_list(vec![]);
-        let list2 = Self::convert_vec_to_linked_list(vec![0]);
-        let expected3 = Self::convert_vec_to_linked_list(vec![0]);
-        let actual3 = Self::merge_two_lists2(list1, list2);
-
-        assert_eq!(actual3, expected3);
-    }
-
     fn convert_vec_to_linked_list(vector: Vec<i32>) -> Option<Box<ListNode>> {
         if vector.len() == 0 {
             return None;
@@ -104,6 +81,35 @@ impl Solution {
                 next: Self::convert_vec_to_linked_list(vector[1..].to_vec()),
             }));
         }
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::Solution;
+
+    #[test]
+    fn case_1() {
+        let list1 = Solution::convert_vec_to_linked_list(vec![1, 2, 4]);
+        let list2 = Solution::convert_vec_to_linked_list(vec![1, 3, 4]);
+        let expected = Solution::convert_vec_to_linked_list(vec![1, 1, 2, 3, 4, 4]);
+        let actual = Solution::merge_two_lists2(list1, list2);
+
+        assert_eq!(actual, expected);
+
+        let list1 = Solution::convert_vec_to_linked_list(vec![]);
+        let list2 = Solution::convert_vec_to_linked_list(vec![]);
+        let expected2 = Solution::convert_vec_to_linked_list(vec![]);
+        let actual2 = Solution::merge_two_lists2(list1, list2);
+
+        assert_eq!(actual2, expected2);
+
+        let list1 = Solution::convert_vec_to_linked_list(vec![]);
+        let list2 = Solution::convert_vec_to_linked_list(vec![0]);
+        let expected3 = Solution::convert_vec_to_linked_list(vec![0]);
+        let actual3 = Solution::merge_two_lists2(list1, list2);
+
+        assert_eq!(actual3, expected3);
     }
 }
 

@@ -42,8 +42,14 @@ impl Solution {
 
         return res;
     }
+}
 
-    pub fn tests() {
+#[cfg(test)]
+mod test {
+    use super::Solution;
+
+    #[test]
+    fn case_1() {
         let input = vec![1, 2, 3, 4];
         let expected = vec![24, 12, 8, 6];
         let actual = Solution::product_except_self(input);

@@ -22,8 +22,14 @@ impl Solution {
 
         return res;
     }
+}
 
-    pub fn tests() {
+#[cfg(test)]
+mod test {
+    use super::Solution;
+
+    #[test]
+    fn case_1() {
         let input = vec![100, 4, 200, 1, 3, 2];
         let expected = 4;
         let actual = Solution::longest_consecutive(input);

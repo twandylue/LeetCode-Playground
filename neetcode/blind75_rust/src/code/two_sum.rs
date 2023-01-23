@@ -37,8 +37,14 @@ impl Solution {
 
         return res;
     }
+}
 
-    pub fn tests() {
+#[cfg(test)]
+mod test {
+    use super::Solution;
+
+    #[test]
+    fn case_1() {
         let nums = vec![2, 7, 11, 15];
         let target = 9;
         let mut res = Solution::two_sum(nums.clone(), target);

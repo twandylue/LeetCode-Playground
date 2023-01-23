@@ -34,8 +34,14 @@ impl Solution {
 
         return ret;
     }
+}
 
-    pub fn tests() {
+#[cfg(test)]
+mod test {
+    use super::Solution;
+
+    #[test]
+    fn case_1() {
         let input = vec!["lint", "code", "love", "you"];
         let expected = vec!["lint", "code", "love", "you"];
         let encode_result = Solution::encode(input);

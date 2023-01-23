@@ -21,8 +21,14 @@ impl Solution {
 
         return ret as i32;
     }
+}
 
-    pub fn tests() {
+#[cfg(test)]
+mod test {
+    use super::Solution;
+
+    #[test]
+    fn case_1() {
         let height = vec![1, 8, 6, 2, 5, 4, 8, 3, 7];
         let expected = 49;
         let actual = Solution::max_area(height);

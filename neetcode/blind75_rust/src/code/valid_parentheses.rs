@@ -30,8 +30,14 @@ impl Solution {
 
         return true;
     }
+}
 
-    pub fn tests() {
+#[cfg(test)]
+mod test {
+    use super::Solution;
+
+    #[test]
+    fn case_1() {
         let s = "()".to_string();
         let expected = true;
         let actual = Solution::is_valid(s);

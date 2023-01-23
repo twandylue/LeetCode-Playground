@@ -36,38 +36,7 @@ impl Solution {
         return dummy.next;
     }
 
-    // fn get_length(mut head: Option<Box<ListNode>>) -> i32 {
-    //     let mut count = 0;
-    //     while let Some(node) = head {
-    //         count += 1;
-    //         head = node.next;
-    //     }
-    //     count
-    // }
-
-    pub fn tests() {
-        let head = Self::convert_vec_to_linked_list(vec![1, 2, 3, 4, 5]);
-        let n = 2;
-        let expected = Self::convert_vec_to_linked_list(vec![1, 2, 3, 5]);
-        let actual = Solution::remove_nth_from_end(head, n);
-
-        assert_eq!(actual, expected);
-
-        let head2 = Self::convert_vec_to_linked_list(vec![1]);
-        let n2 = 1;
-        let expected2 = Self::convert_vec_to_linked_list(vec![]);
-        let actual2 = Solution::remove_nth_from_end(head2, n2);
-
-        assert_eq!(actual2, expected2);
-
-        let head3 = Self::convert_vec_to_linked_list(vec![1, 2]);
-        let n3 = 1;
-        let expected3 = Self::convert_vec_to_linked_list(vec![1]);
-        let actual3 = Solution::remove_nth_from_end(head3, n3);
-
-        assert_eq!(actual3, expected3);
-    }
-
+    // TODO: move to utils
     fn convert_vec_to_linked_list(vector: Vec<i32>) -> Option<Box<ListNode>> {
         if vector.len() == 0 {
             return None;
@@ -85,3 +54,32 @@ impl Solution {
 * it will move Box<self>, which is allocated on heap, and Rust doesn't allow you to just move values away from heap unless you implement Copy, otherwise what's left there?
 * The book uses Option::take() to move ownership out and leave None on the place.
 */
+
+#[cfg(test)]
+mod test {
+    use super::Solution;
+
+    #[test]
+    fn case_1() {
+        let head = Solution::convert_vec_to_linked_list(vec![1, 2, 3, 4, 5]);
+        let n = 2;
+        let expected = Solution::convert_vec_to_linked_list(vec![1, 2, 3, 5]);
+        let actual = Solution::remove_nth_from_end(head, n);
+
+        assert_eq!(actual, expected);
+
+        let head2 = Solution::convert_vec_to_linked_list(vec![1]);
+        let n2 = 1;
+        let expected2 = Solution::convert_vec_to_linked_list(vec![]);
+        let actual2 = Solution::remove_nth_from_end(head2, n2);
+
+        assert_eq!(actual2, expected2);
+
+        let head3 = Solution::convert_vec_to_linked_list(vec![1, 2]);
+        let n3 = 1;
+        let expected3 = Solution::convert_vec_to_linked_list(vec![1]);
+        let actual3 = Solution::remove_nth_from_end(head3, n3);
+
+        assert_eq!(actual3, expected3);
+    }
+}

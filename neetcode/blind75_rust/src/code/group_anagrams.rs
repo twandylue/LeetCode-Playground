@@ -25,8 +25,13 @@ impl Solution {
 
         return res;
     }
+}
 
-    pub fn tests() {
+#[cfg(test)]
+mod test {
+    use super::Solution;
+    #[test]
+    fn case_1() {
         let input: Vec<String> = vec!["eat", "tea", "tan", "ate", "nat", "bat"]
             .iter()
             .map(|x| x.to_string())

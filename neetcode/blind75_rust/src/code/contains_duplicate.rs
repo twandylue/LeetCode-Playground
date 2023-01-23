@@ -29,8 +29,14 @@ impl Solution {
 
         return res;
     }
+}
 
-    pub fn tests() {
+#[cfg(test)]
+mod test {
+    use super::Solution;
+
+    #[test]
+    fn case_1() {
         let input1 = vec![1, 2, 32, 32];
         let res1 = Solution::contains_duplicate1(input1);
         let input2 = vec![1, 2, 32];

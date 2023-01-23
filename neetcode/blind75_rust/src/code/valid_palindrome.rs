@@ -9,8 +9,14 @@ impl Solution {
 
         return iter.clone().eq(iter.rev());
     }
+}
 
-    pub fn tests() {
+#[cfg(test)]
+mod test {
+    use super::Solution;
+
+    #[test]
+    fn case_1() {
         let s = "A man, a plan, a canal: Panama".to_string();
         let expected = true;
         let actual = Solution::is_palindrome(s);

@@ -26,8 +26,14 @@ impl Solution {
 
         return ret;
     }
+}
 
-    pub fn tests() {
+#[cfg(test)]
+mod test {
+    use super::Solution;
+
+    #[test]
+    fn case_1() {
         let nums = vec![3, 4, 5, 1, 2];
         let expected = 1;
         let actual = Solution::find_min(nums);

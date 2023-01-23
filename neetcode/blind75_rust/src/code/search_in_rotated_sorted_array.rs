@@ -30,8 +30,14 @@ impl Solution {
 
         return -1;
     }
+}
 
-    pub fn tests() {
+#[cfg(test)]
+mod test {
+    use super::Solution;
+
+    #[test]
+    fn case_1() {
         let nums = vec![4, 5, 6, 7, 0, 1, 2];
         let target = 0;
         let expected = 4;

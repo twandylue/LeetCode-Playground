@@ -49,8 +49,14 @@ impl Solution {
 
         return v_s.eq(&v_t);
     }
+}
 
-    pub fn tests() {
+#[cfg(test)]
+mod test {
+    use super::Solution;
+
+    #[test]
+    fn case_1() {
         let s = String::from("anagram");
         let t = String::from("nagaram");
         let res = Solution::is_anagram(s.to_string(), t.to_string());

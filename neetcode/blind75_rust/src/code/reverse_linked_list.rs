@@ -70,26 +70,6 @@ impl Solution {
         }
     }
 
-    pub fn tests() {
-        let head = Self::convert_vec_to_linked_list(vec![1, 2, 3, 4, 5]);
-        let expected = Self::convert_vec_to_linked_list(vec![5, 4, 3, 2, 1]);
-        let actual = Solution::reverse_list3(head);
-
-        assert_eq!(actual, expected);
-
-        let head2 = Self::convert_vec_to_linked_list(vec![1, 2]);
-        let expected2 = Self::convert_vec_to_linked_list(vec![2, 1]);
-        let actual2 = Solution::reverse_list3(head2);
-
-        assert_eq!(actual2, expected2);
-
-        let head3 = Self::convert_vec_to_linked_list(vec![]);
-        let expected3 = Self::convert_vec_to_linked_list(vec![]);
-        let actual3 = Solution::reverse_list3(head3);
-
-        assert_eq!(actual3, expected3);
-    }
-
     fn convert_vec_to_linked_list(vector: Vec<i32>) -> Option<Box<ListNode>> {
         if vector.len() == 0 {
             return None;
@@ -99,5 +79,31 @@ impl Solution {
                 next: Self::convert_vec_to_linked_list(vector[1..].to_vec()),
             }));
         }
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::Solution;
+
+    #[test]
+    fn case_1() {
+        let head = Solution::convert_vec_to_linked_list(vec![1, 2, 3, 4, 5]);
+        let expected = Solution::convert_vec_to_linked_list(vec![5, 4, 3, 2, 1]);
+        let actual = Solution::reverse_list3(head);
+
+        assert_eq!(actual, expected);
+
+        let head2 = Solution::convert_vec_to_linked_list(vec![1, 2]);
+        let expected2 = Solution::convert_vec_to_linked_list(vec![2, 1]);
+        let actual2 = Solution::reverse_list3(head2);
+
+        assert_eq!(actual2, expected2);
+
+        let head3 = Solution::convert_vec_to_linked_list(vec![]);
+        let expected3 = Solution::convert_vec_to_linked_list(vec![]);
+        let actual3 = Solution::reverse_list3(head3);
+
+        assert_eq!(actual3, expected3);
     }
 }

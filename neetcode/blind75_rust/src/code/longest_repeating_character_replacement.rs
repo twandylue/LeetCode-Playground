@@ -45,8 +45,14 @@ impl Solution {
 
         return res;
     }
+}
 
-    pub fn tests() {
+#[cfg(test)]
+mod test {
+    use super::Solution;
+
+    #[test]
+    fn case_1() {
         let s = "ABAB".to_string();
         let k = 2;
         let expected = 4;

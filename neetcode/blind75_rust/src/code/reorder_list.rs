@@ -73,22 +73,7 @@ impl Solution {
         count
     }
 
-    pub fn tests() {
-        let mut head = Self::convert_vec_to_linked_list(vec![1, 2, 3, 4]);
-        let expected = Self::convert_vec_to_linked_list(vec![1, 4, 2, 3]);
-        Solution::reorder_list(&mut head);
-
-        // println!("head: {:?}", head);
-        assert_eq!(head, expected);
-
-        let mut head2 = Self::convert_vec_to_linked_list(vec![1, 2, 3, 4, 5]);
-        let expected2 = Self::convert_vec_to_linked_list(vec![1, 5, 2, 4, 3]);
-        Solution::reorder_list(&mut head2);
-
-        // println!("head: {:?}", head2);
-        assert_eq!(head2, expected2);
-    }
-
+    // TODO: move to utils
     fn convert_vec_to_linked_list(vector: Vec<i32>) -> Option<Box<ListNode>> {
         if vector.len() == 0 {
             return None;
@@ -98,5 +83,25 @@ impl Solution {
                 next: Self::convert_vec_to_linked_list(vector[1..].to_vec()),
             }));
         }
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::Solution;
+
+    #[test]
+    fn case_1() {
+        let mut head = Solution::convert_vec_to_linked_list(vec![1, 2, 3, 4]);
+        let expected = Solution::convert_vec_to_linked_list(vec![1, 4, 2, 3]);
+        Solution::reorder_list(&mut head);
+
+        assert_eq!(head, expected);
+
+        let mut head2 = Solution::convert_vec_to_linked_list(vec![1, 2, 3, 4, 5]);
+        let expected2 = Solution::convert_vec_to_linked_list(vec![1, 5, 2, 4, 3]);
+        Solution::reorder_list(&mut head2);
+
+        assert_eq!(head2, expected2);
     }
 }

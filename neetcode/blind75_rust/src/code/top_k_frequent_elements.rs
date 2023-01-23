@@ -36,8 +36,14 @@ impl Solution {
 
         return res;
     }
+}
 
-    pub fn tests() {
+#[cfg(test)]
+mod test {
+    use super::Solution;
+
+    #[test]
+    fn case_1() {
         let input = vec![1, 1, 1, 2, 2, 3];
         let k = 2;
         let mut actual = Solution::top_k_frequent(input, k);

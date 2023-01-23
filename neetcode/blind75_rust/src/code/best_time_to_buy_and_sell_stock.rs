@@ -32,8 +32,14 @@ impl Solution {
 
         return ret;
     }
+}
 
-    pub fn tests() {
+#[cfg(test)]
+mod test {
+    use super::Solution;
+
+    #[test]
+    fn case_1() {
         let prices = vec![7, 1, 5, 3, 6, 4];
         let expected = 5;
         let actual = Solution::max_profit(prices);
