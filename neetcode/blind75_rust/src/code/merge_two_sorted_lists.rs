@@ -1,18 +1,5 @@
+use super::models::list_node::ListNode;
 use std::mem;
-
-// Definition for singly-linked list.
-#[derive(PartialEq, Eq, Clone, Debug)]
-pub struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>,
-}
-
-impl ListNode {
-    #[inline]
-    fn new(val: i32) -> Self {
-        ListNode { next: None, val }
-    }
-}
 
 pub struct Solution {}
 
@@ -71,42 +58,32 @@ impl Solution {
 
         head
     }
-
-    fn convert_vec_to_linked_list(vector: Vec<i32>) -> Option<Box<ListNode>> {
-        if vector.len() == 0 {
-            return None;
-        } else {
-            return Some(Box::new(ListNode {
-                val: vector[0],
-                next: Self::convert_vec_to_linked_list(vector[1..].to_vec()),
-            }));
-        }
-    }
 }
 
 #[cfg(test)]
 mod test {
+    use super::super::utils::convert_to_linked_list::convert_vec_to_linked_list;
     use super::Solution;
 
     #[test]
     fn case_1() {
-        let list1 = Solution::convert_vec_to_linked_list(vec![1, 2, 4]);
-        let list2 = Solution::convert_vec_to_linked_list(vec![1, 3, 4]);
-        let expected = Solution::convert_vec_to_linked_list(vec![1, 1, 2, 3, 4, 4]);
+        let list1 = convert_vec_to_linked_list(vec![1, 2, 4]);
+        let list2 = convert_vec_to_linked_list(vec![1, 3, 4]);
+        let expected = convert_vec_to_linked_list(vec![1, 1, 2, 3, 4, 4]);
         let actual = Solution::merge_two_lists2(list1, list2);
 
         assert_eq!(actual, expected);
 
-        let list1 = Solution::convert_vec_to_linked_list(vec![]);
-        let list2 = Solution::convert_vec_to_linked_list(vec![]);
-        let expected2 = Solution::convert_vec_to_linked_list(vec![]);
+        let list1 = convert_vec_to_linked_list(vec![]);
+        let list2 = convert_vec_to_linked_list(vec![]);
+        let expected2 = convert_vec_to_linked_list(vec![]);
         let actual2 = Solution::merge_two_lists2(list1, list2);
 
         assert_eq!(actual2, expected2);
 
-        let list1 = Solution::convert_vec_to_linked_list(vec![]);
-        let list2 = Solution::convert_vec_to_linked_list(vec![0]);
-        let expected3 = Solution::convert_vec_to_linked_list(vec![0]);
+        let list1 = convert_vec_to_linked_list(vec![]);
+        let list2 = convert_vec_to_linked_list(vec![0]);
+        let expected3 = convert_vec_to_linked_list(vec![0]);
         let actual3 = Solution::merge_two_lists2(list1, list2);
 
         assert_eq!(actual3, expected3);

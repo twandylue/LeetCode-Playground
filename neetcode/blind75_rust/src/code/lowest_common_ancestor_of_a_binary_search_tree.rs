@@ -131,18 +131,4 @@ mod tests {
 
         assert_eq!(expected, actual.unwrap().borrow().val);
     }
-
-    // fn convert_to_tree_bfs(input: &Vec<Option<i32>>, index: i32) -> Option<Rc<RefCell<TreeNode>>> {
-    //     if index > input.len() as i32 - 1 {
-    //         return None;
-    //     }
-    //     if let Some(n) = input[index as usize] {
-    //         let mut node = TreeNode::new(n);
-    //         node.left = self::convert_to_tree_bfs(input, 2 * index + 1);
-    //         node.right = self::convert_to_tree_bfs(input, 2 * index + 2);
-    //         Some(Rc::new(RefCell::new(node)))
-    //     } else {
-    //         None
-    //     }
-    // }
 }

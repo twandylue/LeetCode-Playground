@@ -1,16 +1,4 @@
-// Definition for singly-linked list.
-#[derive(PartialEq, Eq, Clone, Debug)]
-pub struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>,
-}
-
-impl ListNode {
-    #[inline]
-    fn new(val: i32) -> Self {
-        ListNode { next: None, val }
-    }
-}
+use super::models::list_node::ListNode;
 
 pub struct Solution {}
 
@@ -35,18 +23,6 @@ impl Solution {
         slow.next = slow.next.as_mut().unwrap().next.clone();
         return dummy.next;
     }
-
-    // TODO: move to utils
-    fn convert_vec_to_linked_list(vector: Vec<i32>) -> Option<Box<ListNode>> {
-        if vector.len() == 0 {
-            return None;
-        } else {
-            return Some(Box::new(ListNode {
-                val: vector[0],
-                next: Self::convert_vec_to_linked_list(vector[1..].to_vec()),
-            }));
-        }
-    }
 }
 
 /*
@@ -57,27 +33,28 @@ impl Solution {
 
 #[cfg(test)]
 mod test {
+    use super::super::utils::convert_to_linked_list::convert_vec_to_linked_list;
     use super::Solution;
 
     #[test]
     fn case_1() {
-        let head = Solution::convert_vec_to_linked_list(vec![1, 2, 3, 4, 5]);
+        let head = convert_vec_to_linked_list(vec![1, 2, 3, 4, 5]);
         let n = 2;
-        let expected = Solution::convert_vec_to_linked_list(vec![1, 2, 3, 5]);
+        let expected = convert_vec_to_linked_list(vec![1, 2, 3, 5]);
         let actual = Solution::remove_nth_from_end(head, n);
 
         assert_eq!(actual, expected);
 
-        let head2 = Solution::convert_vec_to_linked_list(vec![1]);
+        let head2 = convert_vec_to_linked_list(vec![1]);
         let n2 = 1;
-        let expected2 = Solution::convert_vec_to_linked_list(vec![]);
+        let expected2 = convert_vec_to_linked_list(vec![]);
         let actual2 = Solution::remove_nth_from_end(head2, n2);
 
         assert_eq!(actual2, expected2);
 
-        let head3 = Solution::convert_vec_to_linked_list(vec![1, 2]);
+        let head3 = convert_vec_to_linked_list(vec![1, 2]);
         let n3 = 1;
-        let expected3 = Solution::convert_vec_to_linked_list(vec![1]);
+        let expected3 = convert_vec_to_linked_list(vec![1]);
         let actual3 = Solution::remove_nth_from_end(head3, n3);
 
         assert_eq!(actual3, expected3);
