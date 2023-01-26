@@ -9,6 +9,7 @@ pub mod encode_and_decode_strings;
 pub mod find_median_from_data_stream;
 pub mod find_minimum_in_rotated_sorted_array;
 pub mod group_anagrams;
+pub mod insert_interval;
 pub mod lowest_common_ancestor_of_a_binary_search_tree;
 pub mod maximum_depth_of_binary_tree;
 pub mod number_of_1_bits;
