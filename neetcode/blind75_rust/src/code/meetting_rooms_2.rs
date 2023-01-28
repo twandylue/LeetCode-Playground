@@ -25,17 +25,11 @@ impl Solution {
         let mut count = 0;
         let mut s = 0;
         let mut e = 0;
-        let mut start_times: Vec<i32> = Vec::new();
-        let mut end_times: Vec<i32> = Vec::new();
 
         intervals.sort_by_key(|x| x.start);
-        for i in &intervals {
-            start_times.push(i.start);
-        }
+        let start_times: Vec<i32> = intervals.iter().map(|x| x.start).collect::<Vec<i32>>();
         intervals.sort_by_key(|x| x.end);
-        for i in &intervals {
-            end_times.push(i.end);
-        }
+        let end_times: Vec<i32> = intervals.iter().map(|x| x.end).collect::<Vec<i32>>();
 
         while s < intervals.len() {
             if start_times[s] < end_times[e] {
