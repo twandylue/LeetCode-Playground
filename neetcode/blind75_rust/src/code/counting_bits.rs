@@ -2,12 +2,17 @@ pub struct Solution {}
 
 impl Solution {
     pub fn count_bits(n: i32) -> Vec<i32> {
-        let mut counter: Vec<i32> = Vec::from([0]);
+        let mut dp: Vec<i32> = vec![0; (n + 1) as usize];
+        let mut offset = 1;
+
         for i in 1..=n {
-            counter.push(counter[i as usize >> 1] + i % 2);
+            if offset * 2 == i {
+                offset = i;
+            }
+            dp[i as usize] = 1 + dp[(i - offset) as usize];
         }
 
-        counter
+        dp
     }
 }
 
