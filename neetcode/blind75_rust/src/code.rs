@@ -19,6 +19,7 @@ pub mod missing_number;
 pub mod non_overlapping_intervals;
 pub mod number_of_1_bits;
 pub mod reverse_bits;
+pub mod sum_of_two_integer;
 pub mod word_search;
 // pub mod linked_list_cycle;
 pub mod longest_consecutive_sequence;
