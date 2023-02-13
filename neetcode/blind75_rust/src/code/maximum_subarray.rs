@@ -1,20 +1,16 @@
 pub struct Solution {}
 
 impl Solution {
-    // TODO:
     pub fn max_sub_array(nums: Vec<i32>) -> i32 {
         let mut res = i32::MIN;
         let mut accu = 0;
-        let mut left = 0;
 
         for r in 0..nums.len() {
             accu += nums[r];
-            if accu <= 0 {
-                accu -= nums[left];
-                left += 1;
-            }
-
             res = std::cmp::max(accu, res);
+            if accu <= 0 {
+                accu = 0;
+            }
         }
         res
     }
@@ -53,8 +49,25 @@ mod tests {
 
     #[test]
     fn case_4() {
-        // TODO:
         let nums = vec![-1];
+        let expected = -1;
+        let actual = Solution::max_sub_array(nums);
+
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn case_5() {
+        let nums = vec![1, 2, -1, -2, 2, 1, -2, 1, 4, -5, 4];
+        let expected = 6;
+        let actual = Solution::max_sub_array(nums);
+
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn case_6() {
+        let nums = vec![-2, -1];
         let expected = -1;
         let actual = Solution::max_sub_array(nums);
 
