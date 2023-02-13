@@ -12,6 +12,7 @@ pub mod group_anagrams;
 pub mod insert_interval;
 pub mod lowest_common_ancestor_of_a_binary_search_tree;
 pub mod maximum_depth_of_binary_tree;
+pub mod maximum_subarray;
 pub mod meetting_rooms;
 pub mod meetting_rooms_2;
 pub mod merge_intervals;
