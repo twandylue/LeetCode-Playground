@@ -10,6 +10,7 @@ pub mod find_median_from_data_stream;
 pub mod find_minimum_in_rotated_sorted_array;
 pub mod group_anagrams;
 pub mod insert_interval;
+pub mod jump_game;
 pub mod lowest_common_ancestor_of_a_binary_search_tree;
 pub mod maximum_depth_of_binary_tree;
 pub mod maximum_subarray;
