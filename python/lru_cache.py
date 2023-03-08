@@ -1,9 +1,19 @@
+from __future__ import annotations
+
+
 class ListNode:
     def __init__(self, key: int, value: int):
         self.key = key
         self.value = value
         self.prev: ListNode
         self.next: ListNode
+
+    @classmethod
+    def pop(cls, node: ListNode) -> ListNode:
+        node.next.prev = node.prev
+        node.prev.next = node.next
+
+        return node
 
 
 class LRUCache:
@@ -15,18 +25,19 @@ class LRUCache:
         self.head.next = self.tail
         self.tail.prev = self.head
 
+    def insert_after_head(self, node: ListNode):
+        self.head.next.prev = node
+        node.next = self.head.next
+        node.prev = self.head
+        self.head.next = node
+
     def get(self, key: int) -> int:
         if key in self.map:
             node = self.map[key]
+            node = ListNode.pop(node)
             result = node.value
-            node.prev.next = node.next
-            node.next.prev = node.prev
 
-            self.head.next.prev = node
-            node.next = self.head.next
-            self.head.next = node
-            node.prev = self.head
-
+            self.insert_after_head(node)
             return result
         else:
             return -1
@@ -34,24 +45,18 @@ class LRUCache:
     def put(self, key: int, value: int) -> None:
         if key in self.map:
             node = self.map[key]
+            node = ListNode.pop(node)
             node.value = value
-            prev = node.prev
-            next = node.next
-            prev.next = next
-            next.prev = prev
-            self.head.next = node
+            self.insert_after_head(node)
         else:
             if len(self.map) >= self.capacity:
                 del_node = self.tail.prev
-                del_node.prev.next = self.tail
-                self.tail.prev = del_node.prev
+                del_node = ListNode.pop(del_node)
                 del self.map[del_node.key]
 
             new_node = ListNode(key, value)
             self.map[new_node.key] = new_node
-            self.head.next.prev = new_node
-            new_node.next = self.head.next
-            self.head.next = new_node
+            self.insert_after_head(new_node)
 
 
 # Your LRUCache object will be instantiated and called as such:
