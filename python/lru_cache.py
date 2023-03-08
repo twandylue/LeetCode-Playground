@@ -80,4 +80,4 @@ def test_case1():
     assert actual2 == -1
     assert actual3 == -1
     assert actual4 == 3
-    assert actual5 == 5
+    assert actual5 == 4
