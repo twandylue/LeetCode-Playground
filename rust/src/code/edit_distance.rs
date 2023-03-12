@@ -3,6 +3,41 @@ use std::cmp::min;
 pub struct Solution {}
 
 impl Solution {
+    pub fn min_distance_map(word1: String, word2: String) -> i32 {
+        let n1 = word1.len();
+        let n2 = word2.len();
+        let mut cache = vec![vec![0; n2 + 1]; n1 + 1];
+        let word1 = word1.chars().collect::<Vec<char>>();
+        let word2 = word2.chars().collect::<Vec<char>>();
+
+        cache[0][0] = 0;
+
+        for n1 in 1..n1 + 1 {
+            let n2 = 0;
+            cache[n1][n2] = n1;
+        }
+
+        for n2 in 1..n2 + 1 {
+            let n1 = 0;
+            cache[n1][n2] = n2;
+        }
+
+        for n1 in 1..n1 + 1 {
+            for n2 in 1..n2 + 1 {
+                if word1[n1 - 1] == word2[n2 - 1] {
+                    cache[n1][n2] = cache[n1 - 1][n2 - 1];
+                } else {
+                    cache[n1][n2] = 1 + min(
+                        min(cache[n1][n2 - 1], cache[n1 - 1][n2]),
+                        cache[n1 - 1][n2 - 1],
+                    )
+                }
+            }
+        }
+
+        cache[n1][n2] as i32
+    }
+
     fn helper(word1: String, word2: String, cache: &mut Vec<Vec<i32>>) -> i32 {
         let n1 = word1.len();
         let n2 = word2.len();
@@ -87,6 +122,34 @@ mod tests {
 
         // act
         let actual = Solution::min_distance(word1, word2);
+
+        // assert
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn case_3() {
+        // arrange
+        let word1 = "horse".to_string();
+        let word2 = "ros".to_string();
+        let expected = 3;
+
+        // act
+        let actual = Solution::min_distance_map(word1, word2);
+
+        // assert
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn case_4() {
+        // arrange
+        let word1 = "intention".to_string();
+        let word2 = "execution".to_string();
+        let expected = 5;
+
+        // act
+        let actual = Solution::min_distance_map(word1, word2);
 
         // assert
         assert_eq!(expected, actual);
