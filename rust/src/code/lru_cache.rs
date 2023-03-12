@@ -55,7 +55,7 @@ struct LRUCache {
  */
 impl LRUCache {
     fn new(capacity: i32) -> Self {
-        // head and tail are markers and thus would not change, like a dummy head.
+        // head and tail are markers and thus would not be changed, like a dummy head.
         let head = Rc::new(RefCell::new(ListNode::new(0, 0)));
         let tail = Rc::new(RefCell::new(ListNode::new(0, 0)));
         head.borrow_mut().next = Some(Rc::clone(&tail));
