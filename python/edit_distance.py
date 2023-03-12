@@ -6,7 +6,32 @@
 # - [x] Recursive
 # - [x] Cache
 # - [x] 2D map cache
+# - [x] print
 # - [ ] Backward
+
+TRACE = True
+
+if TRACE:
+
+    def trace_cache(cache: list[list[int]], actions: list[list[str]]):
+        for row in range(len(cache)):
+            for col in range(len(cache[row])):
+                item: int = cache[row][col]
+                action: str = actions[row][col]
+                print(f"{item} ({action})".ljust(6), end=" ")
+            print()
+        print()
+
+else:
+
+    def trace_cache(*args):
+        pass
+
+
+IGNORE = "I"
+ADD = "A"
+REMOVE = "R"
+SUB = "S"
 
 
 class Solution:
@@ -63,7 +88,7 @@ class Solution:
 
         return self.helper_2D_cache(word1, word2, cache)
 
-    def helper_2D_cache(self, word1: str, word2: str, cache) -> int:
+    def helper_2D_cache(self, word1: str, word2: str, cache: list[list[int]]) -> int:
         for n2 in range(1, len(word2) + 1):
             n1 = 0
             cache[n1][n2] = n2
@@ -81,6 +106,66 @@ class Solution:
                 )
 
         return cache[len(word1)][len(word2)]
+
+    def minDistance_2D_cache_print(self, word1: str, word2: str) -> int:
+        cache = []
+        actions = []
+        for _ in range(len(word1) + 1):
+            cache.append([0] * (len(word2) + 1))
+            actions.append(["-"] * (len(word2) + 1))
+
+        cache[0][0] = 0
+        actions[0][0] = IGNORE
+        return self.helper_2D_cache_print(word1, word2, cache, actions)
+
+    def helper_2D_cache_print(
+        self, word1: str, word2: str, cache: list[list[int]], actions: list[list[str]]
+    ) -> int:
+        for n2 in range(1, len(word2) + 1):
+            n1 = 0
+            cache[n1][n2] = n2
+            actions[n1][n2] = ADD
+            trace_cache(cache, actions)
+
+        for n1 in range(1, len(word1) + 1):
+            n2 = 0
+            cache[n1][n2] = n1
+            actions[n1][n2] = REMOVE
+            trace_cache(cache, actions)
+
+        for n1 in range(1, len(word1) + 1):
+            for n2 in range(1, len(word2) + 1):
+                if word1[n1 - 1] == word2[n2 - 1]:
+                    cache[n1][n2] = cache[n1 - 1][n2 - 1]
+                    actions[n1][n2] = IGNORE
+                    trace_cache(cache, actions)
+                    continue
+
+                remove = cache[n1 - 1][n2]
+                add = cache[n1][n2 - 1]
+                sub = cache[n1 - 1][n2 - 1]
+
+                cache[n1][n2] = remove
+                actions[n1][n2] = REMOVE
+
+                if cache[n1][n2] > add:
+                    cache[n1][n2] = add
+                    actions[n1][n2] = ADD
+
+                if cache[n1][n2] > sub:
+                    cache[n1][n2] = sub
+                    actions[n1][n2] = SUB
+
+                cache[n1][n2] += 1
+                trace_cache(cache, actions)
+
+        return cache[len(word1)][len(word2)]
+
+
+sol = Solution()
+n = sol.minDistance_2D_cache_print("add", "daddy")
+# n = sol.minDistance_2D_cache_print("foo", "bar")
+print(n)  # 2
 
 
 def test_rec_case1():
