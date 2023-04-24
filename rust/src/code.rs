@@ -13,6 +13,7 @@ pub mod group_anagrams;
 pub mod longest_common_subsequence;
 pub mod lru_cache;
 pub mod rotate_image;
+pub mod spiral_matrix;
 // pub mod house_robber;
 pub mod insert_interval;
 pub mod jump_game;
