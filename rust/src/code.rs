@@ -12,6 +12,7 @@ pub mod find_minimum_in_rotated_sorted_array;
 pub mod group_anagrams;
 pub mod longest_common_subsequence;
 pub mod lru_cache;
+pub mod rotate_image;
 // pub mod house_robber;
 pub mod insert_interval;
 pub mod jump_game;
