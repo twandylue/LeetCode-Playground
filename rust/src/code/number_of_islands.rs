@@ -26,15 +26,13 @@ impl Solution {
         grid[y][x] = '0';
 
         Self::walk(grid, x + 1, y, w, h);
-        if let None = x.checked_sub(1) {
-            return;
+        if x.checked_sub(1).is_some() {
+            Self::walk(grid, x - 1, y, w, h);
         }
-        Self::walk(grid, x - 1, y, w, h);
         Self::walk(grid, x, y + 1, w, h);
-        if let None = y.checked_sub(1) {
-            return;
+        if y.checked_sub(1).is_some() {
+            Self::walk(grid, x, y - 1, w, h);
         }
-        Self::walk(grid, x, y - 1, w, h);
     }
 }
 
@@ -70,6 +68,19 @@ pub mod test {
             vec!['0', '0', '0', '1', '1'],
         ];
         let expected = 3;
+
+        // act
+        let actual = Solution::num_islands(grid);
+
+        // assert
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn t_case_3() {
+        // arrange
+        let grid: Vec<Vec<char>> = vec![vec!['1'], vec!['1']];
+        let expected = 1;
 
         // act
         let actual = Solution::num_islands(grid);
