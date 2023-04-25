@@ -10,7 +10,6 @@ impl Solution {
         let mut y_s = 0;
         let mut y_e = height - 1;
 
-        let mut i = 0;
         while x_s <= x_e && y_s <= y_e {
             // left -> right
             for i in x_s..=x_e {
@@ -22,6 +21,9 @@ impl Solution {
             for i in y_s..=y_e {
                 result.push(matrix[i][x_e])
             }
+            if let None = x_e.checked_sub(1) {
+                break;
+            }
             x_e -= 1;
 
             // right -> left
@@ -29,6 +31,9 @@ impl Solution {
                 for i in (x_s..=x_e).rev() {
                     result.push(matrix[y_e][i])
                 }
+            }
+            if let None = y_e.checked_sub(1) {
+                break;
             }
             y_e -= 1;
 
@@ -39,11 +44,6 @@ impl Solution {
                 }
             }
             x_s += 1;
-
-            println!("result: {result:?}");
-
-            assert!(i <= 100);
-            i += 1;
         }
 
         result
@@ -72,6 +72,19 @@ mod tests {
         // arrange
         let matrix = vec![vec![1, 2, 3, 4], vec![5, 6, 7, 8], vec![9, 10, 11, 12]];
         let expected = vec![1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7];
+
+        // act
+        let actual = Solution::spiral_order(matrix);
+
+        // assert
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn case_3() {
+        // arrange
+        let matrix = vec![vec![1]];
+        let expected = vec![1];
 
         // act
         let actual = Solution::spiral_order(matrix);
