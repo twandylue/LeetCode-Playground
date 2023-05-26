@@ -40,28 +40,59 @@ mod test {
 
     #[test]
     fn case_1() {
+        // arrange
         let prices = vec![7, 1, 5, 3, 6, 4];
         let expected = 5;
+
+        // act
         let actual = Solution::max_profit(prices);
 
+        // assert
         assert_eq!(actual, expected);
+    }
 
+    #[test]
+    fn case_2() {
+        // arrange
         let prices2 = vec![7, 6, 4, 3, 1];
         let expected2 = 0;
+
+        // act
         let actual2 = Solution::max_profit(prices2);
 
+        // assert
         assert_eq!(actual2, expected2);
+    }
 
+    #[test]
+    fn case_3() {
+        // arrange
         let prices = vec![7, 1, 5, 3, 6, 4];
         let expected = 5;
+
+        // act
         let actual = Solution::max_profit2(prices);
 
+        // assert
         assert_eq!(actual, expected);
 
         let prices2 = vec![7, 6, 4, 3, 1];
         let expected2 = 0;
         let actual2 = Solution::max_profit2(prices2);
 
+        assert_eq!(actual2, expected2);
+    }
+
+    #[test]
+    fn case_4() {
+        // arrange
+        let prices2 = vec![7, 6, 4, 3, 1];
+        let expected2 = 0;
+
+        // act
+        let actual2 = Solution::max_profit2(prices2);
+
+        // assert
         assert_eq!(actual2, expected2);
     }
 }
