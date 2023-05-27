@@ -16,6 +16,7 @@ pub mod lru_cache;
 pub mod number_of_islands;
 pub mod rotate_image;
 pub mod spiral_matrix;
+pub mod two_sum_2;
 pub mod valid_number;
 // pub mod house_robber;
 pub mod insert_interval;

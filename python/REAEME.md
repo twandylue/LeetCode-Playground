@@ -1,11 +1,11 @@
-# Neetcode
+# Python
 
 ## Run Unit Tests
 
 ```console
-cd ./rust
+cd ./python/scripts
 
-$ cargo test
+$ python3 execute_unit_tests.py
 ...snip
 ```
 
