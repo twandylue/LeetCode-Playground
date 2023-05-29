@@ -8,6 +8,7 @@ pub mod course_schedule;
 pub mod design_add_and_search_words_data_structure;
 pub mod edit_distance;
 pub mod encode_and_decode_strings;
+pub mod find_all_anagrams_in_a_string;
 pub mod find_median_from_data_stream;
 pub mod find_minimum_in_rotated_sorted_array;
 pub mod group_anagrams;
