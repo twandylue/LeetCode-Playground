@@ -1,4 +1,3 @@
-# TODO: test
 class Solution:
     def maxSlidingWindow(self, nums: list[int], k: int) -> list[int]:
         results: list[int] = []
@@ -37,7 +36,7 @@ def test_two_sum_2_case1():
 def test_two_sum_2_case2():
     # arrange
     numbers: list[int] = [1]
-    target: int = 1
+    k: int = 1
     expected: list[int] = [1]
 
     # act
