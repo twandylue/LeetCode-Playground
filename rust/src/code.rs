@@ -18,6 +18,7 @@ pub mod lru_cache;
 pub mod number_of_islands;
 pub mod permutation_in_string;
 pub mod rotate_image;
+pub mod sliding_window_maximum;
 pub mod spiral_matrix;
 pub mod two_sum_2;
 pub mod valid_number;
