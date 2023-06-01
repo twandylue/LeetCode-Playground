@@ -3,7 +3,7 @@ from collections import deque
 class Solution:
     def maxSlidingWindow(self, nums: list[int], k: int) -> list[int]:
         results: list[int] = []
-        q: dict[int] = collections.deque()
+        q: dict[int] = deque()
         l = 0
         for r in range(len(nums)):
             while len(q) > 0 and nums[q[-1]] < nums[r]:
