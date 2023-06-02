@@ -1,9 +1,10 @@
-from collections import deque
+import collections
+
 
 class Solution:
     def maxSlidingWindow(self, nums: list[int], k: int) -> list[int]:
         results: list[int] = []
-        q: dict[int] = deque()
+        q = collections.deque()
         l = 0
         for r in range(len(nums)):
             while len(q) > 0 and nums[q[-1]] < nums[r]:
@@ -23,9 +24,9 @@ class Solution:
 
 def test_two_sum_2_case1():
     # arrange
-    numbers: list[int] = [1,3,-1,-3,5,3,6,7]
+    numbers: list[int] = [1, 3, -1, -3, 5, 3, 6, 7]
     k: int = 3
-    expected: list[int] = [3,3,5,5,6,7]
+    expected: list[int] = [3, 3, 5, 5, 6, 7]
 
     # act
     solution = Solution()
