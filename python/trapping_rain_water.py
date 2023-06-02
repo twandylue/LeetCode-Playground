@@ -7,13 +7,6 @@ class Solution:
         for i in range(len(height)):
             if i == 0:
                 max_lefts.append(height[i])
-            prev: int = max_lefts[-1]
-            val: int = max(prev, height[i])
-            max_lefts.append(val)
-
-        for i in range(len(height)):
-            if i == 0:
-                max_lefts.append(height[i])
             val: int = max(max_lefts[-1], height[i])
             max_lefts.append(val)
 
