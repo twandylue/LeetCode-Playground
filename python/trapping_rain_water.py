@@ -45,7 +45,7 @@ def test_trap_case_2():
 
     # act
     solution = Solution()
-    actual = solution.trap(numbers, target)
+    actual = solution.trap(height)
 
     # assert
     assert actual == expected
