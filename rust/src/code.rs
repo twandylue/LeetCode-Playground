@@ -1,5 +1,6 @@
 pub mod best_time_to_buy_and_sell_stock;
 pub mod binary_search;
+pub mod trapping_rain_water;
 pub mod binary_tree_level_order_traversal;
 pub mod combination_sum;
 pub mod container_with_most_water;
