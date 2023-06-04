@@ -15,6 +15,7 @@ pub mod find_minimum_in_rotated_sorted_array;
 pub mod group_anagrams;
 pub mod longest_common_subsequence;
 pub mod lru_cache;
+pub mod min_stack;
 pub mod number_of_islands;
 pub mod permutation_in_string;
 pub mod rotate_image;

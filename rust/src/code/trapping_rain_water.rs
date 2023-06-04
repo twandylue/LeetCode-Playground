@@ -52,13 +52,13 @@ impl Solution {
             if height[l] <= height[r] {
                 max_left = std::cmp::max(height[l], max_left);
                 if max_left - height[l] > 0 {
-                    result += (max_left - height[l]);
+                    result += max_left - height[l];
                 }
                 l += 1;
             } else {
                 max_right = std::cmp::max(height[r], max_right);
                 if max_right - height[r] > 0 {
-                    result += (max_right - height[r]);
+                    result += max_right - height[r];
                 }
                 r -= 1;
             }
