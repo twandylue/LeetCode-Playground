@@ -22,7 +22,7 @@ class Solution:
         return results
 
 
-def test_two_sum_2_case1():
+def test_maxSlidingWindow_case1():
     # arrange
     numbers: list[int] = [1, 3, -1, -3, 5, 3, 6, 7]
     k: int = 3
@@ -36,7 +36,7 @@ def test_two_sum_2_case1():
     assert actual == expected
 
 
-def test_two_sum_2_case2():
+def test_maxSlidingWindow_case2():
     # arrange
     numbers: list[int] = [1]
     k: int = 1
