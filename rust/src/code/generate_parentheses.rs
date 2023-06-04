@@ -9,7 +9,13 @@ impl Solution {
         return result;
     }
 
-    fn back_tracking(stack: &mut Vec<String>, result: &mut Vec<String>, n: i32, open_para: i32, close_para: i32) {
+    fn back_tracking(
+        stack: &mut Vec<String>,
+        result: &mut Vec<String>,
+        n: i32,
+        open_para: i32,
+        close_para: i32,
+    ) {
         if open_para == close_para && open_para == n {
             result.push(stack[..].join(""));
             return;
@@ -37,7 +43,7 @@ mod test {
     fn generate_parenthesis_case_1() {
         // arrange
         let n = 3;
-        let expected = vec!["((()))","(()())","(())()","()(())","()()()"];
+        let expected = vec!["((()))", "(()())", "(())()", "()(())", "()()()"];
 
         // act
         let actual = Solution::generate_parenthesis(n);

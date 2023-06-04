@@ -1,7 +1,6 @@
 pub mod best_time_to_buy_and_sell_stock;
 pub mod binary_search;
 pub mod binary_tree_level_order_traversal;
-pub mod generate_parentheses;
 pub mod combination_sum;
 pub mod container_with_most_water;
 pub mod contains_duplicate;
@@ -14,6 +13,7 @@ pub mod evaluate_reverse_polish_notation;
 pub mod find_all_anagrams_in_a_string;
 pub mod find_median_from_data_stream;
 pub mod find_minimum_in_rotated_sorted_array;
+pub mod generate_parentheses;
 pub mod group_anagrams;
 pub mod longest_common_subsequence;
 pub mod lru_cache;
