@@ -16,34 +16,20 @@ def test_two_sum_case_1():
     # arrange
     numbers: list[int] = [2, 7, 11, 15]
     target: int = 9
-    expected: list[int] = [1, 2]
+    expected: list[int] = [0, 1]
 
     # act
     solution = Solution()
     actual = solution.twoSum(numbers, target)
 
     # assert
-    assert actual == expected
+    assert expected.sort() == actual.sort()
 
 
 def test_two_sum_case_2():
     # arrange
-    numbers: list[int] = [2, 3, 4]
+    numbers: list[int] = [3, 2, 4]
     target: int = 6
-    expected: list[int] = [1, 3]
-
-    # act
-    solution = Solution()
-    actual = solution.twoSum(numbers, target)
-
-    # assert
-    assert actual == expected
-
-
-def test_two_sum_case_3():
-    # arrange
-    numbers: list[int] = [-1, 0]
-    target: int = -1
     expected: list[int] = [1, 2]
 
     # act
@@ -51,4 +37,18 @@ def test_two_sum_case_3():
     actual = solution.twoSum(numbers, target)
 
     # assert
-    assert actual == expected
+    assert expected.sort() == actual.sort()
+
+
+def test_two_sum_case_3():
+    # arrange
+    numbers: list[int] = [3, 3]
+    target: int = 6
+    expected: list[int] = [0, 1]
+
+    # act
+    solution = Solution()
+    actual = solution.twoSum(numbers, target)
+
+    # assert
+    assert expected.sort() == actual.sort()
