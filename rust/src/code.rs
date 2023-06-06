@@ -6,6 +6,7 @@ pub mod container_with_most_water;
 pub mod contains_duplicate;
 pub mod counting_bits;
 pub mod course_schedule;
+pub mod daily_temperatures;
 pub mod design_add_and_search_words_data_structure;
 pub mod edit_distance;
 pub mod encode_and_decode_strings;
