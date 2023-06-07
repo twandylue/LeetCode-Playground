@@ -24,7 +24,8 @@ impl Solution {
         let mut stack: Vec<f64> = Vec::new();
 
         let mut cars: Vec<(i32, f64)> = position
-            .iter().zip(speed.iter())
+            .iter()
+            .zip(speed.iter())
             .map(|(p, s)| (*p, (target - p) as f64 / *s as f64))
             .collect();
         cars.sort_by(|a, b| a.0.cmp(&b.0));
@@ -148,8 +149,8 @@ mod tests {
     fn car_fleet2_case_4() {
         // arrange
         let target = 10;
-        let position = vec![6,8];
-        let speed = vec![3,2];
+        let position = vec![6, 8];
+        let speed = vec![3, 2];
         let expected = 2;
 
         // act
@@ -163,8 +164,8 @@ mod tests {
     fn car_fleet2_case_5() {
         // arrange
         let target = 10;
-        let position = vec![0,4,2];
-        let speed = vec![2,1,3];
+        let position = vec![0, 4, 2];
+        let speed = vec![2, 1, 3];
         let expected = 1;
 
         // act

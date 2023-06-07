@@ -16,7 +16,7 @@ class Solution:
         return output
 
     def carFleet2(self, target: int, position: list[int], speed: list[int]) -> int:
-        stack: list[tuple[int, float]] = []
+        stack: list[float] = []
         cars: list[tuple[int, int]] = list(zip(position, speed))
         sortCars: list[tuple[int, float]] = list(
             map(lambda x: (x[0], (target - x[0]) / x[1]), cars)
@@ -76,6 +76,7 @@ def test_car_fleet_case_3():
     # assert
     assert expected == actual
 
+
 def test_car_fleet2_case_1():
     # arrange
     target: int = 12
@@ -89,6 +90,7 @@ def test_car_fleet2_case_1():
 
     # assert
     assert expected == actual
+
 
 def test_car_fleet2_case_2():
     # arrange
