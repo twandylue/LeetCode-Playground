@@ -1,8 +1,8 @@
 class Solution:
     def searchMatrix(self, matrix: list[list[int]], target: int) -> bool:
         mertedList: list[int] = []
-        for l in matrix:
-            mertedList += l
+        for m in matrix:
+            mertedList.extend(m)
 
         l: int = 0
         r: int = len(mertedList) - 1
@@ -17,10 +17,11 @@ class Solution:
 
         return False
 
+
 def test_searchMatrix_case_1():
     # arrange
-    matrix: list[list[int]] = [[1,3,5,7],[10,11,16,20],[23,30,34,60]]
-    target:int = 3
+    matrix: list[list[int]] = [[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]]
+    target: int = 3
     expected: bool = True
 
     # act
@@ -33,7 +34,7 @@ def test_searchMatrix_case_1():
 
 def test_searchMatrix_case_2():
     # arrange
-    matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]]
+    matrix = [[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]]
     target = 13
     expected = False
 
@@ -44,9 +45,10 @@ def test_searchMatrix_case_2():
     # assert
     assert actual == expected
 
+
 def test_searchMatrix_case_3():
     # arrange
-    matrix = [[1,3]]
+    matrix = [[1, 3]]
     target = 3
     expected = True
 
