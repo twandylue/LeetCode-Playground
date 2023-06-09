@@ -22,7 +22,6 @@ pub mod lru_cache;
 pub mod min_stack;
 pub mod number_of_islands;
 pub mod permutation_in_string;
-pub mod quick_sort;
 pub mod rotate_image;
 pub mod search_a_2d_matrix;
 pub mod sliding_window_maximum;
