@@ -26,6 +26,8 @@ impl Solution {
             println!("vector: {vector:?}");
             println!("--------");
             Self::quick_sort_helper(left, pivot - 1, vector);
+
+            // TODO: here is the problem
             Self::quick_sort_helper(pivot + 1, right, vector);
         }
     }
@@ -155,6 +157,33 @@ mod tests {
         // arrange
         let input = Vec::from([1, 3, 2]);
         let expected = vec![1, 2, 3];
+
+        // act
+        let actual = Solution::quick_sort_recursive(input);
+
+        // assert
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    #[ignore]
+    fn quick_sort_recursive_case_9() {
+        // arrange
+        let input = Vec::from([5, 1, 1, 2, 0, 0]);
+        let expected = vec![0, 0, 1, 1, 2, 5];
+
+        // act
+        let actual = Solution::quick_sort_recursive(input);
+
+        // assert
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn quick_sort_recursive_case_10() {
+        // arrange
+        let input = Vec::from([5, 2, 3, 1]);
+        let expected = vec![1, 2, 3, 5];
 
         // act
         let actual = Solution::quick_sort_recursive(input);
