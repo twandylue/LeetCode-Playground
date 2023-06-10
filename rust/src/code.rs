@@ -19,6 +19,7 @@ pub mod generate_parentheses;
 pub mod group_anagrams;
 pub mod longest_common_subsequence;
 pub mod lru_cache;
+pub mod merge_sorted_array;
 pub mod min_stack;
 pub mod number_of_islands;
 pub mod permutation_in_string;
