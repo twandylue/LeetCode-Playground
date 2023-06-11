@@ -10,7 +10,7 @@ impl Solution {
         res
     }
 
-    pub fn missing_number(mut nums: Vec<i32>) -> i32 {
+    pub fn missing_number(nums: Vec<i32>) -> i32 {
         let length = nums.len() as i32;
         let sum = (1 + length) * length / 2;
         let res = sum - nums.iter().fold(0, |acc, &x| acc + x);

@@ -17,6 +17,7 @@ pub mod find_median_from_data_stream;
 pub mod find_minimum_in_rotated_sorted_array;
 pub mod generate_parentheses;
 pub mod group_anagrams;
+pub mod koko_eating_bananas;
 pub mod longest_common_subsequence;
 pub mod lru_cache;
 pub mod merge_sorted_array;
