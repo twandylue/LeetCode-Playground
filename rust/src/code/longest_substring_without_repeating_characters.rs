@@ -49,74 +49,106 @@ mod tests {
     use super::Solution;
 
     #[test]
-    fn case_1() {
+    fn length_of_longest_substring_case_1() {
+        // arrange
         let s = String::from("abcabcbb");
         let expected = 3;
+
+        // act
         let actual = Solution::length_of_longest_substring(s);
 
+        // assert
         assert_eq!(actual, expected);
     }
 
     #[test]
-    fn case_2() {
+    fn length_of_longest_substring_case_2() {
+        // arrange
         let s = String::from("bbbbb");
         let expected = 1;
+
+        // act
         let actual = Solution::length_of_longest_substring(s);
 
+        // assert
         assert_eq!(actual, expected);
     }
 
     #[test]
-    fn case_3() {
+    fn length_of_longest_substring_case_3() {
+        // arrange
         let s = String::from("pwwkew");
         let expected3 = 3;
+
+        // act
         let actual = Solution::length_of_longest_substring(s);
 
+        // assert
         assert_eq!(actual, expected3);
     }
 
     #[test]
-    fn case_4() {
+    fn length_of_longest_substring_case_4() {
+        // arrange
         let s = String::from("aabaab!bb");
         let expected = 3;
+
+        // act
         let actual = Solution::length_of_longest_substring(s);
 
+        // assert
         assert_eq!(actual, expected);
     }
 
     #[test]
-    fn case_5() {
+    fn length_of_longest_substring_case_5() {
+        // arrange
         let s = String::from("abcabcbb");
         let expected = 3;
+
+        // act
         let actual = Solution::length_of_longest_substring_2(s);
 
+        // assert
         assert_eq!(actual, expected);
     }
 
     #[test]
-    fn case_6() {
+    fn length_of_longest_substring_case_6() {
+        // arrange
         let s = String::from("bbbbb");
         let expected = 1;
+
+        // act
         let actual = Solution::length_of_longest_substring_2(s);
 
+        // assert
         assert_eq!(actual, expected);
     }
 
     #[test]
-    fn case_7() {
+    fn length_of_longest_substring_case_7() {
+        // arrange
         let s = String::from("pwwkew");
         let expected = 3;
+
+        // act
         let actual = Solution::length_of_longest_substring_2(s);
 
+        // assert
         assert_eq!(actual, expected);
     }
 
     #[test]
-    fn case_8() {
+    fn length_of_longest_substring_case_8() {
+        // arrange
         let s = String::from("aabaab!bb");
         let expected = 3;
+
+        // act
         let actual = Solution::length_of_longest_substring_2(s);
 
+        // assert
         assert_eq!(actual, expected);
     }
 }
