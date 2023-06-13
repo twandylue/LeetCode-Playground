@@ -29,6 +29,7 @@ pub mod search_a_2d_matrix;
 pub mod sliding_window_maximum;
 pub mod sort_an_array;
 pub mod spiral_matrix;
+pub mod time_based_key_value_store;
 pub mod trapping_rain_water;
 pub mod two_sum_2;
 pub mod valid_number;
