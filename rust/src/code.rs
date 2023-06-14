@@ -23,6 +23,7 @@ pub mod lru_cache;
 pub mod merge_sorted_array;
 pub mod min_stack;
 pub mod number_of_islands;
+pub mod online_stock_span;
 pub mod permutation_in_string;
 pub mod rotate_image;
 pub mod search_a_2d_matrix;
