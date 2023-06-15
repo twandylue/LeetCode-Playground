@@ -39,7 +39,7 @@ mod test {
     use super::Solution;
 
     #[test]
-    fn case_1() {
+    fn max_profit_case_1() {
         // arrange
         let prices = vec![7, 1, 5, 3, 6, 4];
         let expected = 5;
@@ -52,7 +52,7 @@ mod test {
     }
 
     #[test]
-    fn case_2() {
+    fn max_profit_case_2() {
         // arrange
         let prices2 = vec![7, 6, 4, 3, 1];
         let expected2 = 0;
@@ -65,7 +65,7 @@ mod test {
     }
 
     #[test]
-    fn case_3() {
+    fn max_profit_case_3() {
         // arrange
         let prices = vec![7, 1, 5, 3, 6, 4];
         let expected = 5;
@@ -84,7 +84,7 @@ mod test {
     }
 
     #[test]
-    fn case_4() {
+    fn max_profit_case_4() {
         // arrange
         let prices2 = vec![7, 6, 4, 3, 1];
         let expected2 = 0;
