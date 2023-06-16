@@ -14,6 +14,7 @@ def SerializeBinaryTreeToList(root: Optional[TreeNode]) -> list[Optional[int]]:
     while len(stack) > 0:
         node = stack.popleft()
         if node == None:
+            output.append(None)
             continue
         else:
             output.append(node.val)
