@@ -56,6 +56,7 @@ pub mod longest_consecutive_sequence;
 pub mod longest_repeating_character_replacement;
 pub mod longest_substring_without_repeating_characters;
 // pub mod merge_k_sorted_lists;
+pub mod balanced_binary_tree;
 pub mod binary_tree_max_path_sum;
 pub mod climbing_stairs;
 pub mod construct_binary_tree_from_preorder_and_inorder_traversal;

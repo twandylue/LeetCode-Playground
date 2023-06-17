@@ -18,34 +18,22 @@ def DeserializeFromList(vector: list[Optional[int]]) -> Optional[TreeNode]:
             nodes.append(TreeNode(vector[i]))
 
     index: int = 0
-    deq: deque[Optional[TreeNode]] = deque()
+    queue: deque[Optional[TreeNode]] = deque()
     root: Optional[TreeNode] = nodes[index]
     index += 1
-    deq.append(root)
-    while len(deq) > 0 and index < len(nodes):
-        n: Optional[TreeNode] = deq.popleft()
+    queue.append(root)
+    while len(queue) > 0 and index < len(nodes):
+        n: Optional[TreeNode] = queue.popleft()
         if n == None:
-            raise Exception("Node in deque is None")
+            continue
 
-        if nodes[index] == None:
-            n.left = None
-            break
-        else:
-            n.left = nodes[index]
-            index += 1
+        n.left = nodes[index]
+        queue.append(n.left)
+        index += 1
 
-        if nodes[index] == None:
-            n.right = None
-            break
-        else:
-            n.right = nodes[index]
-            index += 1
-
-        if n.left != None:
-            deq.append(n.left)
-
-        if n.right != None:
-            deq.append(n.right)
+        n.right = nodes[index]
+        queue.append(n.right)
+        index += 1
 
     return root
 
@@ -102,7 +90,8 @@ def deserializeFromString(string):
 #     turtle.mainloop()
 
 if __name__ == "__main__":
-    root = DeserializeFromList([4, 2, 7, 1, 3, 6, 9])
+    arr: list[Optional[int]] = [1, 2, 2, 3, 3, None, None, 4, 4, None, None]
+    root = DeserializeFromList(arr)
     if root == None:
         raise Exception("wrong")
 

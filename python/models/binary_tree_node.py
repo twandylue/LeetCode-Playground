@@ -7,6 +7,5 @@ class TreeNode:
     left: Optional["TreeNode"] = None
     right: Optional["TreeNode"] = None
 
-    # def __init__(self, val: int) -> TreeNode:
-    def __init__(self, val: int):
+    def __init__(self, val: int) -> "TreeNode":
         self.val = val
