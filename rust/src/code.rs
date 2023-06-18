@@ -21,6 +21,7 @@ pub mod generate_parentheses;
 pub mod group_anagrams;
 pub mod koko_eating_bananas;
 pub mod kth_largest_element_in_a_stream;
+pub mod last_stone_weight;
 pub mod longest_common_subsequence;
 pub mod lru_cache;
 pub mod merge_sorted_array;
