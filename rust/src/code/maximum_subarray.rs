@@ -21,7 +21,7 @@ mod tests {
     use super::Solution;
 
     #[test]
-    fn case_1() {
+    fn max_sub_array_case_1() {
         let nums = vec![-2, 1, -3, 4, -1, 2, 1, -5, 4];
         let expected = 6;
         let actual = Solution::max_sub_array(nums);
@@ -30,7 +30,7 @@ mod tests {
     }
 
     #[test]
-    fn case_2() {
+    fn max_sub_array_case_2() {
         let nums = vec![1];
         let expected = 1;
         let actual = Solution::max_sub_array(nums);
@@ -39,7 +39,7 @@ mod tests {
     }
 
     #[test]
-    fn case_3() {
+    fn max_sub_array_case_3() {
         let nums = vec![5, 4, -1, 7, 8];
         let expected = 23;
         let actual = Solution::max_sub_array(nums);
@@ -48,7 +48,7 @@ mod tests {
     }
 
     #[test]
-    fn case_4() {
+    fn max_sub_array_case_4() {
         let nums = vec![-1];
         let expected = -1;
         let actual = Solution::max_sub_array(nums);
@@ -57,7 +57,7 @@ mod tests {
     }
 
     #[test]
-    fn case_5() {
+    fn max_sub_array_case_5() {
         let nums = vec![1, 2, -1, -2, 2, 1, -2, 1, 4, -5, 4];
         let expected = 6;
         let actual = Solution::max_sub_array(nums);
@@ -66,7 +66,7 @@ mod tests {
     }
 
     #[test]
-    fn case_6() {
+    fn max_sub_array_case_6() {
         let nums = vec![-2, -1];
         let expected = -1;
         let actual = Solution::max_sub_array(nums);
