@@ -12,7 +12,10 @@ impl Solution {
             let mut mergedLists: Vec<Option<Box<ListNode>>> = Vec::new();
             for i in (0..lists.len()).step_by(2) {
                 if i + 1 < lists.len() {
-                    mergedLists.push(Self::merge_two_lists(lists[i].clone(), lists[i+1].clone()));
+                    mergedLists.push(Self::merge_two_lists(
+                        lists[i].clone(),
+                        lists[i + 1].clone(),
+                    ));
                 } else {
                     mergedLists.push(Self::merge_two_lists(lists[i].clone(), None));
                 }
