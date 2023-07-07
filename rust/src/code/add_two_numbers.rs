@@ -8,9 +8,9 @@ impl Solution {
         mut l2: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
         let mut carry: i32 = 0;
-        let mut dummy_head: Box<ListNode> = Box::new(ListNode::new(0));
+        let mut dummy_head: ListNode = ListNode::new(0);
         // NOTE: Important skill in dummy head
-        let mut head: &mut Box<ListNode> = &mut dummy_head;
+        let mut head: &mut ListNode = &mut dummy_head;
 
         while l1.is_some() || l2.is_some() || carry > 0 {
             let mut sum: i32 = 0;

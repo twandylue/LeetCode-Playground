@@ -66,93 +66,86 @@ mod test {
     use super::Solution;
 
     #[test]
-    fn case_1() {
+    fn merge_two_lists_case_1() {
+        // arrange
         let list1 = convert_vec_to_linked_list(vec![1, 2, 4]);
         let list2 = convert_vec_to_linked_list(vec![1, 3, 4]);
         let expected = convert_vec_to_linked_list(vec![1, 1, 2, 3, 4, 4]);
-        let actual = Solution::merge_two_lists2(list1, list2);
 
+        // act
+        let actual = Solution::merge_two_lists(list1, list2);
+
+        // assert
         assert_eq!(actual, expected);
+    }
 
+    #[test]
+    fn merge_two_lists_case_2() {
+        // arrange
         let list1 = convert_vec_to_linked_list(vec![]);
         let list2 = convert_vec_to_linked_list(vec![]);
-        let expected2 = convert_vec_to_linked_list(vec![]);
-        let actual2 = Solution::merge_two_lists2(list1, list2);
+        let expected = convert_vec_to_linked_list(vec![]);
 
-        assert_eq!(actual2, expected2);
+        // act
+        let actual = Solution::merge_two_lists(list1, list2);
 
+        // assert
+        assert_eq!(actual, expected);
+    }
+
+    #[test]
+    fn merge_two_lists_case_3() {
+        // arrange
         let list1 = convert_vec_to_linked_list(vec![]);
         let list2 = convert_vec_to_linked_list(vec![0]);
-        let expected3 = convert_vec_to_linked_list(vec![0]);
-        let actual3 = Solution::merge_two_lists2(list1, list2);
+        let expected = convert_vec_to_linked_list(vec![0]);
 
-        assert_eq!(actual3, expected3);
+        // act
+        let actual = Solution::merge_two_lists(list1, list2);
+
+        // assert
+        assert_eq!(actual, expected);
+    }
+
+    #[test]
+    fn merge_two_lists_case_4() {
+        // arrange
+        let list1 = convert_vec_to_linked_list(vec![1, 2, 4]);
+        let list2 = convert_vec_to_linked_list(vec![1, 3, 4]);
+        let expected = convert_vec_to_linked_list(vec![1, 1, 2, 3, 4, 4]);
+
+        // act
+        let actual = Solution::merge_two_lists2(list1, list2);
+
+        // assert
+        assert_eq!(actual, expected);
+    }
+
+    #[test]
+    fn merge_two_lists_case_5() {
+        // arrange
+        let list1 = convert_vec_to_linked_list(vec![]);
+        let list2 = convert_vec_to_linked_list(vec![]);
+        let expected = convert_vec_to_linked_list(vec![]);
+
+        // act
+        let actual = Solution::merge_two_lists2(list1, list2);
+
+        // assert
+        assert_eq!(actual, expected);
+    }
+
+    #[test]
+    fn merge_two_lists_case_6() {
+        // arrange
+        let list1 = convert_vec_to_linked_list(vec![]);
+        let list2 = convert_vec_to_linked_list(vec![0]);
+        let expected = convert_vec_to_linked_list(vec![0]);
+
+        // act
+        let actual = Solution::merge_two_lists2(list1, list2);
+
+        // assert
+        assert_eq!(actual, expected);
     }
 }
-
-// -- output:
-// before:
-// ptr: None
-// temp: Some(ListNode { val: 1, next: Some(ListNode { val: 3, next: Some(ListNode { val: 4, next: None }) }) })
-// swap step 1:
-// ptr: Some(ListNode { val: 1, next: Some(ListNode { val: 3, next: Some(ListNode { val: 4, next: None }) }) })
-// temp: None
-// swap step 2:
-// ptr: Some(ListNode { val: 1, next: None })
-// temp: Some(ListNode { val: 3, next: Some(ListNode { val: 4, next: None }) })
-// step 3:
-// ptr: None
-// temp: Some(ListNode { val: 3, next: Some(ListNode { val: 4, next: None }) })
-// -----------------------------
-// before:
-// ptr: None
-// temp: Some(ListNode { val: 1, next: Some(ListNode { val: 2, next: Some(ListNode { val: 4, next: None }) }) })
-// swap step 1:
-// ptr: Some(ListNode { val: 1, next: Some(ListNode { val: 2, next: Some(ListNode { val: 4, next: None }) }) })
-// temp: None
-// swap step 2:
-// ptr: Some(ListNode { val: 1, next: None })
-// temp: Some(ListNode { val: 2, next: Some(ListNode { val: 4, next: None }) })
-// step 3:
-// ptr: None
-// temp: Some(ListNode { val: 2, next: Some(ListNode { val: 4, next: None }) })
-// -----------------------------
-// before:
-// ptr: None
-// temp: Some(ListNode { val: 2, next: Some(ListNode { val: 4, next: None }) })
-// swap step 1:
-// ptr: Some(ListNode { val: 2, next: Some(ListNode { val: 4, next: None }) })
-// temp: None
-// swap step 2:
-// ptr: Some(ListNode { val: 2, next: None })
-// temp: Some(ListNode { val: 4, next: None })
-// step 3:
-// ptr: None
-// temp: Some(ListNode { val: 4, next: None })
-// -----------------------------
-// before:
-// ptr: None
-// temp: Some(ListNode { val: 3, next: Some(ListNode { val: 4, next: None }) })
-// swap step 1:
-// ptr: Some(ListNode { val: 3, next: Some(ListNode { val: 4, next: None }) })
-// temp: None
-// swap step 2:
-// ptr: Some(ListNode { val: 3, next: None })
-// temp: Some(ListNode { val: 4, next: None })
-// step 3:
-// ptr: None
-// temp: Some(ListNode { val: 4, next: None })
-// -----------------------------
-// before:
-// ptr: None
-// temp: Some(ListNode { val: 4, next: None })
-// swap step 1:
-// ptr: Some(ListNode { val: 4, next: None })
-// temp: None
-// swap step 2:
-// ptr: Some(ListNode { val: 4, next: None })
-// temp: None
-// step 3:
-// ptr: None
-// temp: None
-// -----------------------------
