@@ -2,7 +2,6 @@ from typing import Optional
 import sys
 
 sys.path.append("./models")
-# from list_node import ListNode
 
 sys.path.append("./utils")
 from linkedListConverter import convert_to_linked_list
@@ -18,13 +17,14 @@ class Node:
         self.random = random
 
 
+# NOTE: time complexity: O(n), space complexity: O(n)
 class Solution:
     def copyRandomList(self, head: Optional[Node]) -> Optional[Node]:
         if head is None:
             return None
         dic: dict[Node, Node] = dict()
         pointer: Optional[Node] = head
-        newHead: Optional[Node] = Node(0)
+        newHead: Node = Node(0)
         newPointer: Optional[Node] = newHead
         while pointer is not None:
             node: Node = Node(pointer.val, pointer.next, None)
