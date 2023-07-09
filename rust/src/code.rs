@@ -59,6 +59,7 @@ pub mod climbing_stairs;
 pub mod construct_binary_tree_from_preorder_and_inorder_traversal;
 pub mod implement_trie;
 pub mod invert_binary_tree;
+pub mod k_closest_points_to_origin;
 pub mod kth_smallest_element_in_a_bst;
 pub mod longest_consecutive_sequence;
 pub mod longest_repeating_character_replacement;

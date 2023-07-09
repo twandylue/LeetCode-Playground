@@ -33,8 +33,8 @@ impl Solution {
     }
 
     pub fn add_two_numbers_2(
-        mut l1: Option<Box<ListNode>>,
-        mut l2: Option<Box<ListNode>>,
+        l1: Option<Box<ListNode>>,
+        l2: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
         match (l1, l2) {
             (None, None) => None,
