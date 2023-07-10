@@ -78,6 +78,7 @@ pub mod search_in_rotated_sorted_array;
 pub mod serialize_and_deserialize_binary_tree;
 pub mod subtree_of_another_tree;
 pub mod sum_of_two_integer;
+pub mod task_scheduler;
 pub mod three_sum;
 pub mod top_k_frequent_elements;
 pub mod two_sum;
