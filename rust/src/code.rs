@@ -77,6 +77,7 @@ pub mod reverse_linked_list;
 pub mod same_tree;
 pub mod search_in_rotated_sorted_array;
 pub mod serialize_and_deserialize_binary_tree;
+pub mod subsets;
 pub mod subtree_of_another_tree;
 pub mod sum_of_two_integer;
 pub mod task_scheduler;
