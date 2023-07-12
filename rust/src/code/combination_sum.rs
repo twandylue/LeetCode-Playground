@@ -44,20 +44,30 @@ pub mod test {
     use super::Solution;
 
     #[test]
-    fn case_1() {
+    fn combination_sum_case_1() {
+        // arragne
         let candidates = vec![2, 3, 5];
         let target = 8;
+
+        // act
         let actual = Solution::combination_sum(candidates, target);
         let expected = vec![vec![2, 2, 2, 2], vec![2, 3, 3], vec![3, 5]];
+
+        // assert
         assert_eq!(expected, actual);
     }
 
     #[test]
-    fn case_2() {
+    fn combination_sum_case_2() {
+        // arrange
         let candidates = vec![2];
         let target = 1;
+
+        // act
         let actual = Solution::combination_sum(candidates, target);
         let expected: Vec<Vec<i32>> = Vec::new();
+
+        // assert
         assert_eq!(expected, actual);
     }
 }

@@ -23,7 +23,9 @@ def test_two_sum_case_1():
     actual = solution.twoSum(numbers, target)
 
     # assert
-    assert expected.sort() == actual.sort()
+    expected.sort()
+    actual.sort()
+    assert expected == actual
 
 
 def test_two_sum_case_2():
@@ -37,7 +39,9 @@ def test_two_sum_case_2():
     actual = solution.twoSum(numbers, target)
 
     # assert
-    assert expected.sort() == actual.sort()
+    expected.sort()
+    actual.sort()
+    assert expected == actual
 
 
 def test_two_sum_case_3():
@@ -51,4 +55,6 @@ def test_two_sum_case_3():
     actual = solution.twoSum(numbers, target)
 
     # assert
-    assert expected.sort() == actual.sort()
+    expected.sort()
+    actual.sort()
+    assert expected == actual
