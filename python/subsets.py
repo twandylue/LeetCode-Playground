@@ -11,7 +11,7 @@ class Solution:
         self, i: int, nums: list[int], subset: list[int], result: list[list[int]]
     ) -> None:
         if i >= len(nums):
-            result.append(subset[::])
+            result.append(subset[:])
             return
 
         subset.append(nums[i])

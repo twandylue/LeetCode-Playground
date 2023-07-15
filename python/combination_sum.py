@@ -15,7 +15,7 @@ class Solution:
         result: list[list[int]],
     ) -> None:
         if accu == target:
-            result.append(subset[::])
+            result.append(subset[:])
             return
         elif accu > target or i >= len(candidates):
             return
