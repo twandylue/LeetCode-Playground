@@ -10,11 +10,11 @@ struct TimeMap {
  */
 impl TimeMap {
     fn new() -> Self {
-        let timeMap = Self {
+        let time_map = Self {
             store: HashMap::new(),
         };
 
-        timeMap
+        time_map
     }
 
     fn set(&mut self, key: String, value: String, timestamp: i32) {
