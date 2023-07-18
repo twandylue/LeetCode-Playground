@@ -1,5 +1,6 @@
 pub struct Solution {}
 
+// NOTE: time complexity: O(n * m)
 impl Solution {
     pub fn num_islands(mut grid: Vec<Vec<char>>) -> i32 {
         let h = grid.len();
@@ -10,7 +11,7 @@ impl Solution {
             for x in 0..w {
                 if grid[y][x] == '1' {
                     count += 1;
-                    Self::walk(&mut grid, x, y, &w, &h);
+                    Self::walk(&mut grid, x, y);
                 }
             }
         }
@@ -18,20 +19,20 @@ impl Solution {
         count
     }
 
-    fn walk(grid: &mut Vec<Vec<char>>, x: usize, y: usize, w: &usize, h: &usize) {
-        if x >= *w || y >= *h || grid[y][x] == '0' {
+    fn walk(grid: &mut Vec<Vec<char>>, x: usize, y: usize) {
+        if y >= grid.len() || x >= grid[0].len() || grid[y][x] == '0' {
             return;
         }
 
         grid[y][x] = '0';
 
-        Self::walk(grid, x + 1, y, w, h);
+        Self::walk(grid, x + 1, y);
         if x.checked_sub(1).is_some() {
-            Self::walk(grid, x - 1, y, w, h);
+            Self::walk(grid, x - 1, y);
         }
-        Self::walk(grid, x, y + 1, w, h);
+        Self::walk(grid, x, y + 1);
         if y.checked_sub(1).is_some() {
-            Self::walk(grid, x, y - 1, w, h);
+            Self::walk(grid, x, y - 1);
         }
     }
 }
