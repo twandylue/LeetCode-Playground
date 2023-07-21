@@ -40,7 +40,6 @@ mod tests {
     }
 
     #[test]
-    // #[ignore]
     fn k_closest_case_2() {
         // arrange
         let points: Vec<Vec<i32>> = vec![vec![3, 3], vec![5, -1], vec![-2, 4]];

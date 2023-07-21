@@ -28,7 +28,6 @@ mod tests {
     use super::*;
 
     #[test]
-    // #[ignore]
     fn test_subsets_case_1() {
         // arrange
         let nums = vec![1, 2, 3];

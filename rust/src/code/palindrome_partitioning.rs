@@ -60,7 +60,6 @@ mod tests {
     }
 
     #[test]
-    #[ignore]
     fn partition_case_2() {
         // arrange
         let s: String = "a".to_string();
