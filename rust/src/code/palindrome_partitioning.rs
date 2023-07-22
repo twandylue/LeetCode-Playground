@@ -24,7 +24,7 @@ impl Solution {
         }
     }
 
-    fn is_pali(mut s: &Vec<char>, mut l: usize, mut r: usize) -> bool {
+    fn is_pali(s: &Vec<char>, mut l: usize, mut r: usize) -> bool {
         while l < r {
             if s[l] != s[r] {
                 return false;
