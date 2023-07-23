@@ -80,6 +80,7 @@ pub mod product_of_array_except_self;
 pub mod remove_nth_node_from_end_of_list;
 pub mod reorder_list;
 pub mod reverse_linked_list;
+pub mod rotting_oranges;
 pub mod same_tree;
 pub mod search_in_rotated_sorted_array;
 pub mod serialize_and_deserialize_binary_tree;
