@@ -74,6 +74,7 @@ pub mod merge_k_sorted_lists;
 pub mod merge_two_sorted_lists;
 pub mod minimum_window_substring;
 pub mod models;
+pub mod pacific_atlantic_water_flow;
 pub mod palindrome_partitioning;
 pub mod permutations;
 pub mod product_of_array_except_self;
