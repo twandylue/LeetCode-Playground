@@ -59,6 +59,7 @@ pub mod binary_tree_max_path_sum;
 pub mod climbing_stairs;
 pub mod combination_sum_ii;
 pub mod construct_binary_tree_from_preorder_and_inorder_traversal;
+pub mod course_schedule_ii;
 pub mod design_twitter;
 pub mod implement_trie;
 pub mod invert_binary_tree;
