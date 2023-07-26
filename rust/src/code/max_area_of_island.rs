@@ -42,7 +42,7 @@ mod tests {
     #[test]
     fn max_area_of_island_case_1() {
         // arrange
-        let mut grid: Vec<Vec<i32>> = vec![
+        let grid: Vec<Vec<i32>> = vec![
             vec![0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
             vec![0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
             vec![0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -64,7 +64,7 @@ mod tests {
     #[test]
     fn max_area_of_island_case_2() {
         // arrange
-        let mut grid: Vec<Vec<i32>> = vec![vec![0, 0, 0, 0, 0, 0, 0, 0]];
+        let grid: Vec<Vec<i32>> = vec![vec![0, 0, 0, 0, 0, 0, 0, 0]];
         let expected = 0;
 
         // act

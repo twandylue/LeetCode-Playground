@@ -79,6 +79,7 @@ pub mod pacific_atlantic_water_flow;
 pub mod palindrome_partitioning;
 pub mod permutations;
 pub mod product_of_array_except_self;
+pub mod redundant_connection;
 pub mod remove_nth_node_from_end_of_list;
 pub mod reorder_list;
 pub mod reverse_linked_list;
