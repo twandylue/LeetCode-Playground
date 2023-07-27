@@ -45,44 +45,44 @@ mod test {
     use super::KthLargest;
 
     #[test]
-    fn KthLargest_case_1() {
-        let mut kthLargest = KthLargest::new(3, vec![4, 5, 8, 2]);
-        assert_eq!(4, kthLargest.add(3));
-        assert_eq!(5, kthLargest.add(5));
-        assert_eq!(5, kthLargest.add(10));
-        assert_eq!(8, kthLargest.add(9));
-        assert_eq!(8, kthLargest.add(4));
+    fn kth_largest_case_1() {
+        let mut kth_largest = KthLargest::new(3, vec![4, 5, 8, 2]);
+        assert_eq!(4, kth_largest.add(3));
+        assert_eq!(5, kth_largest.add(5));
+        assert_eq!(5, kth_largest.add(10));
+        assert_eq!(8, kth_largest.add(9));
+        assert_eq!(8, kth_largest.add(4));
     }
 
     #[test]
-    fn KthLargest_case_2() {
-        let mut kthLargest = KthLargest::new(7, vec![-10, 1, 3, 1, 4, 10, 3, 9, 4, 5, 1]);
-        assert_eq!(3, kthLargest.add(3));
-        assert_eq!(3, kthLargest.add(2));
-        assert_eq!(3, kthLargest.add(3));
-        assert_eq!(3, kthLargest.add(1));
-        assert_eq!(3, kthLargest.add(2));
-        assert_eq!(3, kthLargest.add(4));
-        assert_eq!(4, kthLargest.add(5));
-        assert_eq!(4, kthLargest.add(5));
-        assert_eq!(4, kthLargest.add(6));
-        assert_eq!(5, kthLargest.add(7));
-        assert_eq!(5, kthLargest.add(7));
-        assert_eq!(5, kthLargest.add(8));
-        assert_eq!(5, kthLargest.add(2));
-        assert_eq!(5, kthLargest.add(3));
-        assert_eq!(5, kthLargest.add(1));
-        assert_eq!(5, kthLargest.add(1));
-        assert_eq!(5, kthLargest.add(1));
-        assert_eq!(6, kthLargest.add(10));
-        assert_eq!(7, kthLargest.add(11));
-        assert_eq!(7, kthLargest.add(5));
-        assert_eq!(7, kthLargest.add(6));
-        assert_eq!(7, kthLargest.add(2));
-        assert_eq!(7, kthLargest.add(4));
-        assert_eq!(7, kthLargest.add(7));
-        assert_eq!(7, kthLargest.add(8));
-        assert_eq!(7, kthLargest.add(5));
-        assert_eq!(7, kthLargest.add(6));
+    fn kth_largest_case_2() {
+        let mut kth_largest = KthLargest::new(7, vec![-10, 1, 3, 1, 4, 10, 3, 9, 4, 5, 1]);
+        assert_eq!(3, kth_largest.add(3));
+        assert_eq!(3, kth_largest.add(2));
+        assert_eq!(3, kth_largest.add(3));
+        assert_eq!(3, kth_largest.add(1));
+        assert_eq!(3, kth_largest.add(2));
+        assert_eq!(3, kth_largest.add(4));
+        assert_eq!(4, kth_largest.add(5));
+        assert_eq!(4, kth_largest.add(5));
+        assert_eq!(4, kth_largest.add(6));
+        assert_eq!(5, kth_largest.add(7));
+        assert_eq!(5, kth_largest.add(7));
+        assert_eq!(5, kth_largest.add(8));
+        assert_eq!(5, kth_largest.add(2));
+        assert_eq!(5, kth_largest.add(3));
+        assert_eq!(5, kth_largest.add(1));
+        assert_eq!(5, kth_largest.add(1));
+        assert_eq!(5, kth_largest.add(1));
+        assert_eq!(6, kth_largest.add(10));
+        assert_eq!(7, kth_largest.add(11));
+        assert_eq!(7, kth_largest.add(5));
+        assert_eq!(7, kth_largest.add(6));
+        assert_eq!(7, kth_largest.add(2));
+        assert_eq!(7, kth_largest.add(4));
+        assert_eq!(7, kth_largest.add(7));
+        assert_eq!(7, kth_largest.add(8));
+        assert_eq!(7, kth_largest.add(5));
+        assert_eq!(7, kth_largest.add(6));
     }
 }

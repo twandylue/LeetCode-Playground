@@ -83,7 +83,7 @@ mod tests {
     use super::Twitter;
 
     #[test]
-    fn Twitter_case_1() {
+    fn twitter_case_1() {
         let mut tw = Twitter::new();
         tw.post_tweet(1, 5);
         let nt = tw.get_news_feed(1);
@@ -100,7 +100,7 @@ mod tests {
     }
 
     #[test]
-    fn Twitter_case_2() {
+    fn twitter_case_2() {
         let mut tw = Twitter::new();
         tw.post_tweet(1, 5);
         tw.post_tweet(1, 3);
