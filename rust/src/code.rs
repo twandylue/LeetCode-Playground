@@ -102,4 +102,5 @@ pub mod valid_palindrome;
 pub mod valid_parentheses;
 pub mod valid_sudoku;
 pub mod validate_binary_tree;
+pub mod walls_and_gates;
 pub mod word_search;

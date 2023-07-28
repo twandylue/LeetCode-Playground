@@ -81,4 +81,4 @@ def test_addTwoNumbers_case_3():
     )
 
     # assert
-    assert convert_linked_list_to_list(actual) == expected
+    assert expected == convert_linked_list_to_list(actual)
