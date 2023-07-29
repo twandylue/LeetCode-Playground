@@ -7,8 +7,6 @@ impl Solution {
 
         for i in 0..edges.len() + 1 {
             parent.push(i as i32);
-        }
-        for _ in 0..edges.len() + 1 {
             rank.push(1);
         }
         for edge in edges {

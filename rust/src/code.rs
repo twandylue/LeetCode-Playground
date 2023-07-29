@@ -61,6 +61,7 @@ pub mod combination_sum_ii;
 pub mod construct_binary_tree_from_preorder_and_inorder_traversal;
 pub mod course_schedule_ii;
 pub mod design_twitter;
+pub mod graph_valid_tree;
 pub mod implement_trie;
 pub mod invert_binary_tree;
 pub mod k_closest_points_to_origin;

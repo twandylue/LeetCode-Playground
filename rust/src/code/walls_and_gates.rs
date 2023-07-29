@@ -5,6 +5,7 @@ struct Solution {}
 type ROW = usize;
 type COL = usize;
 
+// NOTE: Time complexity: O(n * m)
 impl Solution {
     pub fn walls_and_gates(mut rooms: &mut Vec<Vec<i32>>) {
         let mut queue: VecDeque<(ROW, COL)> = VecDeque::new();
