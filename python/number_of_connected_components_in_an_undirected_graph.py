@@ -11,9 +11,8 @@ class Solution:
     def find(self, n: int, parents: list[int]) -> int:
         node: int = n
         while node != parents[node]:
-            # TODO:
-            parents[node] = parents[parents[node]]
             node = parents[node]
+            parents[node] = parents[parents[node]]
 
         return node
 
@@ -45,9 +44,9 @@ def test_countComponents_case_1():
 
 def test_countComponents_case_2():
     # arrange
-    n: int = 5
-    edges: list[list[int]] = [[0, 1], [1, 2], [3, 4]]
-    expected = 2
+    n: int = 6
+    edges: list[list[int]] = [[0, 1], [2, 3], [4, 5]]
+    expected = 3
 
     # act
     solution = Solution()
