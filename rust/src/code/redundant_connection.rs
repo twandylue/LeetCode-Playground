@@ -24,8 +24,8 @@ impl Solution {
     fn find(n: i32, parent: &mut Vec<i32>) -> i32 {
         let mut p: usize = parent[n as usize] as usize;
         while p != parent[p] as usize {
-            parent[p] = parent[parent[p] as usize];
             p = parent[p] as usize;
+            parent[p] = parent[parent[p] as usize];
         }
 
         p as i32

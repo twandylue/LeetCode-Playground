@@ -13,8 +13,8 @@ class Solution:
     def find(self, n: int, parent: list[int]) -> int:
         p: int = parent[n]
         while p != parent[p]:
-            parent[p] = parent[parent[p]]
             p = parent[p]
+            parent[p] = parent[parent[p]]
 
         return p
 
