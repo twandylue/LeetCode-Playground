@@ -74,6 +74,7 @@ pub mod longest_substring_without_repeating_characters;
 pub mod max_area_of_island;
 pub mod merge_k_sorted_lists;
 pub mod merge_two_sorted_lists;
+pub mod min_cost_to_connect_all_points;
 pub mod minimum_window_substring;
 pub mod models;
 pub mod network_delay_time;
