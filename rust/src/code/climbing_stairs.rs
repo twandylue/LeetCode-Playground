@@ -35,7 +35,7 @@ mod tests {
     use super::Solution;
 
     #[test]
-    fn case_1() {
+    fn climb_stairs_case_1() {
         let n = 2;
         let expected = 2;
         let actual = Solution::climb_stairs(n);
@@ -44,7 +44,7 @@ mod tests {
     }
 
     #[test]
-    fn case_2() {
+    fn climb_stairs_case_2() {
         let n = 3;
         let expected = 3;
         let actual = Solution::climb_stairs(n);
@@ -53,7 +53,7 @@ mod tests {
     }
 
     #[test]
-    fn case_3() {
+    fn climb_stairs_case_3() {
         let n = 2;
         let expected = 2;
         let actual = Solution::climb_stairs_fab(n);
@@ -62,7 +62,7 @@ mod tests {
     }
 
     #[test]
-    fn case_4() {
+    fn climb_stairs_case_4() {
         let n = 3;
         let expected = 3;
         let actual = Solution::climb_stairs_fab(n);
