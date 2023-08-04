@@ -55,6 +55,7 @@ pub mod valid_number;
 // pub mod reverse_integer;
 pub mod balanced_binary_tree;
 pub mod binary_tree_max_path_sum;
+pub mod cheapest_flights_within_k_stops;
 pub mod climbing_stairs;
 pub mod combination_sum_ii;
 pub mod construct_binary_tree_from_preorder_and_inorder_traversal;
