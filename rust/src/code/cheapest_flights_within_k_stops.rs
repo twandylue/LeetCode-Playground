@@ -6,7 +6,7 @@ impl Solution {
         let mut prices: Vec<i32> = vec![std::i32::MAX; n as usize];
         prices[src as usize] = 0;
 
-        for i in 0..(k + 1) {
+        for _ in 0..(k + 1) {
             let mut tmp_prices: Vec<i32> = prices.clone();
             for flight in flights.iter() {
                 let s: i32 = flight[0];

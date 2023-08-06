@@ -57,7 +57,7 @@ impl Solution {
         let mut visited: HashSet<i32> = HashSet::new();
         let mut adj_nodes: HashMap<i32, Vec<i32>> = HashMap::new();
         let mut count: i32 = 0;
-        let mut prev: i32 = -1;
+        let prev: i32 = -1;
         for edge in edges {
             let s = edge[0];
             let e = edge[1];
