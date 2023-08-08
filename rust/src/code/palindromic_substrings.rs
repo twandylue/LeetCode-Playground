@@ -22,7 +22,7 @@ impl Solution {
 
             // NOTE: for even substring
             let mut l: usize = i;
-            let mut r: usize = i+1;
+            let mut r: usize = i + 1;
             while r < s.len() && s[l] == s[r] {
                 result += 1;
                 if l.checked_sub(1).is_some() {
