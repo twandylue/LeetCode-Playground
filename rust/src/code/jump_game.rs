@@ -1,6 +1,7 @@
 pub struct Solution {}
 
 impl Solution {
+    // NOTE: time complexity O(n), space complexity O(1)
     pub fn can_jump(nums: Vec<i32>) -> bool {
         let mut goal = nums.len() - 1;
         for i in (0..nums.len()).rev() {

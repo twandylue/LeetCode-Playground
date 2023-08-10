@@ -10,6 +10,7 @@ pub mod contains_duplicate;
 pub mod counting_bits;
 pub mod course_schedule;
 pub mod daily_temperatures;
+pub mod decode_way;
 pub mod design_add_and_search_words_data_structure;
 pub mod diameter_of_binary_tree;
 pub mod edit_distance;
