@@ -70,6 +70,7 @@ pub mod graph_valid_tree;
 pub mod house_robber;
 pub mod implement_trie;
 pub mod invert_binary_tree;
+pub mod jump_game_ii;
 pub mod k_closest_points_to_origin;
 pub mod kth_largest_element_in_an_array;
 pub mod kth_smallest_element_in_a_bst;
