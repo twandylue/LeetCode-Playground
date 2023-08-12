@@ -66,6 +66,7 @@ pub mod combination_sum_ii;
 pub mod construct_binary_tree_from_preorder_and_inorder_traversal;
 pub mod course_schedule_ii;
 pub mod design_twitter;
+pub mod gas_station;
 pub mod graph_valid_tree;
 pub mod house_robber;
 pub mod implement_trie;
