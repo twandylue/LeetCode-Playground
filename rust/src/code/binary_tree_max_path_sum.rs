@@ -61,9 +61,8 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
-    use crate::code::utils::deserialize_to_binary_tree::deserialize_to_BT;
-
     use super::Solution;
+    use crate::code::utils::deserialize_to_binary_tree::deserialize_to_BT;
 
     #[test]
     fn case_1() {

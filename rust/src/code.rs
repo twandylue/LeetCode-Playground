@@ -29,6 +29,7 @@ pub mod koko_eating_bananas;
 pub mod kth_largest_element_in_a_stream;
 pub mod last_stone_weight;
 pub mod longest_common_subsequence;
+pub mod longest_increasing_subsequence;
 pub mod longest_palindromic_substring;
 pub mod lowest_common_ancestor_of_a_binary_search_tree;
 pub mod lru_cache;
