@@ -72,6 +72,7 @@ pub mod course_schedule_ii;
 pub mod design_twitter;
 pub mod gas_station;
 pub mod graph_valid_tree;
+pub mod hand_of_straights;
 pub mod house_robber;
 pub mod implement_trie;
 pub mod invert_binary_tree;
