@@ -24,6 +24,7 @@ pub mod find_median_from_data_stream;
 pub mod find_minimum_in_rotated_sorted_array;
 pub mod generate_parentheses;
 pub mod group_anagrams;
+pub mod happy_number;
 pub mod house_robber_ii;
 pub mod insert_interval;
 pub mod jump_game;
