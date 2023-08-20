@@ -38,6 +38,7 @@ pub mod longest_palindromic_substring;
 pub mod lowest_common_ancestor_of_a_binary_search_tree;
 pub mod lru_cache;
 pub mod maximum_depth_of_binary_tree;
+pub mod maximum_product_subarray;
 pub mod maximum_subarray;
 pub mod meetting_rooms;
 pub mod meetting_rooms_2;
