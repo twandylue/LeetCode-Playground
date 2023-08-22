@@ -3,12 +3,8 @@
 ## Run Unit Tests
 
 ```console
-cd ./python/scripts
+cd ./python/
 
-$ python3 execute_unit_tests.py
+$ pytest *.py
 ...snip
 ```
-
-## References
-
-- [Blind 150](https://neetcode.io/practice)

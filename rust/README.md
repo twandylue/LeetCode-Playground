@@ -8,7 +8,3 @@ cd ./rust
 $ cargo test
 ...snip
 ```
-
-## References
-
-- [Blind 150](https://neetcode.io/practice)
