@@ -35,4 +35,4 @@ jobs:
       - name: Test with pytest
         run: |
           cd ./python/scripts
-          python execute_unit_tests.py 
+          bash pytest.sh
