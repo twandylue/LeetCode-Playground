@@ -99,6 +99,7 @@ pub mod network_delay_time;
 pub mod number_of_connected_components_in_an_undirected_graph;
 pub mod pacific_atlantic_water_flow;
 pub mod palindrome_partitioning;
+pub mod partition_equal_subset_sum;
 pub mod permutations;
 pub mod product_of_array_except_self;
 pub mod redundant_connection;
