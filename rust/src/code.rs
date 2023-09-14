@@ -54,6 +54,7 @@ pub mod online_stock_span;
 pub mod palindromic_substrings;
 pub mod permutation_in_string;
 pub mod plus_one;
+pub mod pow;
 pub mod reverse_bits;
 pub mod rotate_image;
 pub mod search_a_2d_matrix;
