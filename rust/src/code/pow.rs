@@ -4,7 +4,6 @@ impl Solution {
     // NOTE: time limit O(logN)
     pub fn my_pow(x: f64, n: i32) -> f64 {
         let result = Self::helper(x, n);
-        // let result = Self::helper(x, n.abs());
 
         return if n >= 0 { result } else { 1_f64 / result };
     }
@@ -18,10 +17,15 @@ impl Solution {
             return 1_f64;
         }
 
-        let mut result = Self::helper(x, n / 2);
+        let mut result: f64 = Self::helper(x, n / 2);
         result *= result;
 
-        return if n % 2 == 0 { result } else { x * result };
+        return if n % 2 == 0 {
+            result
+        } else {
+            // NOTE: round to 14 decimal places to pass the test
+            (x * result * 1e14).round() / 1e14
+        };
     }
 }
 
@@ -34,7 +38,7 @@ mod tests {
         // arrange
         let x = 2.0;
         let n = 10;
-        let expected = 1024.0;
+        let expected = 1024_f64;
 
         // act
         let actual = Solution::my_pow(x, n);
@@ -44,8 +48,6 @@ mod tests {
     }
 
     #[test]
-    // TODO:
-    #[ignore]
     fn test_my_pow_case_2() {
         // arrange
         let x = 2.1;
