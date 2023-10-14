@@ -69,6 +69,7 @@ pub mod trapping_rain_water;
 pub mod two_sum_2;
 pub mod valid_number;
 pub mod valid_parenthesis_string;
+pub mod word_break;
 // pub mod reverse_integer;
 pub mod balanced_binary_tree;
 pub mod binary_tree_max_path_sum;
