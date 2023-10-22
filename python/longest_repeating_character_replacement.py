@@ -16,8 +16,6 @@ class Solution:
 
             result = max(result, currLen)
 
-        result = max(result, currLen)
-
         return result
 
 

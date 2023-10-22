@@ -45,6 +45,30 @@ impl Solution {
 
         return res;
     }
+
+    pub fn character_replacement3(s: String, k: i32) -> i32 {
+        let mut s: Vec<char> = s.chars().collect();
+        let mut char_map: [i32; 26] = [0; 26];
+        let mut result: i32 = 0;
+        let mut length: i32 = 0;
+        let mut l: usize = 0;
+        let mut r: usize = 0;
+        while l < s.len() && r < s.len() {
+            length = (r - l) as i32 + 1;
+            char_map[(s[r] as u8 - 'A' as u8) as usize] += 1;
+            let most_freq_val: i32 = *char_map.iter().max().unwrap();
+            while length - most_freq_val > k {
+                length -= 1;
+                char_map[(s[l] as u8 - 'A' as u8) as usize] -= 1;
+                l += 1;
+            }
+
+            result = cmp::max(result, length);
+            r += 1;
+        }
+
+        result
+    }
 }
 
 #[cfg(test)]
