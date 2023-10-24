@@ -22,6 +22,7 @@ pub mod find_all_anagrams_in_a_string;
 pub mod find_first_and_last_position_of_element_in_sorted_array;
 pub mod find_median_from_data_stream;
 pub mod find_minimum_in_rotated_sorted_array;
+pub mod four_sum;
 pub mod generate_parentheses;
 pub mod group_anagrams;
 pub mod happy_number;
