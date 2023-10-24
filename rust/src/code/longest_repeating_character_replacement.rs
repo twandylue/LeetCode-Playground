@@ -47,14 +47,13 @@ impl Solution {
     }
 
     pub fn character_replacement3(s: String, k: i32) -> i32 {
-        let mut s: Vec<char> = s.chars().collect();
+        let s: Vec<char> = s.chars().collect();
         let mut char_map: [i32; 26] = [0; 26];
         let mut result: i32 = 0;
-        let mut length: i32 = 0;
         let mut l: usize = 0;
         let mut r: usize = 0;
         while l < s.len() && r < s.len() {
-            length = (r - l) as i32 + 1;
+            let mut length: i32 = (r - l) as i32 + 1;
             char_map[(s[r] as u8 - 'A' as u8) as usize] += 1;
             let most_freq_val: i32 = *char_map.iter().max().unwrap();
             while length - most_freq_val > k {
@@ -76,7 +75,7 @@ mod test {
     use super::Solution;
 
     #[test]
-    fn case_1() {
+    fn character_replacement_case_1() {
         let s = "ABAB".to_string();
         let k = 2;
         let expected = 4;
@@ -118,5 +117,115 @@ mod test {
         let actual3 = Solution::character_replacement2(s3, k3);
 
         assert_eq!(actual3, expected3);
+    }
+
+    fn character_replacement_case_2() {
+        // arrange
+        let s = "AABABBA".to_string();
+        let k = 1;
+        let expected = 4;
+
+        // act
+        let actual = Solution::character_replacement(s, k);
+
+        // assert
+        assert_eq!(actual, expected);
+    }
+
+    #[test]
+    fn character_replacement_case_3() {
+        let s = "ABBB".to_string();
+        let k = 2;
+        let expected = 4;
+
+        // act
+        let actual = Solution::character_replacement(s, k);
+
+        // assert
+        assert_eq!(actual, expected);
+    }
+
+    #[test]
+    fn character_replacement_case_4() {
+        // arrange
+        let s = "ABAB".to_string();
+        let k = 2;
+        let expected = 4;
+
+        // act
+        let actual = Solution::character_replacement2(s, k);
+
+        // assert
+        assert_eq!(actual, expected);
+    }
+
+    #[test]
+    fn character_replacement_case_5() {
+        // arrange
+        let s = "AABABBA".to_string();
+        let k = 1;
+        let expected = 4;
+
+        // act
+        let actual = Solution::character_replacement2(s, k);
+
+        // assert
+        assert_eq!(actual, expected);
+    }
+
+    #[test]
+    fn character_replacement_case_6() {
+        // arrange
+        let s = "ABBB".to_string();
+        let k = 2;
+        let expected = 4;
+
+        // act
+        let actual = Solution::character_replacement2(s, k);
+
+        // assert
+        assert_eq!(actual, expected);
+    }
+
+    #[test]
+    fn character_replacement_case_7() {
+        // arrange
+        let s = "ABAB".to_string();
+        let k = 2;
+        let expected = 4;
+
+        // act
+        let actual = Solution::character_replacement3(s, k);
+
+        // assert
+        assert_eq!(actual, expected);
+    }
+
+    #[test]
+    fn character_replacement_case_8() {
+        // arrange
+        let s = "AABABBA".to_string();
+        let k = 1;
+        let expected = 4;
+
+        // act
+        let actual = Solution::character_replacement3(s, k);
+
+        // assert
+        assert_eq!(actual, expected);
+    }
+
+    #[test]
+    fn character_replacement_case_9() {
+        // arrange
+        let s = "ABBB".to_string();
+        let k = 2;
+        let expected = 4;
+
+        // act
+        let actual = Solution::character_replacement3(s, k);
+
+        // assert
+        assert_eq!(actual, expected);
     }
 }
