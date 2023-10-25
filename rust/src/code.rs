@@ -62,6 +62,7 @@ pub mod search_a_2d_matrix;
 pub mod set_matrix_zeroes;
 pub mod sliding_window_maximum;
 pub mod sort_an_array;
+pub mod sort_color;
 pub mod spiral_matrix;
 pub mod subset_2;
 pub mod swim_in_rising_water;

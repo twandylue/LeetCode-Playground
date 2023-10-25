@@ -20,14 +20,13 @@ impl Solution {
                 }
                 let mut k: usize = j + 1;
                 let mut e: usize = nums.len() - 1;
-                let mut prev_k: i32 = i32::MIN;
                 while k < e {
                     let sum: i64 =
                         nums[i] as i64 + nums[j] as i64 + nums[k] as i64 + nums[e] as i64;
                     let target: i64 = target as i64;
                     if sum == target {
                         result.push(vec![nums[i], nums[j], nums[k], nums[e]]);
-                        prev_k = nums[k];
+                        let mut prev_k: i32 = nums[k];
                         while prev_k == nums[k] && k < e {
                             prev_k = nums[k];
                             k += 1;
