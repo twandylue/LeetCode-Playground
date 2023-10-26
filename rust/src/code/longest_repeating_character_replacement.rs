@@ -119,6 +119,7 @@ mod test {
         assert_eq!(actual3, expected3);
     }
 
+    #[test]
     fn character_replacement_case_2() {
         // arrange
         let s = "AABABBA".to_string();
