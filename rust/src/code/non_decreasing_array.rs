@@ -43,7 +43,7 @@ mod tests {
     #[test]
     fn check_possibility_case_2() {
         // arrange
-        let nums: Vec<i32> = vec![3, 4, 2, 5];
+        let nums: Vec<i32> = vec![4, 2, 1];
         let expected: bool = false;
 
         // act
