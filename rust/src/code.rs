@@ -54,6 +54,7 @@ pub mod non_decreasing_array;
 pub mod non_overlapping_intervals;
 pub mod number_of_1_bits;
 pub mod number_of_islands;
+pub mod number_of_zero_filled_subarrays;
 pub mod online_stock_span;
 pub mod palindromic_substrings;
 pub mod permutation_in_string;

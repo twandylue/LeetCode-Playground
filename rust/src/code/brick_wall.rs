@@ -5,18 +5,18 @@ struct Solution {}
 impl Solution {
     pub fn least_bricks(wall: Vec<Vec<i32>>) -> i32 {
         let mut max_pass_count: usize = 0;
-        let mut wallMap: HashMap<i32, i32> = HashMap::new();
+        let mut wall_map: HashMap<i32, i32> = HashMap::new();
         let mut width = 0;
         for i in 0..wall.len() {
             let mut accu: i32 = 0;
             for j in 0..wall[i].len() {
                 accu += wall[i][j];
-                wallMap.entry(accu).and_modify(|x| *x += 1).or_insert(1);
+                wall_map.entry(accu).and_modify(|x| *x += 1).or_insert(1);
             }
             width = accu;
         }
 
-        for (k, v) in wallMap {
+        for (k, v) in wall_map {
             if k == width {
                 continue;
             }
