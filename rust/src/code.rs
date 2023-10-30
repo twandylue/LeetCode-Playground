@@ -5,6 +5,7 @@ pub mod binary_tree_level_order_traversal;
 pub mod binary_tree_right_side_view;
 pub mod brick_wall;
 pub mod car_fleet;
+pub mod check_if_a_string_contains_all_binary_codes_of_size_k;
 pub mod coin_change;
 pub mod combination_sum;
 pub mod container_with_most_water;
