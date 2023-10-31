@@ -69,6 +69,7 @@ pub mod sliding_window_maximum;
 pub mod sort_an_array;
 pub mod sort_color;
 pub mod spiral_matrix;
+pub mod subarray_sum_equals_k;
 pub mod subset_2;
 pub mod swim_in_rising_water;
 pub mod time_based_key_value_store;
