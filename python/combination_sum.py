@@ -7,7 +7,7 @@ class Solution:
 
     def dfs(
         self,
-        i: int,
+        pos: int,
         accu: int,
         candidates: list[int],
         target: int,
@@ -17,13 +17,13 @@ class Solution:
         if accu == target:
             result.append(subset[:])
             return
-        elif accu > target or i >= len(candidates):
+        elif accu > target or pos > len(candidates) - 1:
             return
 
-        subset.append(candidates[i])
-        self.dfs(i, accu + candidates[i], candidates, target, subset, result)
-        subset.pop()
-        self.dfs(i + 1, accu, candidates, target, subset, result)
+        for i in range(pos, len(candidates)):
+            subset.append(candidates[i])
+            self.dfs(i, accu + candidates[i], candidates, target, subset, result)
+            subset.pop()
 
 
 def test_two_sum_case_1():

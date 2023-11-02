@@ -3,39 +3,38 @@ pub struct Solution {}
 impl Solution {
     pub fn combination_sum(candidates: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
         let mut res: Vec<Vec<i32>> = Vec::new();
-        Solution::bfs(0, Vec::<i32>::new(), 0, target, candidates, &mut res);
+        Solution::bfs(0, Vec::<i32>::new(), 0, target, &candidates, &mut res);
 
         return res;
     }
 
     fn bfs(
-        i: usize,
-        mut cur: Vec<i32>,
-        total: i32,
+        pos: usize,
+        mut subset: Vec<i32>,
+        accu: i32,
         target: i32,
-        candidates: Vec<i32>,
+        candidates: &Vec<i32>,
         res: &mut Vec<Vec<i32>>,
     ) {
-        if total == target {
-            res.push(cur);
+        if accu == target {
+            res.push(subset.clone());
             return;
-        } else if total > target || i >= candidates.len() {
+        } else if accu > target || pos > candidates.len() - 1 {
             return;
         }
 
-        cur.push(candidates[i]);
-        Solution::bfs(
-            i,
-            cur.clone(),
-            total + candidates[i],
-            target,
-            candidates.clone(),
-            res,
-        );
-        cur.pop();
-        Solution::bfs(i + 1, cur, total, target, candidates, res);
-
-        return;
+        for i in pos..candidates.len() {
+            subset.push(candidates[i]);
+            Self::bfs(
+                i,
+                subset.clone(),
+                accu + candidates[i],
+                target,
+                candidates,
+                res,
+            );
+            subset.pop();
+        }
     }
 }
 
