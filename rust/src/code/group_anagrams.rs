@@ -25,13 +25,36 @@ impl Solution {
 
         return res;
     }
+
+    pub fn group_anagrams2(strs: Vec<String>) -> Vec<Vec<String>> {
+        let mut result: Vec<Vec<String>> = Vec::new();
+        let mut str_map: HashMap<[usize; 26], Vec<String>> = HashMap::new();
+
+        for s in strs {
+            let mut count: [usize; 26] = [0; 26];
+            for c in s.chars() {
+                count[(c as u8 - 'a' as u8) as usize] += 1;
+            }
+            str_map
+                .entry(count)
+                .and_modify(|x| x.push(s.clone()))
+                .or_insert(vec![s.clone()]);
+        }
+
+        for (_, v) in str_map {
+            result.push(v);
+        }
+
+        return result;
+    }
 }
 
 #[cfg(test)]
 mod test {
     use super::Solution;
+
     #[test]
-    fn case_1() {
+    fn group_anagrams_case_1() {
         let input: Vec<String> = vec!["eat", "tea", "tan", "ate", "nat", "bat"]
             .iter()
             .map(|x| x.to_string())
@@ -39,6 +62,33 @@ mod test {
 
         let mut expected = vec![vec!["bat"], vec!["nat", "tan"], vec!["ate", "eat", "tea"]];
         let mut actual = Solution::group_anagrams(input);
+
+        // NOTE: Also works, cool skill
+        // expected
+        //     .iter_mut()
+        //     .zip(actual.iter_mut())
+        //     .for_each(|(e, a)| {
+        //         e.sort();
+        //         a.sort();
+        //     });
+
+        expected.iter_mut().for_each(|x| x.sort());
+        actual.iter_mut().for_each(|x| x.sort());
+        expected.sort();
+        actual.sort();
+
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn group_anagrams_case_2() {
+        let input: Vec<String> = vec!["eat", "tea", "tan", "ate", "nat", "bat"]
+            .iter()
+            .map(|x| x.to_string())
+            .collect();
+
+        let mut expected = vec![vec!["bat"], vec!["nat", "tan"], vec!["ate", "eat", "tea"]];
+        let mut actual = Solution::group_anagrams2(input);
 
         expected
             .iter_mut()
@@ -50,6 +100,6 @@ mod test {
         expected.sort();
         actual.sort();
 
-        assert_eq!(actual, expected);
+        assert_eq!(expected, actual);
     }
 }
