@@ -2,17 +2,14 @@ pub struct Solution {}
 
 impl Solution {
     pub fn max_sub_array(nums: Vec<i32>) -> i32 {
-        let mut res = i32::MIN;
-        let mut accu = 0;
-
-        for r in 0..nums.len() {
-            accu += nums[r];
-            res = std::cmp::max(accu, res);
-            if accu <= 0 {
-                accu = 0;
-            }
+        let mut max_sum: i32 = nums[0];
+        let mut current_sum: i32 = 0;
+        for i in 0..nums.len() {
+            current_sum = std::cmp::max(nums[i], nums[i] + current_sum);
+            max_sum = std::cmp::max(current_sum, max_sum);
         }
-        res
+
+        max_sum
     }
 }
 
