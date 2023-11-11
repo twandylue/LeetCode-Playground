@@ -49,6 +49,28 @@ impl Solution {
 
         return v_s.eq(&v_t);
     }
+
+    pub fn is_anagram3(s: String, t: String) -> bool {
+        let s: Vec<char> = s.chars().collect();
+        let t: Vec<char> = t.chars().collect();
+
+        if t.len() != s.len() {
+            return false;
+        }
+        let mut alph: [i32; 26] = [0; 26];
+        for i in 0..s.len() {
+            alph[(s[i] as u8 - 'a' as u8) as usize] += 1;
+            alph[(t[i] as u8 - 'a' as u8) as usize] -= 1;
+        }
+
+        for i in 0..alph.len() {
+            if alph[i] != 0 {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
 
 #[cfg(test)]
@@ -56,12 +78,41 @@ mod test {
     use super::Solution;
 
     #[test]
-    fn case_1() {
+    fn is_anagram_case_1() {
+        // arrange
         let s = String::from("anagram");
         let t = String::from("nagaram");
+
+        // act
         let res = Solution::is_anagram(s.to_string(), t.to_string());
-        let res2 = Solution::is_anagram2(s.clone(), t.clone());
+
+        // assert
         assert_eq!(res, true);
-        assert_eq!(res2, true);
+    }
+
+    #[test]
+    fn is_anagram_case_2() {
+        // arrange
+        let s = String::from("anagram");
+        let t = String::from("nagaram");
+
+        // act
+        let res = Solution::is_anagram2(s.to_string(), t.to_string());
+
+        // assert
+        assert_eq!(res, true);
+    }
+
+    #[test]
+    fn is_anagram_case_3() {
+        // arrange
+        let s = String::from("anagram");
+        let t = String::from("nagaram");
+
+        // act
+        let res = Solution::is_anagram3(s.to_string(), t.to_string());
+
+        // assert
+        assert_eq!(res, true);
     }
 }
