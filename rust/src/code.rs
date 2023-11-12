@@ -45,6 +45,7 @@ pub mod lru_cache;
 pub mod maximum_depth_of_binary_tree;
 pub mod maximum_product_subarray;
 pub mod maximum_subarray;
+pub mod maximum_sum_circular_subarray;
 pub mod meetting_rooms;
 pub mod meetting_rooms_2;
 pub mod merge_intervals;
