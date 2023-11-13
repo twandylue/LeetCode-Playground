@@ -77,6 +77,7 @@ pub mod swim_in_rising_water;
 pub mod time_based_key_value_store;
 pub mod trapping_rain_water;
 pub mod two_sum_2;
+pub mod unique_length_3_palindromic_subsequences;
 pub mod valid_number;
 pub mod valid_parenthesis_string;
 pub mod word_break;
