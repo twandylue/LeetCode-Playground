@@ -1,8 +1,8 @@
 class Solution:
     def countPalindromicSubsequence(self, s: str) -> int:
-        result: set[tuple[char, char]] = set()
-        left: set[char] = set()
-        right: dict[char, i32] = dict()
+        result: set[tuple[str, str]] = set()
+        left: set[str] = set()
+        right: dict[str, int] = dict()
 
         for c in s:
             if c not in right:
@@ -17,7 +17,7 @@ class Solution:
                 right.pop(s[i])
 
             for j in range(0, 26):
-                leftChar: char = chr(ord("a") + j)
+                leftChar: str = chr(ord("a") + j)
                 if leftChar in left and leftChar in right:
                     result.add((s[i], leftChar))
             left.add(s[i])
