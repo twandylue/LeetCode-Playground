@@ -109,6 +109,7 @@ pub mod merge_k_sorted_lists;
 pub mod merge_two_sorted_lists;
 pub mod min_cost_climbing_stairs;
 pub mod min_cost_to_connect_all_points;
+pub mod minimum_number_of_swaps_to_make_the_string_balanced;
 pub mod minimum_window_substring;
 pub mod models;
 pub mod network_delay_time;
