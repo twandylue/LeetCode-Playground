@@ -1,51 +1,51 @@
 class Solution:
     def sortArray(self, nums: list[int]) -> list[int]:
-        output: list[int] = self.sortArrayHelper(nums)
+        result: liet[int] = self.divide_and_merge(nums)
 
-        return output
+        return result
 
-    def sortArrayHelper(self, nums: list[int]) -> list[int]:
+    def divide_and_merge(self, nums: list[int]) -> list[int]:
         if len(nums) == 2:
-            if nums[0] > nums[1]:
-                return [nums[1], nums[0]]
+            if nums[1] > nums[0]:
+                return [nums[0], nums[1]]
             else:
-                return nums
-        elif len(nums) == 1:
-            return nums
+                return [nums[1], nums[0]]
+        if len(nums) == 1:
+            return [nums[0]]
 
-        mid: int = int(len(nums) / 2)
-        left: list[int] = self.sortArrayHelper(nums[:mid])
-        right: list[int] = self.sortArrayHelper(nums[mid:])
+        mid: int = int((len(nums) + 1) / 2)
+        leftNums: list[int] = self.divide_and_merge(nums[:mid])
+        rightNums: list[int] = self.divide_and_merge(nums[mid:])
 
-        return self.merge(left, right)
+        return self.merge(leftNums, rightNums)
 
     def merge(self, nums1: list[int], nums2: list[int]) -> list[int]:
         m: int = len(nums1)
         n: int = len(nums2)
         index: int = m + n - 1
-        nums = [0] * (m + n)
+        afterNums: list[int] = [0] * (m + n)
 
         while m > 0 and n > 0:
             if nums1[m - 1] > nums2[n - 1]:
-                nums[index] = nums1[m - 1]
+                afterNums[index] = nums1[m - 1]
                 m -= 1
             else:
-                nums[index] = nums2[n - 1]
+                afterNums[index] = nums2[n - 1]
                 n -= 1
             if index > 0:
                 index -= 1
 
         while m > 0 or n > 0:
-            if n > 0:
-                nums[index] = nums2[n - 1]
-                n -= 1
             if m > 0:
-                nums[index] = nums1[m - 1]
+                afterNums[index] = nums1[m - 1]
                 m -= 1
+            if n > 0:
+                afterNums[index] = nums2[n - 1]
+                n -= 1
             if index > 0:
                 index -= 1
 
-        return nums
+        return afterNums
 
 
 def test_sort_an_array_case_1():
