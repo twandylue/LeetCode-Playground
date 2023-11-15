@@ -1,6 +1,6 @@
 class Solution:
     def sortArray(self, nums: list[int]) -> list[int]:
-        result: liet[int] = self.divide_and_merge(nums)
+        result: list[int] = self.divide_and_merge(nums)
 
         return result
 
