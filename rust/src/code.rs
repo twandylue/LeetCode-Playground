@@ -84,6 +84,7 @@ pub mod word_break;
 // pub mod reverse_integer;
 pub mod balanced_binary_tree;
 pub mod binary_tree_max_path_sum;
+pub mod binary_tree_paths;
 pub mod cheapest_flights_within_k_stops;
 pub mod climbing_stairs;
 pub mod combination_sum_ii;
