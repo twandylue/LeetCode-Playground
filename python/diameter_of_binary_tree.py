@@ -41,3 +41,19 @@ def test_diameterOfBinaryTree_case_1():
 
     # assert
     assert expected == actual
+
+
+def test_diameterOfBinaryTree_case_2():
+    # arrange
+    arr: list[int] = [1, 2]
+    root: Optional[TreeNode] = DeserializeFromList(arr)
+    if root == None:
+        raise Exception("failed")
+    expected: int = 1
+
+    # act
+    solution = Solution()
+    actual = solution.diameterOfBinaryTree(root)
+
+    # assert
+    assert expected == actual

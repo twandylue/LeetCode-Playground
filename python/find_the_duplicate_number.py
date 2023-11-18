@@ -1,4 +1,3 @@
-# TODO:
 class Solution:
     def findDuplicate(self, nums: list[int]) -> int:
         d: dict[int, int] = dict()
@@ -8,9 +7,10 @@ class Solution:
             d[n] = 1
         return 0
 
+
 def test_findDuplicate_case_1():
     # arrange
-    nums: list[int] = [1,3,4,2,2]
+    nums: list[int] = [1, 3, 4, 2, 2]
     expected: int = 2
 
     # act
@@ -23,7 +23,7 @@ def test_findDuplicate_case_1():
 
 def test_findDuplicate_case_2():
     # arrange
-    nums: list[int] = [3,1,3,4,2]
+    nums: list[int] = [3, 1, 3, 4, 2]
     expected: int = 3
 
     # act

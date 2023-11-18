@@ -1,4 +1,3 @@
-# ref: https://leetcode.com/problems/recover-binary-search-tree/solutions/32539/Tree-Deserializer-and-Visualizer-for-Python
 import sys
 
 sys.path.append("../models")
@@ -7,33 +6,38 @@ from typing import Optional
 from collections import deque
 
 
+# class TreeNode:
+#     def __init__(self, val, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+#     def __repr__(self):
+#         return 'TreeNode({})'.format(self.val)
 def DeserializeFromList(vector: list[Optional[int]]) -> Optional[TreeNode]:
+    """Deserialize a list to a binary tree by level order traversal."""
     if len(vector) == 0:
         return None
-    nodes: list[Optional[TreeNode]] = []
+    originalQueue: deque[Optional[TreeNode]] = deque()
+    tempQueue: deque[Optional[TreeNode]] = deque()
     for i in range(len(vector)):
         if vector[i] == None:
-            nodes.append(None)
+            originalQueue.append(None)
         else:
-            nodes.append(TreeNode(vector[i]))
+            originalQueue.append(TreeNode(vector[i]))
 
-    index: int = 0
-    queue: deque[Optional[TreeNode]] = deque()
-    root: Optional[TreeNode] = nodes[index]
-    index += 1
-    queue.append(root)
-    while len(queue) > 0 and index < len(nodes):
-        n: Optional[TreeNode] = queue.popleft()
-        if n == None:
-            continue
+    root: Optional[TreeNode] = originalQueue.popleft()
+    tempQueue.append(root)
 
-        n.left = nodes[index]
-        queue.append(n.left)
-        index += 1
-
-        n.right = nodes[index]
-        queue.append(n.right)
-        index += 1
+    while len(tempQueue) > 0:
+        n: Optional[TreeNode] = tempQueue.popleft()
+        if len(originalQueue) > 0:
+            n.left = originalQueue.popleft()
+            if n.left != None:
+                tempQueue.append(n.left)
+        if len(originalQueue) > 0:
+            n.right = originalQueue.popleft()
+            if n.right != None:
+                tempQueue.append(n.right)
 
     return root
 
@@ -56,38 +60,36 @@ def deserializeFromString(string):
     return root
 
 
-# class TreeNode:
-#     def __init__(self, val, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-#     def __repr__(self):
-#         return 'TreeNode({})'.format(self.val)
-
-## NOTE: need to install turtle
+# # NOTE: need to install turtle
 # def drawtree(root):
 #     def height(root):
 #         return 1 + max(height(root.left), height(root.right)) if root else -1
+#
 #     def jumpto(x, y):
 #         t.penup()
 #         t.goto(x, y)
 #         t.pendown()
+#
 #     def draw(node, x, y, dx):
 #         if node:
 #             t.goto(x, y)
-#             jumpto(x, y-20)
-#             t.write(node.val, align='center', font=('Arial', 12, 'normal'))
-#             draw(node.left, x-dx, y-60, dx/2)
-#             jumpto(x, y-20)
-#             draw(node.right, x+dx, y-60, dx/2)
+#             jumpto(x, y - 20)
+#             t.write(node.val, align="center", font=("Arial", 12, "normal"))
+#             draw(node.left, x - dx, y - 60, dx / 2)
+#             jumpto(x, y - 20)
+#             draw(node.right, x + dx, y - 60, dx / 2)
+#
 #     import turtle
+#
 #     t = turtle.Turtle()
-#     t.speed(0); turtle.delay(0)
+#     t.speed(0)
+#     turtle.delay(0)
 #     h = height(root)
-#     jumpto(0, 30*h)
-#     draw(root, 0, 30*h, 40*h)
+#     jumpto(0, 30 * h)
+#     draw(root, 0, 30 * h, 40 * h)
 #     t.hideturtle()
 #     turtle.mainloop()
+
 
 if __name__ == "__main__":
     arr: list[Optional[int]] = [1, 2, 2, 3, 3, None, None, 4, 4, None, None]
