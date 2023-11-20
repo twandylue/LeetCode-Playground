@@ -1,3 +1,9 @@
+#[derive(Debug)]
+enum Action<T, U> {
+    Call(T),
+    Pop(U),
+}
+
 // Definition for a binary tree node.
 // #[derive(Debug, PartialEq, Eq)]
 // pub struct TreeNode {
@@ -97,36 +103,38 @@ impl Solution {
 
     pub fn binary_tree_paths_dfs_iter(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<String> {
         let mut paths: Vec<String> = Vec::new();
-        let mut stack: Vec<(Option<Rc<RefCell<TreeNode>>>, Vec<i32>)> = Vec::new();
+        let mut path: Vec<i32> = Vec::new();
+        let mut stack: Vec<Action<Option<Rc<RefCell<TreeNode>>>, ()>> = Vec::new();
 
-        if let Some(root) = root {
-            stack.push((Some(root), Vec::new()));
-        } else {
-            return paths;
-        }
-
-        while let Some((current_node, mut current_path)) = stack.pop() {
-            match current_node {
-                Some(n) => {
-                    current_path.push(n.borrow().val);
-                    if n.borrow().right.is_none() && n.borrow().left.is_none() {
-                        let p: String = current_path
-                            .iter()
-                            .map(|i| i.to_string())
-                            .collect::<Vec<String>>()
-                            .join("->");
-                        paths.push(p);
-                    }
-
-                    if let Some(right) = n.borrow().right.clone() {
-                        stack.push((Some(right.clone()), current_path.clone()));
-                    }
-                    if let Some(left) = n.borrow().left.clone() {
-                        stack.push((Some(left.clone()), current_path.clone()));
+        stack.push(Action::Call(root));
+        while let Some(action) = stack.pop() {
+            match action {
+                Action::Call(node) => {
+                    if let Some(current_node) = node {
+                        path.push(current_node.borrow().val);
+                        if current_node.borrow().right.is_none()
+                            && current_node.borrow().left.is_none()
+                        {
+                            let p: String = path
+                                .iter()
+                                .map(|i| i.to_string())
+                                .collect::<Vec<String>>()
+                                .join("->");
+                            paths.push(p);
+                            continue;
+                        }
+                        if current_node.borrow().right.is_some() {
+                            stack.push(Action::Pop(()));
+                            stack.push(Action::Call(current_node.borrow().right.clone()));
+                        }
+                        if current_node.borrow().left.is_some() {
+                            stack.push(Action::Pop(()));
+                            stack.push(Action::Call(current_node.borrow().left.clone()));
+                        }
                     }
                 }
-                _ => {
-                    break;
+                Action::Pop(()) => {
+                    path.pop();
                 }
             }
         }

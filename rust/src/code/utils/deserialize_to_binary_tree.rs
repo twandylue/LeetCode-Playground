@@ -18,7 +18,7 @@ pub fn deserialize_to_BT(vector: Vec<Option<i32>>) -> Option<Rc<RefCell<TreeNode
                 let node = Rc::new(RefCell::new(TreeNode::new(val)));
                 original_queue.push_back(Some(node));
             }
-            Node => {
+            None => {
                 original_queue.push_back(None);
             }
         }
