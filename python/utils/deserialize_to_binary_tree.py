@@ -14,7 +14,7 @@ from collections import deque
 #     def __repr__(self):
 #         return 'TreeNode({})'.format(self.val)
 def DeserializeFromList(vector: list[Optional[int]]) -> Optional[TreeNode]:
-    """Deserialize a list to a binary tree by level order traversal."""
+    """Deserialize a list to a binary tree by level order traversal (BFS)."""
     if len(vector) == 0:
         return None
     originalQueue: deque[Optional[TreeNode]] = deque()
