@@ -20,18 +20,18 @@ class Solution:
             if matches == 26:
                 result.append(l)
 
-            index = ord(s[r]) - ord("a")
-            s_count[index] += 1
-            if s_count[index] == p_count[index]:
+            rightIndex: int = ord(s[r]) - ord("a")
+            s_count[rightIndex] += 1
+            if s_count[rightIndex] == p_count[rightIndex]:
                 matches += 1
-            elif s_count[index] - 1 == p_count[index]:
+            elif s_count[rightIndex] - 1 == p_count[rightIndex]:
                 matches -= 1
 
-            index = ord(s[l]) - ord("a")
-            s_count[index] -= 1
-            if s_count[index] == p_count[index]:
+            leftIndex: int = ord(s[l]) - ord("a")
+            s_count[leftIndex] -= 1
+            if s_count[leftIndex] == p_count[leftIndex]:
                 matches += 1
-            elif s_count[index] + 1 == p_count[index]:
+            elif s_count[leftIndex] + 1 == p_count[leftIndex]:
                 matches -= 1
 
             l += 1
@@ -41,7 +41,7 @@ class Solution:
         return result
 
 
-def test_find_all_anagrams_in_a_string_case1():
+def test_find_all_anagrams_in_a_string_case_1():
     # arrange
     s = "cbaebabacd"
     p = "abc"
@@ -55,7 +55,7 @@ def test_find_all_anagrams_in_a_string_case1():
     assert actual == expected
 
 
-def test_find_all_anagrams_in_a_string_case2():
+def test_find_all_anagrams_in_a_string_case_2():
     # arrange
     s = "abab"
     p = "ab"
