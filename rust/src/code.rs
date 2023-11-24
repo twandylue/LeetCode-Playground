@@ -121,6 +121,7 @@ pub mod palindrome_partitioning;
 pub mod partition_equal_subset_sum;
 pub mod permutations;
 pub mod product_of_array_except_self;
+pub mod push_dominoes;
 pub mod redundant_connection;
 pub mod remove_nth_node_from_end_of_list;
 pub mod reorder_list;
