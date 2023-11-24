@@ -3,7 +3,7 @@ from collections import deque
 
 class Solution:
     def pushDominoes(self, dominoes: str) -> str:
-        que: deque[tuple[i32, str]] = deque()
+        que: deque[tuple[int, str]] = deque()
         dominoes: list[str] = list(dominoes)
         for i in range(len(dominoes)):
             if dominoes[i] != ".":
