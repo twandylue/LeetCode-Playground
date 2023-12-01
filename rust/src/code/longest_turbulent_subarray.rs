@@ -45,4 +45,30 @@ mod tests {
         // assert
         assert_eq!(expected, actual);
     }
+
+    #[test]
+    fn max_turbulence_size_case_2() {
+        // arrange
+        let arr: Vec<i32> = vec![4, 8, 12, 16];
+        let expected: i32 = 2;
+
+        // act
+        let actual = Solution::max_turbulence_size(arr);
+
+        // assert
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn max_turbulence_size_case_3() {
+        // arrange
+        let arr: Vec<i32> = vec![100];
+        let expected: i32 = 1;
+
+        // act
+        let actual = Solution::max_turbulence_size(arr);
+
+        // assert
+        assert_eq!(expected, actual);
+    }
 }
