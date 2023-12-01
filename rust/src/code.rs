@@ -105,6 +105,7 @@ pub mod letter_combinations_of_a_phone_number;
 pub mod longest_consecutive_sequence;
 pub mod longest_repeating_character_replacement;
 pub mod longest_substring_without_repeating_characters;
+pub mod longest_turbulent_subarray;
 pub mod max_area_of_island;
 pub mod maximum_product_of_the_length_of_two_palindromic_subsequences;
 pub mod merge_k_sorted_lists;

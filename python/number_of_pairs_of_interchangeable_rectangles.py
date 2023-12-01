@@ -12,7 +12,6 @@ class Solution:
             else:
                 ratioMap[rectangle[0] / rectangle[1]] += 1
 
-        print(ratioMap)
         for _, v in ratioMap.items():
             if v > 1:
                 count += int(
