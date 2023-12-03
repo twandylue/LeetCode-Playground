@@ -104,6 +104,7 @@ pub mod kth_smallest_element_in_a_bst;
 pub mod letter_combinations_of_a_phone_number;
 pub mod longest_common_prefix;
 pub mod longest_consecutive_sequence;
+pub mod longest_happy_prefix;
 pub mod longest_repeating_character_replacement;
 pub mod longest_substring_without_repeating_characters;
 pub mod longest_turbulent_subarray;
