@@ -1,11 +1,13 @@
 class Solution:
+    # Time complexity O(n)
     def replaceElements(self, arr: list[int]) -> list[int]:
-        result: list[int] = [0] * (len(arr) + 1)
-        result[-1] = -1
+        rightMax: int = -1
         for i in reversed(range(len(arr))):
-            result[i] = max(arr[i], result[i + 1])
+            newMax: int = max(rightMax, arr[i])
+            arr[i] = rightMax
+            rightMax = newMax
 
-        return result[1::]
+        return arr
 
 
 def test_replaceElements_case_1():
