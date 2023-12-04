@@ -128,6 +128,7 @@ pub mod push_dominoes;
 pub mod redundant_connection;
 pub mod remove_nth_node_from_end_of_list;
 pub mod reorder_list;
+pub mod replace_elements_with_greatest_element_on_right_side;
 pub mod reverse_linked_list;
 pub mod rotting_oranges;
 pub mod same_tree;
