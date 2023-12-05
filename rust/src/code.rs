@@ -97,6 +97,7 @@ pub mod hand_of_straights;
 pub mod house_robber;
 pub mod implement_trie;
 pub mod invert_binary_tree;
+pub mod is_subsequence;
 pub mod jump_game_ii;
 pub mod k_closest_points_to_origin;
 pub mod kth_largest_element_in_an_array;
