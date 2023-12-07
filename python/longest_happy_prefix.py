@@ -1,4 +1,3 @@
-# bbabb
 class Solution:
     def longestPrefix(self, s: str) -> str:
         prevLSP: int = 0
