@@ -5,10 +5,10 @@ impl Solution {
         let s: Vec<char> = s.chars().collect();
         let mut result = 0;
         let mut r: usize = s.len() - 1;
-        while r >= 0 {
+        loop {
             if !s[r].is_whitespace() {
                 let mut l: usize = r;
-                while l >= 0 && !s[l].is_whitespace() {
+                while !s[l].is_whitespace() {
                     result += 1;
                     if l.checked_sub(1).is_none() {
                         break;
