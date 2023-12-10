@@ -35,6 +35,7 @@ pub mod insert_interval;
 pub mod jump_game;
 pub mod koko_eating_bananas;
 pub mod kth_largest_element_in_a_stream;
+pub mod largest_number;
 pub mod largest_odd_number_in_string;
 pub mod largest_rectangle_in_histogram;
 pub mod last_stone_weight;

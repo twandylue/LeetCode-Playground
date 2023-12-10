@@ -7,7 +7,7 @@ impl Solution {
 
         for email in emails.iter() {
             let s: Vec<&str> = email.split("@").collect();
-            let mut local_name: &str = s[0];
+            let local_name: &str = s[0];
             let domain_name: &str = s[1];
             let mut local_name: String = local_name.replace(".", "");
             if let Some(i) = local_name.find('+') {
