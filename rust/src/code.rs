@@ -71,6 +71,7 @@ pub mod rotate_image;
 pub mod search_a_2d_matrix;
 pub mod set_matrix_zeroes;
 pub mod sliding_window_maximum;
+pub mod smallestNumber;
 pub mod sort_an_array;
 pub mod sort_color;
 pub mod spiral_matrix;
