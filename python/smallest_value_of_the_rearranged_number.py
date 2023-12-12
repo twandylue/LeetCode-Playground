@@ -7,14 +7,14 @@ class Solution:
 
         if num > 0:
             num_strs.sort()
-            last_zero_index: int = 0
+            fist_non_zero_index: int = 0
             for i in range(len(num_strs)):
                 if num_strs[i] == "0":
                     continue
-                last_zero_index = i
+                fist_non_zero_index = i
                 break
-            tmp: str = num_strs[last_zero_index]
-            num_strs[last_zero_index] = "0"
+            tmp: str = num_strs[fist_non_zero_index]
+            num_strs[fist_non_zero_index] = "0"
             num_strs[0] = tmp
             return int("".join(num_strs))
 
