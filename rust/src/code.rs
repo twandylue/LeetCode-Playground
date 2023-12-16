@@ -72,6 +72,7 @@ pub mod reverse_bits;
 pub mod rotate_image;
 pub mod search_a_2d_matrix;
 pub mod set_matrix_zeroes;
+pub mod sign_of_the_product_of_an_array;
 pub mod sliding_window_maximum;
 pub mod smallest_value_of_the_rearranged_number;
 pub mod sort_an_array;
