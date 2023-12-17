@@ -57,6 +57,7 @@ pub mod merge_intervals;
 pub mod merge_sorted_array;
 pub mod merge_triplets_to_form_target_triplet;
 pub mod min_stack;
+pub mod minimum_penalty_for_a_shop;
 pub mod missing_number;
 pub mod non_decreasing_array;
 pub mod non_overlapping_intervals;
