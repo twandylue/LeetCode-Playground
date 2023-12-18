@@ -47,6 +47,7 @@ pub mod longest_increasing_subsequence;
 pub mod longest_palindromic_substring;
 pub mod lowest_common_ancestor_of_a_binary_search_tree;
 pub mod lru_cache;
+pub mod majority_element;
 pub mod maximum_depth_of_binary_tree;
 pub mod maximum_product_subarray;
 pub mod maximum_subarray;
