@@ -1,4 +1,5 @@
 class Solution:
+    # NOTE: time complexity: O(n^2)
     def subsets_2(self, nums: list[int]) -> list[list[int]]:
         n: int = len(nums)
         result: list[list[int]] = [[]]

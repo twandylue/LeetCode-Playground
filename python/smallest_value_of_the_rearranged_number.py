@@ -1,26 +1,26 @@
 class Solution:
     def smallestNumber(self, num: int) -> int:
-        num_str: str = str(num)
-        num_strs: list[str] = [""] * len(num_str)
-        for i in range(len(num_str)):
-            num_strs[i] = num_str[i]
+        if num == 0:
+            return 0
 
+        numStrs: list[str] = list(str(num))
         if num > 0:
-            num_strs.sort()
-            fist_non_zero_index: int = 0
-            for i in range(len(num_strs)):
-                if num_strs[i] == "0":
-                    continue
-                fist_non_zero_index = i
-                break
-            tmp: str = num_strs[fist_non_zero_index]
-            num_strs[fist_non_zero_index] = "0"
-            num_strs[0] = tmp
-            return int("".join(num_strs))
+            numStrs.sort()
+            if numStrs[0] == "0":
+                firstNonZeroIndex: int = 0
+                for i in range(len(numStrs)):
+                    if numStrs[i] == "0":
+                        continue
+                    firstNonZeroIndex = i
+                    break
+                tmp: int = numStrs[firstNonZeroIndex]
+                numStrs[firstNonZeroIndex] = numStrs[0]
+                numStrs[0] = tmp
+            return int("".join(numStrs))
 
-        num_parts = num_strs[1::]
-        num_parts.sort(reverse=True)
-        return int(num_strs[0] + "".join(num_parts))
+        numParts = numStrs[1::]
+        numParts.sort(reverse=True)
+        return int("-" + "".join(numParts))
 
 
 def test_smallestNumber_case_1():

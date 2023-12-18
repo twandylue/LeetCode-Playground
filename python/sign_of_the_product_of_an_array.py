@@ -1,15 +1,15 @@
 class Solution:
     def arraySign(self, nums: list[int]) -> int:
-        product: int = 1
+        negative: int = 0
         for num in nums:
-            product *= num
+            if num == 0:
+                return 0
+            if num < 1:
+                negative += 1
 
-        if product > 0:
+        if negative % 2 == 0:
             return 1
-        elif product == 0:
-            return 0
-        else:
-            return -1
+        return -1
 
 
 def test_arraySign_case_1():
