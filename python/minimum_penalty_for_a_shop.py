@@ -1,4 +1,8 @@
 class Solution:
+    # Y Y N Y
+    # 0 0 0 1 1
+    # 3 2 1 1 0
+    # 3 2 1 2 1
     def bestClosingTime(self, customers: str) -> int:
         ps1: list[int] = [0] * (len(customers) + 1)
         ps2: list[int] = [0] * (len(customers) + 1)

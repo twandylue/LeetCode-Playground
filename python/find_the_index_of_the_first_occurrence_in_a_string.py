@@ -1,23 +1,40 @@
 class Solution:
+    # AAABAAAA
+    # AAAA
+    # 0123
+    # NOTE: O(m+n)
     def strStr(self, haystack: str, needle: str) -> int:
-        # NOTE: O(mn)
-        index: int = 0
-        curr: int = 0
-        for i in range(len(haystack)):
-            if i + len(needle) - 1 >= len(haystack):
-                return -1
+        if len(needle) == 0:
+            return 0
+
+        lps: list[int] = [0] * len(needle)
+        i: int = 1
+        preLPS: int = 0
+        while i < len(needle):
+            if needle[preLPS] == needle[i]:
+                preLPS += 1
+                lps[i] = preLPS
+                i += 1
+            elif preLPS == 0:
+                lps[i] = 0
+                i += 1
             else:
-                s: int = i
-                flag: bool = False
-                for c in range(len(needle)):
-                    if haystack[i] == needle[c]:
-                        i += 1
-                        flag = True
-                        continue
-                    flag = False
-                    break
-                if flag:
-                    return s
+                preLPS = lps[preLPS - 1]
+
+        m: int = 0
+        n: int = 0
+        while m < len(haystack):
+            if haystack[m] == needle[n]:
+                m += 1
+                n += 1
+            else:
+                if n == 0:
+                    m += 1
+                else:
+                    n = lps[n - 1]
+
+            if n == len(needle):
+                return m - n
 
         return -1
 
