@@ -58,6 +58,7 @@ pub mod meetting_rooms;
 pub mod meetting_rooms_2;
 pub mod merge_intervals;
 pub mod merge_sorted_array;
+pub mod merge_strings_alternately;
 pub mod merge_triplets_to_form_target_triplet;
 pub mod min_stack;
 pub mod minimum_penalty_for_a_shop;
