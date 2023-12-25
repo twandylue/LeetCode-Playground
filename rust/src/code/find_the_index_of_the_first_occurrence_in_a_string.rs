@@ -63,7 +63,7 @@ mod tests {
         let expected: i32 = 0;
 
         // act
-        let mut actual = Solution::str_str(haystack, needle);
+        let actual = Solution::str_str(haystack, needle);
 
         // assert
         assert_eq!(expected, actual);
@@ -77,7 +77,7 @@ mod tests {
         let expected: i32 = -1;
 
         // act
-        let mut actual = Solution::str_str(haystack, needle);
+        let actual = Solution::str_str(haystack, needle);
 
         // assert
         assert_eq!(expected, actual);
