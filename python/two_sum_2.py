@@ -1,17 +1,14 @@
 class Solution:
     def twoSum(self, numbers: list[int], target: int) -> list[int]:
-        s = 0
-        e = len(numbers) - 1
-
-        while s < e:
-            if numbers[s] + numbers[e] < target:
-                s += 1
-                continue
-            elif numbers[s] + numbers[e] > target:
-                e -= 1
-                continue
+        l: int = 0
+        r: int = len(numbers) - 1
+        while l < r:
+            if numbers[l] + numbers[r] < target:
+                l += 1
+            elif numbers[l] + numbers[r] > target:
+                r -= 1
             else:
-                return [s + 1, e + 1]
+                return [l + 1, r + 1]
 
         return []
 
@@ -27,6 +24,8 @@ def test_two_sum_2_case1():
     actual = solution.twoSum(numbers, target)
 
     # assert
+    actual.sort()
+    expected.sort()
     assert actual == expected
 
 
@@ -41,6 +40,8 @@ def test_two_sum_2_case2():
     actual = solution.twoSum(numbers, target)
 
     # assert
+    actual.sort()
+    expected.sort()
     assert actual == expected
 
 
@@ -55,4 +56,6 @@ def test_two_sum_2_case3():
     actual = solution.twoSum(numbers, target)
 
     # assert
+    actual.sort()
+    expected.sort()
     assert actual == expected

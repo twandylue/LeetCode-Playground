@@ -2,23 +2,19 @@ struct Solution {}
 
 impl Solution {
     pub fn two_sum(numbers: Vec<i32>, target: i32) -> Vec<i32> {
-        let mut s: usize = 0;
-        let mut e: usize = numbers.len() - 1;
-        let mut result: Vec<i32> = Vec::new();
-        while s < e {
-            if numbers[s] + numbers[e] > target {
-                e = e - 1;
-                continue;
-            } else if numbers[s] + numbers[e] < target {
-                s = s + 1;
-            } else if numbers[s] + numbers[e] == target {
-                result.push(s as i32 + 1);
-                result.push(e as i32 + 1);
-                return result;
+        let mut l: usize = 0;
+        let mut r: usize = numbers.len() - 1;
+        while l < r {
+            if numbers[l] + numbers[r] > target {
+                r -= 1;
+            } else if numbers[l] + numbers[r] < target {
+                l += 1;
+            } else if numbers[l] + numbers[r] == target {
+                return Vec::from([l as i32 + 1, r as i32 + 1]);
             }
         }
 
-        return result;
+        return Vec::new();
     }
 }
 
