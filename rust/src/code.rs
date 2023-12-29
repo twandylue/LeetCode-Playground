@@ -20,6 +20,7 @@ pub mod daily_temperatures;
 pub mod decode_way;
 pub mod design_add_and_search_words_data_structure;
 pub mod design_parking_system;
+pub mod design_underground_system;
 pub mod diameter_of_binary_tree;
 pub mod edit_distance;
 pub mod encode_and_decode_strings;
