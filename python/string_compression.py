@@ -2,43 +2,26 @@ class Solution:
     def compress(self, chars: list[str]) -> int:
         if len(chars) == 1:
             return 1
-
-        result: int = 0
-        prev: str = chars[0]
-        count: int = 0
         l: int = 0
-        r: int = 0
-        while l <= r and r < len(chars):
-            if chars[r] == prev:
+        r: int = 1
+        curr: int = 0
+
+        while r < len(chars):
+            while r < len(chars) and chars[r] == chars[l]:
                 r += 1
-                count += 1
+
+            chars[curr] = chars[l]
+            curr += 1
+            count: str = str(r - l)
+            if count == "1":
+                l = r
                 continue
+            for c in count:
+                chars[curr] = c
+                curr += 1
+            l = r
 
-            countStr: str = str(count)
-            count = 0
-            chars[l] = prev
-            prev = chars[r]
-            l += 1
-            if countStr == "1":
-                continue
-            for c in countStr:
-                chars[l] = c
-                l += 1
-            print(chars)
-
-        if count == 1:
-            chars[l] = prev
-            return l + 1
-
-        if r == len(chars) and chars[r - 1] == prev:
-            countStr: str = str(count)
-            chars[l] = prev
-            l += 1
-            for c in countStr:
-                chars[l] = c
-                l += 1
-
-        return l
+        return curr
 
 
 def test_compress_case_1():

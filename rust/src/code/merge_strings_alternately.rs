@@ -41,7 +41,7 @@ mod tests {
         let expected: String = "apbqcr".to_string();
 
         // act
-        let mut actual = Solution::merge_alternately(word1, word2);
+        let actual = Solution::merge_alternately(word1, word2);
 
         // assert
         assert_eq!(expected, actual);
