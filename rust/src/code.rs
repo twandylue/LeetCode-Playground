@@ -88,6 +88,7 @@ pub mod smallest_value_of_the_rearranged_number;
 pub mod sort_an_array;
 pub mod sort_color;
 pub mod spiral_matrix;
+pub mod string_compression;
 pub mod subarray_sum_equals_k;
 pub mod subset_2;
 pub mod swim_in_rising_water;
