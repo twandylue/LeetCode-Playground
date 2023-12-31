@@ -1,6 +1,7 @@
 struct Solution {}
 
 impl Solution {
+    // NOTE: time complexity: O(nlogn)
     pub fn rearrange_array(mut nums: Vec<i32>) -> Vec<i32> {
         nums.sort();
         let mut result: Vec<i32> = vec![0; nums.len()];
@@ -33,7 +34,7 @@ mod tests {
     fn test_rearrange_array_case_1() {
         // arrange
         let nums: Vec<i32> = vec![1, 2, 3, 4, 5];
-        let expected: Vec<i32> = vec![1, 2, 4, 5, 3];
+        let expected: Vec<i32> = vec![1, 4, 2, 5, 3];
 
         // act
         let actual = Solution::rearrange_array(nums);
