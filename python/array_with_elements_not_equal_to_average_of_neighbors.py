@@ -1,4 +1,15 @@
 class Solution:
+    def rearrangeArray2(self, nums: list[int]) -> list[int]:
+        for i in range(1, len(nums) - 1):
+            if 2 * nums[i] == nums[i - 1] + nums[i + 1]:
+                nums[i], nums[i + 1] = nums[i + 1], nums[i]
+
+        for i in reversed(range(1, len(nums) - 1)):
+            if 2 * nums[i] == nums[i - 1] + nums[i + 1]:
+                nums[i], nums[i - 1] = nums[i - 1], nums[i]
+
+        return nums
+
     def rearrangeArray(self, nums: list[int]) -> list[int]:
         result: list[int] = [0] * len(nums)
         nums.sort()
