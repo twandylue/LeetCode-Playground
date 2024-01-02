@@ -2,34 +2,31 @@ struct Solution {}
 
 impl Solution {
     pub fn compress(chars: &mut Vec<char>) -> i32 {
-        if chars.len() == 1 {
-            return 1;
-        }
-
         let mut l: usize = 0;
-        let mut r: usize = 1;
-        let mut curr: usize = 0;
+        let mut r: usize = 0;
+
         while r < chars.len() {
-            while r < chars.len() && chars[l] == chars[r] {
+            let mut count: i32 = 1;
+            while r < chars.len() - 1 && chars[r] == chars[r + 1] {
+                count += 1;
                 r += 1;
             }
-
-            chars[curr] = chars[l];
-            curr += 1;
-            let count: String = (r - l).to_string();
-            if count == "1".to_string() {
-                l = r;
-                continue;
+            chars[l] = chars[r];
+            l += 1;
+            if count != 1 {
+                for n in count.to_string().chars() {
+                    if l < chars.len() {
+                        chars[l] = n;
+                        l += 1
+                    } else {
+                        break;
+                    }
+                }
             }
-            for c in count.chars() {
-                chars[curr] = c;
-                curr += 1
-            }
-
-            l = r;
+            r += 1;
         }
 
-        curr as i32
+        l as i32
     }
 }
 

@@ -1,27 +1,25 @@
 class Solution:
     def compress(self, chars: list[str]) -> int:
-        if len(chars) == 1:
-            return 1
         l: int = 0
-        r: int = 1
-        curr: int = 0
-
+        r: int = 0
         while r < len(chars):
-            while r < len(chars) and chars[r] == chars[l]:
+            count: int = 1
+            while r < len(chars) - 1 and chars[r] == chars[r + 1]:
+                count += 1
                 r += 1
 
-            chars[curr] = chars[l]
-            curr += 1
-            count: str = str(r - l)
-            if count == "1":
-                l = r
-                continue
-            for c in count:
-                chars[curr] = c
-                curr += 1
-            l = r
+            chars[l] = chars[r]
+            l += 1
+            if count != 1:
+                for n in str(count):
+                    if l < len(chars):
+                        chars[l] = n
+                        l += 1
+                    else:
+                        break
+            r += 1
 
-        return curr
+        return l
 
 
 def test_compress_case_1():
