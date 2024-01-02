@@ -6,6 +6,7 @@ pub mod best_time_to_buy_and_sell_stock_ii;
 pub mod binary_search;
 pub mod binary_tree_level_order_traversal;
 pub mod binary_tree_right_side_view;
+pub mod boats_to_save_people;
 pub mod brick_wall;
 pub mod can_place_flowers;
 pub mod car_fleet;
