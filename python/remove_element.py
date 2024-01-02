@@ -1,20 +1,13 @@
 class Solution:
     def removeElement(self, nums: list[int], val: int) -> int:
-        for i in range(len(nums)):
-            if nums[i] == val and i < len(nums) - 1:
-                for j in range(i + 1, len(nums)):
-                    if nums[j] == val:
-                        continue
-                    tmp = nums[i]
-                    nums[i] = nums[j]
-                    nums[j] = tmp
-        result: int = 0
-        for i in range(len(nums)):
-            if nums[i] == val:
-                break
-            result += 1
+        l: int = 0
+        for r in range(len(nums)):
+            if nums[r] == val:
+                continue
+            nums[l] = nums[r]
+            l += 1
 
-        return result
+        return l
 
 
 def test_removeElement_case_1():
