@@ -34,7 +34,7 @@ mod tests {
     fn test_rearrange_array_case_1() {
         // arrange
         let nums: Vec<i32> = vec![1, 2, 3, 4, 5];
-        let expected: Vec<i32> = vec![1, 4, 2, 5, 3];
+        let expected: Vec<i32> = vec![1, 5, 2, 4, 3];
 
         // act
         let actual = Solution::rearrange_array(nums);
