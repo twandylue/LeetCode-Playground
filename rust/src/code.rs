@@ -15,6 +15,7 @@ pub mod coin_change;
 pub mod combination_sum;
 pub mod container_with_most_water;
 pub mod contains_duplicate;
+pub mod contains_duplicate_ii;
 pub mod count_good_nodes_in_binary_tree;
 pub mod counting_bits;
 pub mod course_schedule;
