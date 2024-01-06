@@ -82,6 +82,7 @@ pub mod permutation_in_string;
 pub mod plus_one;
 pub mod pow;
 pub mod remove_duplicates_from_sorted_array;
+pub mod remove_duplicates_from_sorted_array_ii;
 pub mod remove_element;
 pub mod reverse_bits;
 pub mod rotate_image;
