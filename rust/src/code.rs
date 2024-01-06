@@ -75,6 +75,7 @@ pub mod non_decreasing_array;
 pub mod non_overlapping_intervals;
 pub mod number_of_1_bits;
 pub mod number_of_islands;
+pub mod number_of_subarrays_of_size_k_and_average_greater_than_or_equal_to_threshold;
 pub mod number_of_zero_filled_subarrays;
 pub mod online_stock_span;
 pub mod palindromic_substrings;
