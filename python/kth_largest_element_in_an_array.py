@@ -18,7 +18,7 @@ def test_kClosest_case_1():
     actual = solution.findKthLargest(nums, k)
 
     # assert
-    assert actual == expected
+    assert expected == actual
 
 
 def test_kClosest_case_2():
@@ -32,4 +32,18 @@ def test_kClosest_case_2():
     actual = solution.findKthLargest(nums, k)
 
     # assert
-    assert actual == expected
+    assert expected == actual
+
+
+def test_kClosest_case_3():
+    # arrange
+    nums: list[int] = [5, 2, 4, 1, 3, 6, 0]
+    k: int = 4
+    expected: int = 3
+
+    # act
+    solution = Solution()
+    actual = solution.findKthLargest(nums, k)
+
+    # assert
+    assert expected == actual
