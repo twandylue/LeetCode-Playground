@@ -3,9 +3,9 @@ class Solution:
         if len(s1) > len(s2):
             return False
 
-        matches = 0
-        s1Count = [0] * 26
-        s2Count = [0] * 26
+        matches: int = 0
+        s1Count: list[int] = [0] * 26
+        s2Count: list[int] = [0] * 26
 
         for i in range(len(s1)):
             s1Count[ord(s1[i]) - ord("a")] += 1
@@ -14,12 +14,12 @@ class Solution:
         for i in range(26):
             matches += 1 if s1Count[i] == s2Count[i] else 0
 
-        s = 0
+        s: int = 0
         for e in range(len(s1), len(s2)):
             if matches == 26:
                 return True
 
-            index = ord(s2[e]) - ord("a")
+            index: int = ord(s2[e]) - ord("a")
             s2Count[index] += 1
             if s1Count[index] == s2Count[index]:
                 matches += 1

@@ -1,4 +1,5 @@
 class Solution:
+    # NOTE: time complexity: O(n)
     def numOfSubarrays(self, arr: list[int], k: int, threshold: int) -> int:
         result: int = 0
         l: int = 0

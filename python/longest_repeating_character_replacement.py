@@ -8,13 +8,14 @@ class Solution:
         while l < len(s) and r < len(s):
             strArr[ord(s[r]) - ord("A")] += 1
             currLen = r - l + 1
-            while currLen - max(strArr) > k:
-                strArr[ord(s[l]) - ord("A")] -= 1
-                l += 1
-                currLen -= 1
+            if currLen - max(strArr) <= k:
+                result = max(result, currLen)
+            else:
+                while currLen - max(strArr) > k:
+                    strArr[ord(s[l]) - ord("A")] -= 1
+                    l += 1
+                    currLen -= 1
             r += 1
-
-            result = max(result, currLen)
 
         return result
 
