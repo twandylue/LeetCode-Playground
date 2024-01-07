@@ -36,6 +36,7 @@ pub mod find_pivot_index;
 pub mod find_the_difference_of_two_arrays;
 pub mod find_the_index_of_the_first_occurrence_in_a_string;
 pub mod four_sum;
+pub mod frequency_of_the_most_frequent_element;
 pub mod generate_parentheses;
 pub mod group_anagrams;
 pub mod happy_number;
