@@ -69,6 +69,7 @@ pub mod merge_strings_alternately;
 pub mod merge_triplets_to_form_target_triplet;
 pub mod min_stack;
 pub mod minimum_penalty_for_a_shop;
+pub mod minimum_size_subarray_sum;
 pub mod missing_number;
 pub mod move_zeroes;
 pub mod next_greater_element_iii;
