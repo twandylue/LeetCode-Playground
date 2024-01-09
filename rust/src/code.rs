@@ -30,6 +30,7 @@ pub mod encode_and_decode_strings;
 pub mod evaluate_reverse_polish_notation;
 pub mod find_all_anagrams_in_a_string;
 pub mod find_first_and_last_position_of_element_in_sorted_array;
+pub mod find_k_closest_elements;
 pub mod find_median_from_data_stream;
 pub mod find_minimum_in_rotated_sorted_array;
 pub mod find_pivot_index;
