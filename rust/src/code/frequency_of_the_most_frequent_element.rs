@@ -1,6 +1,7 @@
 struct Solution {}
 
 impl Solution {
+    // NOTE: time complexity: O(n)
     pub fn max_frequency(mut nums: Vec<i32>, k: i32) -> i32 {
         let mut result: i32 = 0;
         nums.sort();

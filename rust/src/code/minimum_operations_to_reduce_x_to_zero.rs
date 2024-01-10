@@ -1,6 +1,7 @@
 struct Solution {}
 
 impl Solution {
+    // NOTE: time complexity: O(n)
     pub fn min_operations(nums: Vec<i32>, x: i32) -> i32 {
         let mut interval_len: usize = 0;
         // let target: i32 = nums.iter().fold(0, |acc, x| acc + x);
@@ -43,7 +44,7 @@ mod tests {
         let expected: i32 = 2;
 
         // act
-        let mut actual = Solution::min_operations(nums, x);
+        let actual = Solution::min_operations(nums, x);
 
         // assert
         assert_eq!(expected, actual);
@@ -57,7 +58,7 @@ mod tests {
         let expected: i32 = -1;
 
         // act
-        let mut actual = Solution::min_operations(nums, x);
+        let actual = Solution::min_operations(nums, x);
 
         // assert
         assert_eq!(expected, actual);
@@ -71,7 +72,7 @@ mod tests {
         let expected: i32 = 5;
 
         // act
-        let mut actual = Solution::min_operations(nums, x);
+        let actual = Solution::min_operations(nums, x);
 
         // assert
         assert_eq!(expected, actual);

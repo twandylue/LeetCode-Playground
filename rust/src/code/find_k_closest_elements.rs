@@ -94,7 +94,7 @@ mod tests {
         let expected: Vec<i32> = vec![1, 2, 3, 4];
 
         // act
-        let mut actual = Solution::find_closest_elements(arr, k, x);
+        let actual = Solution::find_closest_elements(arr, k, x);
 
         // assert
         assert_eq!(expected, actual);
@@ -109,7 +109,7 @@ mod tests {
         let expected: Vec<i32> = vec![1, 2, 3, 4];
 
         // act
-        let mut actual = Solution::find_closest_elements(arr, k, x);
+        let actual = Solution::find_closest_elements(arr, k, x);
 
         // assert
         assert_eq!(expected, actual);
@@ -124,7 +124,7 @@ mod tests {
         let expected: Vec<i32> = vec![2, 3, 4, 5];
 
         // act
-        let mut actual = Solution::find_closest_elements(arr, k, x);
+        let actual = Solution::find_closest_elements(arr, k, x);
 
         // assert
         assert_eq!(expected, actual);
@@ -139,7 +139,7 @@ mod tests {
         let expected: Vec<i32> = vec![10];
 
         // act
-        let mut actual = Solution::find_closest_elements(arr, k, x);
+        let actual = Solution::find_closest_elements(arr, k, x);
 
         // assert
         assert_eq!(expected, actual);
@@ -154,7 +154,7 @@ mod tests {
         let expected: Vec<i32> = vec![2, 3, 4, 5];
 
         // act
-        let mut actual = Solution::find_closest_elements(arr, k, x);
+        let actual = Solution::find_closest_elements(arr, k, x);
 
         // assert
         assert_eq!(expected, actual);
@@ -169,7 +169,7 @@ mod tests {
         let expected: Vec<i32> = vec![0, 1, 1, 1, 2, 3, 6, 7, 8];
 
         // act
-        let mut actual = Solution::find_closest_elements(arr, k, x);
+        let actual = Solution::find_closest_elements(arr, k, x);
 
         // assert
         assert_eq!(expected, actual);
@@ -184,7 +184,7 @@ mod tests {
         let expected: Vec<i32> = vec![-2, -1, 1, 2, 3, 4, 5];
 
         // act
-        let mut actual = Solution::find_closest_elements(arr, k, x);
+        let actual = Solution::find_closest_elements(arr, k, x);
 
         // assert
         assert_eq!(expected, actual);
