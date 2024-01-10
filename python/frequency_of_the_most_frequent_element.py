@@ -7,11 +7,12 @@ class Solution:
         for r in range(len(nums)):
             currLen: int = r - l + 1
             accu += nums[r]
-            if currLen * nums[r] <= accu + k:
-                result = max(result, currLen)
-            else:
+            while currLen * nums[r] > accu + k:
                 accu -= nums[l]
                 l += 1
+                currLen -= 1
+
+            result = max(result, currLen)
 
         return result
 

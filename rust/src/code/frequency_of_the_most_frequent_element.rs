@@ -1,19 +1,19 @@
 struct Solution {}
 
 impl Solution {
-    // NOTE: time complexity: O(n)
+    // NOTE: time complexity: O(nlogn)
     pub fn max_frequency(mut nums: Vec<i32>, k: i32) -> i32 {
         let mut result: i32 = 0;
         nums.sort();
+        let mut accu: i64 = 0;
         let mut l: usize = 0;
-        let mut accu: i32 = 0;
         for r in 0..nums.len() {
-            accu += nums[r];
+            accu += nums[r] as i64;
             let curr_len: i32 = (r - l + 1) as i32;
-            if curr_len * nums[r] <= accu + k {
+            if curr_len as i64 * nums[r] as i64 <= accu + (k as i64) {
                 result = std::cmp::max(result, curr_len);
             } else {
-                accu -= nums[l];
+                accu -= nums[l] as i64;
                 l += 1;
             }
         }
