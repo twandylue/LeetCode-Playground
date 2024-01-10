@@ -1,21 +1,18 @@
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
         result: int = 0
-        strArr: list[str] = [0] * 26
-        currLen: int = 0
+        charCount: list[int] = [0] * 26
         l: int = 0
-        r: int = 0
-        while l < len(s) and r < len(s):
-            strArr[ord(s[r]) - ord("A")] += 1
-            currLen = r - l + 1
-            if currLen - max(strArr) <= k:
+        for r in range(len(s)):
+            charCount[ord(s[r]) - ord("A")] += 1
+            currLen: int = r - l + 1
+            if currLen - max(charCount) <= k:
                 result = max(result, currLen)
             else:
-                while currLen - max(strArr) > k:
-                    strArr[ord(s[l]) - ord("A")] -= 1
+                while currLen - max(charCount) > k:
+                    charCount[ord(s[l]) - ord("A")] -= 1
                     l += 1
                     currLen -= 1
-            r += 1
 
         return result
 
