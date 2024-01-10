@@ -42,6 +42,7 @@ pub mod generate_parentheses;
 pub mod group_anagrams;
 pub mod happy_number;
 pub mod house_robber_ii;
+pub mod implement_stack_using_queues;
 pub mod insert_delete_getrandom;
 pub mod insert_interval;
 pub mod jump_game;
