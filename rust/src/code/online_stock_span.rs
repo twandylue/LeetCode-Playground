@@ -8,32 +8,21 @@ struct StockSpanner {
  */
 impl StockSpanner {
     fn new() -> Self {
-        let stock_spanner = Self { stack: Vec::new() };
-
-        stock_spanner
+        Self { stack: Vec::new() }
     }
 
+    // NOTE: time complexity: O(n)
     fn next(&mut self, price: i32) -> i32 {
         let mut span: i32 = 1;
-        loop {
-            match self.stack.iter().last() {
-                Some(&(val, _)) => {
-                    if val > price {
-                        self.stack.push((price, span));
-                        break;
-                    } else {
-                        let (_, s) = self.stack.pop().unwrap();
-                        span += s;
-                    }
-                }
-                None => {
-                    self.stack.push((price, span));
-                    return span;
-                }
+        while self.stack.len() > 0 && price >= self.stack[self.stack.len() - 1].0 {
+            if let Some((_, s)) = self.stack.pop() {
+                span += s;
             }
         }
 
-        return span;
+        self.stack.push((price, span));
+
+        span
     }
 }
 
@@ -66,5 +55,15 @@ mod test {
         assert_eq!(stock.next(48), 3);
         assert_eq!(stock.next(59), 4);
         assert_eq!(stock.next(79), 5);
+    }
+
+    #[test]
+    fn online_stock_span_case_3() {
+        let mut stock = StockSpanner::new();
+        assert_eq!(stock.next(28), 1);
+        assert_eq!(stock.next(14), 1);
+        assert_eq!(stock.next(28), 3);
+        assert_eq!(stock.next(35), 4);
+        assert_eq!(stock.next(46), 5);
     }
 }

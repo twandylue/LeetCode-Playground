@@ -1,19 +1,14 @@
 class StockSpanner:
     def __init__(self):
-        self.stack: list[tuple[int, int]] = []
+        self.stack: list[tuple[int, int]] = list()
 
     def next(self, price: int) -> int:
         span: int = 1
-        while len(self.stack) > 0:
-            if self.stack[-1][0] > price:
-                self.stack.append((price, span))
-                break
-            else:
-                (_, s) = self.stack.pop()
-                span += s
+        while len(self.stack) > 0 and price >= self.stack[-1][0]:
+            _, s = self.stack.pop()
+            span += s
 
-        if len(self.stack) == 0:
-            self.stack.append((price, span))
+        self.stack.append((price, span))
 
         return span
 
