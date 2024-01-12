@@ -6,21 +6,11 @@ impl Solution {
         use std::collections::VecDeque;
 
         let mut stack: Vec<char> = Vec::new();
-        let mut curr: Vec<char> = Vec::new();
         let s: Vec<char> = s.chars().collect();
         for i in 0..s.len() {
-            if s[i] == '[' {
-                if !curr.is_empty() {
-                    stack.append(&mut curr);
-                    // NOTE: append will consume the vector (curr).
-                    // curr.clear();
-                }
-                stack.push('[');
-            } else if s[i] == ']' {
-                if !curr.is_empty() {
-                    stack.append(&mut curr);
-                    // curr.clear();
-                }
+            if s[i] != ']' {
+                stack.push(s[i]);
+            } else {
                 let mut accu: VecDeque<char> = VecDeque::new();
                 while stack.len() > 0 && stack[stack.len() - 1] != '[' {
                     accu.push_front(stack.pop().unwrap());
@@ -36,19 +26,7 @@ impl Solution {
                     result.append(&mut accu.clone().into_iter().collect::<Vec<char>>());
                 }
                 stack.append(&mut result);
-            } else if s[i].is_digit(10) {
-                if !curr.is_empty() {
-                    stack.append(&mut curr);
-                    // curr.clear();
-                }
-                stack.push(s[i]);
-            } else {
-                curr.push(s[i]);
             }
-        }
-
-        if !curr.is_empty() {
-            stack.append(&mut curr);
         }
 
         stack.iter().collect::<String>()

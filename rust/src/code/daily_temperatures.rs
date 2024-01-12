@@ -1,6 +1,7 @@
 struct Solution {}
 
 impl Solution {
+    // NOTE: time complexity: O(n)
     pub fn daily_temperatures(temperatures: Vec<i32>) -> Vec<i32> {
         let mut output: Vec<i32> = vec![0; temperatures.len()];
         let mut stack: Vec<usize> = Vec::new();

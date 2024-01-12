@@ -1,17 +1,10 @@
 class Solution:
     def decodeString(self, s: str) -> str:
         stack: list[str] = list()
-        curr: str = ""
         for i in range(len(s)):
-            if s[i] == "[":
-                if curr != "":
-                    stack.append(curr)
-                    curr = ""
-                stack.append("[")
-            elif s[i] == "]":
-                if curr != "":
-                    stack.append(curr)
-                    curr = ""
+            if s[i] != "]":
+                stack.append(s[i])
+            else:
                 accu: str = ""
                 while len(stack) > 0 and stack[-1] != "[":
                     accu = stack.pop() + accu
@@ -22,16 +15,6 @@ class Solution:
                 times: int = int(times)
                 accu = accu * times
                 stack.append(accu)
-            elif s[i].isdigit():
-                if curr != "":
-                    stack.append(curr)
-                    curr = ""
-                stack.append(s[i])
-            else:
-                curr += s[i]
-
-        if len(curr) > 0:
-            stack.append(curr)
 
         return "".join(stack)
 
