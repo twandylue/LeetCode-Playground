@@ -46,6 +46,7 @@ impl Solution {
         return res;
     }
 
+    // NOTE: time complexity: O(n)
     pub fn character_replacement3(s: String, k: i32) -> i32 {
         let s: Vec<char> = s.chars().collect();
         let mut char_map: [i32; 26] = [0; 26];

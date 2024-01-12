@@ -6,13 +6,12 @@ class Solution:
         for r in range(len(s)):
             charCount[ord(s[r]) - ord("A")] += 1
             currLen: int = r - l + 1
-            if currLen - max(charCount) <= k:
-                result = max(result, currLen)
-            else:
-                while currLen - max(charCount) > k:
-                    charCount[ord(s[l]) - ord("A")] -= 1
-                    l += 1
-                    currLen -= 1
+            while currLen - max(charCount) > k:
+                charCount[ord(s[l]) - ord("A")] -= 1
+                l += 1
+                currLen -= 1
+
+            result = max(result, currLen)
 
         return result
 
