@@ -21,6 +21,7 @@ pub mod count_good_nodes_in_binary_tree;
 pub mod counting_bits;
 pub mod course_schedule;
 pub mod daily_temperatures;
+pub mod decode_strings;
 pub mod decode_way;
 pub mod design_add_and_search_words_data_structure;
 pub mod design_parking_system;
