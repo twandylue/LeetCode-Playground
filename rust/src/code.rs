@@ -92,6 +92,7 @@ pub mod pow;
 pub mod remove_duplicates_from_sorted_array;
 pub mod remove_duplicates_from_sorted_array_ii;
 pub mod remove_element;
+pub mod remove_k_digits;
 pub mod reverse_bits;
 pub mod rotate_image;
 pub mod search_a_2d_matrix;
