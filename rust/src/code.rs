@@ -95,6 +95,7 @@ pub mod remove_element;
 pub mod remove_k_digits;
 pub mod reverse_bits;
 pub mod rotate_image;
+pub mod s_132_pattern;
 pub mod search_a_2d_matrix;
 pub mod set_matrix_zeroes;
 pub mod sign_of_the_product_of_an_array;
