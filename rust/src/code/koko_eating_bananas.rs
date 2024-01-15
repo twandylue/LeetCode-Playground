@@ -10,7 +10,13 @@ impl Solution {
             let mut count: i64 = 0;
             for pile in &piles {
                 // NOTE: https://stackoverflow.com/questions/2422712/rounding-integer-division-instead-of-truncating
-                count += (*pile as i64 + mid - 1) / mid;
+                // count += (*pile as i64 + mid - 1) / mid;
+                let pile: i64 = *pile as i64;
+                if pile % mid > 0 {
+                    count += pile / mid + 1;
+                } else {
+                    count += pile / mid;
+                }
             }
 
             if count <= h as i64 {
@@ -90,6 +96,20 @@ mod tests {
         let piles = vec![1, 1, 1, 999999999];
         let h = 10;
         let expected = 142857143;
+
+        // act
+        let actual = Solution::min_eating_speed(piles, h);
+
+        // assert
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn min_eating_speed_case_6() {
+        // arrange
+        let piles = vec![312884470];
+        let h = 968709470;
+        let expected = 1;
 
         // act
         let actual = Solution::min_eating_speed(piles, h);

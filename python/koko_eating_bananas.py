@@ -1,20 +1,21 @@
 class Solution:
     def minEatingSpeed(self, piles: list[int], h: int) -> int:
-        left: int = 1
-        right: int = max(piles)
-
-        while left <= right:
-            mid: int = (left + right) // 2
+        l: int = 1
+        r: int = max(piles)
+        while l <= r:
+            mid: int = (l + r) // 2
             count: int = 0
-            for pile in piles:
-                count += (pile + mid - 1) // mid
-
-            if count <= h:
-                right = mid - 1
+            for p in piles:
+                if p % mid > 0:
+                    count += p // mid + 1
+                else:
+                    count += p // mid
+            if count > h:
+                l = mid + 1
             else:
-                left = mid + 1
+                r = mid - 1
 
-        return left
+        return l
 
 
 def test_minEatingSpeed_case_1():

@@ -1,6 +1,7 @@
 struct Solution {}
 
 impl Solution {
+    // NOTE: time complexity: O(logn)
     pub fn search_insert(nums: Vec<i32>, target: i32) -> i32 {
         let mut mid: usize = 0;
         let mut l: usize = 0;
