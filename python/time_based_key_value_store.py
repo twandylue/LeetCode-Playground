@@ -3,32 +3,37 @@ from typing import Tuple
 
 class TimeMap:
     def __init__(self):
-        self.store: dict[str, list[Tuple[str, int]]] = {}
+        self.store: dict[str, list[tuple[str, int]]] = dict()
 
     def set(self, key: str, value: str, timestamp: int) -> None:
-        if key in self.store:
-            self.store[key].append((value, timestamp))
-        else:
+        if key not in self.store:
             self.store[key] = [(value, timestamp)]
+        else:
+            self.store[key].append((value, timestamp))
 
     def get(self, key: str, timestamp: int) -> str:
-        result: str = ""
-        if key in self.store:
-            l: int = 0
-            r: int = len(self.store[key]) - 1
-            arr: list[Tuple[str, int]] = self.store[key]
-            while l <= r:
-                mid: int = (l + r) // 2
-                if timestamp == arr[mid][1]:
-                    return arr[mid][0]
-                elif timestamp > arr[mid][1]:
-                    result = arr[mid][0]
-                    l = mid + 1
-                else:
-                    if mid > 0:
-                        r = mid - 1
-                    else:
-                        break
+        if key not in self.store:
+            return ""
+
+        pos: int = self.binarySearch(self.store[key], timestamp)
+        if pos == -1:
+            return ""
+
+        return self.store[key][pos][0]
+
+    def binarySearch(self, times: list[tuple[str, int]], time: int) -> int:
+        l: int = 0
+        r: int = len(times) - 1
+        result: int = -1
+        while l <= r:
+            mid: int = (l + r) // 2
+            if times[mid][1] == time:
+                return mid
+            if times[mid][1] < time:
+                l = mid + 1
+                result = mid
+            else:
+                r = mid - 1
 
         return result
 

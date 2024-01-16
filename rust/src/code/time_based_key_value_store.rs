@@ -10,11 +10,9 @@ struct TimeMap {
  */
 impl TimeMap {
     fn new() -> Self {
-        let time_map = Self {
+        Self {
             store: HashMap::new(),
-        };
-
-        time_map
+        }
     }
 
     fn set(&mut self, key: String, value: String, timestamp: i32) {
@@ -25,29 +23,38 @@ impl TimeMap {
     }
 
     fn get(&self, key: String, timestamp: i32) -> String {
-        let mut result = String::new();
         if let Some(list) = self.store.get(&key) {
-            let mut l = 0;
-            let mut r = list.len() - 1;
-            while l <= r {
-                let mid = (l + r) / 2;
-                if timestamp == list[mid].1 {
-                    result = list[mid].0.clone();
-                    return result;
-                } else if timestamp > list[mid].1 {
-                    result = list[mid].0.clone();
-                    l = mid + 1;
-                } else {
-                    if mid > 0 {
-                        r = mid - 1;
-                    } else {
-                        break;
-                    }
+            let pos: i32 = Self::binary_search(&list, timestamp);
+            if pos == -1 {
+                return String::new();
+            }
+            return list[pos as usize].0.clone();
+        }
+
+        String::new()
+    }
+
+    fn binary_search(values: &Vec<(String, i32)>, time: i32) -> i32 {
+        let mut result: i32 = -1;
+        let mut l: usize = 0;
+        let mut r: usize = values.len() - 1;
+        while l <= r {
+            let mid: usize = (l + r) / 2;
+            if values[mid].1 == time {
+                return mid as i32;
+            }
+            if values[mid].1 < time {
+                l = mid + 1;
+                result = mid as i32;
+            } else {
+                if mid.checked_sub(1).is_none() {
+                    break;
                 }
+                r = mid - 1;
             }
         }
 
-        return result;
+        result
     }
 }
 
