@@ -52,7 +52,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_MyStack_case_1() {
+    fn test_my_stack_case_1() {
         // arrange
         let mut stack = MyStack::new();
 

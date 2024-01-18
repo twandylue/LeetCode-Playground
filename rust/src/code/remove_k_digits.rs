@@ -48,7 +48,7 @@ mod tests {
         let expected: String = "1219".to_string();
 
         // act
-        let mut actual = Solution::remove_kdigits(num, k);
+        let actual = Solution::remove_kdigits(num, k);
 
         // assert
         assert_eq!(expected, actual);
@@ -62,7 +62,7 @@ mod tests {
         let expected: String = "200".to_string();
 
         // act
-        let mut actual = Solution::remove_kdigits(num, k);
+        let actual = Solution::remove_kdigits(num, k);
 
         // assert
         assert_eq!(expected, actual);
@@ -76,7 +76,7 @@ mod tests {
         let expected: String = "0".to_string();
 
         // act
-        let mut actual = Solution::remove_kdigits(num, k);
+        let actual = Solution::remove_kdigits(num, k);
 
         // assert
         assert_eq!(expected, actual);
@@ -90,7 +90,7 @@ mod tests {
         let expected: String = "0".to_string();
 
         // act
-        let mut actual = Solution::remove_kdigits(num, k);
+        let actual = Solution::remove_kdigits(num, k);
 
         // assert
         assert_eq!(expected, actual);

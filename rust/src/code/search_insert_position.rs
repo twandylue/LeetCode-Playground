@@ -47,7 +47,7 @@ mod tests {
         let expected: i32 = 2;
 
         // act
-        let mut actual = Solution::search_insert(nums, target);
+        let actual = Solution::search_insert(nums, target);
 
         // assert
         assert_eq!(expected, actual);
@@ -61,7 +61,7 @@ mod tests {
         let expected: i32 = 1;
 
         // act
-        let mut actual = Solution::search_insert(nums, target);
+        let actual = Solution::search_insert(nums, target);
 
         // assert
         assert_eq!(expected, actual);
@@ -75,7 +75,7 @@ mod tests {
         let expected: i32 = 4;
 
         // act
-        let mut actual = Solution::search_insert(nums, target);
+        let actual = Solution::search_insert(nums, target);
 
         // assert
         assert_eq!(expected, actual);
@@ -89,7 +89,7 @@ mod tests {
         let expected: i32 = 0;
 
         // act
-        let mut actual = Solution::search_insert(nums, target);
+        let actual = Solution::search_insert(nums, target);
 
         // assert
         assert_eq!(expected, actual);

@@ -31,7 +31,7 @@ mod tests {
         let expected: bool = false;
 
         // act
-        let mut actual = Solution::find132pattern(nums);
+        let actual = Solution::find132pattern(nums);
 
         // assert
         assert_eq!(expected, actual);
@@ -44,7 +44,7 @@ mod tests {
         let expected: bool = true;
 
         // act
-        let mut actual = Solution::find132pattern(nums);
+        let actual = Solution::find132pattern(nums);
 
         // assert
         assert_eq!(expected, actual);
@@ -57,7 +57,7 @@ mod tests {
         let expected: bool = true;
 
         // act
-        let mut actual = Solution::find132pattern(nums);
+        let actual = Solution::find132pattern(nums);
 
         // assert
         assert_eq!(expected, actual);
