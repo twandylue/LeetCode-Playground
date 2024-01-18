@@ -77,6 +77,7 @@ pub mod minimum_penalty_for_a_shop;
 pub mod minimum_size_subarray_sum;
 pub mod missing_number;
 pub mod move_zeroes;
+pub mod next_greater_element_i;
 pub mod next_greater_element_iii;
 pub mod non_decreasing_array;
 pub mod non_overlapping_intervals;
