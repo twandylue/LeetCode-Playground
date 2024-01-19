@@ -62,6 +62,7 @@ pub mod lowest_common_ancestor_of_a_binary_search_tree;
 pub mod lru_cache;
 pub mod majority_element;
 pub mod maximum_depth_of_binary_tree;
+pub mod maximum_frequency_stack;
 pub mod maximum_product_subarray;
 pub mod maximum_subarray;
 pub mod maximum_sum_circular_subarray;
