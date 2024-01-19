@@ -3,34 +3,29 @@ struct Solution {}
 impl Solution {
     // NOTE: time complexity: O(logn)
     pub fn search_insert(nums: Vec<i32>, target: i32) -> i32 {
-        let mut mid: usize = 0;
+        let mut result: usize = 0;
         let mut l: usize = 0;
         let mut r: usize = nums.len() - 1;
         while l <= r {
-            mid = (l + r) / 2;
+            let mid: usize = (l + r) / 2;
+            result = mid;
             if nums[mid] == target {
                 return mid as i32;
-            } else if nums[mid] > target {
-                if mid > 0 && target > nums[mid - 1] {
-                    return mid as i32;
-                }
-
+            }
+            if nums[mid] < target {
+                l = mid + 1;
+            } else {
                 if mid.checked_sub(1).is_none() {
                     break;
                 }
                 r = mid - 1;
-            } else {
-                if mid < nums.len() - 1 && target < nums[mid + 1] {
-                    return mid as i32 + 1;
-                }
-                l = mid + 1;
             }
         }
 
-        return if mid == 0 && nums[0] > target {
-            0
+        return if nums[result] > target {
+            result as i32
         } else {
-            mid as i32 + 1
+            result as i32 + 1
         };
     }
 }
