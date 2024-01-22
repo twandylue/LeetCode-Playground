@@ -1,6 +1,3 @@
-from typing import Tuple
-
-
 class TimeMap:
     def __init__(self):
         self.store: dict[str, list[tuple[str, int]]] = dict()
