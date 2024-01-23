@@ -1,6 +1,22 @@
 struct Solution {}
 
 impl Solution {
+    pub fn subsets_2(nums: Vec<i32>) -> Vec<Vec<i32>> {
+        let mut result: Vec<Vec<i32>> = Vec::new();
+        let n: usize = nums.len();
+        for mask in 0..(1 << n) {
+            let mut subset: Vec<i32> = Vec::new();
+            for i in 0..n {
+                if mask & (1 << i) != 0 {
+                    subset.push(nums[i])
+                }
+            }
+            result.push(subset);
+        }
+
+        result
+    }
+
     pub fn subsets(nums: Vec<i32>) -> Vec<Vec<i32>> {
         let mut result: Vec<Vec<i32>> = Vec::new();
         let mut subset: Vec<i32> = Vec::new();

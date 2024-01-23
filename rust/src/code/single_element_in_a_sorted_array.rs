@@ -65,4 +65,30 @@ mod tests {
         // assert
         assert_eq!(expected, actual);
     }
+
+    #[test]
+    fn test_single_non_duplicate_case_3() {
+        // arrange
+        let nums: Vec<i32> = vec![3, 3, 7, 7, 10];
+        let expected: i32 = 10;
+
+        // act
+        let actual = Solution::single_non_duplicate(nums);
+
+        // assert
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn test_single_non_duplicate_case_4() {
+        // arrange
+        let nums: Vec<i32> = vec![1, 3, 3, 7, 7];
+        let expected: i32 = 1;
+
+        // act
+        let actual = Solution::single_non_duplicate(nums);
+
+        // assert
+        assert_eq!(expected, actual);
+    }
 }
