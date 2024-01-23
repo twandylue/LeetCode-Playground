@@ -19,7 +19,7 @@ impl Solution {
                     r = mid - 1;
                 }
             } else {
-                // left part
+                // right part
                 if nums[mid] > target || target > nums[r] {
                     r = mid - 1;
                 } else {

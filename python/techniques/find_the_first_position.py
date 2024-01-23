@@ -1,3 +1,4 @@
+# NOTE: LC. 34. Find First and Last Position of Element in Sorted Array
 def binarySearch(nums: list[int], target: int, isLeft: bool) -> int:
     l: int = 0
     r: int = len(nums) - 1
