@@ -2,11 +2,10 @@ class Solution:
     def suggestedProducts(
         self, products: list[str], searchWord: str
     ) -> list[list[str]]:
-        result: list[int] = list()
+        result: list[list[int]] = list()
         products.sort()
         l: int = 0
         r: int = len(products) - 1
-        i: int = 0
         for i in range(len(searchWord)):
             c = searchWord[i]
             while l <= r and (len(products[l]) <= i or products[l][i] != c):
