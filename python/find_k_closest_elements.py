@@ -1,4 +1,18 @@
 class Solution:
+    # NOTE: time complexity: O(logn)
+    def findClosestElements2(self, arr: list[int], k: int, x: int) -> list[int]:
+        l: int = 0
+        r: int = len(arr) - 1
+        while l < r:
+            mid: int = (l + r) // 2
+            if x - arr[mid] > arr[mid + k] - x:
+                l = mid + 1
+            else:
+                r = mid
+
+        return arr[l : l + k]
+
+    # NOTE: time complexity: O(n)
     def findClosestElements(self, arr: list[int], k: int, x: int) -> list[int]:
         center: int = self.binarySearch(arr, x)
         if k == 1:

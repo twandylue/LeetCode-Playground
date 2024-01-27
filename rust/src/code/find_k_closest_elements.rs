@@ -1,6 +1,23 @@
 struct Solution {}
 
 impl Solution {
+    // NOTE: time complexity: O(logn)
+    pub fn find_closest_elements2(arr: Vec<i32>, k: i32, x: i32) -> Vec<i32> {
+        let k: usize = k as usize;
+        let mut l: usize = 0;
+        let mut r: usize = arr.len() - k;
+        while l < r {
+            let mid: usize = (l + r) / 2;
+            if x - arr[mid] > arr[mid + k] - x {
+                l = mid + 1;
+            } else {
+                r = mid;
+            }
+        }
+
+        return arr[l..l + k].to_vec();
+    }
+
     // NOTE: time complexity: O(logn + n) = O(n)
     pub fn find_closest_elements(arr: Vec<i32>, k: i32, x: i32) -> Vec<i32> {
         let center: usize = Self::binary_search(&arr, x);
