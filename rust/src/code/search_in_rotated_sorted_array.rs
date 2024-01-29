@@ -37,7 +37,7 @@ mod test {
     use super::Solution;
 
     #[test]
-    fn case_1() {
+    fn test_search_case_1() {
         let nums = vec![4, 5, 6, 7, 0, 1, 2];
         let target = 0;
         let expected = 4;

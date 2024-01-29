@@ -38,3 +38,29 @@ def test_isPerfectSquare_case_2():
 
     # assert
     assert expected == actual
+
+
+def test_isPerfectSquare_case_3():
+    # arrange
+    num: int = 0
+    expected: bool = True
+
+    # act
+    solution = Solution()
+    actual = solution.isPerfectSquare(num)
+
+    # assert
+    assert expected == actual
+
+
+def test_isPerfectSquare_case_4():
+    # arrange
+    num: int = 1
+    expected: bool = True
+
+    # act
+    solution = Solution()
+    actual = solution.isPerfectSquare(num)
+
+    # assert
+    assert expected == actual
