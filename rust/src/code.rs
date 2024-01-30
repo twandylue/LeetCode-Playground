@@ -101,6 +101,7 @@ pub mod reverse_bits;
 pub mod rotate_image;
 pub mod s_132_pattern;
 pub mod search_a_2d_matrix;
+pub mod search_in_rotated_sorted_array_ii;
 pub mod search_insert_position;
 pub mod search_suggestions_system;
 pub mod set_matrix_zeroes;

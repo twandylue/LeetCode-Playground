@@ -52,21 +52,21 @@ class LRUCache:
             self.insert_after_head(newNode)
 
 
-def test_case1():
+def test_lru_case1():
     # Your LRUCache object will be instantiated and called as such:
     # obj = LRUCache(capacity)
     # param_1 = obj.get(key)
     # obj.put(key,value)
-    lRUCache = LRUCache(2)
-    lRUCache.put(1, 1)  # cache is {1=1}
-    lRUCache.put(2, 2)  # cache is {1=1, 2=2}
-    actual1 = lRUCache.get(1)  # return 1
-    lRUCache.put(3, 3)  # LRU key was 2, evicts key 2, cache is {1=1, 3=3}
-    actual2 = lRUCache.get(2)  # returns -1 (not found)
-    lRUCache.put(4, 4)  # LRU key was 1, evicts key 1, cache is {4=4, 3=3}
-    actual3 = lRUCache.get(1)  # return -1 (not found)
-    actual4 = lRUCache.get(3)  # return 3
-    actual5 = lRUCache.get(4)  # return 4
+    lruCache = LRUCache(2)
+    lruCache.put(1, 1)  # cache is {1=1}
+    lruCache.put(2, 2)  # cache is {1=1, 2=2}
+    actual1 = lruCache.get(1)  # return 1
+    lruCache.put(3, 3)  # LRU key was 2, evicts key 2, cache is {1=1, 3=3}
+    actual2 = lruCache.get(2)  # returns -1 (not found)
+    lruCache.put(4, 4)  # LRU key was 1, evicts key 1, cache is {4=4, 3=3}
+    actual3 = lruCache.get(1)  # return -1 (not found)
+    actual4 = lruCache.get(3)  # return 3
+    actual5 = lruCache.get(4)  # return 4
 
     assert actual1 == 1
     assert actual2 == -1
