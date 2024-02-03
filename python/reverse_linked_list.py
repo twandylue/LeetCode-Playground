@@ -15,6 +15,7 @@ from linkedListConverter import convert_linked_list_to_list
 #         self.val = val
 #         self.next = next
 class Solution:
+    # NOTE: time complexity: O(n)
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         curr: Optional[ListNode] = head
         prev: Optional[ListNode] = None

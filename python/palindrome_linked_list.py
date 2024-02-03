@@ -15,6 +15,7 @@ from linkedListConverter import convert_linked_list_to_list
 #         self.val = val
 #         self.next = next
 class Solution:
+    # NOTE: time complexity: O(n/2)
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         fast: Optional[ListNode] = head
         slow: Optional[ListNode] = head
