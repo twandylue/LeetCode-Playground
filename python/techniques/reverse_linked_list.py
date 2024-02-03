@@ -1,3 +1,10 @@
+from typing import Optional
+import sys
+
+sys.path.append("./models")
+from list_node import ListNode
+
+
 # NOTE: time complexity: O(n)
 def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
     curr: Optional[ListNode] = head
