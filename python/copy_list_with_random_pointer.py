@@ -1,11 +1,4 @@
 from typing import Optional
-import sys
-
-sys.path.append("./models")
-
-sys.path.append("./utils")
-from linkedListConverter import convert_to_linked_list
-from linkedListConverter import convert_linked_list_to_list
 
 
 class Node:
@@ -22,22 +15,21 @@ class Solution:
     def copyRandomList(self, head: Optional[Node]) -> Optional[Node]:
         if head is None:
             return None
-        dic: dict[Node, Node] = dict()
+        node_map: dict[Optional[Node], Optional[Node]] = {}
+        curr: Optional[Node] = head
+        new_head: Node = Node(0)
+        new_curr: Optional[Node] = new_head
+        while curr is not None and new_curr is not None:
+            new_node: Node = Node(curr.val)
+            new_curr.next = new_node
+            new_curr = new_node
+            node_map[curr] = new_node
+            curr = curr.next
+
         pointer: Optional[Node] = head
-        newHead: Node = Node(0)
-        newPointer: Optional[Node] = newHead
-        while pointer is not None:
-            node: Node = Node(pointer.val, pointer.next, None)
-            dic[pointer] = node
-            pointer = pointer.next
-
-            newPointer.next = node
-            newPointer = newPointer.next
-
-        pointer = head
         while pointer is not None:
             if pointer.random is not None:
-                dic[pointer].random = dic[pointer.random]
+                node_map[pointer].random = node_map[pointer.random]
             pointer = pointer.next
 
-        return newHead.next
+        return new_head.next
