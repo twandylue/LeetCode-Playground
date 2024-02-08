@@ -11,13 +11,13 @@ from linkedListConverter import convert_linked_list_to_list
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        d: dict[ListNode, int] = dict()
-        node = head
-        while node != None:
-            if node.next in d:
+        node_map: dict[ListNode, int] = {}
+        curr: Optional[ListNode] = head
+        while curr is not None:
+            if curr in node_map:
                 return True
-            d[node] = 1
-            node = node.next
+            node_map[curr] = 1
+            curr = curr.next
 
         return False
 
