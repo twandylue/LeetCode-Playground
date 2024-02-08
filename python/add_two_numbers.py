@@ -2,9 +2,9 @@ from typing import Optional
 import sys
 
 sys.path.append("./models")
-from list_node import ListNode
-
 sys.path.append("./utils")
+
+from list_node import ListNode
 from linkedListConverter import convert_to_linked_list
 from linkedListConverter import convert_linked_list_to_list
 
@@ -13,27 +13,27 @@ class Solution:
     def addTwoNumbers(
         self, l1: Optional[ListNode], l2: Optional[ListNode]
     ) -> Optional[ListNode]:
-        if l1 == None or l2 == None:
+        if l1 is None and l2 is None:
             return None
 
-        head: ListNode = ListNode()
-        dummy_head: ListNode = head
+        dummy: ListNode = ListNode()
+        curr: Optional[ListNode] = dummy
         carry: int = 0
-
-        while l1 != None or l2 != None or carry > 0:
-            sumNum: int = 0
-            if l1 != None:
-                sumNum += l1.val
+        while l1 is not None or l2 is not None or carry > 0:
+            accu: int = 0
+            if l1 is not None:
+                accu += l1.val
                 l1 = l1.next
-            if l2 != None:
-                sumNum += l2.val
+            if l2 is not None:
+                accu += l2.val
                 l2 = l2.next
-            sumNum += carry
-            carry = sumNum // 10
-            head.next = ListNode(sumNum % 10)
-            head = head.next
+            accu += carry
+            carry = accu // 10
+            new_node: ListNode = ListNode(accu % 10)
+            curr.next = new_node
+            curr = curr.next
 
-        return dummy_head.next
+        return dummy.next
 
 
 def test_addTwoNumbers_case_1():
