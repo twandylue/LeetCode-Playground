@@ -1,25 +1,40 @@
-from typing import Optional
 import sys
 
 sys.path.append("./models")
-from list_node import ListNode
-
 sys.path.append("./utils")
+
+from typing import Optional
+from list_node import ListNode
 from linkedListConverter import convert_to_linked_list
 from linkedListConverter import convert_linked_list_to_list
 
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        node_map: dict[ListNode, int] = {}
-        curr: Optional[ListNode] = head
-        while curr is not None:
-            if curr in node_map:
+        """time complexity: O(n), space complexity: O(1)"""
+        dummy: ListNode = ListNode()
+        dummy.next = head
+        slow: Optional[ListNode] = dummy
+        fast: Optional[ListNode] = head
+        while fast is not None and fast.next is not None and slow is not None:
+            if fast == slow:
                 return True
-            node_map[curr] = 1
-            curr = curr.next
+            fast = fast.next.next
+            slow = slow.next
 
         return False
+
+    # def hasCycle(self, head: Optional[ListNode]) -> bool:
+    #     """time complexity: O(n), space complexity: O(n)"""
+    #     node_map: dict[ListNode, int] = {}
+    #     curr: Optional[ListNode] = head
+    #     while curr is not None:
+    #         if curr in node_map:
+    #             return True
+    #         node_map[curr] = 1
+    #         curr = curr.next
+    #
+    #     return False
 
 
 def test_hasCycle_case_1():
@@ -53,6 +68,20 @@ def test_hasCycle_case_2():
 def test_hasCycle_case_3():
     # arrange
     head: list[int] = [1]
+    pos: int = -1
+    expected: bool = False
+
+    # act
+    solution = Solution()
+    actual = solution.hasCycle(prepare_linked_list(convert_to_linked_list(head), pos))
+
+    # assert
+    assert actual == expected
+
+
+def test_hasCycle_case_4():
+    # arrange
+    head: list[int] = [1, 2]
     pos: int = -1
     expected: bool = False
 
