@@ -26,7 +26,7 @@ class BrowserHistory:
         self.curr = home_node
 
     def visit(self, url: str) -> None:
-        """visit"""
+        """time complexit: O(1)"""
         new_node: Node = Node(url)
         self.curr.next = new_node
         new_node.prev = self.curr
@@ -35,7 +35,7 @@ class BrowserHistory:
         self.curr = new_node
 
     def back(self, steps: int) -> str:
-        """back"""
+        """time complexit: O(n)"""
         idx: int = 0
         while idx < steps and self.curr is not None:
             if self.curr.prev == self.head:
@@ -49,7 +49,7 @@ class BrowserHistory:
         return self.curr.val
 
     def forward(self, steps: int) -> str:
-        """forward"""
+        """time complexit: O(n)"""
         idx: int = 0
         while idx < steps and self.curr is not None:
             if self.curr.next == self.tail:
