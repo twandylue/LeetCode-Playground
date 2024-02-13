@@ -6,6 +6,11 @@
 # def guess(num: int) -> int:
 
 
+def guess(num: int) -> int:
+    """temporaray function"""
+    return num
+
+
 class Solution:
     def guessNumber(self, n: int) -> int:
         l: int = 1
