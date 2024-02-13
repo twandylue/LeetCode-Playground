@@ -42,6 +42,7 @@ pub mod four_sum;
 pub mod frequency_of_the_most_frequent_element;
 pub mod generate_parentheses;
 pub mod group_anagrams;
+pub mod guess_number_higher_or_lower;
 pub mod happy_number;
 pub mod house_robber_ii;
 pub mod implement_stack_using_queues;
