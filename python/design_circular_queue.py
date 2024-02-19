@@ -16,56 +16,49 @@ class Node:
 class MyCircularQueue:
 
     def __init__(self, k: int):
-        self._size: int = 0
-        self._capacity: int = k
-        self._head: Node = Node()
-        self._tail: Node = Node()
-        self._head.next = self._tail
-        self._tail.prev = self._head
+        self._space: int = k
+        self._left: Node = Node()
+        self._right: Node = Node()
+        self._left.next = self._right
+        self._right.prev = self._left
 
     def enQueue(self, value: int) -> bool:
-        if self._size >= self._capacity:
+        if self.isFull():
             return False
         new_node: Node = Node(value)
-        last_node: Optional[Node] = self._tail.prev
+        last_node: Optional[Node] = self._right.prev
         last_node.next = new_node
         new_node.prev = last_node
-        new_node.next = self._tail
-        self._tail.prev = new_node
-        self._size += 1
+        new_node.next = self._right
+        self._right.prev = new_node
+        self._space -= 1
         return True
 
     def deQueue(self) -> bool:
-        if self._size == 0 or self._head.next == self._tail:
+        if self.isEmpty():
             return False
-        first_node: Optional[Node] = self._head.next
+        first_node: Optional[Node] = self._left.next
         second_node: Optional[Node] = first_node.next
-        self._head.next = second_node
-        second_node.prev = self._head
-        self._size -= 1
+        self._left.next = second_node
+        second_node.prev = self._left
+        self._space += 1
         return True
 
     def Front(self) -> int:
-        if self._size == 0 or self._head.next == self._tail:
+        if self.isEmpty():
             return -1
-        first_node: Optional[Node] = self._head.next
-        return first_node.val
+        return self._left.next.val
 
     def Rear(self) -> int:
-        if self._size == 0 or self._tail.prev == self._head:
+        if self.isEmpty():
             return -1
-        last_node: Optional[Node] = self._tail.prev
-        return last_node.val
+        return self._right.prev.val
 
     def isEmpty(self) -> bool:
-        if self._size == 0:
-            return True
-        return False
+        return self._left.next == self._right
 
     def isFull(self) -> bool:
-        if self._size == self._capacity:
-            return True
-        return False
+        return self._space == 0
 
 
 # Your MyCircularQueue object will be instantiated and called as such:
@@ -88,12 +81,12 @@ def test_circular_queue_case_1():
     actual_8 = que.enQueue(4)
     actual_9 = que.Rear()
 
-    assert actual_1 == True
-    assert actual_2 == True
-    assert actual_3 == True
-    assert actual_4 == False
+    assert actual_1 is True
+    assert actual_2 is True
+    assert actual_3 is True
+    assert actual_4 is False
     assert actual_5 == 3
-    assert actual_6 == True
-    assert actual_7 == True
-    assert actual_8 == True
+    assert actual_6 is True
+    assert actual_7 is True
+    assert actual_8 is True
     assert actual_9 == 4
