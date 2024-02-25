@@ -71,29 +71,37 @@ class LFUCache:
         self.capacity: int = capacity
         self.value_map: dict[int, int] = {}
         self.counter_map: dict[int, int] = {}
-        self.count_list_map: dict[int, LinkedList] = {}
+        self.counter_list_map: dict[int, LinkedList] = {}
         self.lfu_count: int = 0
+
+    def maintain_lfu_linked_list(self, linked_list: LinkedList, cnt: int) -> None:
+        """count the list map and maintain self.lfu_count."""
+        if linked_list.length() == 0:
+            self.counter_list_map.pop(cnt)
+            if cnt == self.lfu_count:
+                self.lfu_count += 1
+
+    def maitain_counter_list_map(self, node: ListNode, cnt: int) -> None:
+        """maintain the counter list map."""
+        if cnt not in self.counter_list_map:
+            new_linked_list: LinkedList = LinkedList()
+            new_linked_list.insert_after_head(node)
+            self.counter_list_map[cnt] = new_linked_list
+        else:
+            linked_list: LinkedList = self.counter_list_map[cnt]
+            linked_list.insert_after_head(node)
 
     def get(self, key: int) -> int:
         """get the value by key. time complexity: O(1)"""
         if key not in self.value_map or key not in self.counter_map:
             return -1
         count: int = self.counter_map[key]
-        linked_list: LinkedList = self.count_list_map[count]
+        linked_list: LinkedList = self.counter_list_map[count]
         node: Optional[ListNode] = linked_list.get(key)
         linked_list.remove(node)
-        if linked_list.length() == 0:
-            self.count_list_map.pop(count)
-            if count == self.lfu_count:
-                self.lfu_count += 1
+        self.maintain_lfu_linked_list(linked_list, count)
         self.counter_map[key] = count + 1
-        if count + 1 not in self.count_list_map:
-            new_linked_list: LinkedList = LinkedList()
-            new_linked_list.insert_after_head(node)
-            self.count_list_map[count + 1] = new_linked_list
-        else:
-            linked_list: LinkedList = self.count_list_map[count + 1]
-            linked_list.insert_after_head(node)
+        self.maitain_counter_list_map(node, count + 1)
 
         return self.value_map[key]
 
@@ -105,42 +113,25 @@ class LFUCache:
         if key in self.value_map:
             self.value_map[key] = value
             count: int = self.counter_map[key]
-            self.counter_map[key] = count + 1
-            linked_list: LinkedList = self.count_list_map[count]
+            linked_list: LinkedList = self.counter_list_map[count]
             updated_node: Optional[ListNode] = linked_list.get(key)
             linked_list.remove(updated_node)
-            if linked_list.length() == 0:
-                self.count_list_map.pop(count)
-                if count == self.lfu_count:
-                    self.lfu_count += 1
-            if count + 1 not in self.count_list_map:
-                new_linked_list: LinkedList = LinkedList()
-                new_linked_list.insert_after_head(updated_node)
-                self.count_list_map[count + 1] = new_linked_list
-            else:
-                linked_list: LinkedList = self.count_list_map[count + 1]
-                linked_list.insert_after_head(updated_node)
+            self.maintain_lfu_linked_list(linked_list, count)
+            self.counter_map[key] = count + 1
+            self.maitain_counter_list_map(updated_node, count + 1)
             return
 
         if key not in self.value_map and len(self.value_map) == self.capacity:
-            linked_list: LinkedList = self.count_list_map[self.lfu_count]
+            linked_list: LinkedList = self.counter_list_map[self.lfu_count]
             lfu_node: Optional[ListNode] = linked_list.pop()
-            if linked_list.length() == 0:
-                self.count_list_map.pop(self.lfu_count)
-                self.lfu_count += 1
+            self.maintain_lfu_linked_list(linked_list, self.lfu_count)
             self.value_map.pop(lfu_node.key)
             self.counter_map.pop(lfu_node.key)
         new_node: ListNode = ListNode(key, value)
         self.value_map[key] = value
         self.counter_map[key] = 1
         self.lfu_count = 1
-        if 1 not in self.count_list_map:
-            new_linked_list: LinkedList = LinkedList()
-            new_linked_list.insert_after_head(new_node)
-            self.count_list_map[1] = new_linked_list
-        else:
-            linked_list: LinkedList = self.count_list_map[1]
-            linked_list.insert_after_head(new_node)
+        self.maitain_counter_list_map(new_node, 1)
 
 
 # Your LFUCache object will be instantiated and called as such:
