@@ -13,12 +13,14 @@ from serialize_binary_tree import SerializeBinaryTreeToList
 
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        """time complexity: O(n)"""
         if root is None:
             return None
 
         return self.dfs(root)
 
     def dfs(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        """postorder traversal."""
         if root is None:
             return None
 

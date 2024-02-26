@@ -1,10 +1,10 @@
-from typing import Optional
 import sys
 
 sys.path.append("./models")
-from binary_tree_node import TreeNode
-
 sys.path.append("./utils")
+
+from typing import Optional
+from binary_tree_node import TreeNode
 from deserialize_to_binary_tree import DeserializeFromList
 from serialize_binary_tree import SerializeBinaryTreeToList
 
@@ -17,25 +17,25 @@ from serialize_binary_tree import SerializeBinaryTreeToList
 #         self.right = right
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
+        """time complexity: O(n)"""
         if root is None:
             return 0
         return self.dfs(root, 0)
 
-    def dfs(self, root: Optional[TreeNode], count: int) -> int:
+    def dfs(self, root: Optional[TreeNode], depth: int) -> int:
+        """postorder traversal"""
         if root is None:
-            return count
-        count += 1
-        l: int = self.dfs(root.left, count)
-        r: int = self.dfs(root.right, count)
+            return depth
+        l: int = self.dfs(root.left, depth + 1)
+        r: int = self.dfs(root.right, depth + 1)
         return max(l, r)
 
 
 def test_maxDepth_case_1():
     # arrange
     root: Optional[TreeNode] = DeserializeFromList([3, 9, 20, None, None, 15, 7])
-    if root == None:
+    if root is None:
         raise Exception("failed")
-
     expected: int = 3
 
     # act
@@ -49,9 +49,8 @@ def test_maxDepth_case_1():
 def test_maxDepth_case_2():
     # arrange
     root: Optional[TreeNode] = DeserializeFromList([1, None, 2])
-    if root == None:
+    if root is None:
         raise Exception("failed")
-
     expected: int = 2
 
     # act
