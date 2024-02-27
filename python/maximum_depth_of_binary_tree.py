@@ -20,15 +20,15 @@ class Solution:
         """time complexity: O(n)"""
         if root is None:
             return 0
-        return self.dfs(root, 0)
+        return self.dfs(root)
 
-    def dfs(self, root: Optional[TreeNode], depth: int) -> int:
+    def dfs(self, root: Optional[TreeNode]) -> int:
         """postorder traversal"""
         if root is None:
-            return depth
-        l: int = self.dfs(root.left, depth + 1)
-        r: int = self.dfs(root.right, depth + 1)
-        return max(l, r)
+            return 0
+        left: int = self.dfs(root.left)
+        right: int = self.dfs(root.right)
+        return 1 + max(left, right)
 
 
 def test_maxDepth_case_1():
