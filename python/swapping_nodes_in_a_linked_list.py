@@ -1,5 +1,3 @@
-"""module to reorder the linked list"""
-
 import sys
 
 sys.path.append("./models")
