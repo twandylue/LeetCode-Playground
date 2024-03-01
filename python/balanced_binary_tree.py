@@ -1,26 +1,27 @@
-from typing import Optional, Tuple
 import sys
 
 sys.path.append("./models")
-from binary_tree_node import TreeNode
-
 sys.path.append("./utils")
+
+from typing import Optional
+from binary_tree_node import TreeNode
 from deserialize_to_binary_tree import DeserializeFromList
+from serialize_binary_tree import SerializeBinaryTreeToList
 
 
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
-        return self.helper(root)[0]
+        """time complexity: O(n)"""
+        return self.dfs(root)[0]
 
-    def helper(self, root: Optional[TreeNode]) -> Tuple[bool, int]:
-        if root == None:
+    def dfs(self, root: Optional[TreeNode]) -> tuple[bool, int]:
+        """postorder traversal"""
+        if root is None:
             return (True, 0)
-
-        left = self.helper(root.left)
-        right = self.helper(root.right)
-        balanced = left[0] and right[0] and abs(left[1] - right[1]) <= 1
-
-        return (balanced, max(left[1], right[1]) + 1)
+        left: tuple[bool, int] = self.dfs(root.left)
+        right: tuple[bool, int] = self.dfs(root.right)
+        is_balanced: bool = left[0] and right[0] and abs(left[1] - right[1]) <= 1
+        return (is_balanced, max(left[1], right[1]) + 1)
 
 
 def test_isBalanced_case_1():
