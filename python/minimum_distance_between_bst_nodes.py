@@ -34,6 +34,24 @@ class Solution:
         prev[0] = root.val
         self.dfs(root.right, prev, result)
 
+    # NOTE: also works
+    # def minDiffInBST(self, root: Optional[TreeNode]) -> int:
+    #     """time complexity: O(n)"""
+    #     result: list[int] = []
+    #     self.dfs(root, result)
+    #     min_diff: int = float("inf")
+    #     for i in range(len(result) - 1):
+    #         min_diff = min(min_diff, result[i + 1] - result[i])
+    #     return min_diff
+    #
+    # def dfs(self, root: Optional[TreeNode], result: list[int]) -> None:
+    #     """dfs in inorder traversal"""
+    #     if root is None:
+    #         return
+    #     self.dfs(root.left, result)
+    #     result.append(root.val)
+    #     self.dfs(root.right, result)
+
 
 def test_minDiffInBST_case_1():
     """This is a test case"""
