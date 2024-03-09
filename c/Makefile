@@ -20,3 +20,4 @@ all: $(C_OUTS) $(CXX_OUTS)
 
 clean:
 	$(RM) $(C_OUTS) $(CXX_OUTS)
+	$(RM) -rf src/*.dSYM/

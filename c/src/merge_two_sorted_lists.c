@@ -20,11 +20,7 @@ struct ListNode *mergeTwoLists(struct ListNode *list1, struct ListNode *list2)
 		ptr = &(*ptr)->next;
 		*node = (*node)->next;
 	}
-	if (list1 == NULL) {
-		*ptr = list2;
-	} else {
-		*ptr = list1;
-	}
+	*ptr = (list1 == NULL) ? list2 : list1;
 	return head;
 }
 

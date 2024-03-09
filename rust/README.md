@@ -1,4 +1,4 @@
-# Neetcode
+# Rust
 
 ## Run Unit Tests
 
