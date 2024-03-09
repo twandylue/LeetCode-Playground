@@ -1,45 +1,22 @@
-# A line starting with a has is a comment, we'll build up
-# the below example
-
-TARGET = leetcode
-SRC_FILES = main.c
-
-# NO EDITS NEEDED BELOW THIS LINE
-
+CC = gcc
 CXX = g++
-CXXFLAGS = -Wall -Wextra -Werror -pedantic-errors -Wno-error=unused-parameter
-CXXFLAGS_DEBUG = -g
-CXXVERSION = -std=c++17
+CFLAGS = -std=c99 -Wall -lm
+CXXFLAGS = -std=c++11 -Wall
 
-OBJECTS = $(SRC_FILES:.c=.o)
+C_SRCS = $(wildcard src/*.c)
+C_OUTS = $(patsubst %.c, %, $(C_SRCS))
+CXX_SRCS = $(wildcard src/*.cpp)
+CXX_OUTS = $(patsubst %.cpp, %, $(CXX_SRCS))
 
-ifeq ($(shell echo "Windows"), "Windows")
-	TARGET := $(TARGET).exe
-	DEL = del
-	Q=
-else
-	DEL = rm -f
-	Q="
-endif
+.PHONY: clean
 
-all: $(TARGET)
+all: $(C_OUTS) $(CXX_OUTS)
 
-$(TARGET): $(OBJECTS)
-	$(CXX) -o $@ $^
+%.out : %.c
+	$(CC) $(CFLAGS) $< -o $@
 
-.cpp.o:
-	$(CXX) $(CXXFLAGS) $(CXXVERSION) $(CXXFLAGS_DEBUG) -o $@ -c $<
+%.out : %.cpp
+	$(CXX) $(CXXFLAGS) $< -o $@
 
 clean:
-	$(DEL) $(TARGET) $(OBJECTS) Makefile.bak
-
-depend:
-	@sed -i.bak '/^# DEPENDENCIES/,$$d' Makefile
-	@$(DEL) sed*
-	@echo $(Q)# DEPENDENCIES$(Q) >> Makefile
-	@$(CXX) -MM $(SRC_FILES) >> Makefile
-
-.PHONY: all clean depend
-
-# DEPENDENCIES
-main.o: main.c
+	$(RM) $(C_OUTS) $(CXX_OUTS)
