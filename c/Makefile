@@ -1,3 +1,4 @@
+# ref: https://github.com/lennylxx/leetcode/tree/master?tab=readme-ov-file
 CC = gcc
 CXX = g++
 CFLAGS = -std=c99 -Wall -lm -ggdb
