@@ -1,32 +1,29 @@
-from typing import Optional
 import sys
 
 sys.path.append("./models")
-from binary_tree_node import TreeNode
-
 sys.path.append("./utils")
+
+from typing import Optional
+from binary_tree_node import TreeNode
 from deserialize_to_binary_tree import DeserializeFromList
+from serialize_binary_tree import SerializeBinaryTreeToList
 
 
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
-        if root != None:
-            return self.dfs(root.val, root)
-        else:
-            return 0
+        """time complexity: O(n)"""
+        return self.dfs(root.val, root)
 
-    def dfs(self, maxVal: int, node: TreeNode) -> int:
+    def dfs(self, max_val: int, node: Optional[TreeNode]) -> int:
+        """dfs in preorder traversal"""
+        if node is None:
+            return 0
         count: int = 0
-        if node != None:
-            if node.val >= maxVal:
-                count += 1
-            maxVal = max(maxVal, node.val)
-            count += self.dfs(maxVal, node.left)
-            count += self.dfs(maxVal, node.right)
-
-            return count
-        else:
-            return 0
+        if node.val >= max_val:
+            count += 1
+        max_val = max(max_val, node.val)
+        count += self.dfs(max_val, node.left) + self.dfs(max_val, node.right)
+        return count
 
 
 def test_goodNodes_case_1():
