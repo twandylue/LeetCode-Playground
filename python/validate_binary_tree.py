@@ -1,10 +1,10 @@
-from typing import Optional
 import sys
 
 sys.path.append("./models")
-from binary_tree_node import TreeNode
-
 sys.path.append("./utils")
+
+from typing import Optional
+from binary_tree_node import TreeNode
 from deserialize_to_binary_tree import DeserializeFromList
 from serialize_binary_tree import SerializeBinaryTreeToList
 
@@ -17,17 +17,17 @@ from serialize_binary_tree import SerializeBinaryTreeToList
 #         self.right = right
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        return self.isValid(root, -float("inf"), float("inf"))
+        """time complexity: O(n)"""
+        return self.dfs(root, -float("inf"), float("inf"))
 
-    def isValid(self, root: Optional[TreeNode], minNumber: int, maxNumber: int) -> bool:
-        if root == None:
+    def dfs(self, node: Optional[TreeNode], min_val: int, max_val: int) -> bool:
+        """dfs in preorder traversal"""
+        if node is None:
             return True
-
-        if root.val <= minNumber or root.val >= maxNumber:
+        if node.val <= min_val or node.val >= max_val:
             return False
-
-        return self.isValid(root.left, minNumber, root.val) and self.isValid(
-            root.right, root.val, maxNumber
+        return self.dfs(node.left, min_val, node.val) and self.dfs(
+            node.right, node.val, max_val
         )
 
 
