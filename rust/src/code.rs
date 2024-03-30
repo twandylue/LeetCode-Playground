@@ -99,6 +99,7 @@ pub mod remove_duplicates_from_sorted_array_ii;
 pub mod remove_element;
 pub mod remove_k_digits;
 pub mod reverse_bits;
+pub mod reverse_string;
 pub mod rotate_image;
 pub mod s_132_pattern;
 pub mod search_a_2d_matrix;
