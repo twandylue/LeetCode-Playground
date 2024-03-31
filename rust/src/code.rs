@@ -127,6 +127,7 @@ pub mod two_sum_2;
 pub mod unique_email_addresses;
 pub mod unique_length_3_palindromic_subsequences;
 pub mod valid_number;
+pub mod valid_palindrome_ii;
 pub mod valid_parenthesis_string;
 pub mod validate_stack_sequences;
 pub mod wiggle_sort_ii;
