@@ -4,20 +4,18 @@ impl Solution {
     pub fn find_peak_element(nums: Vec<i32>) -> i32 {
         let mut l: usize = 0;
         let mut r: usize = nums.len() - 1;
-        let mut result: i32 = 0;
+        let mut mid: usize = 0;
         while l <= r {
-            let mid: usize = (l + r) / 2;
-            result = mid as i32;
-            if mid > 0 && nums[mid] < nums[mid - 1] {
-                r = mid - 1;
-            } else if mid < nums.len() - 1 && nums[mid] < nums[mid + 1] {
+            mid = (l + r) / 2;
+            if mid < nums.len() - 1 && nums[mid] < nums[mid + 1] {
                 l = mid + 1;
+            } else if mid > 0 && nums[mid] < nums[mid - 1] {
+                r = mid - 1;
             } else {
-                return result;
+                return mid as i32;
             }
         }
-
-        result
+        mid as i32
     }
 }
 

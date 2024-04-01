@@ -35,6 +35,7 @@ pub mod find_first_and_last_position_of_element_in_sorted_array;
 pub mod find_k_closest_elements;
 pub mod find_median_from_data_stream;
 pub mod find_minimum_in_rotated_sorted_array;
+pub mod find_peak_element;
 pub mod find_pivot_index;
 pub mod find_the_difference_of_two_arrays;
 pub mod find_the_index_of_the_first_occurrence_in_a_string;
