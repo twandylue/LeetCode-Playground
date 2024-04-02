@@ -3,6 +3,33 @@ use std::collections::HashMap;
 pub struct Solution {}
 
 impl Solution {
+    // NOTE: Another way can work
+    // pub fn top_k_frequent(nums: Vec<i32>, k: i32) -> Vec<i32> {
+    //     let mut result: Vec<i32> = Vec::new();
+    //     let mut occur_map: HashMap<i32, i32> = HashMap::new();
+    //     let mut bucket: Vec<Vec<i32>> = Vec::new();
+    //     for _ in 0..nums.len() + 1 {
+    //         bucket.push(Vec::new());
+    //     }
+    //     for num in nums.iter() {
+    //         occur_map.entry(*num).and_modify(|x| *x += 1).or_insert(1);
+    //     }
+    //     for (key, val) in occur_map.iter() {
+    //         bucket[*val as usize].push(*key);
+    //     }
+    //     let mut i: usize = 0;
+    //     let mut k: i32 = k;
+    //     while k > 0 && i < nums.len() {
+    //         let idx: usize = nums.len() - i;
+    //         if bucket[idx].len() > 0 {
+    //             k -= bucket[idx].len() as i32;
+    //             result.append(&mut bucket[idx]);
+    //         }
+    //         i += 1;
+    //     }
+    //     result
+    // }
+
     pub fn top_k_frequent(nums: Vec<i32>, k: i32) -> Vec<i32> {
         let mut map: HashMap<i32, i32> = HashMap::new();
         let mut bucket: Vec<Vec<i32>> = vec![Vec::new(); nums.len() + 1];
@@ -18,20 +45,19 @@ impl Solution {
             bucket[*v as usize].push(*k);
         });
 
-        let mut count = k;
-        let mut index = nums.len();
+        let mut count: i32 = k;
+        let mut i: usize = 0;
         loop {
-            if !bucket[index].is_empty() {
-                bucket[index].iter().for_each(|x| {
-                    res.push(*x);
-                    count -= 1;
-                });
-            }
-
-            index -= 1;
-            if count == 0 || index == 0 {
+            if count <= 0 || i > nums.len() {
                 break;
             }
+
+            let index: usize = nums.len() - i;
+            if bucket[index].len() != 0 {
+                count -= bucket[index].len() as i32;
+                res.append(&mut bucket[index]);
+            }
+            i += 1;
         }
 
         return res;
@@ -43,21 +69,32 @@ mod test {
     use super::Solution;
 
     #[test]
-    fn case_1() {
+    fn top_k_frequent_case_1() {
+        // arrange
         let input = vec![1, 1, 1, 2, 2, 3];
         let k = 2;
-        let mut actual = Solution::top_k_frequent(input, k);
-        actual.sort();
         let expected = vec![1, 2];
 
+        // act
+        let mut actual = Solution::top_k_frequent(input, k);
+
+        // assert
+        actual.sort();
         assert_eq!(actual, expected);
+    }
 
-        let input2 = vec![4, 1, -1, 2, -1, 2, 3];
-        let k2 = 2;
-        let mut actual2 = Solution::top_k_frequent(input2, k2);
-        actual2.sort();
-        let expected2 = vec![-1, 2];
+    #[test]
+    fn top_k_frequent_case_2() {
+        // arrange
+        let input = vec![4, 1, -1, 2, -1, 2, 3];
+        let k = 2;
+        let expected = vec![-1, 2];
 
-        assert_eq!(actual2, expected2);
+        // act
+        let mut actual = Solution::top_k_frequent(input, k);
+
+        // assert
+        actual.sort();
+        assert_eq!(actual, expected);
     }
 }
