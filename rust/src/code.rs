@@ -111,6 +111,7 @@ pub mod search_suggestions_system;
 pub mod set_matrix_zeroes;
 pub mod sign_of_the_product_of_an_array;
 pub mod simplify_path;
+pub mod single_threaded_cpu;
 pub mod sliding_window_maximum;
 pub mod smallest_value_of_the_rearranged_number;
 pub mod sort_an_array;
