@@ -96,6 +96,7 @@ pub mod palindromic_substrings;
 pub mod permutation_in_string;
 pub mod plus_one;
 pub mod pow;
+pub mod remove_all_adjacent_duplicates_in_string;
 pub mod remove_duplicates_from_sorted_array;
 pub mod remove_duplicates_from_sorted_array_ii;
 pub mod remove_element;
