@@ -1,23 +1,17 @@
-use std::collections::BinaryHeap;
-
 struct Solution {}
 
 impl Solution {
+    /// NOTE: time complexity O(nlogn)
     pub fn last_stone_weight(stones: Vec<i32>) -> i32 {
-        let mut heap: BinaryHeap<i32> = BinaryHeap::from(stones);
-        while heap.len() > 1 {
-            let i = heap.pop().unwrap();
-            let j = heap.pop().unwrap();
-            if i == j {
-                continue;
-            } else {
-                let remain = i - j;
-                heap.push(remain);
-            }
-        }
-        heap.push(0);
+        use std::collections::BinaryHeap;
 
-        return *heap.peek().unwrap();
+        let mut min_heap = BinaryHeap::from(stones);
+        while min_heap.len() > 1 {
+            let f: i32 = min_heap.pop().unwrap();
+            let s: i32 = min_heap.pop().unwrap();
+            min_heap.push(f - s);
+        }
+        return *min_heap.peek().unwrap();
     }
 }
 

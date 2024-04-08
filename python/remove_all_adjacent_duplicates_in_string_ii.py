@@ -1,17 +1,16 @@
 class Solution:
     def removeDuplicates(self, s: str, k: int) -> str:
+        """time complexity: O(n), space complexity: O(n)"""
         stack: list[tuple[str, int]] = list()
         for i in range(len(s)):
             count: int = 1
             if len(stack) > 0 and stack[-1][0] == s[i]:
                 count += stack[-1][1]
-
             if count == k:
                 while len(stack) > 0 and stack[-1][0] == s[i]:
                     stack.pop()
             else:
                 stack.append((s[i], count))
-
         return "".join([s[0] for s in stack])
 
 
