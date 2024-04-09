@@ -1,20 +1,18 @@
-use std::collections::BinaryHeap;
-
 struct Solution {}
 
 impl Solution {
     pub fn k_closest(points: Vec<Vec<i32>>, k: i32) -> Vec<Vec<i32>> {
-        let mut heap = BinaryHeap::new();
-        for point in points {
-            let distance = point[0] * point[0] + point[1] * point[1];
-            heap.push((distance, point));
-        }
+        use std::collections::BinaryHeap;
 
-        while heap.len() > k as usize {
-            heap.pop();
+        let mut min_heap: BinaryHeap<(i32, Vec<i32>)> = BinaryHeap::new();
+        for p in points {
+            let dis: i32 = p[0] * p[0] + p[1] * p[1];
+            min_heap.push((dis, p));
         }
-
-        heap.into_iter().map(|(_, point)| point).collect()
+        while min_heap.len() > k as usize {
+            min_heap.pop();
+        }
+        min_heap.into_iter().map(|(_, x)| x).collect()
     }
 }
 
