@@ -3,6 +3,7 @@ import heapq
 
 class Solution:
     def findKthLargest(self, nums: list[int], k: int) -> int:
+        """time complexity: O(nlogn), space complexity: O(n)"""
         heapq.heapify(nums)
         return heapq.nlargest(k, nums)[-1]
 

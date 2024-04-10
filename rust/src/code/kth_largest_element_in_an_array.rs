@@ -1,9 +1,10 @@
-use std::collections::BinaryHeap;
-
 struct Solution {}
 
 impl Solution {
+    // NOTE: time complexity O(nlogn)
     pub fn find_kth_largest(nums: Vec<i32>, k: i32) -> i32 {
+        use std::collections::BinaryHeap;
+
         let heap = BinaryHeap::from(nums);
         let v = heap
             .into_sorted_vec()
