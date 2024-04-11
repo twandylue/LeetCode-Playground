@@ -1,52 +1,42 @@
-use std::collections::{BinaryHeap, VecDeque};
-
 struct Solution {}
 
 // NOTE:
 // 1. heap_pop() => represent for executing
-// 2. queue => like a buffer
+// 2. queue => like a buffer for waiting
 // time complexity: O(n)
 impl Solution {
     pub fn least_interval(tasks: Vec<char>, n: i32) -> i32 {
-        let mut time: usize = 0;
-        // let mut task_his: Vec<char> = Vec::new();
-        let tasks_accu: Vec<i32> = tasks.iter().fold(vec![0; 26], |mut acc, &c| {
-            acc[(c as u8 - b'A') as usize] += 1;
+        use std::collections::{BinaryHeap, HashMap, VecDeque};
 
-            acc
-        });
-        let mut heap: BinaryHeap<(i32, char)> = BinaryHeap::new();
-        for i in 0..26 {
-            if tasks_accu[i] > 0 {
-                heap.push((tasks_accu[i], char::from('A' as u8 + i as u8)));
-            }
+        let mut time: i32 = 0;
+        let mut counter: HashMap<char, i32> = HashMap::new();
+        for task in tasks {
+            counter.entry(task).and_modify(|x| *x += 1).or_insert(1);
         }
-
-        let mut queue: VecDeque<((i32, char), usize)> = VecDeque::new();
-
-        while !heap.is_empty() || !queue.is_empty() {
-            if let Some(h) = heap.pop() {
-                if h.0 - 1 > 0 {
-                    // NOTE: push back before next round(as time += 1)
-                    queue.push_back(((h.0 - 1, h.1), time + n as usize));
-                }
-                // task_his.push(h.1);
-            } else {
-                // task_his.push(' ');
-            }
-
-            if queue.len() > 0 && time >= queue[0].1 {
-                if let Some(q) = queue.pop_front() {
-                    heap.push(q.0);
+        let mut max_heap: BinaryHeap<i32> = BinaryHeap::new();
+        for cnt in counter.values() {
+            max_heap.push(*cnt);
+        }
+        let mut queue: VecDeque<(i32, i32)> = VecDeque::new();
+        loop {
+            if let Some(c) = max_heap.pop() {
+                if c - 1 > 0 {
+                    queue.push_back((c - 1, time + n));
                 }
             }
-
+            if let Some(&(c, t)) = queue.front() {
+                if time >= t {
+                    max_heap.push(c);
+                    queue.pop_front();
+                }
+            }
             time += 1;
+            if max_heap.len() == 0 && queue.len() == 0 {
+                break;
+            }
         }
 
-        // println!("task_his: {task_his:?}");
-        // task_his.len() as i32
-        time as i32
+        time
     }
 }
 

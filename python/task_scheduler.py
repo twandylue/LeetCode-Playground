@@ -1,29 +1,30 @@
-from collections import Counter, deque
+from collections import deque
 import heapq
-from typing import Deque, Tuple
 
 
 class Solution:
     def leastInterval(self, tasks: list[str], n: int) -> int:
+        """time complexity: O(n), space complexity: O(26)"""
         time: int = 0
-        cnts: dict[str, int] = Counter(tasks)
-        maxHeap: list[int] = [-cnt for cnt in cnts.values()]
-        heapq.heapify(maxHeap)
-
-        queue: Deque[Tuple[int, int]] = deque()
-
-        while len(queue) > 0 or len(maxHeap) > 0:
-            if len(maxHeap) > 0:
-                h: int = heapq.heappop(maxHeap)
+        counter: dict[str, int] = {}
+        for task in tasks:
+            if task not in counter:
+                counter[task] = 1
+            else:
+                counter[task] += 1
+        max_heap: list[int] = []
+        for count in counter.values():
+            heapq.heappush(max_heap, -count)
+        queue: deque[tuple[int, int]] = deque()
+        while len(max_heap) > 0 or len(queue) > 0:
+            if len(max_heap) > 0:
+                h: int = heapq.heappop(max_heap)
                 if h + 1 < 0:
                     queue.append((h + 1, time + n))
-
             if len(queue) > 0 and time >= queue[0][1]:
-                q: Tuple[int, int] = queue.popleft()
-                heapq.heappush(maxHeap, q[0])
-
+                c, _ = queue.popleft()
+                heapq.heappush(max_heap, c)
             time += 1
-
         return time
 
 
