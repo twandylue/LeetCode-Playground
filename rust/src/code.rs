@@ -69,6 +69,7 @@ pub mod maximum_frequency_stack;
 pub mod maximum_number_of_removable_characters;
 pub mod maximum_product_subarray;
 pub mod maximum_subarray;
+pub mod maximum_subsequence_score;
 pub mod maximum_sum_circular_subarray;
 pub mod meetting_rooms;
 pub mod meetting_rooms_2;
