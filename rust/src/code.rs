@@ -98,6 +98,7 @@ pub mod palindromic_substrings;
 pub mod permutation_in_string;
 pub mod plus_one;
 pub mod pow;
+pub mod process_tasks_using_servers;
 pub mod remove_all_adjacent_duplicates_in_string;
 pub mod remove_all_adjacent_duplicates_in_string_ii;
 pub mod remove_duplicates_from_sorted_array;
