@@ -6,7 +6,7 @@ impl Solution {
     pub fn kth_largest_number(mut nums: Vec<String>, k: i32) -> String {
         use std::cmp::Ordering;
 
-        /// NOTE: sort by length and then by value in descending order
+        // NOTE: sort by length and then by value in descending order
         nums.sort_by(|a, b| {
             let v = b.len().cmp(&a.len());
             if v == Ordering::Equal {
