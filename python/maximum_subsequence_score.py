@@ -21,7 +21,7 @@ class Solution:
 
 
 def test_maxScore_case_1():
-    """This is a test case for getOrder"""
+    """This is a test case for maxScore"""
     # arrange
     nums1: list[int] = [1, 3, 3, 2]
     nums2: list[int] = [2, 1, 3, 4]
@@ -37,7 +37,7 @@ def test_maxScore_case_1():
 
 
 def test_maxScore_case_2():
-    """This is a test case for getOrder"""
+    """This is a test case for maxScore"""
     # arrange
     nums1: list[int] = [4, 2, 3, 1, 1]
     nums2: list[int] = [7, 5, 10, 9, 6]
