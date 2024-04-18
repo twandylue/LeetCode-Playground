@@ -11,6 +11,7 @@ pub mod boats_to_save_people;
 pub mod brick_wall;
 pub mod can_place_flowers;
 pub mod car_fleet;
+pub mod longest_happy_string;
 pub mod car_pooling;
 pub mod check_if_a_string_contains_all_binary_codes_of_size_k;
 pub mod coin_change;
