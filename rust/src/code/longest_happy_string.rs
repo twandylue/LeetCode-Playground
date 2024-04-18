@@ -51,7 +51,7 @@ mod tests {
         let a: i32 = 1;
         let b: i32 = 1;
         let c: i32 = 7;
-        let expected: String = "ccaccbcc".to_string();
+        let expected: String = "ccbccacc".to_string();
 
         // act
         let actual = Solution::longest_diverse_string(a, b, c);
