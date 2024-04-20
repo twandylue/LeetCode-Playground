@@ -70,6 +70,7 @@ pub mod majority_element;
 pub mod maximum_depth_of_binary_tree;
 pub mod maximum_frequency_stack;
 pub mod maximum_number_of_removable_characters;
+pub mod maximum_performance_of_a_team;
 pub mod maximum_product_subarray;
 pub mod maximum_subarray;
 pub mod maximum_subsequence_score;
