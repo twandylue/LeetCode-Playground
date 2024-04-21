@@ -51,6 +51,7 @@ pub mod house_robber_ii;
 pub mod implement_stack_using_queues;
 pub mod insert_delete_getrandom;
 pub mod insert_interval;
+pub mod ipo;
 pub mod isomorphic_strings;
 pub mod jump_game;
 pub mod koko_eating_bananas;
