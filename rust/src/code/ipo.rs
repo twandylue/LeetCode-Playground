@@ -8,14 +8,23 @@ impl Solution {
         use std::cmp::Reverse;
         use std::collections::BinaryHeap;
 
-        let mut min_heap: BinaryHeap<Reverse<(i32, i32)>> = BinaryHeap::new();
-        for (pro, cap) in profits
-            .into_iter()
-            .zip(capital.into_iter())
-            .collect::<Vec<(i32, i32)>>()
-        {
-            min_heap.push(Reverse((cap, pro)));
-        }
+        let mut min_heap: BinaryHeap<Reverse<(i32, i32)>> = BinaryHeap::from(
+            capital
+                .into_iter()
+                .zip(profits.into_iter())
+                .map(|x| Reverse(x))
+                .collect::<Vec<Reverse<(i32, i32)>>>(),
+        );
+
+        // NOTE: this is another way to create a min heap
+        // let mut min_heap: BinaryHeap<Reverse<(i32, i32)>> = BinaryHeap::new();
+        // for (pro, cap) in profits
+        //     .into_iter()
+        //     .zip(capital.into_iter())
+        //     .collect::<Vec<(i32, i32)>>()
+        // {
+        //     min_heap.push(Reverse((cap, pro)));
+        // }
         let mut max_heap: BinaryHeap<i32> = BinaryHeap::new();
         for _ in 0..k {
             while min_heap
