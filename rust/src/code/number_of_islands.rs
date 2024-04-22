@@ -1,38 +1,34 @@
 pub struct Solution {}
 
-// NOTE: time complexity: O(n * m)
+use std::collections::HashSet;
 impl Solution {
-    pub fn num_islands(mut grid: Vec<Vec<char>>) -> i32 {
-        let h = grid.len();
-        let w = grid[0].len();
-        let mut count = 0;
-
-        for y in 0..h {
-            for x in 0..w {
-                if grid[y][x] == '1' {
+    // NOTE: time complexity: O(n * m)
+    pub fn num_islands(grid: Vec<Vec<char>>) -> i32 {
+        let mut count: i32 = 0;
+        let mut visited: HashSet<(usize, usize)> = HashSet::new();
+        for i in 0..grid.len() {
+            for j in 0..grid[i].len() {
+                if grid[i][j] != '0' && !visited.contains(&(i, j)) {
                     count += 1;
-                    Self::walk(&mut grid, x, y);
+                    Self::dfs(i, j, &mut visited, &grid);
                 }
             }
         }
-
         count
     }
 
-    fn walk(grid: &mut Vec<Vec<char>>, x: usize, y: usize) {
-        if y >= grid.len() || x >= grid[0].len() || grid[y][x] == '0' {
+    fn dfs(i: usize, j: usize, visited: &mut HashSet<(usize, usize)>, grid: &Vec<Vec<char>>) {
+        if i >= grid.len() || j >= grid[i].len() || grid[i][j] == '0' || visited.contains(&(i, j)) {
             return;
         }
-
-        grid[y][x] = '0';
-
-        Self::walk(grid, x + 1, y);
-        if x.checked_sub(1).is_some() {
-            Self::walk(grid, x - 1, y);
+        visited.insert((i, j));
+        Self::dfs(i + 1, j, visited, grid);
+        if i.checked_sub(1).is_some() {
+            Self::dfs(i - 1, j, visited, grid);
         }
-        Self::walk(grid, x, y + 1);
-        if y.checked_sub(1).is_some() {
-            Self::walk(grid, x, y - 1);
+        Self::dfs(i, j + 1, visited, grid);
+        if j.checked_sub(1).is_some() {
+            Self::dfs(i, j - 1, visited, grid);
         }
     }
 }
