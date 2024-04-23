@@ -1,31 +1,39 @@
 class Solution:
     def maxAreaOfIsland(self, grid: list[list[int]]) -> int:
-        maxArea: int = 0
-        rows = len(grid)
-        cols = len(grid[0])
-        for r in range(0, rows):
-            for c in range(0, cols):
-                area: int = self.walk(c, r, grid)
-                maxArea = max(maxArea, area)
+        """time complexity: O(n*m), space complexity: O(n*m)"""
+        result: int = 0
+        visited: set[tuple[int, int]] = set()
+        for i in range(len(grid)):
+            for j in range(len(grid[i])):
+                if grid[i][j] != 0 and (i, j) not in visited:
+                    area: list[int] = [0]
+                    self.dfs(i, j, area, visited, grid)
+                    result = max(result, area[0])
+        return result
 
-        return maxArea
-
-    def walk(self, x: int, y: int, grid: list[list[int]]) -> int:
-        area: int = 0
-
-        if x >= len(grid[0]) or y >= len(grid) or grid[y][x] == 0:
-            return area
-        area += grid[y][x]
-        grid[y][x] = 0
-        area += self.walk(x + 1, y, grid)
-        if x > 0:
-            area += self.walk(x - 1, y, grid)
-
-        area += self.walk(x, y + 1, grid)
-        if y > 0:
-            area += self.walk(x, y - 1, grid)
-
-        return area
+    def dfs(
+        self,
+        i: int,
+        j: int,
+        area: list[int],
+        visited: set[tuple[int, int]],
+        grid: list[list[int]],
+    ) -> None:
+        if (
+            i < 0
+            or i >= len(grid)
+            or j < 0
+            or j >= len(grid[i])
+            or (i, j) in visited
+            or grid[i][j] == 0
+        ):
+            return
+        area[0] += 1
+        visited.add((i, j))
+        self.dfs(i + 1, j, area, visited, grid)
+        self.dfs(i - 1, j, area, visited, grid)
+        self.dfs(i, j + 1, area, visited, grid)
+        self.dfs(i, j - 1, area, visited, grid)
 
 
 def test_maxAreaOfIsland_case_1():

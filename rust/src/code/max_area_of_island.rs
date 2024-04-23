@@ -1,37 +1,44 @@
 struct Solution {}
 
+use std::cmp::max;
+use std::collections::HashSet;
+
 impl Solution {
-    pub fn max_area_of_island(mut grid: Vec<Vec<i32>>) -> i32 {
-        let mut max_area: i32 = 0;
-        for y in 0..grid.len() {
-            for x in 0..grid[0].len() {
-                let area = Self::walk(x, y, &mut grid);
-                max_area = std::cmp::max(area, max_area);
+    pub fn max_area_of_island(grid: Vec<Vec<i32>>) -> i32 {
+        let mut result: i32 = 0;
+        let mut visited: HashSet<(usize, usize)> = HashSet::new();
+        for i in 0..grid.len() {
+            for j in 0..grid[i].len() {
+                if grid[i][j] != 0 && !visited.contains(&(i, j)) {
+                    let mut area = 0;
+                    Self::dfs(i, j, &mut area, &mut visited, &grid);
+                    result = max(result, area);
+                }
             }
         }
-
-        max_area
+        result
     }
 
-    fn walk(x: usize, y: usize, grid: &mut Vec<Vec<i32>>) -> i32 {
-        let mut area: i32 = 0;
-        if x >= grid[0].len() || y >= grid.len() || grid[y][x] == 0 {
-            return area;
+    fn dfs(
+        i: usize,
+        j: usize,
+        area: &mut i32,
+        visited: &mut HashSet<(usize, usize)>,
+        grid: &Vec<Vec<i32>>,
+    ) {
+        if i >= grid.len() || j >= grid[i].len() || visited.contains(&(i, j)) || grid[i][j] == 0 {
+            return;
         }
-
-        area += grid[y][x];
-        grid[y][x] = 0;
-        area += Self::walk(x + 1, y, grid);
-        if let Some(v) = x.checked_sub(1) {
-            area += Self::walk(v, y, grid);
+        *area += 1;
+        visited.insert((i, j));
+        Self::dfs(i + 1, j, area, visited, grid);
+        if i.checked_sub(1).is_some() {
+            Self::dfs(i - 1, j, area, visited, grid);
         }
-
-        area += Self::walk(x, y + 1, grid);
-        if let Some(v) = y.checked_sub(1) {
-            area += Self::walk(x, v, grid);
+        Self::dfs(i, j + 1, area, visited, grid);
+        if j.checked_sub(1).is_some() {
+            Self::dfs(i, j - 1, area, visited, grid);
         }
-
-        area
     }
 }
 
