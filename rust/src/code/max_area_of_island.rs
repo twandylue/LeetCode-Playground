@@ -4,6 +4,7 @@ use std::cmp::max;
 use std::collections::HashSet;
 
 impl Solution {
+    // NOTE: time complexity O(n * m)
     pub fn max_area_of_island(grid: Vec<Vec<i32>>) -> i32 {
         let mut result: i32 = 0;
         let mut visited: HashSet<(usize, usize)> = HashSet::new();
