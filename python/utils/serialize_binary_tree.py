@@ -1,26 +1,28 @@
-import collections
 import sys
 
 sys.path.append("../models")
 from binary_tree_node import TreeNode
-from typing import Deque, Optional
+from typing import Optional
 from deserialize_to_binary_tree import DeserializeFromList
+from collections import deque
 
 
 def SerializeBinaryTreeToList(root: Optional[TreeNode]) -> list[Optional[int]]:
     output: list[Optional[int]] = []
-    stack: Deque[Optional[TreeNode]] = collections.deque()
-    stack.append(root)
-    while len(stack) > 0:
-        node = stack.popleft()
-        if node == None:
+    if root is None:
+        return output
+    queue: deque[Optional[TreeNode]] = deque()
+    queue.append(root)
+    while len(queue) > 0:
+        node: Optional[TreeNode] = queue.popleft()
+        if node is None:
             output.append(None)
-            continue
         else:
             output.append(node.val)
-            stack.append(node.left)
-            stack.append(node.right)
-
+            if node.left is None and node.right is None:
+                continue
+            queue.append(node.left)
+            queue.append(node.right)
     return output
 
 
