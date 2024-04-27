@@ -1,25 +1,20 @@
 from collections import deque
-from typing import Deque, Tuple
 
 
 class Solution:
     def orangesRotting(self, grid: list[list[int]]) -> int:
-        queue: Deque[Tuple[int, int]] = deque()
         time: int = 0
         fresh: int = 0
-        cols: int = len(grid[0])
-        rows: int = len(grid)
-
-        for r in range(0, rows):
-            for c in range(0, cols):
+        queue: deque[tuple[int, int]] = deque()
+        for r in range(len(grid)):
+            for c in range(len(grid[r])):
                 if grid[r][c] == 1:
                     fresh += 1
-                if grid[r][c] == 2:
+                elif grid[r][c] == 2:
                     queue.append((r, c))
-
-        dirs: list[Tuple[int, int]] = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+        dirs: list[tuple[int, int]] = [(1, 0), (-1, 0), (0, 1), (0, -1)]
         while len(queue) > 0 and fresh > 0:
-            for _ in range(0, len(queue)):
+            for _ in range(len(queue)):
                 r, c = queue.popleft()
                 for dr, dc in dirs:
                     row: int = r + dr
@@ -28,17 +23,14 @@ class Solution:
                         row < 0
                         or row >= len(grid)
                         or col < 0
-                        or col >= len(grid[0])
+                        or col >= len(grid[row])
                         or grid[row][col] != 1
                     ):
                         continue
-
                     grid[row][col] = 2
                     fresh -= 1
                     queue.append((row, col))
-
             time += 1
-
         return time if fresh == 0 else -1
 
 

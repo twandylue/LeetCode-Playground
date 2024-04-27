@@ -5,7 +5,7 @@ struct Solution {}
 type X = usize;
 type Y = usize;
 
-// NOTE: time complexity: O(n)
+// NOTE: time complexity: O(n), space complexity: O(n), where n is the number of cells
 impl Solution {
     pub fn oranges_rotting(mut grid: Vec<Vec<i32>>) -> i32 {
         let mut deque: VecDeque<(X, Y)> = VecDeque::new();
@@ -84,6 +84,46 @@ impl Solution {
                             fresh -= 1;
                             deque.push_back((col, row));
                         }
+                    }
+                }
+            }
+            time += 1;
+        }
+
+        return if fresh == 0 { time } else { -1 };
+    }
+
+    pub fn oranges_rotting_3(mut grid: Vec<Vec<i32>>) -> i32 {
+        let mut fresh: i32 = 0;
+        let mut time: i32 = 0;
+        let mut queue: VecDeque<(usize, usize)> = VecDeque::new();
+        for r in 0..grid.len() {
+            for c in 0..grid[r].len() {
+                if grid[r][c] == 1 {
+                    fresh += 1
+                } else if grid[r][c] == 2 {
+                    queue.push_back((r, c));
+                }
+            }
+        }
+        let dirs: Vec<(i32, i32)> = vec![(1, 0), (-1, 0), (0, 1), (0, -1)];
+        while !queue.is_empty() && fresh > 0 {
+            for _ in 0..queue.len() {
+                if let Some((r, c)) = queue.pop_front() {
+                    for (dr, dc) in dirs.iter() {
+                        let row: i32 = r as i32 + dr;
+                        let col: i32 = c as i32 + dc;
+                        if row < 0
+                            || row >= grid.len() as i32
+                            || col < 0
+                            || col >= grid[row as usize].len() as i32
+                            || grid[row as usize][col as usize] != 1
+                        {
+                            continue;
+                        }
+                        grid[row as usize][col as usize] = 2;
+                        fresh -= 1;
+                        queue.push_back((row as usize, col as usize));
                     }
                 }
             }
@@ -171,6 +211,19 @@ mod tests {
 
         // act
         let actual = Solution::oranges_rotting_2(grid);
+
+        // arrange
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn oranges_rotting_case_7() {
+        // arrange
+        let grid: Vec<Vec<i32>> = vec![vec![0, 2]];
+        let expected: i32 = 0;
+
+        // act
+        let actual = Solution::oranges_rotting_3(grid);
 
         // arrange
         assert_eq!(expected, actual);
