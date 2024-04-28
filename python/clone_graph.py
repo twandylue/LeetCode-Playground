@@ -1,8 +1,7 @@
-# Definition for a Node.
 from typing import Optional
 
 
-# NOTE: time complexity: O(n), space complexity: O(n)
+# Definition for a Node.
 class Node:
     def __init__(self, val=0, neighbors=None):
         self.val = val
@@ -10,19 +9,19 @@ class Node:
 
 
 class Solution:
-    def cloneGraph(self, node: Node) -> Optional[Node]:
+    # NOTE: time complexity: O(n), space complexity: O(n), where n is the number of nodes in the graph
+    def cloneGraph(self, node: Optional[Node]) -> Optional[Node]:
         if node is None:
             return None
-        nodeMap: dict[Node, Node] = dict()
-        n: Node = self.bfs(node, nodeMap)
-        return n
+        new_node_map: dict[Node, Node] = {}
+        new_node: Node = self.dfs(node, new_node_map)
+        return new_node
 
-    def bfs(self, node: Node, nodeMap: dict[Node, Node]) -> Node:
-        if node in nodeMap:
-            return nodeMap[node]
-        newNode: Node = Node(node.val)
-        nodeMap[node] = newNode
+    def dfs(self, node: Node, new_node_map: dict[Node, Node]) -> Node:
+        if node in new_node_map:
+            return new_node_map[node]
+        new_node: Node = Node(node.val)
+        new_node_map[node] = new_node
         for n in node.neighbors:
-            newNode.neighbors.append(self.bfs(n, nodeMap))
-
-        return newNode
+            new_node.neighbors.append(self.dfs(n, new_node_map))
+        return new_node

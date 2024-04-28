@@ -93,6 +93,7 @@ impl Solution {
         return if fresh == 0 { time } else { -1 };
     }
 
+    // NOTE: another approach
     pub fn oranges_rotting_3(mut grid: Vec<Vec<i32>>) -> i32 {
         let mut fresh: i32 = 0;
         let mut time: i32 = 0;
