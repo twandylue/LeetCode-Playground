@@ -1,49 +1,44 @@
-use std::cmp::{max, Reverse};
-use std::collections::{BinaryHeap, HashMap, HashSet};
-
-type Distance = i32;
-type Vertex = i32;
-
 struct Solution {}
 
 impl Solution {
+    // NOTE: time complexity O(E log V), where E is the number of edges and V is the number of vertices
     pub fn network_delay_time(times: Vec<Vec<i32>>, n: i32, k: i32) -> i32 {
-        let mut heap: BinaryHeap<Reverse<(Distance, Vertex)>> = BinaryHeap::new();
-        let mut visited: HashSet<Vertex> = HashSet::new();
-        let mut path: Distance = 0;
-        let mut point_map: HashMap<Vertex, Vec<(Distance, Vertex)>> = HashMap::new();
-        for item in times {
-            point_map
-                .entry(item[0])
-                .and_modify(|x| x.push((item[2], item[1])))
-                .or_insert(vec![(item[2], item[1])]);
-        }
+        use std::cmp::{max, Reverse};
+        use std::collections::{BinaryHeap, HashMap, HashSet};
 
-        heap.push(Reverse((0, k)));
-        while let Some(Reverse((d1, n1))) = heap.pop() {
-            if visited.contains(&n1) {
+        type Distance = i32;
+        type Vertex = i32;
+
+        let mut min_heap: BinaryHeap<Reverse<(Distance, Vertex)>> = BinaryHeap::new();
+        min_heap.push(Reverse((0, k)));
+        let mut path: i32 = 0;
+        let mut visited: HashSet<Vertex> = HashSet::new();
+        let mut graph: HashMap<Vertex, Vec<(Vertex, Distance)>> = HashMap::new();
+        for time in times {
+            graph
+                .entry(time[0])
+                .and_modify(|x| x.push((time[1], time[2])))
+                .or_insert(vec![(time[1], time[2])]);
+        }
+        while let Some(Reverse((accu_dis, node))) = min_heap.pop() {
+            if visited.contains(&node) {
                 continue;
             }
-            visited.insert(n1);
-            path = max(path, d1);
-
-            if let Some(items) = point_map.get(&n1) {
-                for item in items {
-                    let d2: Distance = item.0;
-                    let n2: Vertex = item.1;
-                    if visited.contains(&n2) {
-                        continue;
+            path = max(path, accu_dis);
+            visited.insert(node);
+            if let Some(nexts) = graph.get(&node) {
+                for (next_node, weight) in nexts {
+                    if !visited.contains(next_node) {
+                        min_heap.push(Reverse((accu_dis + *weight, *next_node)));
                     }
-                    heap.push(Reverse((d1 + d2, n2)));
                 }
             }
         }
-
-        return if visited.len() == n as usize {
+        if visited.len() == n as usize {
             path
         } else {
             -1
-        };
+        }
     }
 }
 
