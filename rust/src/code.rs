@@ -19,6 +19,7 @@ pub mod container_with_most_water;
 pub mod contains_duplicate;
 pub mod contains_duplicate_ii;
 pub mod count_good_nodes_in_binary_tree;
+pub mod count_sub_islands;
 pub mod counting_bits;
 pub mod course_schedule;
 pub mod daily_temperatures;
