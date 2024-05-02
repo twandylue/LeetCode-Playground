@@ -1,5 +1,7 @@
 use std::collections::HashSet;
 
+struct Solution {}
+
 impl Solution {
     // NOTE: time complexity O(n), where n is the number of cells in the grid
     pub fn count_sub_islands(grid1: Vec<Vec<i32>>, grid2: Vec<Vec<i32>>) -> i32 {
@@ -43,5 +45,62 @@ impl Solution {
             result = Self::dfs(r, c - 1, grid1, grid2, visited) && result;
         }
         result
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_count_sub_islands_case_1() {
+        // arrange
+        let grid1: Vec<Vec<i32>> = vec![
+            vec![1, 1, 1, 0, 0],
+            vec![0, 1, 1, 1, 1],
+            vec![0, 0, 0, 0, 0],
+            vec![1, 0, 0, 0, 0],
+            vec![1, 1, 0, 1, 1],
+        ];
+        let grid2: Vec<Vec<i32>> = vec![
+            vec![1, 1, 1, 0, 0],
+            vec![0, 0, 1, 1, 1],
+            vec![0, 1, 0, 0, 0],
+            vec![1, 0, 1, 1, 0],
+            vec![0, 1, 0, 1, 0],
+        ];
+        let expected: i32 = 3;
+
+        // act
+        let actual = Solution::count_sub_islands(grid1, grid2);
+
+        // assert
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn test_count_sub_islands_case_2() {
+        // arrange
+        let grid1: Vec<Vec<i32>> = vec![
+            vec![1, 0, 1, 0, 1],
+            vec![1, 1, 1, 1, 1],
+            vec![0, 0, 0, 0, 0],
+            vec![1, 1, 1, 1, 1],
+            vec![1, 0, 1, 0, 1],
+        ];
+        let grid2: Vec<Vec<i32>> = vec![
+            vec![0, 0, 0, 0, 0],
+            vec![1, 1, 1, 1, 1],
+            vec![0, 1, 0, 1, 0],
+            vec![0, 1, 0, 1, 0],
+            vec![1, 0, 0, 0, 1],
+        ];
+        let expected: i32 = 2;
+
+        // act
+        let actual = Solution::count_sub_islands(grid1, grid2);
+
+        // assert
+        assert_eq!(expected, actual);
     }
 }
