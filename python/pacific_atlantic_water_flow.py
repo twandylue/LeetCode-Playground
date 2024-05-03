@@ -1,24 +1,21 @@
 class Solution:
     def pacificAtlantic(self, heights: list[list[int]]) -> list[list[int]]:
-        result: list[list[int]] = []
+        """time complexity: O(n * m), space complexity: O(n * m), where n is the number of rows and m is the number of columns"""
         pac: set[tuple[int, int]] = set()
         alt: set[tuple[int, int]] = set()
-        rows: int = len(heights)
-        cols: int = len(heights[0])
-
-        for r in range(0, rows):
-            self.dfs(r, 0, pac, heights, heights[r][0])
-            self.dfs(r, cols - 1, alt, heights, heights[r][cols - 1])
-
-        for c in range(0, cols):
-            self.dfs(0, c, pac, heights, heights[0][c])
-            self.dfs(rows - 1, c, alt, heights, heights[rows - 1][c])
-
-        for r in range(0, rows):
-            for c in range(0, cols):
-                if (r, c) in pac and (r, c) in alt:
+        result: list[list[int]] = []
+        for r in range(len(heights)):
+            self.dfs(r, 0, pac, heights[r][0], heights)
+            self.dfs(
+                r, len(heights[r]) - 1, alt, heights[r][len(heights[r]) - 1], heights
+            )
+        for c in range(len(heights[0])):
+            self.dfs(0, c, pac, heights[0][c], heights)
+            self.dfs(len(heights) - 1, c, alt, heights[len(heights) - 1][c], heights)
+        for r in range(len(heights)):
+            for c in range(len(heights[r])):
+                if (r, c) in alt and (r, c) in pac:
                     result.append([r, c])
-
         return result
 
     def dfs(
@@ -26,27 +23,23 @@ class Solution:
         r: int,
         c: int,
         visited: set[tuple[int, int]],
-        heights: list[list[int]],
         pre_height: int,
+        heights: list[list[int]],
     ) -> None:
         if (
             r < 0
-            or r >= len(heights)
+            or r == len(heights)
             or c < 0
-            or c >= len(heights[0])
+            or c == len(heights[r])
             or (r, c) in visited
             or heights[r][c] < pre_height
         ):
-            return None
-
+            return
         visited.add((r, c))
-        self.dfs(r + 1, c, visited, heights, heights[r][c])
-        if r > 0:
-            self.dfs(r - 1, c, visited, heights, heights[r][c])
-
-        self.dfs(r, c + 1, visited, heights, heights[r][c])
-        if c > 0:
-            self.dfs(r, c - 1, visited, heights, heights[r][c])
+        self.dfs(r - 1, c, visited, heights[r][c], heights)
+        self.dfs(r + 1, c, visited, heights[r][c], heights)
+        self.dfs(r, c - 1, visited, heights[r][c], heights)
+        self.dfs(r, c + 1, visited, heights[r][c], heights)
 
 
 def test_pacificAtlantic_case_1():

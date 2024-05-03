@@ -6,6 +6,7 @@ type COL = usize;
 type ROW = usize;
 
 impl Solution {
+    // NOTE: time complexity O(n * m), where n is the number of rows and m is the number of columns
     pub fn pacific_atlantic(heights: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
         let mut pac: HashSet<(ROW, COL)> = HashSet::new();
         let mut alt: HashSet<(ROW, COL)> = HashSet::new();
