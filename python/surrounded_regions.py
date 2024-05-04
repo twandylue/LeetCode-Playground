@@ -3,41 +3,67 @@ class Solution:
         """
         Do not return anything, modify board in-place instead.
         """
-        rows: int = len(board)
-        cols: int = len(board[0])
-
-        for r in range(0, rows):
-            for c in range(0, cols):
-                if (r == 0 or r == rows - 1) or (c == 0 or c == cols - 1):
-                    self.bfs(c, r, board)
-
-        for r in range(0, rows):
-            for c in range(0, cols):
+        """time complexity: O(n * m), space complexity: O(1), where n is the number of rows and m is the number of columns"""
+        for r in range(len(board)):
+            for c in range(len(board[r])):
+                if r == 0 or r == len(board) - 1 or c == 0 or c == len(board[r]) - 1:
+                    self.dfs(r, c, board)
+        for r in range(len(board)):
+            for c in range(len(board[r])):
                 if board[r][c] == "O":
                     board[r][c] = "X"
-
-        for r in range(0, rows):
-            for c in range(0, cols):
-                if board[r][c] == "T":
+                elif board[r][c] == "T":
                     board[r][c] = "O"
 
-        return
-
-    def bfs(self, x: int, y: int, board: list[list[str]]) -> None:
+    def dfs(self, r: int, c: int, board: list[list[int]]) -> None:
         if (
-            x < 0
-            or x >= len(board[0])
-            or y < 0
-            or y >= len(board)
-            or board[y][x] != "O"
+            r < 0
+            or r == len(board)
+            or c < 0
+            or c == len(board[r])
+            or board[r][c] != "O"
         ):
             return
+        board[r][c] = "T"
+        self.dfs(r + 1, c, board)
+        self.dfs(r - 1, c, board)
+        self.dfs(r, c + 1, board)
+        self.dfs(r, c - 1, board)
 
-        board[y][x] = "T"
-        self.bfs(x + 1, y, board)
-        if x > 0:
-            self.bfs(x - 1, y, board)
 
-        self.bfs(x, y + 1, board)
-        if y > 0:
-            self.bfs(x, y - 1, board)
+def test_solve_case_1():
+    # arrange
+    board: list[list[str]] = [
+        ["X", "X", "X", "X"],
+        ["X", "O", "O", "X"],
+        ["X", "X", "O", "X"],
+        ["X", "O", "X", "X"],
+    ]
+    expected: list[list[str]] = [
+        ["X", "X", "X", "X"],
+        ["X", "X", "X", "X"],
+        ["X", "X", "X", "X"],
+        ["X", "O", "X", "X"],
+    ]
+
+    # act
+    solution = Solution()
+    solution.solve(board)
+
+    # assert
+    assert expected == board
+
+
+def test_solve_case_2():
+    # arrange
+    board: list[list[str]] = [
+        ["X"],
+    ]
+    expected: list[list[str]] = [["X"]]
+
+    # act
+    solution = Solution()
+    solution.solve(board)
+
+    # assert
+    assert expected == board

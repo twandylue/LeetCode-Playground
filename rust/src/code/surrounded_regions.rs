@@ -1,55 +1,39 @@
 struct Solution {}
 
-// NOTE: time complexity: O(n * m), where m = 3 here.
+// NOTE: time complexity: O(n * m)
 impl Solution {
     pub fn solve(board: &mut Vec<Vec<char>>) {
-        let rows = board.len();
-        let cols = board[0].len();
-
-        // Step 1: capture unsurrounded regions (O -> T)
-        for r in 0..rows {
-            for c in 0..cols {
-                // NOTE: borundary check
-                if (r == 0 || r == rows - 1) || (c == 0 || c == cols - 1) {
-                    Self::dfs(c, r, board);
+        for r in 0..board.len() {
+            for c in 0..board[r].len() {
+                if r == 0 || r == board.len() - 1 || c == 0 || c == board[r].len() - 1 {
+                    Self::dfs(r, c, board);
                 }
             }
         }
-
-        // Step 2: capture surrounded regions (O -> X)
-        for r in 0..rows {
-            for c in 0..cols {
+        for r in 0..board.len() {
+            for c in 0..board[r].len() {
                 if board[r][c] == 'O' {
                     board[r][c] = 'X';
-                }
-            }
-        }
-
-        // Step 3: Uncapture unsurrounded regions (T -> O)
-        for r in 0..rows {
-            for c in 0..cols {
-                if board[r][c] == 'T' {
+                } else if board[r][c] == 'T' {
                     board[r][c] = 'O';
                 }
             }
         }
     }
 
-    fn dfs(x: usize, y: usize, board: &mut Vec<Vec<char>>) {
-        if x >= board[0].len() || y >= board.len() || board[y][x] != 'O' {
+    fn dfs(r: usize, c: usize, board: &mut Vec<Vec<char>>) {
+        if r == board.len() || c == board[r].len() || board[r][c] != 'O' {
             return;
         }
-
-        board[y][x] = 'T';
-        Self::dfs(x + 1, y, board);
-        if x.checked_sub(1).is_some() {
-            Self::dfs(x - 1, y, board);
+        board[r][c] = 'T';
+        if r.checked_sub(1).is_some() {
+            Self::dfs(r - 1, c, board);
         }
-
-        Self::dfs(x, y + 1, board);
-        if y.checked_sub(1).is_some() {
-            Self::dfs(x, y - 1, board);
+        Self::dfs(r + 1, c, board);
+        if c.checked_sub(1).is_some() {
+            Self::dfs(r, c - 1, board);
         }
+        Self::dfs(r, c + 1, board);
     }
 }
 
