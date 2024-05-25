@@ -1,42 +1,38 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: list[list[int]]) -> bool:
-        courseCache: dict[int, list[int]] = dict()
-        visited: dict[int, int] = dict()
-
-        for item in prerequisites:
-            course = item[0]
-            pre = item[1]
-            if course not in courseCache:
-                courseCache[course] = [pre]
-            else:
-                courseCache[course].append(pre)
-
-        for c in range(0, numCourses):
-            if self.dfs(c, visited, courseCache):
+        """
+        In shor, this question is about detecting cycle in a directed graph. Thus, we have to use a set (visited) and DFS to solve this question.
+        Time complexity: O(n + m), where n is the number of courses and m is the number of prerequisites.
+        """
+        course_graph: dict[int, list[int]] = {i: [] for i in range(numCourses)}
+        for course, pre in prerequisites:
+            course_graph[course].append(pre)
+        visiting_set: set[int] = set()
+        completed_set: set[int] = set()
+        for c in range(numCourses):
+            if self.dfs(c, course_graph, visiting_set, completed_set):
                 continue
             return False
-
         return True
 
     def dfs(
-        self, course: int, visited: dict[int, int], courseCache: dict[int, list[int]]
+        self,
+        course: int,
+        course_graph: dict[int, list[int]],
+        visiting_set: set[int],
+        completed_set: set[int],
     ) -> bool:
-        if course not in courseCache:
+        if course in visiting_set:
+            return False
+        if course in completed_set:
             return True
-
-        if course in visited:
-            if visited[course] == 1:
-                return False
-            elif visited[course] == 0:
-                return True
-
-        visited[course] = 1
-        for pre in courseCache[course]:
-            if self.dfs(pre, visited, courseCache):
+        visiting_set.add(course)
+        for pre in course_graph[course]:
+            if self.dfs(pre, course_graph, visiting_set, completed_set):
                 continue
             return False
-
-        visited[course] = 0
+        completed_set.add(course)
+        visiting_set.remove(course)
         return True
 
 

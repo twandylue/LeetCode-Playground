@@ -1,57 +1,51 @@
-use std::{collections::HashMap, unreachable};
+use std::collections::{HashMap, HashSet};
 
 struct Solution {}
 
 impl Solution {
+    // NOTE: time complexity is O(n + m), where n is the number of courses and m is the number of prerequisites
     pub fn can_finish(num_courses: i32, prerequisites: Vec<Vec<i32>>) -> bool {
         let mut course_graph: HashMap<i32, Vec<i32>> = HashMap::new();
-        for i in prerequisites {
-            let course = i[0];
-            let pre = i[1];
-            course_graph
-                .entry(course)
-                .and_modify(|v| v.push(pre))
-                .or_insert(vec![pre]);
-        }
-
-        let mut visited: HashMap<i32, i32> = HashMap::new();
         for i in 0..num_courses {
-            if Self::dfs(i, &course_graph, &mut visited) {
+            course_graph.entry(i).or_insert(Vec::new());
+        }
+        for item in prerequisites {
+            let course: i32 = item[0];
+            let pre: i32 = item[1];
+            course_graph.entry(course).and_modify(|x| x.push(pre));
+        }
+        let mut visiting_set: HashSet<i32> = HashSet::new();
+        let mut completed_set: HashSet<i32> = HashSet::new();
+        for c in 0..num_courses {
+            if Self::dfs(c, &course_graph, &mut visiting_set, &mut completed_set) {
                 continue;
             }
-
             return false;
         }
-
         true
     }
 
     fn dfs(
         course: i32,
         course_graph: &HashMap<i32, Vec<i32>>,
-        visited: &mut HashMap<i32, i32>,
+        visiting_set: &mut HashSet<i32>,
+        completed_set: &mut HashSet<i32>,
     ) -> bool {
-        if let Some(val) = visited.get(&course) {
-            match val {
-                1 => return false,
-                0 => return true,
-                _ => unreachable!(),
-            };
+        if visiting_set.contains(&course) {
+            return false;
         }
-
-        visited.insert(course, 1);
-        if let Some(pres) = course_graph.get(&course) {
-            for pre in pres {
-                if Self::dfs(*pre, course_graph, visited) {
-                    continue;
-                }
-
-                return false;
+        if completed_set.contains(&course) {
+            return true;
+        }
+        visiting_set.insert(course);
+        for pre in course_graph.get(&course).unwrap().iter() {
+            if Self::dfs(*pre, course_graph, visiting_set, completed_set) {
+                continue;
             }
+            return false;
         }
-
-        visited.entry(course).and_modify(|v| *v = 0);
-
+        completed_set.insert(course);
+        visiting_set.remove(&course);
         true
     }
 }
@@ -61,7 +55,7 @@ mod test {
     use super::Solution;
 
     #[test]
-    fn can_finish_case_1() {
+    fn test_can_finish_case_1() {
         // arrange
         let num_courses = 2;
         let prerequisites = vec![vec![1, 0]];
@@ -75,7 +69,7 @@ mod test {
     }
 
     #[test]
-    fn can_finish_case_2() {
+    fn test_can_finish_case_2() {
         // arrange
         let num_courses = 2;
         let prerequisites = vec![vec![1, 0], vec![0, 1]];
@@ -89,7 +83,7 @@ mod test {
     }
 
     #[test]
-    fn can_finish_case_3() {
+    fn test_can_finish_case_3() {
         // arrange
         let num_courses = 100;
         let prerequisites = vec![
