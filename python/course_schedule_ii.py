@@ -1,49 +1,38 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: list[list[int]]) -> list[int]:
+        """time complexity: O(V + E) where V is the number of courses and E is the number of prerequisites"""
         result: list[int] = []
-        visited: set[int] = set()
-        cycle: set[int] = set()
-        course_graph: dict[int, list[int]] = dict()
-
-        for item in prerequisites:
-            course: int = item[0]
-            pre: int = item[1]
-            if course in course_graph:
-                course_graph[course].append(pre)
-            else:
-                course_graph[course] = [pre]
-
-        for c in range(0, numCourses):
-            if self.dfs(c, visited, cycle, result, course_graph):
+        course_graph: dict[int, list[int]] = {i: [] for i in range(numCourses)}
+        for course, pre in prerequisites:
+            course_graph[course].append(pre)
+        visiting_set: set[int] = set()
+        completed_set: set[int] = set()
+        for c in range(numCourses):
+            if self.dfs(c, result, course_graph, visiting_set, completed_set):
                 continue
             return []
-
         return result
 
     def dfs(
         self,
         course: int,
-        visited: set[int],
-        cycle: set[int],
         result: list[int],
         course_graph: dict[int, list[int]],
+        visiting_set: set[int],
+        completed_set: set[int],
     ) -> bool:
-        if course in visited:
-            return True
-        if course in cycle:
+        if course in visiting_set:
             return False
-
-        cycle.add(course)
-        if course in course_graph:
-            for pre in course_graph[course]:
-                if self.dfs(pre, visited, cycle, result, course_graph):
-                    continue
-                return False
-
-        cycle.remove(course)
-        visited.add(course)
+        if course in completed_set:
+            return True
+        visiting_set.add(course)
+        for pre in course_graph[course]:
+            if self.dfs(pre, result, course_graph, visiting_set, completed_set):
+                continue
+            return False
+        visiting_set.remove(course)
+        completed_set.add(course)
         result.append(course)
-
         return True
 
 
