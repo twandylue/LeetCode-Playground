@@ -18,8 +18,9 @@ impl UnionFind {
 
     fn find(&mut self, mut n: usize) -> usize {
         while n != self.parents[n] {
+            let tmp: usize = self.parents[n];
             self.parents[n] = self.parents[self.parents[n]];
-            n = self.parents[n];
+            n = tmp;
         }
         n
     }
@@ -46,7 +47,7 @@ impl UnionFind {
 struct Solution {}
 
 impl Solution {
-    // NOTE: Union and Find, time complexity: O(E + V)
+    // NOTE: Union and Find, time complexity: O(E + V), where E is the number of edges and V is the number of vertices
     pub fn count_components(n: i32, edges: Vec<Vec<i32>>) -> i32 {
         let mut result = n;
         let mut uf = UnionFind::new(n);

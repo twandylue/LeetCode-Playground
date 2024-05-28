@@ -5,8 +5,9 @@ class UnionFind:
 
     def find(self, x: int) -> int:
         while x != self._parents[x]:
+            tmp: int = self._parents[x]
             self._parents[x] = self._parents[self._parents[x]]
-            x = self._parents[x]
+            x = tmp
         return x
 
     def union(self, x1: int, x2: int) -> bool:
