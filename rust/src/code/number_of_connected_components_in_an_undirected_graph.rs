@@ -1,23 +1,57 @@
 use std::collections::{HashMap, HashSet};
 
+struct UnionFind {
+    parents: Vec<usize>,
+    ranks: Vec<i32>,
+}
+
+impl UnionFind {
+    pub fn new(n: i32) -> Self {
+        let mut parents: Vec<usize> = Vec::new();
+        for i in 0..n {
+            parents.push(i as usize);
+        }
+        let ranks: Vec<i32> = vec![1; n as usize];
+
+        Self { parents, ranks }
+    }
+
+    fn find(&mut self, mut n: usize) -> usize {
+        while n != self.parents[n] {
+            self.parents[n] = self.parents[self.parents[n]];
+            n = self.parents[n];
+        }
+        n
+    }
+
+    pub fn union(&mut self, x1: i32, x2: i32) -> i32 {
+        let x1: usize = x1 as usize;
+        let x2: usize = x2 as usize;
+        let p1: usize = self.find(x1);
+        let p2: usize = self.find(x2);
+        if p1 == p2 {
+            return 0;
+        }
+        if self.ranks[p1] > self.ranks[p2] {
+            self.ranks[p1] += self.ranks[p2];
+            self.parents[p2] = p1;
+        } else {
+            self.ranks[p2] += self.ranks[p1];
+            self.parents[p1] = p2;
+        }
+        1
+    }
+}
+
 struct Solution {}
 
 impl Solution {
     // NOTE: Union and Find, time complexity: O(E + V)
     pub fn count_components(n: i32, edges: Vec<Vec<i32>>) -> i32 {
-        let mut parents: Vec<i32> = Vec::new();
-        let mut ranks: Vec<i32> = Vec::new();
         let mut result = n;
-
-        for i in 0..n {
-            parents.push(i);
-            ranks.push(1);
-        }
-
+        let mut uf = UnionFind::new(n);
         for edge in edges {
-            let s = edge[0];
-            let e = edge[1];
-            result -= Self::union(s, e, &mut parents, &mut ranks);
+            result -= uf.union(edge[0], edge[1]);
         }
 
         return result;
@@ -114,7 +148,7 @@ mod tests {
     use super::Solution;
 
     #[test]
-    fn count_components_case_1() {
+    fn test_count_components_case_1() {
         // arrange
         let n = 5;
         let edges: Vec<Vec<i32>> = vec![vec![0, 1], vec![1, 2], vec![3, 4]];
@@ -128,7 +162,7 @@ mod tests {
     }
 
     #[test]
-    fn count_components_case_2() {
+    fn test_count_components_case_2() {
         // arrange
         let n = 5;
         let edges: Vec<Vec<i32>> = vec![vec![0, 1], vec![1, 2], vec![2, 3], vec![3, 4]];
@@ -142,7 +176,7 @@ mod tests {
     }
 
     #[test]
-    fn count_components_case_3() {
+    fn test_count_components_case_3() {
         // arrange
         let n = 6;
         let edges: Vec<Vec<i32>> = vec![vec![0, 1], vec![2, 3], vec![4, 5]];
@@ -156,7 +190,7 @@ mod tests {
     }
 
     #[test]
-    fn count_components_case_4() {
+    fn test_count_components_case_4() {
         // arrange
         let n = 5;
         let edges: Vec<Vec<i32>> = vec![vec![0, 1], vec![1, 2], vec![3, 4]];
@@ -170,7 +204,7 @@ mod tests {
     }
 
     #[test]
-    fn count_components_case_5() {
+    fn test_count_components_case_5() {
         // arrange
         let n = 5;
         let edges: Vec<Vec<i32>> = vec![vec![0, 1], vec![1, 2], vec![2, 3], vec![3, 4]];
@@ -184,7 +218,7 @@ mod tests {
     }
 
     #[test]
-    fn count_components_case_6() {
+    fn test_count_components_case_6() {
         // arrange
         let n = 6;
         let edges: Vec<Vec<i32>> = vec![vec![0, 1], vec![2, 3], vec![4, 5]];
