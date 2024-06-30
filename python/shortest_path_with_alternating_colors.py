@@ -5,6 +5,7 @@ class Solution:
     def shortestAlternatingPaths(
         self, n: int, redEdges: list[list[int]], blueEdges: list[list[int]]
     ) -> list[int]:
+        """time complexity: O(n + m), where n is the number of nodes and m is the number of nodes"""
         answer: list[int] = [-1 for _ in range(n)]
         red_graph: dict[int, list[int]] = defaultdict(list)
         blue_graph: dict[int, list[int]] = defaultdict(list)
