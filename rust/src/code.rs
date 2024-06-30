@@ -128,6 +128,7 @@ pub mod seat_reservation_manager;
 pub mod set_matrix_zeroes;
 pub mod shortest_bridge;
 pub mod shortest_path_in_binary_matrix;
+pub mod shortest_path_with_alternating_colors;
 pub mod sign_of_the_product_of_an_array;
 pub mod simplify_path;
 pub mod single_threaded_cpu;
