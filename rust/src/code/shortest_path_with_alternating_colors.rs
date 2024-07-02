@@ -64,26 +64,27 @@ mod test {
     fn test_shortest_alternating_paths_case_1() {
         // arrange
         let n: i32 = 3;
-        let redEdges: Vec<Vec<i32>> = vec![vec![0, 1], vec![1, 2]];
-        let blueEdges = vec![];
+        let red_edges: Vec<Vec<i32>> = vec![vec![0, 1], vec![1, 2]];
+        let blue_edges = vec![];
         let expected: Vec<i32> = vec![0, 1, -1];
 
         // act
-        let actual = Solution::shortest_alternating_paths(n, redEdges, blueEdges);
+        let actual = Solution::shortest_alternating_paths(n, red_edges, blue_edges);
 
         // assert
         assert_eq!(expected, actual);
     }
+
     #[test]
     fn test_shortest_alternating_paths_case_2() {
         // arrange
         let n: i32 = 3;
-        let redEdges: Vec<Vec<i32>> = vec![vec![0, 1]];
-        let blueEdges: Vec<Vec<i32>> = vec![vec![2, 1]];
+        let red_edges: Vec<Vec<i32>> = vec![vec![0, 1]];
+        let blue_edges: Vec<Vec<i32>> = vec![vec![2, 1]];
         let expected: Vec<i32> = vec![0, 1, -1];
 
         // act
-        let actual = Solution::shortest_alternating_paths(n, redEdges, blueEdges);
+        let actual = Solution::shortest_alternating_paths(n, red_edges, blue_edges);
 
         // assert
         assert_eq!(expected, actual);
