@@ -35,6 +35,7 @@ pub mod edit_distance;
 pub mod encode_and_decode_strings;
 pub mod evaluate_reverse_polish_notation;
 pub mod find_all_anagrams_in_a_string;
+pub mod find_closest_node_to_given_two_nodes;
 pub mod find_eventual_safe_states;
 pub mod find_first_and_last_position_of_element_in_sorted_array;
 pub mod find_k_closest_elements;

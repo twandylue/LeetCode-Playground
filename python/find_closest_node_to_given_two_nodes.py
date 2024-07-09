@@ -12,12 +12,12 @@ class Solution:
         self.bfs(node1, node1_dis_map, graph)
         self.bfs(node2, node2_dis_map, graph)
         result: int = -1
-        distance: int = float("inf")
+        min_dis: int = float("inf")
         for i in range(len(edges)):
             if i in node1_dis_map and i in node2_dis_map:
-                if distance > max(node1_dis_map[i], node2_dis_map[i]):
+                if min_dis > max(node1_dis_map[i], node2_dis_map[i]):
                     result = i
-                    distance = max(node1_dis_map[i], node2_dis_map[i])
+                    min_dis = max(node1_dis_map[i], node2_dis_map[i])
         return result
 
     def bfs(self, src: int, dis_map: dict[int, int], graph: dict[int, list[int]]):
