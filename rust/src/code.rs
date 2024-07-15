@@ -57,6 +57,7 @@ pub mod implement_stack_using_queues;
 pub mod insert_delete_getrandom;
 pub mod insert_interval;
 pub mod ipo;
+pub mod is_graph_bipartite;
 pub mod island_perimeter;
 pub mod isomorphic_strings;
 pub mod jump_game;
