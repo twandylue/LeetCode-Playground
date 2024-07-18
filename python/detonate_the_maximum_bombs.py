@@ -15,7 +15,7 @@ class Solution:
                     graph[i].append(j)
                 if d <= r2:
                     graph[j].append(i)
-        result: itn = 0
+        result: int = 0
         for i in range(len(bombs)):
             result = max(result, self.dfs(i, set(), graph))
         return result
