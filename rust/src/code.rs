@@ -163,6 +163,7 @@ pub mod valid_number;
 pub mod valid_palindrome_ii;
 pub mod valid_parenthesis_string;
 pub mod validate_stack_sequences;
+pub mod verifying_an_alien_dictionary;
 pub mod wiggle_sort_ii;
 pub mod word_break;
 // pub mod reverse_integer;

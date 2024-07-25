@@ -1,8 +1,8 @@
 class Solution:
     def isAlienSorted(self, words: list[str], order: str) -> bool:
         """time complexity: O(n * m), where n is the number of words and m is the length of the longest word."""
+        order_id: dict[str, int] = {c: i for i, c in enumerate(order)}
         for i in range(len(words) - 1):
-            order_id: dict[str, int] = {c: i for i, c in enumerate(order)}
             w1, w2 = words[i], words[i + 1]
             for j in range(len(w1)):
                 if j == len(w2):
