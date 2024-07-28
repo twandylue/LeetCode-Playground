@@ -50,6 +50,7 @@ pub mod find_the_kth_largest_integer_in_the_array;
 pub mod find_the_town_judge;
 pub mod four_sum;
 pub mod frequency_of_the_most_frequent_element;
+pub mod furthest_building_you_can_reach;
 pub mod generate_parentheses;
 pub mod group_anagrams;
 pub mod guess_number_higher_or_lower;
