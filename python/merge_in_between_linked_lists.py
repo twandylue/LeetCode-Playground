@@ -1,5 +1,7 @@
 import sys
 
+from typing import Optional
+
 sys.path.append("./models")
 from list_node import ListNode
 
