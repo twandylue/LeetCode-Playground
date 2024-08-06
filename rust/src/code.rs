@@ -40,6 +40,7 @@ pub mod find_all_anagrams_in_a_string;
 pub mod find_closest_node_to_given_two_nodes;
 pub mod find_eventual_safe_states;
 pub mod find_first_and_last_position_of_element_in_sorted_array;
+pub mod find_first_palindromic_string_in_the_array;
 pub mod find_k_closest_elements;
 pub mod find_median_from_data_stream;
 pub mod find_minimum_in_rotated_sorted_array;
