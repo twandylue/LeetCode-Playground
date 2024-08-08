@@ -4,6 +4,7 @@ pub mod array_with_elements_not_equal_to_average_of_neighbors;
 pub mod as_far_from_land_as_possible;
 pub mod assign_cookies;
 pub mod asteroid_collision;
+pub mod sort_array_by_parity;
 pub mod baseball_game;
 pub mod best_time_to_buy_and_sell_stock;
 pub mod best_time_to_buy_and_sell_stock_ii;
