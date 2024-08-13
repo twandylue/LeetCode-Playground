@@ -131,6 +131,7 @@ pub mod reorder_routes_to_make_all_paths_lead_to_the_city_zero;
 pub mod reorganize_string;
 pub mod reverse_bits;
 pub mod reverse_string;
+pub mod reverse_words_in_a_string_iii;
 pub mod rotate_image;
 pub mod s_132_pattern;
 pub mod search_a_2d_matrix;
