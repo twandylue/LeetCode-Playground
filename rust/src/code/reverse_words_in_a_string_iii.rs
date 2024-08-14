@@ -1,6 +1,7 @@
 struct Solution;
 
 impl Solution {
+    // NOTE: time complexity: O(n)
     pub fn reverse_words(s: String) -> String {
         let mut s: Vec<char> = s.chars().collect::<Vec<char>>();
         let mut left: usize = 0;
