@@ -25,7 +25,6 @@ impl Solution {
             } else {
                 break;
             }
-            dd
         }
         result
     }
