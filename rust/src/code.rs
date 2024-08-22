@@ -104,6 +104,7 @@ pub mod minimum_number_of_vertices_to_reach_all_nodes;
 pub mod minimum_operations_to_reduce_x_to_zero;
 pub mod minimum_penalty_for_a_shop;
 pub mod minimum_size_subarray_sum;
+pub mod minimum_time_to_make_rope_colorful;
 pub mod missing_number;
 pub mod move_zeroes;
 pub mod next_greater_element_i;
