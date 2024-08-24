@@ -68,6 +68,7 @@ pub mod is_graph_bipartite;
 pub mod island_perimeter;
 pub mod isomorphic_strings;
 pub mod jump_game;
+pub mod k_th_symbol_in_grammar;
 pub mod koko_eating_bananas;
 pub mod kth_largest_element_in_a_stream;
 pub mod largest_number;
