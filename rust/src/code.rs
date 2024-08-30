@@ -77,6 +77,7 @@ pub mod largest_odd_number_in_string;
 pub mod largest_rectangle_in_histogram;
 pub mod last_stone_weight;
 pub mod length_of_last_word;
+pub mod length_of_longest_subarray_with_at_most_k_frequency;
 pub mod longest_common_subsequence;
 pub mod longest_happy_string;
 pub mod longest_increasing_subsequence;
