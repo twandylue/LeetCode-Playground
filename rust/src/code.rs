@@ -9,6 +9,7 @@ pub mod baseball_game;
 pub mod best_time_to_buy_and_sell_stock;
 pub mod best_time_to_buy_and_sell_stock_ii;
 pub mod binary_search;
+pub mod binary_subarrays_with_sum;
 pub mod binary_tree_level_order_traversal;
 pub mod binary_tree_right_side_view;
 pub mod boats_to_save_people;
