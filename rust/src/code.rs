@@ -62,6 +62,7 @@ pub mod group_anagrams;
 pub mod guess_number_higher_or_lower;
 pub mod happy_number;
 pub mod house_robber_ii;
+pub mod implement_queue_using_stacks;
 pub mod implement_stack_using_queues;
 pub mod insert_delete_getrandom;
 pub mod insert_interval;
