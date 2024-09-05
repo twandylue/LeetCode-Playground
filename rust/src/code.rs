@@ -87,6 +87,7 @@ pub mod longest_palindromic_substring;
 pub mod lowest_common_ancestor_of_a_binary_search_tree;
 pub mod lru_cache;
 pub mod majority_element;
+pub mod make_the_string_great;
 pub mod maximum_depth_of_binary_tree;
 pub mod maximum_frequency_stack;
 pub mod maximum_number_of_removable_characters;
