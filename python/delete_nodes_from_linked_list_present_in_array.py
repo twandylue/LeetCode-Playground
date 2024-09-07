@@ -25,7 +25,7 @@ class Solution:
         dummy: Optional[ListNode] = ListNode()
         dummy.next = head
         prev = dummy
-        nums_set: Set[int] = set(nums)
+        nums_set: set[int] = set(nums)
         while prev.next is not None:
             if prev.next.val in nums_set:
                 prev.next = prev.next.next
