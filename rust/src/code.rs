@@ -125,6 +125,7 @@ pub mod number_of_subarrays_of_size_k_and_average_greater_than_or_equal_to_thres
 pub mod number_of_zero_filled_subarrays;
 pub mod online_stock_span;
 pub mod open_the_lock;
+pub mod operations_on_tree;
 pub mod palindromic_substrings;
 pub mod permutation_in_string;
 pub mod plus_one;
