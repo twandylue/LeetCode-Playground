@@ -3,16 +3,15 @@ import heapq
 
 class KthLargest:
     def __init__(self, k: int, nums: list[int]):
+        """time complexity: O(nlog(k))"""
         self._min_heap: list[int] = nums
         self._k: int = k
         heapq.heapify(self._min_heap)
-        while len(self._min_heap) > self._k:
-            heapq.heappop(self._min_heap)
 
     def add(self, val: int) -> int:
         """time complexity: O(log(k))"""
         heapq.heappush(self._min_heap, val)
-        if len(self._min_heap) > self._k:
+        while len(self._min_heap) > self._k:
             heapq.heappop(self._min_heap)
         return self._min_heap[0]
 
