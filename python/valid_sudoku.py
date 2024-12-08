@@ -1,35 +1,56 @@
 class Solution:
     def isValidSudoku(self, board: list[list[str]]) -> bool:
-        col_set = set()
-        row_set = set()
-        sub_cube_set = [set()] * len(board) * len(board[0])
-
-        for r in range(0, len(board)):
-            for c in range(0, len(board[r])):
-                if not board[r][c].isnumeric():
+        """time complexity: O(n^2), space complexity: O(n^2)"""
+        row_set: set[tuple[int]] = set()
+        col_set: set[tuple[int]] = set()
+        subbox_set: list[list[set[tuple[int]]]] = [
+            [set() for _ in range(len(board) // 3)] for _ in range(len(board[0]) // 3)
+        ]
+        for row in range(len(board)):
+            for col in range(len(board[row])):
+                if not board[row][col].isnumeric():
                     continue
-
-                digit = int(board[r][c], 10)
-                if (r, digit) in row_set:
+                number: int = int(board[row][col])
+                if (row, number) in row_set or (col, number) in col_set:
                     return False
-                else:
-                    row_set.add((r, digit))
-
-                if (c, digit) in col_set:
+                row_set.add((row, number))
+                col_set.add((col, number))
+                subbox_row: int = row // 3
+                subbox_col: int = col // 3
+                if (subbox_row, subbox_col, number) in subbox_set[subbox_row][
+                    subbox_col
+                ]:
                     return False
-                else:
-                    col_set.add((c, digit))
-
-                index = 3 * int(r / 3) + int(c / 3)
-                if (index, digit) in sub_cube_set[index]:
-                    return False
-                else:
-                    sub_cube_set[index].add((index, digit))
+                subbox_set[subbox_row][subbox_col].add((subbox_row, subbox_col, number))
 
         return True
 
 
-def test_isValidSudoku_case1():
+def test_isValidSudoku_case_1():
+    # arrange
+    board: list[list[str]] = [
+        ["1", "2", ".", ".", "3", ".", ".", ".", "."],
+        ["4", ".", ".", "5", ".", ".", ".", ".", "."],
+        [".", "9", "8", ".", ".", ".", ".", ".", "3"],
+        ["5", ".", ".", ".", "6", ".", ".", ".", "4"],
+        [".", ".", ".", "8", ".", "3", ".", ".", "5"],
+        ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
+        [".", ".", ".", ".", ".", ".", "2", ".", "."],
+        [".", ".", ".", "4", "1", "9", ".", ".", "8"],
+        [".", ".", ".", ".", "8", ".", ".", "7", "9"],
+    ]
+
+    expected: bool = True
+
+    # act
+    solution = Solution()
+    actual = solution.isValidSudoku(board)
+
+    # assert
+    assert actual == expected
+
+
+def test_isValidSudoku_case_2():
     # arrange
     board: list[list[str]] = [
         ["5", "3", ".", ".", "7", ".", ".", ".", "."],
@@ -53,7 +74,7 @@ def test_isValidSudoku_case1():
     assert actual == expected
 
 
-def test_isValidSudoku_case2():
+def test_isValidSudoku_case_3():
     # arrange
     board: list[list[str]] = [
         ["8", "3", ".", ".", "7", ".", ".", ".", "."],
