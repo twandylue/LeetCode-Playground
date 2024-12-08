@@ -1,22 +1,15 @@
 class Solution:
-    def longestConsecutive(self, nums: list[int]) -> int:
-        numSet: set[int] = set(nums)
+    def longestConsecutive(self, nums: List[int]) -> int:
+        """time complexity: O(n), space complexity: O(n)"""
         result: int = 0
-        for num in nums:
-            if num - 1 not in numSet:
-                length: int = 0
-                while num + length in numSet:
-                    length += 1
-
-                result = max(result, length)
-
-            ## NOTE: over time
-            # if num in numSet:
-            #     length: int = 0
-            #     while num in numSet:
-            #         num += 1
-            #         length += 1
-            #     result = max(result, length)
+        nums_set: set[int] = set(nums)
+        for i in range(len(nums)):
+            if nums[i] - 1 in nums_set:
+                continue
+            length: int = 0
+            while nums[i] + length in nums_set:
+                length += 1
+            result = max(result, length)
 
         return result
 
