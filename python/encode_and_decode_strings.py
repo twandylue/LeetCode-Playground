@@ -5,6 +5,7 @@ class Solution:
     """
 
     def encode(self, strs: list[str]) -> str:
+        """time complexity: O(n) where n is the number of string in strs, space complexity: O(n)"""
         # write your code here
         result: str = ""
         for i in range(len(strs)):
@@ -18,6 +19,7 @@ class Solution:
     """
 
     def decode(self, s: str) -> list[str]:
+        """time complexity: O(n), space complexity: O(n)"""
         # write your code here
         result: list[str] = list()
         l: int = 0
