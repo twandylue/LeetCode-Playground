@@ -1,23 +1,23 @@
 class Solution:
     def threeSum(self, nums: list[int]) -> list[list[int]]:
-        resultSet: set[tuple[int]] = set()
+        """time complexity: O(n^2)"""
         result: list[list[int]] = list()
+        value_set: set[tuple[int]] = set()
         nums.sort()
-
-        for i in range(0, len(nums) - 2):
+        for i in range(len(nums) - 2):
             j: int = i + 1
             k: int = len(nums) - 1
             while j < k:
-                if nums[i] + nums[j] + nums[k] == 0:
-                    resultSet.add((nums[i], nums[j], nums[k]))
-                    j += 1
-                elif nums[i] + nums[j] + nums[k] > 0:
+                if nums[i] + nums[j] + nums[k] > 0:
                     k -= 1
-                else:
+                elif nums[i] + nums[j] + nums[k] < 0:
                     j += 1
-
-        for s in resultSet:
+                else:
+                    value_set.add((nums[i], nums[j], nums[k]))
+                    k -= 1
+        for s in value_set:
             result.append([s[0], s[1], s[2]])
+
         return result
 
     def threeSum2(self, nums: list[int]) -> list[list[int]]:

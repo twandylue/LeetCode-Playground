@@ -1,5 +1,6 @@
 class Solution:
     def twoSum(self, numbers: list[int], target: int) -> list[int]:
+        """time complexity: O(n), space complexity: O(1)"""
         l: int = 0
         r: int = len(numbers) - 1
         while l < r:
