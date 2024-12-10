@@ -1,28 +1,26 @@
-import collections
+from collections import deque
 
 
 class Solution:
     def maxSlidingWindow(self, nums: list[int], k: int) -> list[int]:
-        results: list[int] = []
-        q = collections.deque()
-        l = 0
+        """time complexity: O(n)"""
+        result: int = list()
+        queue: deque[int] = deque()
+        l: int = 0
         for r in range(len(nums)):
-            while len(q) > 0 and nums[q[-1]] < nums[r]:
-                q.pop()
-
-            q.append(r)
-
-            if l > q[0]:
-                q.popleft()
-
-            if r + 1 >= k:
-                results.append(nums[q[0]])
+            while len(queue) > 0 and nums[r] > nums[queue[-1]]:
+                queue.pop()
+            queue.append(r)
+            if l > queue[0]:
+                queue.popleft()
+            if (r + 1) >= k:
+                result.append(nums[queue[0]])
                 l += 1
 
-        return results
+        return result
 
 
-def test_maxSlidingWindow_case1():
+def test_maxSlidingWindow_case_1():
     # arrange
     numbers: list[int] = [1, 3, -1, -3, 5, 3, 6, 7]
     k: int = 3
