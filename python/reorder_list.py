@@ -24,12 +24,15 @@ class Solution:
         """
         Do not return anything, modify head in-place instead.
         """
-        slow: Optional[ListNode] = head
-        fast: Optional[ListNode] = head.next
-        while fast is not None and fast.next is not None:
-            fast = fast.next.next
-            slow = slow.next
 
+        # Split the list
+        slow: Optional[ListNode] = head
+        fast: Optional[ListNode] = head
+        while slow is not None and fast is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+
+        # Reverse the second part of list
         curr: Optional[ListNode] = slow.next
         slow.next = None
         prev: Optional[ListNode] = None
@@ -39,15 +42,16 @@ class Solution:
             prev = curr
             curr = next_node
 
-        first: Optional[ListNode] = head
-        second: Optional[ListNode] = prev
-        while first is not None and second is not None:
-            first_next_node: Optional[ListNode] = first.next
-            second_next_node: Optional[ListNode] = second.next
-            first.next = second
-            second.next = first_next_node
-            first = first_next_node
-            second = second_next_node
+        # Merge two list
+        list1: Optional[ListNode] = head
+        list2: Optional[ListNode] = prev
+        while list1 is not None and list2 is not None:
+            list1_next: Optional[ListNode] = list1.next
+            list2_next: Optional[ListNode] = list2.next
+            list1.next = list2
+            list2.next = list1_next
+            list1 = list1_next
+            list2 = list2_next
 
 
 def test_reorderList_case_1():
