@@ -1,5 +1,5 @@
 class Solution:
-    def maxArea(self, heights: List[int]) -> int:
+    def maxArea(self, heights: list[int]) -> int:
         """time complexity: O(n), space complexity: O(1)"""
         result: int = 0
         l: int = 0

@@ -20,7 +20,7 @@ class LRUCache:
     def __init__(self, capacity: int):
         self._capacity: int = capacity
         self._head: Optional[ListNode] = ListNode()
-        self._tail: Optioanl[ListNode] = ListNode()
+        self._tail: Optional[ListNode] = ListNode()
         self._head.next = self._tail
         self._tail.prev = self._head
         self._node_map: dict[int, ListNode] = {}
@@ -45,7 +45,7 @@ class LRUCache:
         if key not in self._node_map:
             return -1
         node: ListNode = self._node_map[key]
-        iso_node: Optioanl[ListNode] = self._pop_node(node)
+        iso_node: Optional[ListNode] = self._pop_node(node)
         self._insert_after_head(iso_node)
         return iso_node.value
 
