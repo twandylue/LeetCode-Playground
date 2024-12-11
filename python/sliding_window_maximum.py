@@ -4,7 +4,7 @@ from collections import deque
 class Solution:
     def maxSlidingWindow(self, nums: list[int], k: int) -> list[int]:
         """time complexity: O(n)"""
-        result: int = list()
+        result: list[int] = []
         queue: deque[int] = deque()
         l: int = 0
         for r in range(len(nums)):
@@ -13,7 +13,7 @@ class Solution:
             queue.append(r)
             if l > queue[0]:
                 queue.popleft()
-            if (r + 1) >= k:
+            if r + 1 >= k:
                 result.append(nums[queue[0]])
                 l += 1
 

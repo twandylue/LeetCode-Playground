@@ -13,6 +13,7 @@ class Solution:
     def addTwoNumbers(
         self, l1: Optional[ListNode], l2: Optional[ListNode]
     ) -> Optional[ListNode]:
+        """time complexity: O(m + n)"""
         if l1 is None and l2 is None:
             return None
 

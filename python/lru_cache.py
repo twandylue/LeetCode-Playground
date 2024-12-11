@@ -1,55 +1,66 @@
 class ListNode:
-    def __init__(self, key: int, value: int):
-        self.key = key
-        self.value = value
-        self.prev: ListNode
-        self.next: ListNode
+    def __init__(
+        self,
+        key: int = 0,
+        value: int = 0,
+        next_node: Optional["ListNode"] = None,
+        prev: Optional["ListNode"] = None,
+    ):
+        self.key: int = key
+        self.value: int = value
+        self.next: Optional[ListNode] = next_node
+        self.prev: Optional[ListNode] = prev
 
 
 class LRUCache:
+
     def __init__(self, capacity: int):
-        self.capacity: int = capacity
-        self.head: ListNode = ListNode(0, 0)
-        self.tail: ListNode = ListNode(0, 0)
-        self.head.next = self.tail
-        self.tail.prev = self.head
-        self.nodeMap: dict[int, ListNode] = dict()
+        self._capacity: int = capacity
+        self._head: Optional[ListNode] = ListNode()
+        self._tail: Optioanl[ListNode] = ListNode()
+        self._head.next = self._tail
+        self._tail.prev = self._head
+        self._node_map: dict[int, ListNode] = {}
 
-    def insert_after_head(self, node: ListNode):
-        node.next = self.head.next
-        node.prev = self.head
-        self.head.next.prev = node
-        self.head.next = node
+    def _insert_after_head(self, node: ListNode) -> None:
+        """time complexity: O(1)"""
+        node.next = self._head.next
+        node.prev = self._head
+        self._head.next.prev = node
+        self._head.next = node
 
-    def pop_node(self, node: ListNode) -> ListNode:
-        node.next.prev = node.prev
-        node.prev.next = node.next
+    def _pop_node(self, node: ListNode) -> Optional[ListNode]:
+        """time complexity: O(1)"""
+        if node.prev is not None:
+            node.prev.next = node.next
+        if node.next is not None:
+            node.next.prev = node.prev
         return node
 
     def get(self, key: int) -> int:
-        if key in self.nodeMap:
-            node: ListNode = self.nodeMap[key]
-            isoNode: ListNode = self.pop_node(node)
-            self.insert_after_head(isoNode)
-            return isoNode.value
-        else:
+        """time complexity: O(1)"""
+        if key not in self._node_map:
             return -1
+        node: ListNode = self._node_map[key]
+        iso_node: Optioanl[ListNode] = self._pop_node(node)
+        self._insert_after_head(iso_node)
+        return iso_node.value
 
     def put(self, key: int, value: int) -> None:
-        if key in self.nodeMap:
-            node: ListNode = self.nodeMap[key]
-            isoNode: ListNode = self.pop_node(node)
-            isoNode.value = value
-            self.insert_after_head(isoNode)
-        else:
-            if self.capacity <= len(self.nodeMap):
-                lastNode: ListNode = self.tail.prev
-                isoNode: ListNode = self.pop_node(lastNode)
-                del self.nodeMap[isoNode.key]
-
-            newNode: ListNode = ListNode(key, value)
-            self.nodeMap[key] = newNode
-            self.insert_after_head(newNode)
+        """time complexity: O(1)"""
+        if key not in self._node_map:
+            if len(self._node_map) >= self._capacity:
+                least_node: ListNode = self._tail.prev
+                iso_least_node: ListNode = self._pop_node(least_node)
+                del self._node_map[iso_least_node.key]
+            new_node: ListNode = ListNode(key, value)
+            self._node_map[key] = new_node
+            self._insert_after_head(new_node)
+            return
+        node: ListNode = self._node_map[key]
+        iso_node: ListNode = self._pop_node(node)
+        iso_node.value = value
+        self._insert_after_head(iso_node)
 
 
 def test_lru_case1():
