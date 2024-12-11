@@ -1,20 +1,18 @@
 class Solution:
-    def maxArea(self, height: list[int]) -> int:
-        maxArea: int = 0
+    def maxArea(self, heights: List[int]) -> int:
+        """time complexity: O(n), space complexity: O(1)"""
+        result: int = 0
         l: int = 0
-        r: int = len(height) - 1
-
+        r: int = len(heights) - 1
         while l < r:
-            area: int = (r - l) * min(height[l], height[r])
-            print(area)
-            if height[l] < height[r]:
+            area: int = min(heights[l], heights[r]) * (r - l)
+            result = max(result, area)
+            if heights[l] < heights[r]:
                 l += 1
             else:
                 r -= 1
 
-            maxArea = max(maxArea, area)
-
-        return maxArea
+        return result
 
 
 def test_maxArea_case_1():
