@@ -19,30 +19,32 @@ from serialize_binary_tree import SerializeBinaryTreeToList
 class Solution:
     def buildTree(self, preorder: list[int], inorder: list[int]) -> Optional[TreeNode]:
         """time complexity: O(n)"""
-        preorder_que: deque[int] = deque(preorder)
+        preorder_queue: deque[int] = deque(preorder)
         inorder_map: dict[int, int] = {}
         for i in range(len(inorder)):
             inorder_map[inorder[i]] = i
-
         return self.build_helper(
-            0, len(inorder) - 1, preorder_que, inorder, inorder_map
+            0, len(inorder) - 1, preorder_queue, inorder, inorder_map
         )
 
     def build_helper(
         self,
         l: int,
         r: int,
-        preorder: deque[int],
+        preorder_queue: deque[int],
         inorder: list[int],
         inorder_map: dict[int, int],
     ) -> Optional[TreeNode]:
-        """helper function for buildTree. It's not a dfs, just a recursive function."""
         if l > r:
             return None
-        root: TreeNode = TreeNode(preorder.popleft())
-        idx: int = inorder_map[root.val]
-        root.left = self.build_helper(l, idx - 1, preorder, inorder, inorder_map)
-        root.right = self.build_helper(idx + 1, r, preorder, inorder, inorder_map)
+        root: TreeNode = TreeNode(preorder_queue.popleft())
+        inorder_idx: int = inorder_map[root.val]
+        root.left = self.build_helper(
+            l, inorder_idx - 1, preorder_queue, inorder, inorder_map
+        )
+        root.right = self.build_helper(
+            inorder_idx + 1, r, preorder_queue, inorder, inorder_map
+        )
         return root
 
 
