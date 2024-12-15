@@ -4,10 +4,11 @@ import heapq
 class Solution:
     def findKthLargest(self, nums: list[int], k: int) -> int:
         """time complexity: O(klon(n)) where n is the length of nums, and k is the kth largest element"""
-        heapq.heapify(nums)
-        while len(nums) > k:
-            heapq.heappop(nums)
-        return nums[0]
+        min_heap: list[int] = nums
+        heapq.heapify(min_heap)
+        for _ in range(len(min_heap) - k):
+            heapq.heappop(min_heap)
+        return min_heap[0]
 
 
 def test_kClosest_case_1():
