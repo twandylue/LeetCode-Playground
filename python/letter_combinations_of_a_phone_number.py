@@ -1,5 +1,6 @@
 class Solution:
     def letterCombinations(self, digits: str) -> list[str]:
+        """time complexity: O(n * 4^n)"""
         result: list[str] = []
         curStr: str = ""
         digitToCharDict: dict[str, str] = {
@@ -31,8 +32,6 @@ class Solution:
             return
         for c in digitToCharDict[digits[pos]]:
             self.bfs(pos + 1, result, curStr + c, digits, digitToCharDict)
-
-        return
 
 
 def test_letterCombinations_case_1():
