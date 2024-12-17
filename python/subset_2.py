@@ -10,13 +10,11 @@ class Solution:
         self, i: int, nums: list[int], subset: list[int], result: list[list[int]]
     ) -> None:
         if i == len(nums):
-            result.append(subset[:])
-            return None
-
+            result.append(subset.copy())
+            return
         subset.append(nums[i])
         self.bfs(i + 1, nums, subset, result)
         subset.pop()
-
         while i + 1 < len(nums) and nums[i] == nums[i + 1]:
             i += 1
 

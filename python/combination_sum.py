@@ -1,29 +1,30 @@
 class Solution:
     def combinationSum(self, candidates: list[int], target: int) -> list[list[int]]:
+        """time complexity: O(2^(t/m)) where t is the target and m is the min value in candidates"""
         result: list[list[int]] = []
-        self.dfs(0, 0, candidates, target, [], result)
-
+        accu_set: list[int] = []
+        accu: int = 0
+        self.dfs(0, accu, accu_set, result, candidates, target)
         return result
 
     def dfs(
         self,
-        pos: int,
+        i: int,
         accu: int,
+        accu_set: list[int],
+        result: list[list[int]],
         candidates: list[int],
         target: int,
-        subset: list[int],
-        result: list[list[int]],
     ) -> None:
         if accu == target:
-            result.append(subset[:])
+            result.append(accu_set.copy())
             return
-        elif accu > target or pos > len(candidates) - 1:
+        if i >= len(candidates) or accu > target:
             return
-
-        for i in range(pos, len(candidates)):
-            subset.append(candidates[i])
-            self.dfs(i, accu + candidates[i], candidates, target, subset, result)
-            subset.pop()
+        accu_set.append(candidates[i])
+        self.dfs(i, accu + candidates[i], accu_set, result, candidates, target)
+        accu_set.pop()
+        self.dfs(i + 1, accu, accu_set, result, candidates, target)
 
 
 def test_two_sum_case_1():

@@ -1,35 +1,33 @@
 class Solution:
     def combinationSum2(self, candidates: list[int], target: int) -> list[list[int]]:
-        candidates.sort()
+        """time complexity: O(n * 2^n)"""
         result: list[list[int]] = []
-        self.dfs(0, candidates, [], result, target)
-
+        accu_set: list[int] = []
+        accu: int = 0
+        candidates.sort()
+        self.dfs(0, accu, accu_set, result, candidates, target)
         return result
 
     def dfs(
         self,
-        pos: int,
-        candidates: list[int],
-        subset: list[int],
+        i: int,
+        accu: int,
+        accu_set: list[int],
         result: list[list[int]],
+        candidates: list[int],
         target: int,
-    ):
-        if target == 0:
-            result.append(subset[:])
+    ) -> None:
+        if accu == target:
+            result.append(accu_set.copy())
             return
-        elif target < 0:
+        if i >= len(candidates) or accu > target:
             return
-
-        prev: int = -1
-        for i in range(pos, len(candidates)):
-            if candidates[i] == prev:
-                continue
-            subset.append(candidates[i])
-            self.dfs(i + 1, candidates, subset, result, target - candidates[i])
-            subset.pop()
-            prev = candidates[i]
-
-        return result
+        accu_set.append(candidates[i])
+        self.dfs(i + 1, accu + candidates[i], accu_set, result, candidates, target)
+        accu_set.pop()
+        while i + 1 < len(candidates) and candidates[i] == candidates[i + 1]:
+            i += 1
+        self.dfs(i + 1, accu, accu_set, result, candidates, target)
 
 
 def test_combinationSum2_case_1():
