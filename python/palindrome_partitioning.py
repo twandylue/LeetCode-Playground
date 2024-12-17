@@ -1,5 +1,6 @@
 class Solution:
     def partition(self, s: str) -> list[list[str]]:
+        """time complexity: O(n * 2^n)"""
         result: list[list[str]] = []
         subset: list[str] = []
         self.bfs(0, subset, result, s)
@@ -12,10 +13,11 @@ class Solution:
             return None
 
         for i in range(pos, len(s)):
-            if self.isPali(pos, i, s):
-                subset.append(s[pos : i + 1])
-                self.bfs(i + 1, subset, result, s)
-                subset.pop()
+            if not self.isPali(pos, i, s):
+                continue
+            subset.append(s[pos : i + 1])
+            self.bfs(i + 1, subset, result, s)
+            subset.pop()
 
     def isPali(self, l: int, r: int, s: str) -> bool:
         while l < r:
