@@ -1,5 +1,4 @@
 import heapq
-from typing import Set, Tuple
 
 UserId = int
 TweetId = int
@@ -8,55 +7,52 @@ Time = int
 
 class Twitter:
     def __init__(self):
-        self.time: int = 0
-        self.userMap: dict[UserId, Set[UserId]] = dict()
-        self.tweetsMap: dict[UserId, list[Tuple[Time, TweetId]]] = dict()
+        self._time: int = 0
+        self._follow_map: dict[UserId, set[UserId]] = {}
+        self._tweet_map: dict[UserId, list[tuple[Time, TweetId]]] = {}
 
     def postTweet(self, userId: int, tweetId: int) -> None:
-        if userId not in self.userMap:
-            self.userMap[userId] = set()
-
-        if userId in self.tweetsMap:
-            self.tweetsMap[userId].append((-self.time, tweetId))
+        """time complexity: O(1)"""
+        if userId not in self._tweet_map:
+            self._tweet_map[userId] = [(self._time, tweetId)]
         else:
-            self.tweetsMap[userId] = [(-self.time, tweetId)]
-
-        self.time -= 1
-
-        return None
+            self._tweet_map[userId].append((self._time, tweetId))
+        self._time -= 1
 
     def getNewsFeed(self, userId: int) -> list[int]:
-        recents: list[TweetId] = []
-        maxHeap: list[Tuple[Time, TweetId]] = []
-        heapq.heapify(maxHeap)
-
-        if userId not in self.userMap:
-            return recents
-
-        if userId in self.tweetsMap:
-            for t in self.tweetsMap[userId]:
-                heapq.heappush(maxHeap, t)
-
-        for u in self.userMap[userId]:
-            if u in self.tweetsMap:
-                for t in self.tweetsMap[u]:
-                    heapq.heappush(maxHeap, t)
-
-        return [n[1] for n in heapq.nlargest(10, maxHeap)]
+        """time complexity: O(n) wherer n is the number of tweets"""
+        min_heap: list[tuple[int, int]] = []
+        result: list[int] = []
+        if userId not in self._follow_map:
+            self._follow_map[userId] = set([userId])
+        else:
+            self._follow_map[userId].add(userId)
+        for followerId in self._follow_map[userId]:
+            if followerId not in self._tweet_map:
+                continue
+            index: int = len(self._tweet_map[followerId]) - 1
+            time, tweetId = self._tweet_map[followerId][index]
+            heapq.heappush(min_heap, (time, tweetId, followerId, index - 1))
+        while len(min_heap) > 0 and len(result) < 10:
+            time, tweetId, followerId, index = heapq.heappop(min_heap)
+            result.append(tweetId)
+            if index >= 0:
+                time, tweetId = self._tweet_map[followerId][index]
+                heapq.heappush(min_heap, (time, tweetId, followerId, index - 1))
+        return result
 
     def follow(self, followerId: int, followeeId: int) -> None:
-        if followerId in self.userMap:
-            self.userMap[followerId].add(followeeId)
-        else:
-            self.userMap[followerId] = {followeeId}
-
-        return None
+        """time complexity: O(1)"""
+        if followerId not in self._follow_map:
+            self._follow_map[followerId] = set([followeeId])
+            return
+        self._follow_map[followerId].add(followeeId)
 
     def unfollow(self, followerId: int, followeeId: int) -> None:
-        if followerId in self.userMap:
-            self.userMap[followerId].discard(followeeId)
-
-        return None
+        """time complexity: O(1)"""
+        if followerId not in self._follow_map:
+            return
+        self._follow_map[followerId].discard(followeeId)
 
 
 # Your Twitter object will be instantiated and called as such:
