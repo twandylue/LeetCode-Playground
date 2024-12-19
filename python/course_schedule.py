@@ -1,7 +1,7 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: list[list[int]]) -> bool:
         """
-        In shor, this question is about detecting cycle in a directed graph. Thus, we have to use a set (visited) and DFS to solve this question.
+        In short, this question is about detecting cycle in a directed graph. Thus, we have to use a set (visited) and DFS to solve this question.
         Time complexity: O(n + m), where n is the number of courses and m is the number of prerequisites.
         """
         course_graph: dict[int, list[int]] = {i: [] for i in range(numCourses)}
@@ -34,6 +34,30 @@ class Solution:
         completed_set.add(course)
         visiting_set.remove(course)
         return True
+
+    def canFinish2(self, numCourses: int, prerequisites: list[list[int]]) -> bool:
+        """
+        time complexity: O(n + m), space complexity: O(n + m)
+        Topological sort using BFS
+        """
+        indegree: list[int] = [0] * numCourses
+        adj: list[list[int]] = [[] for _ in range(numCourses)]
+        queue: deque[int] = deque()
+        for src, dst in prerequisites:
+            adj[src].append(dst)
+            indegree[dst] += 1
+        for i in range(numCourses):
+            if indegree[i] == 0:
+                queue.append(i)
+        finish: int = 0
+        while len(queue) > 0:
+            course: int = queue.popleft()
+            finish += 1
+            for nei in adj[course]:
+                indegree[nei] -= 1
+                if indegree[nei] == 0:
+                    queue.append(nei)
+        return finish == numCourses
 
 
 def test_canFinish_case_1():

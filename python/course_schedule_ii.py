@@ -35,6 +35,34 @@ class Solution:
         result.append(course)
         return True
 
+    def findOrder2(self, numCourses: int, prerequisites: list[list[int]]) -> list[int]:
+        """
+        time complexity: O(V + E) where V is the number of courses and E is the number of prerequisites
+        Topological sort using BFS
+        """
+        result: list[int] = []
+        adj: list[list[int]] = [[] for _ in range(numCourses)]
+        indegree: list[int] = [0] * numCourses
+        queue: deque[int] = deque()
+        for src, dst in prerequisites:
+            adj[src].append(dst)
+            indegree[dst] += 1
+        for i in range(numCourses):
+            if indegree[i] == 0:
+                queue.append(i)
+        finish: int = 0
+        while len(queue) > 0:
+            course: int = queue.popleft()
+            result.append(course)
+            finish += 1
+            for nei in adj[course]:
+                indegree[nei] -= 1
+                if indegree[nei] == 0:
+                    queue.append(nei)
+        if finish != numCourses:
+            return []
+        return result[::-1]
+
 
 def test_findOrder_case_1():
     # arrange
