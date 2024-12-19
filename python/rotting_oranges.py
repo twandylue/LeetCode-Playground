@@ -3,33 +3,38 @@ from collections import deque
 
 class Solution:
     def orangesRotting(self, grid: list[list[int]]) -> int:
+        """time complexity: O(m * n)"""
         time: int = 0
         fresh: int = 0
+        visited: set[tuple[int, int]] = set()
         queue: deque[tuple[int, int]] = deque()
         for r in range(len(grid)):
             for c in range(len(grid[r])):
                 if grid[r][c] == 1:
                     fresh += 1
-                elif grid[r][c] == 2:
+                if grid[r][c] == 2:
                     queue.append((r, c))
-        dirs: list[tuple[int, int]] = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+                    visited.add((r, c))
+        directions: list[tuple[int, int]] = [(1, 0), (-1, 0), (0, 1), (0, -1)]
         while len(queue) > 0 and fresh > 0:
             for _ in range(len(queue)):
-                r, c = queue.popleft()
-                for dr, dc in dirs:
-                    row: int = r + dr
-                    col: int = c + dc
+                row, col = queue.popleft()
+                for dr, dc in directions:
+                    r: int = row + dr
+                    c: int = col + dc
                     if (
-                        row < 0
-                        or row >= len(grid)
-                        or col < 0
-                        or col >= len(grid[row])
-                        or grid[row][col] != 1
+                        r < 0
+                        or r >= len(grid)
+                        or c < 0
+                        or c >= len(grid[r])
+                        or (r, c) in visited
+                        or grid[r][c] == 0
                     ):
                         continue
-                    grid[row][col] = 2
+                    visited.add((r, c))
+                    queue.append((r, c))
+                    grid[r][c] = 2
                     fresh -= 1
-                    queue.append((row, col))
             time += 1
         return time if fresh == 0 else -1
 
