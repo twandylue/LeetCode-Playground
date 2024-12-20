@@ -70,8 +70,7 @@ def test_findWords_case_1():
         ["i", "f", "l", "v"],
     ]
     words: list[str] = ["oath", "pea", "eat", "rain"]
-    expected: list[str] = ["eat", "oath"]
-    expected.sort()
+    expected: list[str] = ["oath", "eat"]
 
     # act
     actual: list[str] = Solution().findWords(board, words)
