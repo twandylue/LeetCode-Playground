@@ -1,3 +1,6 @@
+from collections import deque
+
+
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: list[list[int]]) -> list[int]:
         """time complexity: O(V + E) where V is the number of courses and E is the number of prerequisites"""

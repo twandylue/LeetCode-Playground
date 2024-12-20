@@ -37,6 +37,28 @@ class Solution:
 
         return True
 
+    def valid_tree2(self, n: int, edges: list[list[int]]) -> bool:
+        """time complexity: O(V + E)"""
+        if len(edges) > (n - 1):
+            return False
+        visited: set[tuple[int, int]] = set()
+        adj: list[list[int]] = [[] for _ in range(n)]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+        queue: deque[tuple[int, int]] = deque([(0, -1)])
+        visited.add(0)
+        while len(queue) > 0:
+            curr, parent = queue.popleft()
+            visited.add(curr)
+            for nei in adj[curr]:
+                if parent == nei:
+                    continue
+                if nei in visited:
+                    return False
+                queue.append((nei, curr))
+        return len(visited) == n
+
 
 def test_valid_tree_case_1():
     # arrange

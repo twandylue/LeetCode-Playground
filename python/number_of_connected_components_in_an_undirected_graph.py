@@ -33,6 +33,28 @@ class Solution:
             result -= uf.union(edge[0], edge[1])
         return result
 
+    def countComponents2(self, n: int, edges: list[list[int]]) -> int:
+        visited: list[bool] = [False] * n
+        adj: list[list[int]] = [[] for _ in range(n)]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+        result: int = 0
+        for node in range(n):
+            if visited[node]:
+                continue
+            visited[node] = True
+            result += 1
+            self.dfs(node, visited, adj)
+        return result
+
+    def dfs(self, node: int, visited: list[bool], adj: list[list[int]]) -> None:
+        for nei in adj[node]:
+            if visited[nei]:
+                continue
+            visited[nei] = True
+            self.dfs(nei, visited, adj)
+
 
 def test_countComponents_case_1():
     # arrange
