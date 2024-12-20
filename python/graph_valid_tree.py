@@ -1,3 +1,6 @@
+from collections import deque
+
+
 class Solution:
     def valid_tree(self, n: int, edges: list[list[int]]) -> bool:
         if len(edges) == 0 and n == 0:
