@@ -4,24 +4,23 @@ class UnionFind:
         self._ranks: list[int] = [1] * n
 
     def find(self, n: int) -> int:
-        while n != self._parents[n]:
-            tmp: int = self._parents[n]
-            self._parents[n] = self._parents[self._parents[n]]
-            n = tmp
-        return n
+        curr: int = n
+        while curr != self._parents[curr]:
+            self._parents[curr] = self._parents[self._parents[curr]]
+        return curr
 
-    def union(self, x1: int, x2: int) -> int:
-        p1: int = self.find(x1)
-        p2: int = self.find(x2)
-        if p1 == p2:
-            return 0
-        if self._ranks[p1] > self._ranks[p2]:
-            self._ranks[p1] += self._ranks[p2]
-            self._parents[p2] = p1
+    def union(self, u: int, v: int) -> bool:
+        ru: int = self.find(u)
+        rv: int = self.find(v)
+        if ru == rv:
+            return False
+        if self._ranks[ru] > self._ranks[rv]:
+            self._ranks[ru] += self._ranks[rv]
+            self._parents[rv] = ru
         else:
-            self._ranks[p2] += self._ranks[p1]
-            self._parents[p1] = p2
-        return 1
+            self._ranks[rv] += self._ranks[ru]
+            self._parents[ru] = rv
+        return True
 
 
 class Solution:
@@ -29,8 +28,9 @@ class Solution:
         """time complexity: O(E + V), where E is the number of edges and V is the number of vertices"""
         result: int = n
         uf: UnionFind = UnionFind(n)
-        for edge in edges:
-            result -= uf.union(edge[0], edge[1])
+        for u, v in edges:
+            if uf.union(u, v):
+                result -= 1
         return result
 
     def countComponents2(self, n: int, edges: list[list[int]]) -> int:

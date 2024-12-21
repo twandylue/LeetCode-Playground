@@ -1,6 +1,33 @@
 from collections import deque
 
 
+class DSU:
+    def __init__(self, n: int):
+        self._comp: int = n
+        self._parent: list[int] = [i for i in range(n + 1)]
+        self._rank: list[int] = [1] * n
+
+    def find(self, node: int) -> int:
+        if self._parent[node] != node:
+            self._parent[node] = self.find(self._parent[node])
+        return self._parent[node]
+
+    def union(self, u: int, v: int) -> bool:
+        ru: int = self.find(u)
+        rv: int = self.find(v)
+        if ru == rv:
+            return False
+        self._comp -= 1
+        if self._rank[ru] < self._rank[rv]:
+            ru, rv = rv, ru
+        self._rank[ru] += self._rank[rv]
+        self._parent[rv] = ru
+        return True
+
+    def components(self) -> int:
+        return self._comp
+
+
 class Solution:
     def valid_tree(self, n: int, edges: list[list[int]]) -> bool:
         if len(edges) == 0 and n == 0:
@@ -61,6 +88,17 @@ class Solution:
                     return False
                 queue.append((nei, curr))
         return len(visited) == n
+
+    def valid_tree3(self, n: int, edges: list[list[int]]) -> bool:
+        """time complexity: O(V + (E * a(V))"""
+        if len(edges) > (n - 1):
+            return False
+        dsu = DSU(n)
+        for u, v in edges:
+            if dsu.union(u, v):
+                continue
+            return False
+        return dsu.components() == 1
 
 
 def test_valid_tree_case_1():
