@@ -1,37 +1,36 @@
+class DSU:
+    def __init__(self, n: int):
+        self._parents: list[int] = [i for i in range(n + 1)]
+        self._rank: list[int] = [1] * (n + 1)
+
+    def find(self, node: int) -> int:
+        curr: int = node
+        while curr != self._parents[curr]:
+            self._parents[curr] = self._parents[self._parents[curr]]
+            curr = self._parents[curr]
+        return curr
+
+    def union(self, u: int, v: int) -> bool:
+        ru: int = self.find(u)
+        rv: int = self.find(v)
+        if ru == rv:
+            return False
+        if self._rank[ru] < self._rank[rv]:
+            ru, rv = rv, ru
+        self._rank[ru] += self._rank[rv]
+        self._parents[rv] = ru
+        return True
+
+
 class Solution:
     def findRedundantConnection(self, edges: list[list[int]]) -> list[int]:
-        parent: list[int] = [i for i in range(0, len(edges) + 1)]
-        rank: list[int] = [1] * (len(edges) + 1)
-
-        for n1, n2 in edges:
-            if self.union(n1, n2, rank, parent):
+        """time complexity: O(E + a(V)), where E is the number of edges and V is the number of vertices"""
+        dsu: DSU = DSU(len(edges))
+        for u, v in edges:
+            if dsu.union(u, v):
                 continue
-            return [n1, n2]
-
+            return [u, v]
         return []
-
-    def find(self, n: int, parent: list[int]) -> int:
-        p: int = parent[n]
-        while p != parent[p]:
-            p = parent[p]
-            parent[p] = parent[parent[p]]
-
-        return p
-
-    def union(self, n1: int, n2: int, rank: list[int], parent: list[int]) -> bool:
-        p1: int = self.find(n1, parent)
-        p2: int = self.find(n2, parent)
-
-        if p1 == p2:
-            return False
-        if rank[p1] < rank[p2]:
-            parent[p1] = p2
-            rank[p2] += rank[p1]
-        else:
-            parent[p2] = p1
-            rank[p1] += rank[p2]
-
-        return True
 
 
 def test_findRedundantConnection_case_1():

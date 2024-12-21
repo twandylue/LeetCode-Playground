@@ -7,6 +7,7 @@ class UnionFind:
         curr: int = n
         while curr != self._parents[curr]:
             self._parents[curr] = self._parents[self._parents[curr]]
+            curr = self._parents[curr]
         return curr
 
     def union(self, u: int, v: int) -> bool:
@@ -25,7 +26,7 @@ class UnionFind:
 
 class Solution:
     def countComponents(self, n: int, edges: list[list[int]]) -> int:
-        """time complexity: O(E + V), where E is the number of edges and V is the number of vertices"""
+        """time complexity: O(E + a(V)), where E is the number of edges and V is the number of vertices"""
         result: int = n
         uf: UnionFind = UnionFind(n)
         for u, v in edges:
