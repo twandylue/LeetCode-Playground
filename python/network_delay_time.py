@@ -1,30 +1,25 @@
 import heapq
+import collections
 
 
 class Solution:
     def networkDelayTime(self, times: list[list[int]], n: int, k: int) -> int:
         """time complexity: O(E log V), where E is the number of edges and V is the number of vertices, space complexity: O(V)"""
-        path: int = 0
-        graph: dict[int, list[tuple[int, int]]] = {}
+        result: int = 0
+        visited: set[tuple[int, int]] = set()
+        edges: list[int, tuple[int, int]] = collections.defaultdict(list)
         for u, v, w in times:
-            if u not in graph:
-                graph[u] = [(v, w)]
-            else:
-                graph[u].append((v, w))
+            edges[u].append((v, w))
         min_heap: list[tuple[int, int]] = [(0, k)]
-        visited: set[int] = set()
-        while len(min_heap) > 0:
-            accu_dis, node = heapq.heappop(min_heap)
+        while len(min_heap):
+            time, node = heapq.heappop(min_heap)
             if node in visited:
                 continue
-            path = max(path, accu_dis)
             visited.add(node)
-            if node not in graph:
-                continue
-            for next_node, weight in graph[node]:
-                if next_node not in visited:
-                    heapq.heappush(min_heap, (accu_dis + weight, next_node))
-        return path if len(visited) == n else -1
+            result = time
+            for next_node, next_time in edges[node]:
+                heapq.heappush(min_heap, (time + next_time, next_node))
+        return result if len(visited) == n else -1
 
 
 def test_networkDelayTime_case_1():

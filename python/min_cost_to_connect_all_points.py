@@ -1,7 +1,49 @@
 import heapq
 
 
+class DSU:
+    def __init__(self, n: int):
+        self._parents: list[int] = [i for i in range(n + 1)]
+        self._rank: list[int] = [1] * n
+
+    def find(self, node: int) -> int:
+        curr: int = node
+        while curr != self._parents[curr]:
+            self._parents[curr] = self._parents[self._parents[curr]]
+            curr = self._parents[curr]
+        return curr
+
+    def union(self, u: int, v: int) -> bool:
+        ru: int = self.find(u)
+        rv: int = self.find(v)
+        if ru == rv:
+            return False
+        if self._rank[ru] < self._rank[rv]:
+            ru, rv = rv, ru
+        self._rank[ru] += self._rank[rv]
+        self._parents[rv] = ru
+        return True
+
+
 class Solution:
+    def minCostConnectPoints2(self, points: list[list[int]]) -> int:
+        """time complexity: O(n^2 log n)"""
+        edges: list[tuple[int, int, int]] = []
+        n: int = len(points)
+        for i in range(n):
+            x1, y1 = points[i]
+            for j in range(i, n):
+                x2, y2 = points[j]
+                dist: int = abs(x1 - x2) + abs(y1 - y2)
+                edges.append((dist, i, j))
+        edges.sort()
+        dsu: DSU = DSU(n)
+        result: int = 0
+        for dist, u, v in edges:
+            if dsu.union(u, v):
+                result += dist
+        return result
+
     def minCostConnectPoints(self, points: list[list[int]]) -> int:
         cost: int = 0
         visited: set[int] = set()

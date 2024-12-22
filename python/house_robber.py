@@ -1,13 +1,16 @@
 class Solution:
     def rob(self, nums: list[int]) -> int:
-        rob1: int = 0
-        rob2: int = 0
-        for n in nums:
-            newRob: int = max(rob1 + n, rob2)
-            rob1 = rob2
-            rob2 = newRob
-
-        return rob2
+        """time complexity: O(n)"""
+        if len(nums) == 0:
+            return 0
+        if len(nums) == 1:
+            return nums[0]
+        dp: list[int] = [0] * len(nums)
+        dp[0] = nums[0]
+        dp[1] = max(nums[0], nums[1])
+        for i in range(2, len(nums)):
+            dp[i] = max(dp[i - 1], dp[i - 2] + nums[i])
+        return dp[-1]
 
 
 def test_rob_case_1():

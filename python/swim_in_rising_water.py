@@ -1,12 +1,11 @@
 import heapq
-from os import umask
 
 
 class Solution:
     def swimInWater(self, grid: list[list[int]]) -> int:
+        """time complexity: O(n^2 * log n)"""
         n: int = len(grid)
         minHeap: list[tuple[int, int, int]] = [(grid[0][0], 0, 0)]
-        heapq.heapify(minHeap)
         visited: set[tuple[int, int]] = set([(0, 0)])
         direction: list[tuple[int, int]] = [(1, 0), (-1, 0), (0, 1), (0, -1)]
 
