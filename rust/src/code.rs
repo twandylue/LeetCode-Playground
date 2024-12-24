@@ -246,6 +246,7 @@ pub mod sum_of_two_integer;
 pub mod surrounded_regions;
 pub mod task_scheduler;
 pub mod three_sum;
+pub mod time_needed_to_inform_all_employees;
 pub mod top_k_frequent_elements;
 pub mod two_sum;
 pub mod utils;

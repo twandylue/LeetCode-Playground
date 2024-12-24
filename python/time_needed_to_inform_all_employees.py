@@ -56,3 +56,35 @@ def test_numOfMinutes_case_2():
 
     # assert
     assert expected == actual
+
+
+def test_numOfMinutes_case_3():
+    """This is a test case"""
+    # arrange
+    n: int = 6
+    headID: int = 2
+    manager: list[int] = [2, 2, -1, 2, 2, 2]
+    informTime: list[int] = [0, 0, 1, 0, 0, 0]
+    expected: int = 1
+
+    # act
+    actual = Solution().numOfMinutes2(n, headID, manager, informTime)
+
+    # assert
+    assert expected == actual
+
+
+def test_numOfMinutes_case_4():
+    """This is a test case"""
+    # arrange
+    n: int = 1
+    headID: int = 0
+    manager: list[int] = [-1]
+    informTime: list[int] = [0]
+    expected: int = 0
+
+    # act
+    actual = Solution().numOfMinutes2(n, headID, manager, informTime)
+
+    # assert
+    assert expected == actual
