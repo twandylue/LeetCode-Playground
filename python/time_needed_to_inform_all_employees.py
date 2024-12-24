@@ -23,6 +23,34 @@ class Solution:
                 que.append((employ, time + informTime[employ]))
         return result
 
+    def numOfMinutes2(
+        self, n: int, headID: int, manager: list[int], informTime: list[int]
+    ) -> int:
+        """time complexity: O(n) by using dfs"""
+        adj: dict[int, list[int]] = defaultdict(list)
+        for i in range(n):
+            adj[manager[i]].append(i)
+        result: list[int] = [0]
+        self.dfs(headID, 0, result, adj, manager, informTime)
+        return result[0]
+
+    def dfs(
+        self,
+        i: int,
+        accu_time: int,
+        result: list[int],
+        adj: dict[int, list[int]],
+        manager: list[int],
+        informTime: list[int],
+    ) -> None:
+        if informTime[i] == 0:
+            return
+        result[0] = max(result[0], accu_time + informTime[i])
+        for employee in adj[i]:
+            self.dfs(
+                employee, accu_time + informTime[i], result, adj, manager, informTime
+            )
+
 
 def test_numOfMinutes_case_1():
     """This is a test case"""

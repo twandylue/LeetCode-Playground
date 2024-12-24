@@ -3,6 +3,7 @@ struct Solution;
 use std::collections::{HashMap, VecDeque};
 
 impl Solution {
+    // Time complexity: O(n)
     pub fn num_of_minutes_bfs(
         n: i32,
         head_id: i32,
