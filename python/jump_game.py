@@ -1,11 +1,12 @@
 class Solution:
     def canJump(self, nums: list[int]) -> bool:
+        """time complexity: O(n)"""
         goal: int = len(nums) - 1
         for i in range(len(nums) - 1, -1, -1):
             if i + nums[i] >= goal:
                 goal = i
 
-        return True if goal == 0 else False
+        return goal == 0
 
 
 def test_canJump_case_1():

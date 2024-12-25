@@ -1,4 +1,4 @@
-from collections import deque
+from collections import deque, defaultdict
 
 
 class Solution:
@@ -23,7 +23,7 @@ class Solution:
                 que.append((employ, time + informTime[employ]))
         return result
 
-    def numOfMinutes2(
+    def numOfMinutes_dfs(
         self, n: int, headID: int, manager: list[int], informTime: list[int]
     ) -> int:
         """time complexity: O(n) by using dfs"""
@@ -45,11 +45,10 @@ class Solution:
     ) -> None:
         if informTime[i] == 0:
             return
-        result[0] = max(result[0], accu_time + informTime[i])
+        accu_time += informTime[i]
+        result[0] = max(result[0], accu_time)
         for employee in adj[i]:
-            self.dfs(
-                employee, accu_time + informTime[i], result, adj, manager, informTime
-            )
+            self.dfs(employee, accu_time, result, adj, manager, informTime)
 
 
 def test_numOfMinutes_case_1():
@@ -96,7 +95,7 @@ def test_numOfMinutes_case_3():
     expected: int = 1
 
     # act
-    actual = Solution().numOfMinutes2(n, headID, manager, informTime)
+    actual = Solution().numOfMinutes_dfs(n, headID, manager, informTime)
 
     # assert
     assert expected == actual
@@ -112,7 +111,7 @@ def test_numOfMinutes_case_4():
     expected: int = 0
 
     # act
-    actual = Solution().numOfMinutes2(n, headID, manager, informTime)
+    actual = Solution().numOfMinutes_dfs(n, headID, manager, informTime)
 
     # assert
     assert expected == actual
