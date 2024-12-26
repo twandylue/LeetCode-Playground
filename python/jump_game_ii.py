@@ -1,5 +1,6 @@
 class Solution:
     def jump(self, nums: list[int]) -> int:
+        """time complexity: O(n)"""
         result: int = 0
         r: int = 0
         l: int = 0
@@ -7,7 +8,7 @@ class Solution:
             farthest: int = 0
             for i in range(l, r + 1):
                 farthest = max(farthest, i + nums[i])
-            l = r + 1
+            l = r
             r = farthest
             result += 1
 

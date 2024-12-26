@@ -12,7 +12,7 @@ impl Solution {
             for i in l..(r + 1) {
                 farthest = std::cmp::max(farthest, i + nums[i] as usize);
             }
-            l = r + 1;
+            l = r;
             r = farthest;
             result += 1;
         }
