@@ -1,5 +1,6 @@
 class Solution:
     def canCompleteCircuit(self, gas: list[int], cost: list[int]) -> int:
+        """time complexity: O(n)"""
         if sum(gas) < sum(cost):
             return -1
 
