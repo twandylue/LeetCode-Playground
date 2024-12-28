@@ -1,17 +1,14 @@
 class Solution:
     def merge(self, intervals: list[list[int]]) -> list[list[int]]:
-        result: list[list[int]] = list()
+        """time: O(n logn)"""
         intervals.sort()
-        mergedInterval: list[int] = intervals[0]
-
-        for i in range(0, len(intervals)):
-            if mergedInterval[1] >= intervals[i][0]:
-                mergedInterval[1] = max(mergedInterval[1], intervals[i][1])
+        result: list[list[int]] = [intervals[0]]
+        for start, end in intervals:
+            last_end: int = result[-1][1]
+            if start <= last_end:
+                result[-1][1] = max(last_end, end)
             else:
-                result.append(mergedInterval)
-                mergedInterval: list[int] = [intervals[i][0], intervals[i][1]]
-
-        result.append(mergedInterval)
+                result.append([start, end])
         return result
 
 

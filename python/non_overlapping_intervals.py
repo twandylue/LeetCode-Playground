@@ -12,6 +12,19 @@ class Solution:
 
         return count
 
+    def eraseOverlapIntervals2(self, intervals: list[list[int]]) -> int:
+        """time complexity: O(n log n)"""
+        result: int = 0
+        intervals.sort()
+        prev_end: int = intervals[0][1]
+        for start, end in intervals[1:]:
+            if start >= prev_end:
+                prev_end = end
+            else:
+                prev_end = min(prev_end, end)
+                result += 1
+        return result
+
 
 def test_eraseOverlapIntervals_case_1():
     # arrange
