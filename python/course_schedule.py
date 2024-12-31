@@ -1,4 +1,4 @@
-from collections import deque
+from collections import deque, defaultdict
 
 
 class Solution:
@@ -44,9 +44,9 @@ class Solution:
         Topological sort using BFS
         """
         indegree: list[int] = [0] * numCourses
-        adj: list[list[int]] = [[] for _ in range(numCourses)]
+        adj: dict[int, list[int]] = defaultdict(list)
         queue: deque[int] = deque()
-        for src, dst in prerequisites:
+        for dst, src in prerequisites:
             adj[src].append(dst)
             indegree[dst] += 1
         for i in range(numCourses):
@@ -86,6 +86,19 @@ def test_canFinish_case_2():
     # act
     solution = Solution()
     actual = solution.canFinish(numCourses, prerequisites)
+
+    # assert
+    assert expected == actual
+
+
+def test_canFinish_case_3():
+    # arrange
+    numCourses: int = 2
+    prerequisites: list[list[int]] = [[1, 0], [0, 1]]
+    expected: bool = False
+
+    # act
+    actual = Solution().canFinish2(numCourses, prerequisites)
 
     # assert
     assert expected == actual
