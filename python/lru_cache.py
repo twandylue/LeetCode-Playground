@@ -27,17 +27,18 @@ class LRUCache:
 
     def _insert_after_head(self, node: ListNode) -> None:
         """time complexity: O(1)"""
-        node.next = self._head.next
-        node.prev = self._head
-        self._head.next.prev = node
+        next_node: ListNode = self._head.next
+        next_node.prev = node
         self._head.next = node
+        node.prev = self._head
+        node.next = next_node
 
     def _pop_node(self, node: ListNode) -> Optional[ListNode]:
         """time complexity: O(1)"""
-        if node.prev is not None:
-            node.prev.next = node.next
-        if node.next is not None:
-            node.next.prev = node.prev
+        next_node: ListNode = node.next
+        prev_node: ListNode = node.prev
+        next_node.prev = prev_node
+        prev_node.next = next_node
         return node
 
     def get(self, key: int) -> int:
