@@ -173,6 +173,7 @@ pub mod string_compression;
 pub mod subarray_sum_equals_k;
 pub mod subset_2;
 pub mod successful_pairs_of_spells_and_potions;
+pub mod summary_ranges;
 pub mod swim_in_rising_water;
 pub mod time_based_key_value_store;
 pub mod trapping_rain_water;
