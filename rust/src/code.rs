@@ -205,6 +205,7 @@ pub mod graph_valid_tree;
 pub mod hand_of_straights;
 pub mod house_robber;
 pub mod implement_trie;
+pub mod interval_list_intersections;
 pub mod invert_binary_tree;
 pub mod is_subsequence;
 pub mod jump_game_ii;
