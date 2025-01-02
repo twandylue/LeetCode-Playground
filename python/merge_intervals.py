@@ -11,6 +11,20 @@ class Solution:
                 result.append([start, end])
         return result
 
+    def merge2(self, intervals: list[list[int]]) -> list[list[int]]:
+        """time: O(n logn)"""
+        intervals.sort()
+        section: list[int] = intervals[0]
+        result: list[list[int]] = []
+        for interval in intervals:
+            if interval[0] <= section[-1]:
+                section[-1] = max(section[-1], interval[-1])
+                continue
+            result.append(section)
+            section = interval
+        result.append(section)
+        return result
+
 
 def test_insert_case_1():
     # arrange
