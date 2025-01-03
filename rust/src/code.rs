@@ -6,6 +6,7 @@ pub mod assign_cookies;
 pub mod asteroid_collision;
 pub mod bag_of_tokens;
 pub mod baseball_game;
+pub mod basic_calculator_ii;
 pub mod best_time_to_buy_and_sell_stock;
 pub mod best_time_to_buy_and_sell_stock_ii;
 pub mod binary_search;

@@ -33,8 +33,8 @@ mod tests {
     #[test]
     fn test_interval_intersection_case_1() {
         // arrange
-        let firstList: Vec<Vec<i32>> = vec![vec![0, 2], vec![5, 10], vec![13, 23], vec![24, 25]];
-        let secondList: Vec<Vec<i32>> = vec![vec![1, 5], vec![8, 12], vec![15, 24], vec![25, 26]];
+        let first_list: Vec<Vec<i32>> = vec![vec![0, 2], vec![5, 10], vec![13, 23], vec![24, 25]];
+        let second_list: Vec<Vec<i32>> = vec![vec![1, 5], vec![8, 12], vec![15, 24], vec![25, 26]];
         let expected: Vec<Vec<i32>> = vec![
             vec![1, 2],
             vec![5, 5],
@@ -45,7 +45,7 @@ mod tests {
         ];
 
         // act
-        let actual = Solution::interval_intersection(firstList, secondList);
+        let actual = Solution::interval_intersection(first_list, second_list);
 
         // assert
         assert_eq!(expected, actual);
@@ -54,12 +54,12 @@ mod tests {
     #[test]
     fn test_interval_intersection_case_2() {
         // arrange
-        let firstList: Vec<Vec<i32>> = vec![vec![0, 2], vec![5, 10], vec![13, 23], vec![24, 25]];
-        let secondList: Vec<Vec<i32>> = vec![];
+        let first_list: Vec<Vec<i32>> = vec![vec![0, 2], vec![5, 10], vec![13, 23], vec![24, 25]];
+        let second_list: Vec<Vec<i32>> = vec![];
         let expected: Vec<Vec<i32>> = vec![];
 
         // act
-        let actual = Solution::interval_intersection(firstList, secondList);
+        let actual = Solution::interval_intersection(first_list, second_list);
 
         // assert
         assert_eq!(expected, actual);
