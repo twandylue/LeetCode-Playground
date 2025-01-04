@@ -1,5 +1,6 @@
 class Solution:
     def compress(self, chars: list[str]) -> int:
+        """time complexity: O(n)"""
         l: int = 0
         r: int = 0
         while r < len(chars):
@@ -15,8 +16,6 @@ class Solution:
                     if l < len(chars):
                         chars[l] = n
                         l += 1
-                    else:
-                        break
             r += 1
 
         return l
