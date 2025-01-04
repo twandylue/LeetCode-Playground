@@ -3,18 +3,35 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        cols: list[int] = []
-        rows: list[int] = []
-        for r in range(0, len(matrix)):
-            for c in range(0, len(matrix[r])):
+        rows: set[int] = set()
+        cols: set[int] = set()
+        for r in range(len(matrix)):
+            for c in range(len(matrix[r])):
                 if matrix[r][c] == 0:
-                    cols.append(c)
-                    rows.append(r)
-
-        for r in range(0, len(matrix)):
-            for c in range(0, len(matrix[r])):
+                    rows.add(r)
+                    cols.add(c)
+        for r in range(len(matrix)):
+            for c in range(len(matrix[r])):
                 if r in rows or c in cols:
                     matrix[r][c] = 0
+
+    def setZeroes2(self, matrix: list[list[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        rows: list[int] = []
+        cols: list[int] = []
+        for r in range(len(matrix)):
+            for c in range(len(matrix[r])):
+                if matrix[r][c] == 0:
+                    rows.append(r)
+                    cols.append(c)
+        for r in rows:
+            for c in range(len(matrix[r])):
+                matrix[r][c] = 0
+        for c in cols:
+            for r in range(len(matrix)):
+                matrix[r][c] = 0
 
 
 def test_setZeroes_case_1():
