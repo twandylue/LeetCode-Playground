@@ -1,11 +1,9 @@
 class Solution:
     def isValidSudoku(self, board: list[list[str]]) -> bool:
         """time complexity: O(n^2), space complexity: O(n^2)"""
-        row_set: set[tuple[int]] = set()
-        col_set: set[tuple[int]] = set()
-        subbox_set: list[list[set[tuple[int]]]] = [
-            [set() for _ in range(len(board) // 3)] for _ in range(len(board[0]) // 3)
-        ]
+        row_set: set[tuple[int, int]] = set()
+        col_set: set[tuple[int, int]] = set()
+        subbox_set: list[list[set[int]]] = [[set() for _ in range(3)] for _ in range(3)]
         for row in range(len(board)):
             for col in range(len(board[row])):
                 if not board[row][col].isnumeric():
@@ -15,14 +13,11 @@ class Solution:
                     return False
                 row_set.add((row, number))
                 col_set.add((col, number))
-                subbox_row: int = row // 3
-                subbox_col: int = col // 3
-                if (subbox_row, subbox_col, number) in subbox_set[subbox_row][
-                    subbox_col
-                ]:
+                s_row: int = row // 3
+                s_col: int = col // 3
+                if number in subbox_set[s_row][s_col]:
                     return False
-                subbox_set[subbox_row][subbox_col].add((subbox_row, subbox_col, number))
-
+                subbox_set[s_row][s_col].add(number)
         return True
 
 
