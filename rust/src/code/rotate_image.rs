@@ -1,23 +1,24 @@
 pub struct Solution {}
 
 impl Solution {
+    // time complexity: O(n)
     pub fn rotate(matrix: &mut Vec<Vec<i32>>) {
-        let d = matrix.len();
+        let COLS = matrix[0].len();
         // exchange row and col
-        for y in 0..d {
-            for x in y..d {
-                let temp = matrix[y][x];
-                matrix[y][x] = matrix[x][y];
-                matrix[x][y] = temp;
+        for r in 0..matrix.len() {
+            for c in r..matrix[r].len() {
+                let tmp = matrix[r][c];
+                matrix[r][c] = matrix[c][r];
+                matrix[c][r] = tmp;
             }
         }
 
         // exchange col
-        for y in 0..d {
-            for x in 0..d / 2 {
-                let temp = matrix[y][x];
-                matrix[y][x] = matrix[y][d - 1 - x];
-                matrix[y][d - 1 - x] = temp;
+        for r in 0..matrix.len() {
+            for c in 0..matrix[r].len() / 2 {
+                let tmp = matrix[r][c];
+                matrix[r][c] = matrix[r][COLS - 1 - c];
+                matrix[r][COLS - 1 - c] = tmp;
             }
         }
     }
@@ -28,7 +29,7 @@ mod tests {
     use super::Solution;
 
     #[test]
-    fn case_1() {
+    fn test_rotate_case_1() {
         // arrange
         let mut matrix = vec![vec![1, 2, 3], vec![4, 5, 6], vec![7, 8, 9]];
         let expected = vec![vec![7, 4, 1], vec![8, 5, 2], vec![9, 6, 3]];
@@ -41,7 +42,7 @@ mod tests {
     }
 
     #[test]
-    fn case_2() {
+    fn test_rotate_case_2() {
         // arrange
         let mut matrix = vec![
             vec![5, 1, 9, 11],
