@@ -32,8 +32,9 @@ class Solution:
                 right_curr = right_curr.next
             curr = curr.next
 
-        left_curr.next = right.next
-        right_curr.next = None
+        if left_curr is not None and right_curr is not None:
+            left_curr.next = right.next
+            right_curr.next = None
 
         return left.next
 

@@ -52,6 +52,17 @@ class Solution:
 
         return None
 
+    def getIntersectionNode(
+        self, headA: ListNode, headB: ListNode
+    ) -> Optional[ListNode]:
+        """time complexity: O(m+n)"""
+        curr_a: Optional[ListNode] = headA
+        curr_b: Optional[ListNode] = headB
+        while curr_a != curr_b:
+            curr_a = curr_a.next if curr_a is not None else headB
+            curr_b = curr_b.next if curr_b is not None else headA
+        return curr_a
+
 
 def test_getIntersectionNode_case_1():
     """NOTE: skip because it is difficult to prepare for test cases (input)"""

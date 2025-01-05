@@ -24,17 +24,17 @@ class Solution:
 
         return False
 
-    # def hasCycle(self, head: Optional[ListNode]) -> bool:
-    #     """time complexity: O(n), space complexity: O(n)"""
-    #     node_map: dict[ListNode, int] = {}
-    #     curr: Optional[ListNode] = head
-    #     while curr is not None:
-    #         if curr in node_map:
-    #             return True
-    #         node_map[curr] = 1
-    #         curr = curr.next
-    #
-    #     return False
+    def hasCycle2(self, head: Optional[ListNode]) -> bool:
+        """time complexity: O(n), space complexity: O(n)"""
+        node_map: dict[ListNode, int] = {}
+        curr: Optional[ListNode] = head
+        while curr is not None:
+            if curr in node_map:
+                return True
+            node_map[curr] = 1
+            curr = curr.next
+
+        return False
 
 
 def test_hasCycle_case_1():
