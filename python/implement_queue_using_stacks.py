@@ -24,7 +24,7 @@ class MyQueue:
 
     def empty(self) -> bool:
         """time complexity: O(1)"""
-        return len(self._stack_1) == 0 and len(self._stack_2) == 0
+        return len(self.stack_1) == 0 and len(self.stack_2) == 0
 
 
 # Your MyQueue object will be instantiated and called as such:
