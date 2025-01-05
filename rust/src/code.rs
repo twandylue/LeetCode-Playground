@@ -15,6 +15,7 @@ pub mod binary_tree_level_order_traversal;
 pub mod binary_tree_right_side_view;
 pub mod boats_to_save_people;
 pub mod brick_wall;
+pub mod build_an_array_with_stack_operations;
 pub mod can_place_flowers;
 pub mod car_fleet;
 pub mod car_pooling;
