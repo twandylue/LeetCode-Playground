@@ -44,13 +44,13 @@ class Solution:
         Topological sort using BFS
         """
         result: list[int] = []
-        adj: list[list[int]] = [[] for _ in range(numCourses)]
         indegree: list[int] = [0] * numCourses
+        adj: dict[int, list[int]] = defaultdict(list)
+        for u, v in prerequisites:
+            adj[v].append(u)
+            indegree[u] += 1
         queue: deque[int] = deque()
-        for src, dst in prerequisites:
-            adj[src].append(dst)
-            indegree[dst] += 1
-        for i in range(numCourses):
+        for i in range(len(indegree)):
             if indegree[i] == 0:
                 queue.append(i)
         finish: int = 0
@@ -64,7 +64,7 @@ class Solution:
                     queue.append(nei)
         if finish != numCourses:
             return []
-        return result[::-1]
+        return result
 
 
 def test_findOrder_case_1():
