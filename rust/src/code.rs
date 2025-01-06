@@ -23,6 +23,7 @@ pub mod check_if_a_string_contains_all_binary_codes_of_size_k;
 pub mod check_if_two_string_arrays_are_equivalent;
 pub mod coin_change;
 pub mod combination_sum;
+pub mod combinations;
 pub mod container_with_most_water;
 pub mod contains_duplicate;
 pub mod contains_duplicate_ii;
