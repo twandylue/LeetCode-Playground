@@ -57,6 +57,7 @@ pub mod find_the_difference_of_two_arrays;
 pub mod find_the_index_of_the_first_occurrence_in_a_string;
 pub mod find_the_kth_largest_integer_in_the_array;
 pub mod find_the_town_judge;
+pub mod find_if_path_exists_in_graph;
 pub mod four_sum;
 pub mod frequency_of_the_most_frequent_element;
 pub mod furthest_building_you_can_reach;
