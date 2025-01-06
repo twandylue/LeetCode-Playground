@@ -2,7 +2,7 @@ class Solution:
     def letterCombinations(self, digits: str) -> list[str]:
         """time complexity: O(n * 4^n)"""
         result: list[str] = []
-        curStr: str = ""
+        subset: list[str] = []
         digitToCharDict: dict[str, str] = {
             "2": "abc",
             "3": "def",
@@ -15,23 +15,27 @@ class Solution:
         }
 
         if len(digits) > 0:
-            self.bfs(0, result, curStr, digits, digitToCharDict)
+            self.bfs(0, subset, result, digits, digitToCharDict)
 
         return result
 
     def bfs(
         self,
-        pos: int,
+        i: int,
+        subset: list[str],
         result: list[str],
-        curStr: str,
         digits: str,
         digitToCharDict: dict[str, str],
     ) -> None:
-        if len(curStr) == len(digits):
-            result.append(curStr)
+        if len(subset) == len(digits):
+            result.append("".join(subset))
             return
-        for c in digitToCharDict[digits[pos]]:
-            self.bfs(pos + 1, result, curStr + c, digits, digitToCharDict)
+        if i >= len(digits):
+            return
+        for c in digitToCharDict[digits[i]]:
+            subset.append(c)
+            self.bfs(i + 1, subset, result, digits, digitToCharDict)
+            subset.pop()
 
 
 def test_letterCombinations_case_1():
