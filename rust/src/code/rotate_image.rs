@@ -3,7 +3,7 @@ pub struct Solution {}
 impl Solution {
     // time complexity: O(n)
     pub fn rotate(matrix: &mut Vec<Vec<i32>>) {
-        let COLS = matrix[0].len();
+        let cols = matrix[0].len();
         // exchange row and col
         for r in 0..matrix.len() {
             for c in r..matrix[r].len() {
@@ -17,8 +17,8 @@ impl Solution {
         for r in 0..matrix.len() {
             for c in 0..matrix[r].len() / 2 {
                 let tmp = matrix[r][c];
-                matrix[r][c] = matrix[r][COLS - 1 - c];
-                matrix[r][COLS - 1 - c] = tmp;
+                matrix[r][c] = matrix[r][cols - 1 - c];
+                matrix[r][cols - 1 - c] = tmp;
             }
         }
     }

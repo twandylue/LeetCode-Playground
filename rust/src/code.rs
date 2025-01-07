@@ -204,6 +204,7 @@ pub mod construct_binary_tree_from_preorder_and_inorder_traversal;
 pub mod course_schedule_ii;
 pub mod design_twitter;
 pub mod detect_squares;
+pub mod game_of_life;
 pub mod gas_station;
 pub mod graph_valid_tree;
 pub mod hand_of_straights;

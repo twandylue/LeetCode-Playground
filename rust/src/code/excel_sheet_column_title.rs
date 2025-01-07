@@ -20,11 +20,11 @@ mod tests {
     #[test]
     fn test_convert_to_title_case_1() {
         // arrange
-        let columnNumber: i32 = 1;
+        let column_number: i32 = 1;
         let expected: String = "A".to_string();
 
         // act
-        let actual = Solution::convert_to_title(columnNumber);
+        let actual = Solution::convert_to_title(column_number);
 
         // assert
         assert_eq!(expected, actual);
@@ -33,11 +33,11 @@ mod tests {
     #[test]
     fn test_convert_to_title_case_2() {
         // arrange
-        let columnNumber: i32 = 28;
+        let column_number: i32 = 28;
         let expected: String = "AB".to_string();
 
         // act
-        let actual = Solution::convert_to_title(columnNumber);
+        let actual = Solution::convert_to_title(column_number);
 
         // assert
         assert_eq!(expected, actual);
@@ -46,11 +46,11 @@ mod tests {
     #[test]
     fn test_convert_to_title_case_3() {
         // arrange
-        let columnNumber: i32 = 701;
+        let column_number: i32 = 701;
         let expected: String = "ZY".to_string();
 
         // act
-        let actual = Solution::convert_to_title(columnNumber);
+        let actual = Solution::convert_to_title(column_number);
 
         // assert
         assert_eq!(expected, actual);
