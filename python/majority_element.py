@@ -13,6 +13,18 @@ class Solution:
                     return nums[i]
         return 0
 
+    def majorityElement2(self, nums: list[int]) -> int:
+        if len(nums) == 1:
+            return nums[0]
+        count: int = 1
+        nums.sort()
+        for i in range(len(nums)):
+            if nums[i] == nums[i - 1]:
+                count += 1
+            if count > len(nums) // 2:
+                return nums[i]
+        return -1
+
 
 def test_majorityElement_case_1():
     # arrange
