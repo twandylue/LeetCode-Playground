@@ -9,7 +9,7 @@ class Solution:
                 r -= 1
                 continue
             l: int = r
-            while s >= 0 and s[l] != " ":
+            while l >= 0 and s[l] != " ":
                 l -= 1
                 result += 1
             break
@@ -20,6 +20,32 @@ def test_lengthOfLastWord_case_1():
     # arrange
     s: str = "Hello World"
     expected: int = 5
+
+    # act
+    solution = Solution()
+    actual = solution.lengthOfLastWord(s)
+
+    # assert
+    assert expected == actual
+
+
+def test_lengthOfLastWord_case_2():
+    # arrange
+    s: str = "   fly me   to   the moon  "
+    expected: int = 4
+
+    # act
+    solution = Solution()
+    actual = solution.lengthOfLastWord(s)
+
+    # assert
+    assert expected == actual
+
+
+def test_lengthOfLastWord_case_3():
+    # arrange
+    s: str = "luffy is still joyboy"
+    expected: int = 6
 
     # act
     solution = Solution()
