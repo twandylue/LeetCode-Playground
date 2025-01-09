@@ -1,5 +1,6 @@
 class Solution:
     def longestCommonPrefix2(self, strs: list[str]) -> str:
+        """time complexity: O(m * n) where m is the length of the shortest string and n is the number of strings"""
         result: str = ""
         for i in range(len(strs[0])):
             for s in strs:
