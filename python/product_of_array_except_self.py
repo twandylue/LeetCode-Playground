@@ -1,16 +1,18 @@
 class Solution:
     def productExceptSelf(self, nums: list[int]) -> list[int]:
         """time complexity: O(n)"""
-        result: list[int] = [1] * len(nums)
+        result: list[int] = [0] * len(nums)
         left: int = 1
-        right: int = 1
         for i in range(0, len(nums)):
             result[i] = left
             left *= nums[i]
-
+        right: int = 1
+        right_to_left: list[int] = [0] * len(nums)
         for i in reversed(range(0, len(nums))):
-            result[i] *= right
+            right_to_left[i] = right
             right *= nums[i]
+        for i in range(len(result)):
+            result[i] *= right_to_left[i]
         return result
 
 
