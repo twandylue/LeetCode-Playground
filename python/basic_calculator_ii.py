@@ -12,9 +12,9 @@ class Solution:
                     stack.append(curr)
                 elif last_operator == "-":
                     stack.append(-1 * curr)
-                elif last_operator == "*":
+                elif last_operator == "*" and len(stack) > 0:
                     stack.append(stack.pop() * curr)
-                else:
+                elif last_operator == "/" and len(stack) > 0:
                     stack.append(int(stack.pop() / curr))
                 last_operator = c
                 curr = 0
