@@ -1,5 +1,6 @@
 class Solution:
     def evalRPN(self, tokens: list[str]) -> int:
+        """time complexity: O(n), space complexity: O(n)"""
         if len(tokens) < 3:
             return int(tokens[0])
 

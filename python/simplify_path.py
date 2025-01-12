@@ -1,19 +1,18 @@
 class Solution:
     def simplifyPath(self, path: str) -> str:
-        stack: list[str] = list()
+        """time complexity: O(n)"""
+        stack: list[str] = []
         path += "/"
         curr: str = ""
-        for i in range(len(path)):
-            if path[i] == "/":
-                if curr == "..":
-                    if len(stack) > 0:
-                        stack.pop()
-                elif curr != "." and curr != "":
+        for c in path:
+            if c == "/":
+                if curr == ".." and len(stack) > 0:
+                    stack.pop()
+                if curr != "." and curr != ".." and curr != "":
                     stack.append(curr)
                 curr = ""
             else:
-                curr += path[i]
-
+                curr += c
         return "/" + "/".join(stack)
 
 
