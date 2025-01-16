@@ -1,21 +1,19 @@
+from collections import defaultdict
+
+
 class Solution:
     def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
-        result: list[list[str]] = list()
-        strMap: dict[tuple[int], list[str]] = dict()
-
-        for s in strs:
+        """time complexity: O(n)"""
+        result: list[list[str]] = []
+        anag_map: dict[tuple[int], list[str]] = defaultdict(list)
+        for string in strs:
             count: list[int] = [0] * 26
-            for c in s:
+            for c in string:
                 count[ord(c) - ord("a")] += 1
-
-            if tuple(count) not in strMap:
-                strMap[tuple(count)] = [s]
-            else:
-                strMap[tuple(count)].append(s)
-
-        for _, v in strMap.items():
-            result.append(v)
-
+            tup: tuple[int] = tuple(count)
+            anag_map[tup].append(string)
+        for value in anag_map.values():
+            result.append(value)
         return result
 
 
