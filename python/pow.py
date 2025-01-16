@@ -1,5 +1,6 @@
 class Solution:
     def myPow(self, x: float, n: int) -> float:
+        """time complexity: O(log n)"""
         result: float = self.helper(x, abs(n))
 
         return result if n >= 0 else 1 / result

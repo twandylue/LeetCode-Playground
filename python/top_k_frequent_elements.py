@@ -22,6 +22,22 @@ class Solution:
             i += 1
         return result
 
+    def topKFrequent2(self, nums: list[int], k: int) -> list[int]:
+        """time complexity: O(nlogk) where n is the length of nums, k is the number of unique elements"""
+        result: list[int] = []
+        count_map: dict[int, int] = defaultdict(int)
+        for num in nums:
+            count_map[num] += 1
+        min_heap: list[tuple[int, int]] = []
+        for key, val in count_map.items():
+            heapq.heappush(min_heap, (val, key))
+        for _ in range(len(min_heap) - k):
+            heapq.heappop(min_heap)
+        while len(min_heap) > 0:
+            count, num = heapq.heappop(min_heap)
+            result.append(num)
+        return result
+
 
 def test_topKFrequent_case_1():
     # Arrange
