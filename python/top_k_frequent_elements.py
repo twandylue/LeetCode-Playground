@@ -1,3 +1,7 @@
+from collections import defaultdict
+import heapq
+
+
 class Solution:
     def topKFrequent(self, nums: list[int], k: int) -> list[int]:
         """time complexity: O(n) where n is the length of nums"""
