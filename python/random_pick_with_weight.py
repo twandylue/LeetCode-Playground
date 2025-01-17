@@ -3,7 +3,7 @@ import random
 
 class Solution:
 
-    def __init__(self, w: List[int]):
+    def __init__(self, w: list[int]):
         # Step 1: Create the prefix sum array
         self._prefix_sums: list[int] = [0] * len(w)
         prefix_sum: int = 0
