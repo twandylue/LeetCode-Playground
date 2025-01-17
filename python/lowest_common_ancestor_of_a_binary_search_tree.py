@@ -21,17 +21,20 @@ class Solution:
         self, root: "TreeNode", p: "TreeNode", q: "TreeNode"
     ) -> "TreeNode":
         """time complexity: O(h) where h is the height of the tree."""
-        if root is None:
-            return 0
-        curr: Optional[TreeNode] = root
-        while curr is not None:
-            if curr.val > p.val and curr.val > q.val:
-                curr = curr.left
-            elif curr.val < p.val and curr.val < q.val:
-                curr = curr.right
-            else:
-                break
-        return curr
+        if p.val > q.val:
+            p, q = q, p
+        return self.dfs(root, p, q)
+
+    def dfs(
+        self, node: Optional[TreeNode], p: TreeNode, q: TreeNode
+    ) -> Optional[TreeNode]:
+        if node is None or node == p or node == q:
+            return node
+        if node.val > p.val and node.val < q.val:
+            return node
+        if node.val > q.val:
+            return self.dfs(node.left, p, q)
+        return self.dfs(node.right, p, q)
 
 
 def test_lowestCommonAncestor_case_1():
