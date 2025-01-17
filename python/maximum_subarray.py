@@ -1,13 +1,12 @@
 class Solution:
     def maxSubArray(self, nums: list[int]) -> int:
-        maxSum: int = nums[0]
-        currentSum: int = 0
-
-        for i in range(len(nums)):
-            currentSum = max(nums[i], currentSum + nums[i])
-            maxSum = max(currentSum, maxSum)
-
-        return maxSum
+        """time complexity: O(n)"""
+        result: int = nums[0]
+        curr_max: int = 0
+        for num in nums:
+            curr_max = max(curr_max + num, num)
+            result = max(result, curr_max)
+        return result
 
 
 def test_maxSubArray_case_1():
