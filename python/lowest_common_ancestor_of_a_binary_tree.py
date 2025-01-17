@@ -14,11 +14,17 @@ class Solution:
     def lowestCommonAncestor(
         self, root: "TreeNode", p: "TreeNode", q: "TreeNode"
     ) -> "TreeNode":
-        "time complexity: O(n)"
-        if root is None or root == p or root == q:
-            return root
-        left: Optional[TreeNode] = self.lowestCommonAncestor(root.left, p, q)
-        right: Optional[TreeNode] = self.lowestCommonAncestor(root.right, p, q)
+        return self.dfs(root, p, q)
+
+    def dfs(
+        self, node: Optional[TreeNode], p: TreeNode, q: TreeNode
+    ) -> Optional[TreeNode]:
+        if node is None:
+            return None
+        left: Optional[TreeNode] = self.dfs(node.left, p, q)
+        right: Optional[TreeNode] = self.dfs(node.right, p, q)
+        if node == p or node == q:
+            return node
         if left is not None and right is not None:
-            return root
+            return node
         return left if left is not None else right
