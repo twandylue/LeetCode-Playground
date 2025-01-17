@@ -1,5 +1,6 @@
 class Solution:
     def findPeakElement(self, nums: list[int]) -> int:
+        """time complexity: O(n)"""
         l: int = 0
         r: int = len(nums) - 1
         mid: int = 0
