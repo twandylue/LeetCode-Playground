@@ -6,7 +6,7 @@ sys.path.append("./utils")
 from typing import Optional
 from binary_tree_node import TreeNode
 from assert_two_tree import isSameTree
-from deserialize_to_binary_tree import DeserializeFromList
+from deserialize_to_binary_tree import DeserializeFromList, buildTree
 from serialize_binary_tree import SerializeBinaryTreeToList
 
 
@@ -28,7 +28,7 @@ class Solution:
     def dfs(
         self, node: Optional[TreeNode], p: TreeNode, q: TreeNode
     ) -> Optional[TreeNode]:
-        if node is None or node == p or node == q:
+        if node is None or node.val == p.val or node.val == q.val:
             return node
         if node.val > p.val and node.val < q.val:
             return node
@@ -40,9 +40,7 @@ class Solution:
 def test_lowestCommonAncestor_case_1():
     """This is a test case"""
     # arrange
-    root: Optional[TreeNode] = DeserializeFromList(
-        [6, 2, 8, 0, 4, 7, 9, None, None, 3, 5]
-    )
+    root: Optional[TreeNode] = buildTree([6, 2, 8, 0, 4, 7, 9, None, None, 3, 5])
     if root is None:
         raise Exception("failed")
     p: TreeNode = TreeNode(2)
@@ -60,9 +58,7 @@ def test_lowestCommonAncestor_case_1():
 def test_lowestCommonAncestor_case_2():
     """This is a test case"""
     # arrange
-    root: Optional[TreeNode] = DeserializeFromList(
-        [6, 2, 8, 0, 4, 7, 9, None, None, 3, 5]
-    )
+    root: Optional[TreeNode] = buildTree([6, 2, 8, 0, 4, 7, 9, None, None, 3, 5])
     if root is None:
         raise Exception("failed")
     p: TreeNode = TreeNode(2)
@@ -80,7 +76,7 @@ def test_lowestCommonAncestor_case_2():
 def test_lowestCommonAncestor_case_3():
     """This is a test case"""
     # arrange
-    root: Optional[TreeNode] = DeserializeFromList([2, 1])
+    root: Optional[TreeNode] = buildTree([2, 1])
     if root is None:
         raise Exception("failed")
     p: TreeNode = TreeNode(2)
