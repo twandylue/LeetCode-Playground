@@ -14,7 +14,7 @@ def test_hammingWeight_case_1():
     expected: int = 3
 
     # act
-    actual = Solution().countBits(n)
+    actual = Solution().hammingWeight(n)
 
     # assert
     assert expected == actual
@@ -26,7 +26,7 @@ def test_hammingWeight_case_2():
     expected: int = 1
 
     # act
-    actual = Solution().countBits(n)
+    actual = Solution().hammingWeight(n)
 
     # assert
     assert expected == actual
@@ -38,7 +38,7 @@ def test_hammingWeight_case_3():
     expected: int = 30
 
     # act
-    actual = Solution().countBits(n)
+    actual = Solution().hammingWeight(n)
 
     # assert
     assert expected == actual

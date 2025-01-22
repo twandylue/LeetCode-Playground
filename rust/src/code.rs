@@ -88,6 +88,7 @@ pub mod length_of_last_word;
 pub mod length_of_longest_subarray_with_at_most_k_frequency;
 pub mod longest_common_subsequence;
 pub mod longest_happy_string;
+pub mod longest_increasing_path_in_a_matrix;
 pub mod longest_increasing_subsequence;
 pub mod longest_palindromic_substring;
 pub mod lowest_common_ancestor_of_a_binary_search_tree;
