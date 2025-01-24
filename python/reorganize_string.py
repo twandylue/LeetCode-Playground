@@ -15,21 +15,23 @@ class Solution:
                 counter[c] = 1
             else:
                 counter[c] += 1
-        max_heap: list[tuple[int, str]] = [(-cnt, c) for c, cnt in counter.items()]
+        max_heap: list[tuple[int, str]] = [
+            (-1 * count, c) for c, count in counter.items()
+        ]
         heapq.heapify(max_heap)
         result: str = ""
         prev: Optional[tuple[int, str]] = None
         while len(max_heap) > 0 or prev is not None:
-            if prev is not None and len(max_heap) == 0:
+            if len(max_heap) == 0 and prev is not None:
                 return ""
-            cnt, c = heapq.heappop(max_heap)
+            count, c = heapq.heappop(max_heap)
             result += c
-            cnt += 1
+            count += 1
             if prev is not None:
                 heapq.heappush(max_heap, prev)
                 prev = None
-            if cnt < 0:
-                prev = (cnt, c)
+            if count < 0:
+                prev = (count, c)
         return result
 
 
