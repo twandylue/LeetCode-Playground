@@ -20,6 +20,8 @@ class Solution:
     def dfs(self, node: Node, new_node_map: dict[Node, Node]) -> Node:
         if node in new_node_map:
             return new_node_map[node]
+        if node is None:
+            return None
         new_node: Node = Node(node.val)
         new_node_map[node] = new_node
         for n in node.neighbors:
