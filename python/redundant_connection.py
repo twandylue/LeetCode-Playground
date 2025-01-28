@@ -4,11 +4,9 @@ class DSU:
         self._rank: list[int] = [1] * (n + 1)
 
     def find(self, node: int) -> int:
-        curr: int = node
-        while curr != self._parents[curr]:
-            self._parents[curr] = self._parents[self._parents[curr]]
-            curr = self._parents[curr]
-        return curr
+        while node != self._parents[node]:
+            node = self._parents[node]
+        return node
 
     def union(self, u: int, v: int) -> bool:
         ru: int = self.find(u)
@@ -27,9 +25,8 @@ class Solution:
         """time complexity: O(E + a(V)), where E is the number of edges and V is the number of vertices"""
         dsu: DSU = DSU(len(edges))
         for u, v in edges:
-            if dsu.union(u, v):
-                continue
-            return [u, v]
+            if not dsu.union(u, v):
+                return [u, v]
         return []
 
 
