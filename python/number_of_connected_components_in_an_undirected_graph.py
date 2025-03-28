@@ -2,37 +2,36 @@ class UnionFind:
     def __init__(self, n: int):
         self._parents: list[int] = [i for i in range(n)]
         self._ranks: list[int] = [1] * n
+        self._indep: int = n
 
     def find(self, n: int) -> int:
-        curr: int = n
-        while curr != self._parents[curr]:
-            self._parents[curr] = self._parents[self._parents[curr]]
-            curr = self._parents[curr]
-        return curr
+        while n != self._parents[n]:
+            n = self._parents[n]
+        return n
 
     def union(self, u: int, v: int) -> bool:
-        ru: int = self.find(u)
-        rv: int = self.find(v)
-        if ru == rv:
+        pu: int = self.find(u)
+        pv: int = self.find(v)
+        if pu != pv:
             return False
-        if self._ranks[ru] > self._ranks[rv]:
-            self._ranks[ru] += self._ranks[rv]
-            self._parents[rv] = ru
-        else:
-            self._ranks[rv] += self._ranks[ru]
-            self._parents[ru] = rv
+        self._indep -= 1
+        if self._ranks[pv] > self._ranks[pu]:
+            pu, pv = pv, pu
+        self._ranks[pu] += self._ranks[pv]
+        self._parents[pv] = pu
         return True
+
+    def get_indep(self) -> int:
+        return self._indep
 
 
 class Solution:
     def countComponents(self, n: int, edges: list[list[int]]) -> int:
         """time complexity: O(E + a(V)), where E is the number of edges and V is the number of vertices"""
-        result: int = n
         uf: UnionFind = UnionFind(n)
         for u, v in edges:
-            if uf.union(u, v):
-                result -= 1
-        return result
+            uf.union(u, v)
+        return uf.get_indep()
 
     def countComponents2(self, n: int, edges: list[list[int]]) -> int:
         visited: list[bool] = [False] * n
