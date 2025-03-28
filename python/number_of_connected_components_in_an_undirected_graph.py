@@ -12,7 +12,7 @@ class UnionFind:
     def union(self, u: int, v: int) -> bool:
         pu: int = self.find(u)
         pv: int = self.find(v)
-        if pu != pv:
+        if pu == pv:
             return False
         self._indep -= 1
         if self._ranks[pv] > self._ranks[pu]:
