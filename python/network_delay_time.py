@@ -1,24 +1,24 @@
 import heapq
-import collections
+from collections import defaultdict
 
 
 class Solution:
     def networkDelayTime(self, times: list[list[int]], n: int, k: int) -> int:
         """time complexity: O(E log V), where E is the number of edges and V is the number of vertices, space complexity: O(V)"""
         result: int = 0
-        visited: set[tuple[int, int]] = set()
-        edges: list[int, tuple[int, int]] = collections.defaultdict(list)
-        for u, v, w in times:
-            edges[u].append((v, w))
+        adj: dict[int, list[tuple[int, int]]] = defaultdict(list)
+        for u, v, t in times:
+            adj[u].append((v, t))
+        visited: set[int] = set()
         min_heap: list[tuple[int, int]] = [(0, k)]
-        while len(min_heap):
-            time, node = heapq.heappop(min_heap)
+        while len(min_heap) > 0:
+            accu, node = heapq.heappop(min_heap)
             if node in visited:
                 continue
             visited.add(node)
-            result = time
-            for next_node, next_time in edges[node]:
-                heapq.heappush(min_heap, (time + next_time, next_node))
+            result = accu
+            for nei, nei_time in adj[node]:
+                heapq.heappush(min_heap, (result + nei_time, nei))
         return result if len(visited) == n else -1
 
 
