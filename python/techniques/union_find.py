@@ -2,6 +2,7 @@ class UnionFind:
     def __init__(self, n: int):
         self._parents: list[int] = [i for i in range(n)]
         self._ranks: list[int] = [1] * n
+        self._indep: int = n  # number of independent components
 
     def find(self, x: int) -> int:
         curr: int = x
@@ -13,16 +14,23 @@ class UnionFind:
 
     def find2(self, node: int) -> int:
         if node != self._parents[node]:
-            node = self.find(self._parents[node])
+            node = self._parents[node]
         return node
 
-    def union(self, x1: int, x2: int) -> bool:
-        p1: int = self.find(x1)
-        p2: int = self.find(x2)
-        if p1 == p2:
+    def union(self, u: int, v: int) -> bool:
+        pu: int = self.find2(u)
+        pv: int = self.find2(v)
+        if pu == pv:
             return False
-        if self._ranks[p1] < self._ranks[p2]:
-            p1, p2 = p2, p1
-        self._ranks[p1] += self._ranks[p2]
-        self._parents[p2] = p1
+        if self._ranks[pu] < self._ranks[pv]:
+            pu, pv = pv, pu
+        self._ranks[pu] += self._ranks[pv]
+        self._parents[pv] = pu
+        self._indep -= 1  # reduce the number of independent components
         return True
+
+    def get_indep(self) -> int:
+        """
+        Get the number of independent components
+        """
+        return self._indep
