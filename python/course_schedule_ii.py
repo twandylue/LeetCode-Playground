@@ -43,28 +43,24 @@ class Solution:
         time complexity: O(V + E) where V is the number of courses and E is the number of prerequisites
         Topological sort using BFS
         """
-        result: list[int] = []
         indegree: list[int] = [0] * numCourses
-        adj: dict[int, list[int]] = defaultdict(list)
-        for u, v in prerequisites:
-            adj[v].append(u)
-            indegree[u] += 1
+        adj: list[list[int]] = [[] for _ in range(numCourses)]
+        for dst, src in prerequisites:
+            indegree[dst] += 1
+            adj[src].append(dst)
         queue: deque[int] = deque()
         for i in range(len(indegree)):
             if indegree[i] == 0:
                 queue.append(i)
-        finish: int = 0
+        result: list[int] = []
         while len(queue) > 0:
             course: int = queue.popleft()
             result.append(course)
-            finish += 1
             for nei in adj[course]:
                 indegree[nei] -= 1
                 if indegree[nei] == 0:
                     queue.append(nei)
-        if finish != numCourses:
-            return []
-        return result
+        return result if len(result) == numCourses else []
 
 
 def test_findOrder_case_1():
