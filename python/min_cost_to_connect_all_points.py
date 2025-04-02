@@ -3,26 +3,29 @@ import heapq
 
 class DSU:
     def __init__(self, n: int):
-        self._parents: list[int] = [i for i in range(n + 1)]
-        self._rank: list[int] = [1] * n
+        self._ranks: list[int] = [1] * n
+        self._parents: list[int] = [i for i in range(n)]
+        self._indep: int = n
 
-    def find(self, node: int) -> int:
-        curr: int = node
-        while curr != self._parents[curr]:
-            self._parents[curr] = self._parents[self._parents[curr]]
-            curr = self._parents[curr]
-        return curr
+    def find(self, n: int) -> int:
+        while n != self._parents[n]:
+            n = self._parents[n]
+        return n
 
     def union(self, u: int, v: int) -> bool:
-        ru: int = self.find(u)
-        rv: int = self.find(v)
-        if ru == rv:
+        pu: int = self.find(u)
+        pv: int = self.find(v)
+        if pu == pv:
             return False
-        if self._rank[ru] < self._rank[rv]:
-            ru, rv = rv, ru
-        self._rank[ru] += self._rank[rv]
-        self._parents[rv] = ru
+        self._indep -= 1
+        if self._ranks[pv] > self._ranks[pu]:
+            pu, pv = pv, pu
+        self._ranks[pu] += self._ranks[pv]
+        self._parents[pv] = pu
         return True
+
+    def get_indep(self) -> int:
+        return self._indep
 
 
 class Solution:
