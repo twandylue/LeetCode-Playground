@@ -7,12 +7,12 @@ class ListNode:
         key: int = 0,
         value: int = 0,
         next_node: Optional["ListNode"] = None,
-        prev: Optional["ListNode"] = None,
+        prev_node: Optional["ListNode"] = None,
     ):
         self.key: int = key
         self.value: int = value
-        self.next: Optional[ListNode] = next_node
-        self.prev: Optional[ListNode] = prev
+        self.next_node: Optional[ListNode] = next_node
+        self.prev_node: Optional[ListNode] = prev_node
 
 
 class LRUCache:
@@ -21,24 +21,26 @@ class LRUCache:
         self._capacity: int = capacity
         self._head: Optional[ListNode] = ListNode()
         self._tail: Optional[ListNode] = ListNode()
-        self._head.next = self._tail
-        self._tail.prev = self._head
+        self._head.next_node = self._tail
+        self._tail.prev_node = self._head
         self._node_map: dict[int, ListNode] = {}
 
     def _insert_after_head(self, node: ListNode) -> None:
         """time complexity: O(1)"""
-        next_node: ListNode = self._head.next
-        next_node.prev = node
-        self._head.next = node
-        node.prev = self._head
-        node.next = next_node
+        next_node: ListNode = self._head.next_node
+        next_node.prev_node = node
+        self._head.next_node = node
+        node.prev_node = self._head
+        node.next_node = next_node
 
     def _pop_node(self, node: ListNode) -> Optional[ListNode]:
         """time complexity: O(1)"""
-        next_node: ListNode = node.next
-        prev_node: ListNode = node.prev
-        next_node.prev = prev_node
-        prev_node.next = next_node
+        next_node: ListNode = node.next_node
+        prev_node: ListNode = node.prev_node
+        next_node.prev_node = prev_node
+        prev_node.next_node = next_node
+        node.prev_node = None
+        node.next_node = None
         return node
 
     def get(self, key: int) -> int:
@@ -54,7 +56,7 @@ class LRUCache:
         """time complexity: O(1)"""
         if key not in self._node_map:
             if len(self._node_map) >= self._capacity:
-                least_node: ListNode = self._tail.prev
+                least_node: ListNode = self._tail.prev_node
                 iso_least_node: ListNode = self._pop_node(least_node)
                 del self._node_map[iso_least_node.key]
             new_node: ListNode = ListNode(key, value)
