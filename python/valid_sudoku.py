@@ -9,14 +9,16 @@ class Solution:
                 if not board[row][col].isnumeric():
                     continue
                 number: int = int(board[row][col])
-                if (row, number) in row_set or (col, number) in col_set:
+                s_row: int = row // 3
+                s_col: int = col // 3
+                if (
+                    (row, number) in row_set
+                    or (col, number) in col_set
+                    or number in subbox_set[s_row][s_col]
+                ):
                     return False
                 row_set.add((row, number))
                 col_set.add((col, number))
-                s_row: int = row // 3
-                s_col: int = col // 3
-                if number in subbox_set[s_row][s_col]:
-                    return False
                 subbox_set[s_row][s_col].add(number)
         return True
 
