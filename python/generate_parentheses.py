@@ -1,5 +1,5 @@
 class Solution:
-    def generateParenthesis(self, n: int) -> List[str]:
+    def generateParenthesis(self, n: int) -> list[str]:
         """time complexity: O(4^n / sqrt(n)), space complexity: O(n)"""
         stack: list[str] = []
         result: list[str] = []

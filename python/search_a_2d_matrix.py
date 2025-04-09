@@ -18,38 +18,31 @@ class Solution:
         return False
 
     def searchMatrix2(self, matrix: list[list[int]], target: int) -> bool:
-        l: int = 0
-        r: int = len(matrix[0]) - 1
-        bot: int = 0
-        top: int = len(matrix) - 1
-        while bot <= top:
-            row: int = (bot + top) // 2
-            if target > matrix[row][r]:
-                bot = row + 1
-            elif target < matrix[row][l]:
-                if row > 0:
-                    top = row - 1
-                else:
-                    break
-            else:
+        """tiem complexity: O(log(m*n))"""
+        top: int = 0
+        bot: int = len(matrix) - 1
+        target_row: int = 0
+        while top <= bot:
+            mid_row: int = (top + bot) // 2
+            if matrix[mid_row][0] <= target and target <= matrix[mid_row][-1]:
+                target_row = mid_row
                 break
-
-        if bot > top:
+            if matrix[mid_row][0] > target:
+                bot = mid_row - 1
+            elif matrix[mid_row][-1] < target:
+                top = mid_row + 1
+        if top > bot:
             return False
-        row: int = (bot + top) // 2
-
-        while l <= r:
-            mid: int = (l + r) // 2
-            if target == matrix[row][mid]:
+        left: int = 0
+        right: int = len(matrix[target_row]) - 1
+        while left <= right:
+            mid: int = (left + right) // 2
+            if matrix[target_row][mid] == target:
                 return True
-            elif target < matrix[row][mid]:
-                if mid > 0:
-                    r = mid - 1
-                else:
-                    break
-            elif target > matrix[row][mid]:
-                l = mid + 1
-
+            if matrix[target_row][mid] > target:
+                right = mid - 1
+            elif matrix[target_row][mid] < target:
+                left = mid + 1
         return False
 
 
