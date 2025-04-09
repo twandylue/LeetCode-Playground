@@ -1,22 +1,22 @@
 class Solution:
     def minEatingSpeed(self, piles: list[int], h: int) -> int:
+        """time complexity: O(n * log m) where n is the number of piles and m is the maximum number of bananas in a pile, space complexity: O(1)"""
         l: int = 1
         r: int = max(piles)
-        result: int = 0
+        result: int = r
         while l <= r:
             mid: int = (l + r) // 2
-            count: int = 0
-            for p in piles:
-                if p % mid > 0:
-                    count += p // mid + 1
+            total_time: int = 0
+            for pile in piles:
+                if pile % mid == 0:
+                    total_time += pile / mid
                 else:
-                    count += p // mid
-            if count <= h:
-                result = mid
+                    total_time += pile // mid + 1
+            if total_time <= h:
+                result = min(result, mid)
                 r = mid - 1
             else:
                 l = mid + 1
-
         return result
 
 
