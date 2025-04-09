@@ -31,6 +31,17 @@ class Solution:
 
         return len(stack)
 
+    def carFleet3(self, target: int, position: list[int], speed: list[int]) -> int:
+        """time complexity: O(n log n)"""
+        pair: list[tuple[int, int]] = [(p, s) for p, s in zip(position, speed)]
+        pair.sort(reverse=True)
+        stack: list[int] = []
+        for p, s in pair:
+            time: float = (target - p) / s
+            while len(stack) == 0 or time > stack[-1]:
+                stack.append(time)
+        return len(stack)
+
 
 def test_car_fleet_case_1():
     # arrange
