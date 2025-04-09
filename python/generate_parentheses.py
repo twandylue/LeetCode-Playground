@@ -1,24 +1,24 @@
 class Solution:
-    def generateParenthesis(self, n: int) -> list[str]:
+    def generateParenthesis(self, n: int) -> List[str]:
+        """time complexity: O(4^n / sqrt(n)), space complexity: O(n)"""
         stack: list[str] = []
         result: list[str] = []
-        self.back_tracking(n, stack, result, 0, 0)
-
+        self.backtrack(0, 0, n, stack, result)
         return result
 
-    def back_tracking(
-        self, n: int, stack: list[str], result: list[str], openPara: int, closePara: int
-    ):
-        if openPara == closePara == n:
+    def backtrack(
+        self, open_n: int, close_n: int, n: int, stack: list[str], result: list[str]
+    ) -> None:
+        if open_n == n and close_n == n:
             result.append("".join(stack))
             return
-        if openPara < n:
+        if open_n < n:
             stack.append("(")
-            self.back_tracking(n, stack, result, openPara + 1, closePara)
+            self.backtrack(open_n + 1, close_n, n, stack, result)
             stack.pop()
-        if closePara < openPara:
+        if close_n < open_n:
             stack.append(")")
-            self.back_tracking(n, stack, result, openPara, closePara + 1)
+            self.backtrack(open_n, close_n + 1, n, stack, result)
             stack.pop()
 
 
