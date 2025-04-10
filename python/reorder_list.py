@@ -19,10 +19,12 @@ from assert_two_linked_list import assert_two_linked_list
 class Solution:
     """class to reorder the linked list"""
 
-    # NOTE: time complexity: O(n)
     def reorderList(self, head: Optional[ListNode]) -> None:
         """
         Do not return anything, modify head in-place instead.
+        """
+        """
+        Time complexity: O(n)
         """
 
         # Split the list
@@ -34,7 +36,7 @@ class Solution:
 
         # Reverse the second part of list
         curr: Optional[ListNode] = slow.next
-        slow.next = None
+        slow.next = None  # cut the list
         prev: Optional[ListNode] = None
         while curr is not None:
             next_node: Optional[ListNode] = curr.next
@@ -43,15 +45,15 @@ class Solution:
             curr = next_node
 
         # Merge two list
-        list1: Optional[ListNode] = head
-        list2: Optional[ListNode] = prev
-        while list1 is not None and list2 is not None:
-            list1_next: Optional[ListNode] = list1.next
-            list2_next: Optional[ListNode] = list2.next
-            list1.next = list2
-            list2.next = list1_next
-            list1 = list1_next
-            list2 = list2_next
+        curr1: Optional[ListNode] = head
+        curr2: Optional[ListNode] = prev
+        while curr1 is not None and curr2 is not None:
+            curr1_next: Optional[ListNode] = curr1.next
+            curr2_next: Optional[ListNode] = curr2.next
+            curr1.next = curr2
+            curr2.next = curr1_next
+            curr1 = curr1_next
+            curr2 = curr2_next
 
 
 def test_reorderList_case_1():

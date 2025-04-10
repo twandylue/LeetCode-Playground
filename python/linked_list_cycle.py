@@ -26,6 +26,7 @@ class Solution:
 
     def hasCycle2(self, head: Optional[ListNode]) -> bool:
         """time complexity: O(n), space complexity: O(n)"""
+        # without dummy
         slow: Optional[ListNode] = head
         fast: Optional[ListNode] = head.next
         while fast is not None and fast.next is not None and slow is not None:
