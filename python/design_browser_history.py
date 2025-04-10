@@ -6,62 +6,55 @@ from typing import Optional
 class Node:
     def __init__(
         self,
-        val: str,
-        prev: Optional["Node"] = None,
+        value: str = "",
         next_node: Optional["Node"] = None,
+        prev_node: Optional["Node"] = None,
     ):
-        self.val = val
-        self.prev = prev
-        self.next = next_node
+        self.val: string = value
+        self.next_node = next_node
+        self.prev_node = prev_node
 
 
 class BrowserHistory:
     def __init__(self, homepage: str):
-        home_node: Node = Node(homepage)
-        self.head = Node("head")
-        self.tail = Node("tail")
-        self.head.next = home_node
-        home_node.prev = self.head
-        home_node.next = self.tail
-        self.tail.prev = home_node
-        self.curr = home_node
+        # head <-> homepage <-> tail
+        self._head: Node = Node()
+        self._tail: Node = Node()
+        homenode: Node = Node(homepage)
+        self._curr: Optional[Node] = homenode
+        self._head.next_node = homenode
+        homenode.prev_node = self._head
+        homenode.next_node = self._tail
+        self._tail.prev_node = homenode
 
     def visit(self, url: str) -> None:
         """time complexit: O(1)"""
         new_node: Node = Node(url)
-        self.curr.next = new_node
-        new_node.prev = self.curr
-        new_node.next = self.tail
-        self.tail.prev = new_node
-        self.curr = new_node
+        self._curr.next_node = new_node
+        new_node.prev_node = self._curr
+        new_node.next_node = self._tail
+        self._tail.prev_node = new_node
+        self._curr = new_node
 
     def back(self, steps: int) -> str:
         """time complexit: O(n)"""
-        idx: int = 0
-        while idx < steps and self.curr is not None:
-            if self.curr.prev == self.head:
+        for i in range(steps):
+            if self._curr is None:
+                raise Exception("impossible")
+            if self._curr.prev_node == self._head:
                 break
-            idx += 1
-            self.curr = self.curr.prev
-
-        if self.curr is None:
-            raise Exception("impossible")
-
-        return self.curr.val
+            self._curr = self._curr.prev_node
+        return self._curr.val
 
     def forward(self, steps: int) -> str:
         """time complexit: O(n)"""
-        idx: int = 0
-        while idx < steps and self.curr is not None:
-            if self.curr.next == self.tail:
+        for i in range(steps):
+            if self._curr is None:
+                raise Exception("impossible")
+            if self._curr.next_node == self._tail:
                 break
-            idx += 1
-            self.curr = self.curr.next
-
-        if self.curr is None:
-            raise Exception("impossible")
-
-        return self.curr.val
+            self._curr = self._curr.next_node
+        return self._curr.val
 
 
 # Your BrowserHistory object will be instantiated and called as such:
