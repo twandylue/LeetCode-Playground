@@ -93,3 +93,19 @@ def test_addTwoNumbers_case_3():
 
     # assert
     assert convert_linked_list_to_list(actual) == expected
+
+
+def test_addTwoNumbers_case_4():
+    # arrange
+    list1: list[int] = [1, 2, 4]
+    list2: list[int] = [1, 3, 5]
+    expected: list[int] = [1, 1, 2, 3, 4, 5]
+
+    # act
+    solution = Solution()
+    actual = solution.mergeTwoLists2(
+        convert_to_linked_list(list1), convert_to_linked_list(list2)
+    )
+
+    # assert
+    assert convert_linked_list_to_list(actual) == expected
