@@ -1,6 +1,25 @@
 class Solution:
     def findDuplicate(self, nums: list[int]) -> int:
-        d: dict[int, int] = dict()
+        """time complexity: O(1), space complexity: O(1)"""
+        # Step 1: Detect the cycle
+        slow: int = nums[0]
+        fast: int = nums[0]
+        while True:
+            slow = nums[slow]
+            fast = nums[nums[fast]]
+            if slow == fast:
+                break
+
+        # Step 2: Find the entry point
+        slow = nums[0]
+        while slow != fast:
+            slow = nums[slow]
+            fast = nums[fast]
+        return slow
+
+    def findDuplicate2(self, nums: list[int]) -> int:
+        """time complexity: O(n), space complexity: O(n)"""
+        d: dict[int, int] = {}
         for n in nums:
             if n in d:
                 return n
