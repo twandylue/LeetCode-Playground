@@ -38,6 +38,17 @@ class Solution:
 
     def hasCycle3(self, head: Optional[ListNode]) -> bool:
         """time complexity: O(n), space complexity: O(n)"""
+        slow: Optional[ListNode] = head
+        fast: Optional[ListNode] = head
+        while fast is not None and fast.next is not None and slow is not None:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return True
+        return False
+
+    def hasCycle4(self, head: Optional[ListNode]) -> bool:
+        """time complexity: O(n), space complexity: O(n)"""
         node_map: dict[ListNode, int] = {}
         curr: Optional[ListNode] = head
         while curr is not None:
