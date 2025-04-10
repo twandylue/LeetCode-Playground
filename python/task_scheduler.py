@@ -5,25 +5,24 @@ import heapq
 class Solution:
     def leastInterval(self, tasks: list[str], n: int) -> int:
         """time complexity: O(n), space complexity: O(26)"""
-        time: int = 0
-        counter: dict[str, int] = {}
+        # (time, task, freq)
+        queue: deque(tuple[int, str, int]) = deque()
+        # (freq, task)
+        max_heap: list[tuple[int, str]] = []
+        freq_map: dict[str, int] = defaultdict(int)
         for task in tasks:
-            if task not in counter:
-                counter[task] = 1
-            else:
-                counter[task] += 1
-        max_heap: list[int] = []
-        for count in counter.values():
-            heapq.heappush(max_heap, -count)
-        queue: deque[tuple[int, int]] = deque()
-        while len(max_heap) > 0 or len(queue) > 0:
+            freq_map[task] += 1
+        for k, v in freq_map.items():
+            heapq.heappush(max_heap, (-1 * v, k))
+        time: int = 0
+        while len(queue) > 0 or len(max_heap) > 0:
             if len(max_heap) > 0:
-                h: int = heapq.heappop(max_heap)
-                if h + 1 < 0:
-                    queue.append((h + 1, time + n))
-            if len(queue) > 0 and time >= queue[0][1]:
-                c, _ = queue.popleft()
-                heapq.heappush(max_heap, c)
+                freq, task = heapq.heappop(max_heap)
+                if freq + 1 < 0:
+                    queue.append((time + n, task, freq + 1))
+            if len(queue) > 0 and time >= queue[0][0]:
+                _, task, freq = queue.popleft()
+                heapq.heappush(max_heap, (freq, task))
             time += 1
         return time
 
