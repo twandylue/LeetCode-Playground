@@ -8,14 +8,14 @@ class Solution:
         time complexity: O(nlogn), space complexity: O(n),
         where n is the number of points
         """
-        min_heap: list[tuple[int, list[int]]] = []
         result: list[list[int]] = []
-        for point in points:
-            distance: int = point[0] ** 2 + point[1] ** 2
-            heapq.heappush(min_heap, (distance, point))
+        min_heap: list[tuple[int, int, int]] = []
+        for x, y in points:
+            distance: int = x**2 + y**2
+            heapq.heappush(min_heap, (distance, x, y))
         for _ in range(k):
-            d, p = heapq.heappop(min_heap)
-            result.append([p[0], p[1]])
+            _, x, y = heapq.heappop(min_heap)
+            result.append([x, y])
         return result
 
 
