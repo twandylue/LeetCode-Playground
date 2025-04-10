@@ -25,6 +25,27 @@ class Solution:
             list2.next = self.mergeTwoLists(list1, list2.next)
             return list2
 
+    def mergeTwoLists2(
+        self, list1: Optional[ListNode], list2: Optional[ListNode]
+    ) -> Optional[ListNode]:
+        dummy: Optional[ListNode] = ListNode()
+        curr: Optional[ListNode] = dummy
+        curr1: Optional[ListNode] = list1
+        curr2: Optioanl[ListNode] = list2
+        while curr1 is not None and curr2 is not None:
+            if curr1.val < curr2.val:
+                curr.next = curr1
+                curr1 = curr1.next
+            else:
+                curr.next = curr2
+                curr2 = curr2.next
+            curr = curr.next
+        if curr1 is not None:
+            curr.next = curr1
+        if curr2 is not None:
+            curr.next = curr2
+        return dummy.next
+
 
 def test_addTwoNumbers_case_1():
     # arrange
