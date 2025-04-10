@@ -31,7 +31,7 @@ class Solution:
         dummy: Optional[ListNode] = ListNode()
         curr: Optional[ListNode] = dummy
         curr1: Optional[ListNode] = list1
-        curr2: Optioanl[ListNode] = list2
+        curr2: Optiaonl[ListNode] = list2
         while curr1 is not None and curr2 is not None:
             if curr1.val < curr2.val:
                 curr.next = curr1

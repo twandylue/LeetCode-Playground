@@ -10,7 +10,7 @@ class Node:
         next_node: Optional["Node"] = None,
         prev_node: Optional["Node"] = None,
     ):
-        self.val: string = value
+        self.val: str = value
         self.next_node = next_node
         self.prev_node = prev_node
 
