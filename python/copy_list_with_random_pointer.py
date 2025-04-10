@@ -24,6 +24,8 @@ class Solution:
         curr = head
         # Second, set up next and random
         while curr is not None:
+            if curr not in old_to_new:
+                continue
             if curr.next is not None:
                 old_to_new[curr].next = old_to_new[curr.next]
             if curr.random is not None:
