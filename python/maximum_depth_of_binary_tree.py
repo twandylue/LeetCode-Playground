@@ -18,8 +18,6 @@ from serialize_binary_tree import SerializeBinaryTreeToList
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         """time complexity: O(n)"""
-        if root is None:
-            return 0
         return self.dfs(root)
 
     def dfs(self, root: Optional[TreeNode]) -> int:

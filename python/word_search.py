@@ -3,8 +3,6 @@ class Solution:
         visited: set[tuple[int, int]] = set()
         for i in range(len(board)):
             for j in range(len(board[i])):
-                if (i, j) in visited:
-                    continue
                 if self.dfs(0, i, j, visited, board, word):
                     return True
         return False
@@ -21,16 +19,16 @@ class Solution:
         if i == len(word):
             return True
         if (
-            (row, col) in visited
+            row < 0
             or row >= len(board)
-            or row < 0
-            or col >= len(board[0])
             or col < 0
+            or col >= len(board[row])
+            or (row, col) in visited
             or board[row][col] != word[i]
         ):
             return False
         visited.add((row, col))
-        result = (
+        result: bool = (
             self.dfs(i + 1, row + 1, col, visited, board, word)
             or self.dfs(i + 1, row - 1, col, visited, board, word)
             or self.dfs(i + 1, row, col + 1, visited, board, word)

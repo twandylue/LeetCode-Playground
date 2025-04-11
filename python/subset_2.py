@@ -1,9 +1,8 @@
 class Solution:
     def subsetsWithDup(self, nums: list[int]) -> list[list[int]]:
         result: list[list[int]] = []
-        nums.sort()
+        nums.sort()  # sort the input to handle duplicates
         self.bfs(0, nums, [], result)
-
         return result
 
     def bfs(
@@ -17,7 +16,6 @@ class Solution:
         subset.pop()
         while i + 1 < len(nums) and nums[i] == nums[i + 1]:
             i += 1
-
         self.bfs(i + 1, nums, subset, result)
 
 

@@ -26,9 +26,9 @@ class Solution:
         while curr is not None:
             if curr not in old_to_new:
                 continue
-            if curr.next is not None:
+            if curr.next in old_to_new:
                 old_to_new[curr].next = old_to_new[curr.next]
-            if curr.random is not None:
+            if curr.random in old_to_new:
                 old_to_new[curr].random = old_to_new[curr.random]
             curr = curr.next
         return old_to_new[head]

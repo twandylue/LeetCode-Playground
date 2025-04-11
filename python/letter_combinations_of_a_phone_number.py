@@ -15,26 +15,23 @@ class Solution:
         }
 
         if len(digits) > 0:
-            self.bfs(0, subset, result, digits, digitToCharDict)
-
+            self.dfs(0, digitToCharDict, subset, result, digits)
         return result
 
-    def bfs(
+    def dfs(
         self,
         i: int,
-        subset: list[str],
-        result: list[str],
-        digits: str,
         digitToCharDict: dict[str, str],
+        subset: list[str],
+        result: list[list[str]],
+        digits: str,
     ) -> None:
-        if len(subset) == len(digits):
+        if i == len(digits):
             result.append("".join(subset))
-            return
-        if i >= len(digits):
             return
         for c in digitToCharDict[digits[i]]:
             subset.append(c)
-            self.bfs(i + 1, subset, result, digits, digitToCharDict)
+            self.dfs(i + 1, digitToCharDict, subset, result, digits)
             subset.pop()
 
 

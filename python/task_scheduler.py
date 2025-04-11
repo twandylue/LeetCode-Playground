@@ -6,7 +6,7 @@ class Solution:
     def leastInterval(self, tasks: list[str], n: int) -> int:
         """time complexity: O(n), space complexity: O(26)"""
         # (time, task, freq)
-        queue: deque(tuple[int, str, int]) = deque()
+        queue: deque[tuple[int, str, int]] = deque()
         # (freq, task)
         max_heap: list[tuple[int, str]] = []
         freq_map: dict[str, int] = defaultdict(int)

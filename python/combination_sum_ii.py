@@ -1,10 +1,11 @@
 class Solution:
     def combinationSum2(self, candidates: list[int], target: int) -> list[list[int]]:
         """time complexity: O(n * 2^n)"""
-        subset: list[int] = []
-        result: list[list[int]] = []
         candidates.sort()
-        self.dfs(0, 0, subset, result, candidates, target)
+        result: list[list[int]] = []
+        subset: list[int] = []
+        accu: int = 0
+        self.dfs(0, accu, subset, result, candidates, target)
         return result
 
     def dfs(
@@ -19,7 +20,7 @@ class Solution:
         if accu == target:
             result.append(subset.copy())
             return
-        if i >= len(candidates) or accu > target:
+        if i == len(candidates) or accu > target:
             return
         subset.append(candidates[i])
         self.dfs(i + 1, accu + candidates[i], subset, result, candidates, target)
