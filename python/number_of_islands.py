@@ -1,32 +1,33 @@
 class Solution:
     def numIslands(self, grid: list[list[str]]) -> int:
         """time complexity: O(n * m), space complexity: O(n * m)"""
-        count: int = 0
+        result: int = 0
         visited: set[tuple[int, int]] = set()
         for i in range(len(grid)):
             for j in range(len(grid[i])):
-                if grid[i][j] == "1" and (i, j) not in visited:
-                    count += 1
-                    self.dfs(i, j, visited, grid)
-        return count
+                if (i, j) in visited or grid[i][j] == "0":
+                    continue
+                self.dfs(i, j, visited, grid)
+                result += 1
+        return result
 
     def dfs(
-        self, i: int, j: int, visited: set[tuple[int, int]], grid: list[list[str]]
+        self, row: int, col: int, visited: set[tuple[int, int]], grid: [list[list[str]]]
     ) -> None:
         if (
-            i < 0
-            or i >= len(grid)
-            or j < 0
-            or j >= len(grid[i])
-            or grid[i][j] == "0"
-            or (i, j) in visited
+            row < 0
+            or row >= len(grid)
+            or col < 0
+            or col >= len(grid[row])
+            or (row, col) in visited
+            or grid[row][col] == "0"
         ):
             return
-        visited.add((i, j))
-        self.dfs(i + 1, j, visited, grid)
-        self.dfs(i - 1, j, visited, grid)
-        self.dfs(i, j + 1, visited, grid)
-        self.dfs(i, j - 1, visited, grid)
+        visited.add((row, col))
+        self.dfs(row + 1, col, visited, grid)
+        self.dfs(row - 1, col, visited, grid)
+        self.dfs(row, col + 1, visited, grid)
+        self.dfs(row, col - 1, visited, grid)
 
 
 def test_numIslands_case_1():
