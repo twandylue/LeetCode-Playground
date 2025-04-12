@@ -20,10 +20,10 @@ class Solution:
         curr: Optional[ListNode] = head
         prev: Optional[ListNode] = None
         while curr != None:
-            next: Optional[ListNode] = curr.next
+            next_node: Optional[ListNode] = curr.next
             curr.next = prev
             prev = curr
-            curr = next
+            curr = next_node
 
         return prev
 
