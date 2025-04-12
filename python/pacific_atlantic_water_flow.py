@@ -1,20 +1,24 @@
 class Solution:
     def pacificAtlantic(self, heights: list[list[int]]) -> list[list[int]]:
         """time complexity: O(n * m), space complexity: O(n * m), where n is the number of rows and m is the number of columns"""
-        pac: set[tuple[int, int]] = set()
-        alt: set[tuple[int, int]] = set()
+        atlantic_set: set[tuple[int, int]] = set()
+        pacific_set: set[tuple[int, int]] = set()
+        for r in range(len(heights)):
+            self.dfs(r, 0, pacific_set, heights[r][0], heights)
+            self.dfs(r, len(heights[0]) - 1, atlantic_set, heights[r][-1], heights)
+        for c in range(len(heights[0])):
+            self.dfs(0, c, pacific_set, heights[0][c], heights)
+            self.dfs(
+                len(heights) - 1,
+                c,
+                atlantic_set,
+                heights[-1][c],
+                heights,
+            )
         result: list[list[int]] = []
         for r in range(len(heights)):
-            self.dfs(r, 0, pac, heights[r][0], heights)
-            self.dfs(
-                r, len(heights[r]) - 1, alt, heights[r][len(heights[r]) - 1], heights
-            )
-        for c in range(len(heights[0])):
-            self.dfs(0, c, pac, heights[0][c], heights)
-            self.dfs(len(heights) - 1, c, alt, heights[len(heights) - 1][c], heights)
-        for r in range(len(heights)):
             for c in range(len(heights[r])):
-                if (r, c) in alt and (r, c) in pac:
+                if (r, c) in pacific_set and (r, c) in atlantic_set:
                     result.append([r, c])
         return result
 
@@ -32,7 +36,7 @@ class Solution:
             or c < 0
             or c == len(heights[r])
             or (r, c) in visited
-            or heights[r][c] < pre_height
+            or pre_height > heights[r][c]
         ):
             return
         visited.add((r, c))
@@ -67,6 +71,28 @@ def test_pacificAtlantic_case_2():
         [1],
     ]
     expected: list[list[int]] = [[0, 0]]
+
+    # act
+    solution = Solution()
+    actual = solution.pacificAtlantic(heights)
+
+    # assert
+    assert expected == actual
+
+
+def test_pacificAtlantic_case_3():
+    # arrange
+    heights: list[list[int]] = [[4, 2, 7, 3, 4], [7, 4, 6, 4, 7], [6, 3, 5, 3, 6]]
+    expected: list[list[int]] = [
+        [0, 2],
+        [0, 4],
+        [1, 0],
+        [1, 1],
+        [1, 2],
+        [1, 3],
+        [1, 4],
+        [2, 0],
+    ]
 
     # act
     solution = Solution()
