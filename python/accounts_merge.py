@@ -1,26 +1,23 @@
 class UnionFind:
     def __init__(self, n: int):
-        self._parents: list[int] = [i for i in range(n)]
-        self._ranks: list[int] = [1] * n
+        self._indep: int = n
+        self._parent: list[int] = [i for i in range(n)]
+        self._rank: list[int] = [1] * n
 
-    def find(self, x: int) -> int:
-        while x != self._parents[x]:
-            tmp: int = self._parents[x]
-            self._parents[x] = self._parents[self._parents[x]]
-            x = tmp
-        return x
+    def find(self, n: int) -> int:
+        while n != self._parent[n]:
+            n = self._parent[n]
+        return n
 
-    def union(self, x1: int, x2: int) -> bool:
-        p1: int = self.find(x1)
-        p2: int = self.find(x2)
-        if p1 == p2:
+    def union(self, u: int, v: int) -> bool:
+        pu: int = self.find(u)
+        pv: int = self.find(v)
+        if pu == pv:
             return False
-        if self._ranks[p1] > self._ranks[p2]:
-            self._ranks[p1] += self._ranks[p2]
-            self._parents[p2] = p1
-        else:
-            self._ranks[p2] += self._ranks[p2]
-            self._parents[p1] = p2
+        if self._rank[pv] > self._rank[pu]:
+            pu, pv = pv, pu
+        self._parent[pv] = pu
+        self._indep -= 1
         return True
 
 
@@ -32,24 +29,23 @@ class Solution:
         2. time complexity: O(n * m), where n is the number of accounts and m is the number of emails in each account. space complexity: O(n)
         """
         uf: UnionFind = UnionFind(len(accounts))
-        # NOTE: email to account idx
-        email_to_account: dict[str, int] = {}
+        email_accounts_map: dict[str, int] = {}
         for i in range(len(accounts)):
-            for e in accounts[i][1:]:
-                if e in email_to_account:
-                    uf.union(i, email_to_account[e])
+            for email in accounts[i][1:]:
+                if email in email_accounts_map:
+                    uf.union(email_accounts_map[email], i)
                 else:
-                    email_to_account[e] = i
-        account_with_emails_group: dict[int, list[str]] = {}
-        for e, i in email_to_account.items():
-            leader: int = uf.find(i)
-            if leader in account_with_emails_group:
-                account_with_emails_group[leader].append(e)
+                    email_accounts_map[email] = i
+        account_emails_map: dict[int, list[str]] = {}
+        for email, account_id in email_accounts_map.items():
+            parent_id: int = uf.find(account_id)
+            if parent_id in account_emails_map:
+                account_emails_map[parent_id].append(email)
             else:
-                account_with_emails_group[leader] = [e]
+                account_emails_map[parent_id] = [email]
         result: list[list[str]] = []
-        for i, emails in account_with_emails_group.items():
-            result.append([accounts[i][0]] + sorted(emails))
+        for id, emails in account_emails_map.items():
+            result.append([accounts[id][0]] + sorted(emails))
         return result
 
 
