@@ -21,7 +21,7 @@ class Solution:
         return self.dfs(root)
 
     def dfs(self, root: Optional[TreeNode]) -> str:
-        """postorder traversal"""
+        """preorder traversal"""
         if root is None:
             return ""
         left: str = self.dfs(root.left)
@@ -33,6 +33,25 @@ class Solution:
         if left == "" and right != "":
             return str(root.val) + "()" + "(" + right + ")"
         return str(root.val) + "(" + left + ")" + "(" + right + ")"
+
+    def tree2str2(self, root: Optional[TreeNode]) -> str:
+        """time complexity: O(n)"""
+        return self.dfs2(root)
+
+    def dfs2(self, root: Optional[TreeNode]) -> str:
+        """preorder traversal"""
+        if root is None:
+            return ""
+        left: str = self.dfs2(root.left)
+        right: str = self.dfs2(root.right)
+        # root node value is added first
+        if root.left is None and root.right is not None:
+            return f"{root.val}()({right})"
+        if root.right is None and root.left is not None:
+            return f"{root.val}({left})"
+        if root.left is None and root.right is None:
+            return f"{root.val}"
+        return f"{root.val}({left})({right})"
 
 
 def test_tree2str_case_1():
@@ -62,6 +81,38 @@ def test_tree2str_case_2():
     # act
     solution = Solution()
     actual = solution.tree2str(root)
+
+    # assert
+    assert expected == actual
+
+
+def test_tree2str_case_3():
+    """This is a test case"""
+    # arrange
+    root: Optional[TreeNode] = DeserializeFromList([1, 2, 3, None, 4])
+    if root is None:
+        raise Exception("failed")
+    expected: str = "1(2()(4))(3)"
+
+    # act
+    solution = Solution()
+    actual = solution.tree2str2(root)
+
+    # assert
+    assert expected == actual
+
+
+def test_tree2str_case_4():
+    """This is a test case"""
+    # arrange
+    root: Optional[TreeNode] = DeserializeFromList([1, 2, 3, 4])
+    if root is None:
+        raise Exception("failed")
+    expected: str = "1(2(4))(3)"
+
+    # act
+    solution = Solution()
+    actual = solution.tree2str2(root)
 
     # assert
     assert expected == actual

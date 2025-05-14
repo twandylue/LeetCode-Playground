@@ -52,7 +52,7 @@ class Solution:
 
         return None
 
-    def getIntersectionNode(
+    def getIntersectionNode2(
         self, headA: ListNode, headB: ListNode
     ) -> Optional[ListNode]:
         """time complexity: O(m+n)"""
