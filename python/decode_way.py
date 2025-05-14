@@ -14,6 +14,7 @@ class Solution:
         return dp[0]
 
     def numDecodings_dfs(self, s: str) -> int:
+        """time complexity: O(n)"""
         dp: dict[int, int] = {len(s): 1}
         return self.dfs(0, s, dp)
 

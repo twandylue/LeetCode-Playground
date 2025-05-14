@@ -18,25 +18,21 @@ from linkedListConverter import convert_linked_list_to_list
 class Solution:
     def partition(self, head: Optional[ListNode], x: int) -> Optional[ListNode]:
         """time complexity: O(n)"""
-        left: Optional[ListNode] = ListNode()
-        left_curr: Optional[ListNode] = left
-        right: Optional[ListNode] = ListNode()
-        right_curr: Optional[ListNode] = right
-        curr: Optional[ListNode] = head
-        while left_curr is not None and right_curr is not None and curr is not None:
-            if curr.val < x:
-                left_curr.next = curr
-                left_curr = left_curr.next
+        before_head: ListNode = ListNode(0)
+        after_head: ListNode = ListNode(0)
+        before: ListNode = before_head
+        after: ListNode = after_head
+        while head is not None:
+            if head.val < x:
+                before.next = head
+                before = head
             else:
-                right_curr.next = curr
-                right_curr = right_curr.next
-            curr = curr.next
-
-        if left_curr is not None and right_curr is not None:
-            left_curr.next = right.next
-            right_curr.next = None
-
-        return left.next
+                after.next = head
+                after = head
+            head = head.next
+        after.next = None
+        before.next = after_head.next
+        return before_head.next
 
 
 def test_partition_case_1():
