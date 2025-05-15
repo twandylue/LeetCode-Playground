@@ -34,7 +34,7 @@ class Solution:
                     return False
                 if len(left_stack) > 0:
                     left_stack.pop()
-                else:
+                elif len(star_stack) > 0:
                     star_stack.pop()
         while len(left_stack) > 0 and len(star_stack) > 0:
             if left_stack.pop() > star_stack.pop():
@@ -73,6 +73,18 @@ def test_checkValidString_case_3():
 
     # act
     actual = Solution().checkValidString(s)
+
+    # assert
+    assert actual == expected
+
+
+def test_checkValidString_case_4():
+    # arrange
+    s = "(*))"
+    expected = True
+
+    # act
+    actual = Solution().checkValidString2(s)
 
     # assert
     assert actual == expected
