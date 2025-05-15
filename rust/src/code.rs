@@ -17,6 +17,7 @@ pub mod boats_to_save_people;
 pub mod brick_wall;
 pub mod build_an_array_with_stack_operations;
 pub mod can_place_flowers;
+pub mod capacity_to_ship_packages_within_d_days;
 pub mod car_fleet;
 pub mod car_pooling;
 pub mod check_if_a_string_contains_all_binary_codes_of_size_k;
