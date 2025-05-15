@@ -1,25 +1,22 @@
 import heapq
+from collections import defaultdict
 from typing import Optional
 
 
 class Solution:
     def reorganizeString(self, s: str) -> str:
         """
-        NOTE: time complexity O(nlogn), space complexity O(n)
+        NOTE: time complexity O(nlogk), space complexity O(k), where n is the length of the string and k is the number of unique charactres
         1. Most frequent character should be placed first
         2. Use prev to store the previous character and skip it in the next iteration
         """
-        counter: dict[str, int] = {}
-        for c in s:
-            if c not in counter:
-                counter[c] = 1
-            else:
-                counter[c] += 1
-        max_heap: list[tuple[int, str]] = [
-            (-1 * count, c) for c, count in counter.items()
-        ]
-        heapq.heapify(max_heap)
         result: str = ""
+        counter: dict[str, int] = defaultdict(int)
+        for c in s:
+            counter[c] += 1
+        max_heap: list[tuple[int, str]] = []
+        for k, v in counter.items():
+            heapq.heappush(max_heap, (-1 * v, k))
         prev: Optional[tuple[int, str]] = None
         while len(max_heap) > 0 or prev is not None:
             if len(max_heap) == 0 and prev is not None:
@@ -30,7 +27,7 @@ class Solution:
             if prev is not None:
                 heapq.heappush(max_heap, prev)
                 prev = None
-            if count < 0:
+            if count < 0 and prev is None:
                 prev = (count, c)
         return result
 
