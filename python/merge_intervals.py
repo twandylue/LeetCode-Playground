@@ -3,12 +3,12 @@ class Solution:
         """time: O(n logn)"""
         intervals.sort()
         result: list[list[int]] = [intervals[0]]
-        for start, end in intervals:
-            last_end: int = result[-1][1]
-            if start <= last_end:
-                result[-1][1] = max(last_end, end)
+        for s, e in intervals:
+            last = result[-1][1]
+            if s <= last:
+                result[-1][1] = max(e, last)
             else:
-                result.append([start, end])
+                result.append([s, e])
         return result
 
     def merge2(self, intervals: list[list[int]]) -> list[list[int]]:
