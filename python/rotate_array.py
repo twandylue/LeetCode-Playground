@@ -7,15 +7,16 @@ class Solution:
         k = k % len(nums)
         if k == 0:
             return
+        s: int = len(nums) - k
         # Reverse the nums
+        self.reverse(nums, 0, s - 1)
+        # Reverse the first part of elements
+        self.reverse(nums, s, len(nums) - 1)
+        # Reverse the rest of k elements
         self.reverse(nums, 0, len(nums) - 1)
-        # Reverse the first k elements
-        self.reverse(nums, 0, k - 1)
-        # Reverse the rest of the elements
-        self.reverse(nums, k, len(nums) - 1)
 
     def reverse(self, nums: list[int], l: int, r: int) -> None:
-        while l <= r:
+        while l < r:
             tmp: int = nums[l]
             nums[l] = nums[r]
             nums[r] = tmp
