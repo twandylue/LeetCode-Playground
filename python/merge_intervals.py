@@ -25,6 +25,20 @@ class Solution:
         result.append(section)
         return result
 
+    def merge3(self, intervals: list[list[int]]) -> list[list[int]]:
+        """time: O(n logn)"""
+        intervals.sort()
+        curr: list[int] = intervals[0]
+        result: list[list[int]] = []
+        for s, e in intervals:
+            if curr[1] >= s:
+                curr = [min(curr[0], s), max(curr[1], e)]
+            else:
+                result.append(curr)
+                curr = [s, e]
+        result.append(curr)
+        return result
+
 
 def test_insert_case_1():
     # arrange
@@ -60,6 +74,30 @@ def test_insert_case_3():
     # act
     solution = Solution()
     actual = solution.merge(intervals)
+
+    # assert
+    assert expected == actual
+
+
+def test_insert_case_4():
+    # arrange
+    intervals: list[list[int]] = [[1, 4], [0, 0]]
+    expected: list[list[int]] = [[0, 0], [1, 4]]
+
+    # act
+    actual = Solution().merge3(intervals)
+
+    # assert
+    assert expected == actual
+
+
+def test_insert_case_5():
+    # arrange
+    intervals: list[list[int]] = [[1, 4], [0, 4]]
+    expected: list[list[int]] = [[0, 4]]
+
+    # act
+    actual = Solution().merge3(intervals)
 
     # assert
     assert expected == actual
