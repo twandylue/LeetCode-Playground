@@ -1,18 +1,17 @@
 class Solution:
     def subarraySum(self, nums: list[int], k: int) -> int:
         result: int = 0
-        preAccuMap: dict[int, int] = {0: 1}
+        prefix_map: dict[int, int] = {0: 1}  # prefix sum -> freq
         accu: int = 0
-        for i in range(len(nums)):
-            accu += nums[i]
+        for num in nums:
+            accu += num
             remain: int = accu - k
-            if remain in preAccuMap:
-                result += preAccuMap[remain]
-
-            if accu not in preAccuMap:
-                preAccuMap[accu] = 1
+            if remain in prefix_map:
+                result += prefix_map[remain]
+            if accu not in prefix_map:
+                prefix_map[accu] = 1
             else:
-                preAccuMap[accu] += 1
+                prefix_map[accu] += 1
 
         return result
 
