@@ -3,16 +3,14 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        l: int = 0
-        for r in range(len(nums)):
-            if nums[r] == 0:
+        last_none_zero: int = 0
+        for i in range(len(nums)):
+            if nums[i] == 0:
                 continue
-            nums[l] = nums[r]
-            l += 1
-
-        while l < len(nums):
-            nums[l] = 0
-            l += 1
+            nums[last_none_zero] = nums[i]
+            last_none_zero += 1
+        for i in range(last_none_zero, len(nums)):
+            nums[i] = 0
 
 
 def test_moveZeroes_case_1():
