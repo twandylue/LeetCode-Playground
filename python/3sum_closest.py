@@ -1,5 +1,6 @@
 class Solution:
     def threeSumClosest(self, nums: list[int], target: int) -> int:
+        # Time Complexity: O(n^2)
         result: int = float("inf")
         diff: int = float("inf")
         nums.sort()

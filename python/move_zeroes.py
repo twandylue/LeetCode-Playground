@@ -12,6 +12,22 @@ class Solution:
         for i in range(last_none_zero, len(nums)):
             nums[i] = 0
 
+    def moveZeroes2(self, nums: list[int]) -> None:
+        """
+        Time Complexity: O(n)
+        """
+        l: int = 0
+        r: int = 0
+        while r < len(nums):
+            if nums[r] == 0:
+                r += 1
+            else:
+                nums[l], nums[r] = nums[r], nums[l]
+                l += 1
+                r += 1
+        while r < len(nums):
+            nums[r] = 0
+
 
 def test_moveZeroes_case_1():
     # arrange
