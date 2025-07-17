@@ -1,10 +1,11 @@
 class Solution:
     def eraseOverlapIntervals(self, intervals: list[list[int]]) -> int:
+        """time complexity: O(n log n)"""
         count: int = 0
         end: float = -float("inf")
         intervals.sort(key=lambda x: x[1])
 
-        for i in range(0, len(intervals)):
+        for i in range(len(intervals)):
             if end > intervals[i][0]:
                 count += 1
             else:
@@ -16,12 +17,12 @@ class Solution:
         """time complexity: O(n log n)"""
         result: int = 0
         intervals.sort()
-        prev_end: int = intervals[0][1]
+        curr_e: int = intervals[0][1]
         for start, end in intervals[1:]:
-            if start >= prev_end:
-                prev_end = end
+            if start >= curr_e:
+                curr_e = end
             else:
-                prev_end = min(prev_end, end)
+                curr_e = min(curr_e, end)
                 result += 1
         return result
 
