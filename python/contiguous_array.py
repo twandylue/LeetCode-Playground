@@ -1,14 +1,15 @@
 class Solution:
     def findMaxLength(self, nums: list[int]) -> int:
-        prefix_sum: int = 0
+        # Time complexity: O(n)
         prefix_map: dict[int, int] = {0: -1}
+        accu: int = 0
         result: int = 0
         for i, num in enumerate(nums):
-            prefix_sum += 1 if num == 1 else -1
-            if prefix_sum in prefix_map:
-                result = max(result, i - prefix_map[prefix_sum])
+            accu += 1 if num == 1 else -1
+            if accu in prefix_map:
+                result = max(result, i - prefix_map[accu])
             else:
-                prefix_map[prefix_sum] = i
+                prefix_map[accu] = i
         return result
 
 
