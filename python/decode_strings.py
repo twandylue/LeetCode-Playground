@@ -18,6 +18,28 @@ class Solution:
 
         return "".join(stack)
 
+    def decodeString2(self, s: str) -> str:
+        """time complexity: O(n)"""
+        _, result = self.helper(0, s)
+        return result
+
+    def helper(self, i: int, s: str) -> tuple[int, str]:
+        num: int = 0
+        result: str = ""
+        while i < len(s):
+            if s[i].isdigit():
+                num = num * 10 + int(s[i])
+            elif s[i] == "[":
+                i, subs = self.helper(i + 1, s)
+                result = result + num * subs
+                num = 0
+            elif s[i] == "]":
+                return i, result
+            else:
+                result += s[i]
+            i += 1
+        return i, result
+
 
 def test_decodeString_case_1():
     # arrange
@@ -81,6 +103,34 @@ def test_decodeString_case_5():
     # act
     solution = Solution()
     actual = solution.decodeString(s)
+
+    # assert
+    assert expected == actual
+
+
+def test_decodeString_case_6():
+    # arrange
+    s: str = "100[leetcode]"
+    expected: str = (
+        "leetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcodeleetcode"
+    )
+
+    # act
+    solution = Solution()
+    actual = solution.decodeString2(s)
+
+    # assert
+    assert expected == actual
+
+
+def test_decodeString_case_7():
+    # arrange
+    s: str = "3[a]2[bc]"
+    expected: str = "aaabcbc"
+
+    # act
+    solution = Solution()
+    actual = solution.decodeString2(s)
 
     # assert
     assert expected == actual
