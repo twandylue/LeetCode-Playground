@@ -10,6 +10,17 @@ class Solution:
             stack.append((t, i))
         return result
 
+    def dailyTemperatures2(self, temperatures: list[int]) -> list[int]:
+        """time complexity: O(n)"""
+        result: list[int] = [0] * len(temperatures)
+        stack: list[int] = []
+        for i in range(len(temperatures)):
+            while len(stack) > 0 and temperatures[i] > temperatures[stack[-1]]:
+                idx: int = stack.pop()
+                result[idx] = i - idx
+            stack.append(i)
+        return result
+
 
 def test_dailyTemperatures_case_1():
     # arrange
@@ -45,6 +56,19 @@ def test_dailyTemperatures_case_3():
     # act
     solution = Solution()
     actual = solution.dailyTemperatures(temperatures)
+
+    # assert
+    assert actual == expected
+
+
+def test_dailyTemperatures_case_4():
+    # arrange
+    temperatures: list[int] = [30, 60, 90]
+    expected: list[int] = [1, 1, 0]
+
+    # act
+    solution = Solution()
+    actual = solution.dailyTemperatures2(temperatures)
 
     # assert
     assert actual == expected
