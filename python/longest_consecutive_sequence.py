@@ -3,13 +3,14 @@ class Solution:
         """time complexity: O(n), space complexity: O(n)"""
         result: int = 0
         nums_set: set[int] = set(nums)
-        for i in range(len(nums)):
-            if nums[i] - 1 in nums_set:
+        for num in nums_set:
+            if num - 1 in nums_set:
                 continue
-            length: int = 0
-            while nums[i] + length in nums_set:
-                length += 1
-            result = max(result, length)
+            count: int = 1
+            while num + 1 in nums_set:
+                num = num + 1
+                count += 1
+            result = max(result, count)
 
         return result
 
