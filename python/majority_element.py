@@ -25,6 +25,16 @@ class Solution:
                 return nums[i]
         return -1
 
+    def majorityElement3(self, nums: list[int]) -> int:
+        # Time Complexity: O(n), Space Complexity: O(1)
+        count: int = 0
+        candidate: int = 0
+        for num in nums:
+            if count == 0:
+                candidate = num
+            count += 1 if candidate == num else 0
+        return candidate
+
 
 def test_majorityElement_case_1():
     # arrange
@@ -47,6 +57,19 @@ def test_majorityElement_case_2():
     # act
     solution = Solution()
     actual = solution.majorityElement(nums)
+
+    # assert
+    assert expected == actual
+
+
+def test_majorityElement_case_3():
+    # arrange
+    nums: list[int] = [2, 2, 1, 1, 1, 2, 2]
+    expected: int = 2
+
+    # act
+    solution = Solution()
+    actual = solution.majorityElement3(nums)
 
     # assert
     assert expected == actual
