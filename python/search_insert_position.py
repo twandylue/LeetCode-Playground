@@ -35,6 +35,20 @@ class Solution:
 
         return result + 1 if nums[result] < target else result
 
+    def searchInsert2(self, nums: list[int], target: int) -> int:
+        l: int = 0
+        r: int = len(nums)
+        while l < r:
+            mid: int = l + (r - l) // 2
+            if self.feasible(mid, target, nums):
+                r = mid
+            else:
+                l = mid + 1
+        return l
+
+    def feasible(self, n: int, target: int, nums: list[int]) -> bool:
+        return nums[n] >= target
+
 
 def test_searchInsert_case_1():
     # arrange
@@ -129,6 +143,20 @@ def test_searchInsert_case_7():
     # act
     solution = Solution()
     actual = solution.searchInsert(nums, target)
+
+    # assert
+    assert expected == actual
+
+
+def test_searchInsert_case_8():
+    # arrange
+    nums: list[int] = [3, 5, 7, 9, 10]
+    target: int = 8
+    expected: int = 3
+
+    # act
+    solution = Solution()
+    actual = solution.searchInsert2(nums, target)
 
     # assert
     assert expected == actual

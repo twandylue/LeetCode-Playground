@@ -15,6 +15,20 @@ class Solution:
 
         return result if result**2 < x else result - 1
 
+    def mySqrt2(self, x: int) -> int:
+        l: int = 1
+        r: int = x + 1
+        while l < r:
+            mid: int = l + (r - l) // 2
+            if self.feasible(mid, x):
+                r = mid
+            else:
+                l = mid + 1
+        return l - 1
+
+    def feasible(self, n: int, x: int) -> bool:
+        return n * n > x
+
 
 def test_mySqrt_case_1():
     # arrange

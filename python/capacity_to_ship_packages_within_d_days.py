@@ -25,6 +25,27 @@ class Solution:
             accu_days += 1
         return accu_days <= days
 
+    def shipWithinDays2(self, weights: list[int], days: int) -> int:
+        l: int = max(weights)
+        r: int = sum(weights)
+        while l < r:
+            mid: int = l + (r - l) // 2
+            if self.feasible(mid, weights, days):
+                r = mid
+            else:
+                l = mid + 1
+        return l
+
+    def feasible(self, n: int, weights: list[int], days: int) -> bool:
+        total_days: int = 1
+        accu: int = 0
+        for weight in weights:
+            accu += weight
+            if accu > n:
+                total_days += 1
+                accu = weight
+        return total_days <= days
+
 
 def test_shipWithinDays_case_1():
     # arrange
@@ -63,6 +84,20 @@ def test_shipWithinDays_case_3():
     # act
     solution = Solution()
     actual = solution.shipWithinDays(weights, days)
+
+    # assert
+    assert expected == actual
+
+
+def test_shipWithinDays_case_4():
+    # arrange
+    weights: list[int] = [1, 2, 3, 1, 1]
+    days: int = 4
+    expected: int = 3
+
+    # act
+    solution = Solution()
+    actual = solution.shipWithinDays2(weights, days)
 
     # assert
     assert expected == actual
