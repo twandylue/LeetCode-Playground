@@ -2,6 +2,10 @@
 # def isBadVersion(version: int) -> bool:
 
 
+def isBadVersion(mid: int) -> bool:
+    return True
+
+
 class Solution:
     def firstBadVersion(self, n: int) -> int:
         l: int = 1

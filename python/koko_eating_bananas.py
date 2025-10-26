@@ -60,3 +60,17 @@ def test_minEatingSpeed_case_3():
 
     # assert
     assert expected == actual
+
+
+def test_minEatingSpeed_case_4():
+    # arrange
+    piles = [30, 11, 23, 4, 20]
+    h = 6
+    expected = 23
+
+    # act
+    solution = Solution()
+    actual = solution.minEatingSpeed2(piles, h)
+
+    # assert
+    assert expected == actual
