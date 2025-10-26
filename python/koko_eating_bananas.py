@@ -19,6 +19,23 @@ class Solution:
                 l = mid + 1
         return result
 
+    def minEatingSpeed2(self, piles: list[int], h: int) -> int:
+        l: int = 1
+        r: int = max(piles)
+        while l < r:
+            mid: int = l + (r - l) // 2
+            if self.feasible(mid, piles, h):
+                r = mid
+            else:
+                l = mid + 1
+        return l
+
+    def feasible(self, n: int, piles: list[int], h: int) -> bool:
+        total_hours: int = 0
+        for pile in piles:
+            total_hours += pile // n if pile % n == 0 else pile // n + 1
+        return total_hours <= h
+
 
 def test_minEatingSpeed_case_1():
     # arrange
