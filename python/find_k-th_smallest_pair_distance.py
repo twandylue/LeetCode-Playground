@@ -1,6 +1,7 @@
 class Solution:
     def smallestDistancePair(self, nums: list[int], k: int) -> int:
-        # Time complexity: O(n log n + n log d) where n is the length of nums and d is the range of distances
+        # Time complexity: O(n log n + n log d) where n is the length of nums and d is the range of distances,
+        # d is the range of values (max(nums) - min(nums))
         # Space complexity: O(1)
         nums.sort()
         l: int = 0
