@@ -1,16 +1,39 @@
 class Solution:
     def minSubArrayLen(self, target: int, nums: list[int]) -> int:
+        # Time complexity: O(n)
         result: int = len(nums) + 1
         l: int = 0
         accu: int = 0
         for r in range(len(nums)):
             accu += nums[r]
-            while accu >= target:
+            while accu >= target and l <= r:
                 result = min(result, r - l + 1)
                 accu -= nums[l]
                 l += 1
 
         return 0 if result == len(nums) + 1 else result
+
+    def minSubArrayLen2(self, target: int, nums: list[int]) -> int:
+        # Time complexity: O(n log n), Space complexity: O(1)
+        if sum(nums) < target:
+            return 0
+        l: int = 0
+        r: int = len(nums)
+        while l < r:
+            mid: int = l + (r - l) // 2
+            if self.feasible(mid, target, nums):
+                r = mid
+            else:
+                l = mid + 1
+        return l
+
+    def feasible(self, size: int, target: int, nums: list[int]) -> bool:
+        accu: int = 0
+        for i in range(len(nums) - size + 1):
+            accu = sum(nums[i : i + size])
+            if accu >= target:
+                return True
+        return False
 
 
 def test_minSubArrayLen_case_1():
