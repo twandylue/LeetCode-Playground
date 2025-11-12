@@ -1,6 +1,6 @@
 class Solution:
-    # NOTE: time complexity: O(n)
     def numOfSubarrays(self, arr: list[int], k: int, threshold: int) -> int:
+        # NOTE: time complexity: O(n)
         result: int = 0
         l: int = 0
         r: int = 0
@@ -14,6 +14,20 @@ class Solution:
                 result += 1
 
             r += 1
+
+        return result
+
+    def numOfSubarrays2(self, arr: list[int], k: int, threshold: int) -> int:
+        # NOTE: time complexity: O(n)
+        result: int = 0
+        window_sum: int = sum(arr[:k])
+        if window_sum >= threshold * k:
+            result += 1
+
+        for i in range(k, len(arr)):
+            window_sum += arr[i] - arr[i - k]
+            if window_sum >= threshold * k:
+                result += 1
 
         return result
 
@@ -43,6 +57,21 @@ def test_numOfSubarrays_case_2():
     # act
     solution = Solution()
     actual = solution.numOfSubarrays(arr, k, threshold)
+
+    # assert
+    assert expected == actual
+
+
+def test_numOfSubarrays_case_3():
+    # arrange
+    arr: list[int] = [11, 13, 17, 23, 29, 31, 7, 5, 2, 3]
+    k: int = 3
+    threshold: int = 5
+    expected: int = 6
+
+    # act
+    solution = Solution()
+    actual = solution.numOfSubarrays2(arr, k, threshold)
 
     # assert
     assert expected == actual
