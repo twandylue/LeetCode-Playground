@@ -31,6 +31,31 @@ class Solution:
                 matches -= 1
         return matches == 26
 
+    def checkInclusion2(self, s1: str, s2: str) -> bool:
+        if len(s1) > len(s2):
+            return False
+        count1: list[int] = [0] * 26
+        count2: list[int] = [0] * 26
+        for i in range(len(s1)):
+            count1[ord(s1[i]) - ord("a")] += 1
+            count2[ord(s2[i]) - ord("a")] += 1
+        matches: int = 0
+        for i in range(26):
+            matches += 1 if count1[i] == count2[i] else 0
+        if matches == 26:
+            return True
+        for i in range(len(s1), len(s2)):
+            r_idx: int = ord(s2[i]) - ord("a")
+            l_idx: int = ord(s2[i - len(s1)]) - ord("a")
+            count2[r_idx] += 1
+            count2[l_idx] -= 1
+            matches = 0
+            for i in range(26):
+                matches += 1 if count1[i] == count2[i] else 0
+            if matches == 26:
+                return True
+        return False
+
 
 def test_permutation_in_string_case1():
     # arrange
@@ -55,6 +80,34 @@ def test_permutation_in_string_case2():
     # act
     solution = Solution()
     actual = solution.checkInclusion(s1, s2)
+
+    # assert
+    assert actual == expected
+
+
+def test_permutation_in_string_case3():
+    # arrange
+    s1 = "ab"
+    s2 = "eidboaoo"
+    expected = False
+
+    # act
+    solution = Solution()
+    actual = solution.checkInclusion2(s1, s2)
+
+    # assert
+    assert actual == expected
+
+
+def test_permutation_in_string_case4():
+    # arrange
+    s1 = "ab"
+    s2 = "eidbaooo"
+    expected = True
+
+    # act
+    solution = Solution()
+    actual = solution.checkInclusion2(s1, s2)
 
     # assert
     assert actual == expected
