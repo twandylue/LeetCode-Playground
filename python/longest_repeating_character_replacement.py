@@ -1,18 +1,21 @@
+from collections import defaultdict
+
+
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        result: int = 0
-        charCount: list[int] = [0] * 26
+        """time complexity: O(n), space complexity: O(1)"""
         l: int = 0
+        result: int = 0
+        freq_map: dict[str, int] = defaultdict(int)
+        max_freq: int = 0
         for r in range(len(s)):
-            charCount[ord(s[r]) - ord("A")] += 1
-            currLen: int = r - l + 1
-            while currLen - max(charCount) > k:
-                charCount[ord(s[l]) - ord("A")] -= 1
+            freq_map[s[r]] += 1
+            max_freq = max(max_freq, freq_map[s[r]])
+            while r - l + 1 - max_freq > k:
+                freq_map[s[l]] -= 1
+                max_freq = max(max_freq, freq_map[s[r]])
                 l += 1
-                currLen -= 1
-
-            result = max(result, currLen)
-
+            result = max(result, r - l + 1)
         return result
 
 

@@ -32,6 +32,7 @@ class Solution:
         return matches == 26
 
     def checkInclusion2(self, s1: str, s2: str) -> bool:
+        """time complexity: O(n)"""
         if len(s1) > len(s2):
             return False
         count1: list[int] = [0] * 26
