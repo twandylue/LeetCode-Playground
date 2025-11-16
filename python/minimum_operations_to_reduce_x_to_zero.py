@@ -1,23 +1,18 @@
 class Solution:
     def minOperations(self, nums: list[int], x: int) -> int:
-        intervalLen: int = 0
+        # Time complexity: O(n), Space complexity: O(1)
         target: int = sum(nums) - x
-        accu: int = 0
+        longest: int = -1
         l: int = 0
-        flag: bool = False
+        accu: int = 0
         for r in range(len(nums)):
             accu += nums[r]
-            currLen: int = r - l + 1
-            while l <= r and accu > target:
+            while accu > target and l <= r:
                 accu -= nums[l]
                 l += 1
-                currLen -= 1
-
             if accu == target:
-                flag = True
-                intervalLen = max(intervalLen, currLen)
-
-        return -1 if not flag else len(nums) - intervalLen
+                longest = max(longest, r - l + 1)
+        return len(nums) - longest if longest > -1 else -1
 
 
 def test_minOperations_case_1():
