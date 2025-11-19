@@ -6,17 +6,14 @@ class Solution:
         """time complexity: O(n)"""
         result: list[int] = []
         queue: deque[int] = deque()
-        l: int = 0
-        for r in range(len(nums)):
-            while len(queue) > 0 and nums[r] > nums[queue[-1]]:
+        for i, num in enumerate(nums):
+            while len(queue) > 0 and nums[queue[-1]] < num:
                 queue.pop()
-            queue.append(r)
-            if l > queue[0]:
+            queue.append(i)
+            if queue[0] <= i - k:
                 queue.popleft()
-            if r + 1 >= k:
+            if i >= k - 1:
                 result.append(nums[queue[0]])
-                l += 1
-
         return result
 
 
