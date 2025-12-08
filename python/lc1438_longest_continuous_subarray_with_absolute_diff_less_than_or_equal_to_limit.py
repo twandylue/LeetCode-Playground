@@ -4,24 +4,25 @@ from collections import deque
 class Solution:
     def longestSubarray(self, nums: list[int], limit: int) -> int:
         # Time complexity: O(n)
-        min_d: deque[int] = deque()
-        max_d: deque[int] = deque()
-        l: int = 0
+        min_queue: deque[int] = deque()
+        max_queue: deque[int] = deque()
         result: int = 0
+        l: int = 0
         for r, num in enumerate(nums):
-            while len(min_d) > 0 and min_d[-1] > num:
-                min_d.pop()
-            min_d.append(num)
-            while len(max_d) > 0 and max_d[-1] < num:
-                max_d.pop()
-            max_d.append(num)
-            while max_d[0] - min_d[0] > limit:
-                if nums[l] == max_d[0]:
-                    max_d.popleft()
-                if nums[l] == min_d[0]:
-                    min_d.popleft()
+            while len(min_queue) > 0 and min_queue[-1] > num:
+                min_queue.pop()
+            min_queue.append(num)
+            while len(max_queue) > 0 and max_queue[-1] < num:
+                max_queue.pop()
+            max_queue.append(num)
+            while max_queue[0] - min_queue[0] > limit:
+                if nums[l] == max_queue[0]:
+                    max_queue.popleft()
+                if nums[l] == min_queue[0]:
+                    min_queue.popleft()
                 l += 1
-            result = max(r - l + 1, result)
+            result = max(result, r - l + 1)
+
         return result
 
 
